@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./App.css";
+import Header from "./Component/Header";
+import Appointments from "./Component/Appointments";
+import WhyUs from "./Component/WhyUs"
+// import * as Icon from 'react-bootstrap-icons';
+// import { ArrowRight } from "react-bootstrap-icons";
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Appointments />
+      <WhyUs />
     </div>
   );
 }
-
-export default App;
