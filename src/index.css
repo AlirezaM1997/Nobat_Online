@@ -4,6 +4,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  transition: 0.6s;
 }
 @font-face {
   font-family: "Parastoo";
@@ -197,9 +198,13 @@ a:hover {
   transition: 0.3s;
 }
 .navbar .dropdown ul li {
-  min-width: 200px;
+  text-align: center;
+
+  min-width: fit-content;
 }
 .navbar .dropdown ul a {
+  text-align: center;
+
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 500;
@@ -407,7 +412,10 @@ a:hover {
   color: #fff;
   text-align: right;
 }
-
+.hero-input:focus{
+  outline: none;
+  box-shadow: none;
+}
 ._active {
   background: #c7c7c7;
 }
@@ -674,6 +682,12 @@ a:hover {
 .why-us {
   margin: 125px 0 50px 0;
 }
+@media (max-width: 991px) {
+  .why-us {
+    margin: 70px 0 50px 0;
+
+  }
+}
 .why-us .content {
   font-family: "Samim";
 
@@ -732,7 +746,7 @@ a:hover {
 }
 
 /*--------------------------------------------------------------
-# 
+# user-profile
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------

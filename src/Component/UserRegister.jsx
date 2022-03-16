@@ -4,6 +4,7 @@ import Image from "react-bootstrap/Image";
 import { Manager, Reference, Popper, placements } from "react-popper"; 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+import Header2 from "./Header2";
 export default function DoctorRegister() {
   const [selectedDay, setSelectedDay] = useState(null);
   // render regular HTML input element
@@ -42,25 +43,8 @@ export default function DoctorRegister() {
 
   return (
     <div>
-      <section className="container py-3 min-vh-100 mw-100 h-custom ">
-        <div className="d-flex bg-white w-100 p-2 mb-2 justify-content-between">
-          <div className="d-flex align-items-center ">
-            <button className="btn py-1 px-2 bg-danger ">
-              <Link className="text-light" to={"/"}>
-                صفحه اصلی
-              </Link>
-            </button>
-          </div>
-          <div id="" className="d-flex align-items-center ">
-            <h1 className="logo">
-              <Link to="">نوبت آنلاین</Link>
-            </h1>
-            <Image
-              id="doc-reg-logo"
-              src={require("/Users/alireza/Desktop/Makeen/Project/Online appointments/src/images/logo.png")}
-            ></Image>
-          </div>
-        </div>
+      <section className="container py-3 min-vh-100 mw-100 h-custom px-5">
+        <Header2/>
         <div class="container  h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-8 col-xl-6">

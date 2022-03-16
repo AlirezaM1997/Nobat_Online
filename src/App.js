@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./Component/Header";
+// import Header from "./Component/Header";
 import Appointments from "./Component/Appointments";
 import WhyUs from "./Component/WhyUs"
 // import * as Icon from 'react-bootstrap-icons';
@@ -7,7 +7,7 @@ import WhyUs from "./Component/WhyUs"
 export default function App() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Appointments />
       <WhyUs />
     </div>

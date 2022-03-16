@@ -1,29 +1,13 @@
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
+import Header2 from "./Header2";
 
 export default function UserLogin() {
   return (
-    <div className="container py-3 min-vh-100 mw-100 bg-user-reg">
-      <div className="d-flex bg-white w-100 p-2 mb-2 justify-content-evenly">
-        <div className="d-flex align-items-center ">
-          <button className="btn py-1 px-2 bg-danger ">
-            <Link className="text-light" to={"/"}>
-              صفحه اصلی
-            </Link>
-          </button>
-        </div>
-        <div id="" className="d-flex align-items-center ">
-          <h1 className="logo">
-            <Link to="">نوبت آنلاین</Link>
-          </h1>
-          <Image
-            id="doc-reg-logo"
-            src={require("/Users/alireza/Desktop/Makeen/Project/Online appointments/src/images/logo.png")}
-          ></Image>
-        </div>
-      </div>
-      <div className="row d-flex flex-lg-row flex-column align-content-center pt-1">
-        <div className="col-lg-6 col-md-8 p-5">
+    <div className="container py-3 px-5 min-vh-100 mw-100 bg-user-reg">
+      <Header2 />
+      <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
+        <div className="col-lg-5 col-md-8 p-5">
           <div className="form-bg">
             <div className="container">
               <div className="row d-flex flex-md-column">
@@ -53,16 +37,19 @@ export default function UserLogin() {
                           dir="rtl"
                         />
                       </div>
-                      <button className="btn signin">
-                        <Link to={"#"} className="text-white">
-                          ورود
+
+                      <div className="d-flex align-items-center">
+                        <Link to={"/userprofile"} className="text-white">
+                          <button className="btn signin">ورود</button>
                         </Link>
-                      </button>
-                      <span className="forgot-pass">
-                        <Link to={"#"}>رمز عبور را فراموش کردی؟</Link>
-                      </span>
+                        <span className="forgot-pass">
+                          <Link to={"#"}>رمز عبور را فراموش کردی؟</Link>
+                        </span>
+                      </div>
                       <span className="register">
-                        <Link className="h6 text-danger" to={"/user-register"}>ثبت نام نکردی ؟</Link>
+                        <Link className="h6 text-danger" to={"/user-register"}>
+                          ثبت نام نکردی ؟
+                        </Link>
                       </span>
                     </form>
                   </div>
@@ -71,7 +58,7 @@ export default function UserLogin() {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-8 p-5">
+        <div className="col-lg-5 col-md-8 p-5">
           <div className="form-bg">
             <div className="container">
               <div className="row">
@@ -101,16 +88,24 @@ export default function UserLogin() {
                           dir="rtl"
                         />
                       </div>
-                      <button className="btn signin" id="signin-doctor">
+
+                      <div className="d-flex align-items-center ">
                         <Link to={"#"} className="text-white">
-                          ورود
+                          <button className="btn signin" id="signin-doctor">
+                            ورود
+                          </button>
                         </Link>
-                      </button>
-                      <span className="forgot-pass">
-                        <Link to={"#"}>رمز عبور را فراموش کردی؟</Link>
-                      </span>
+                        <span className="forgot-pass">
+                          <Link to={"#"}>رمز عبور را فراموش کردی؟</Link>
+                        </span>
+                      </div>
                       <span className="register">
-                        <Link className="h6 text-danger"  to={"/doctor-register"}>ثبت نام پزشکان</Link>
+                        <Link
+                          className="h6 text-danger"
+                          to={"/doctor-register"}
+                        >
+                          ثبت نام پزشکان
+                        </Link>
                       </span>
                     </form>
                   </div>

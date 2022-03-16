@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { bottom } from "@popperjs/core";
 import MobileMenu from "./MobileMenu";
 import Image from "react-bootstrap/Image";
@@ -20,7 +20,7 @@ export default function Header() {
           <div id="header3">
             <Link
               className="btn btn-primary me-2 btnHeader headerBtn"
-              to={"/user"}
+              to={"/login"}
             >
               ورود کاربران
             </Link>
@@ -42,7 +42,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link to="" className="nav-link scrollto">
-                    مجله سلامت
+                    منو
                   </Link>
                 </li>
                 <li>
@@ -52,21 +52,20 @@ export default function Header() {
                 </li>
                 <li className="dropdown">
                   <Link to="">
-                    <span>منو کشویی</span>{" "}
-                    <i className="bi bi-chevron-down"></i>
+                    <span>مجله سلامت</span>{" "}
                   </Link>
                   <ul>
                     <li>
-                      <Link to="">1</Link>
+                      <Link to="">سلامت زنان</Link>
                     </li>
                     <li>
-                      <Link to="">2</Link>
+                      <Link to="">سلامت خانواده</Link>
                     </li>
                     <li>
-                      <Link to="">3</Link>
+                      <Link to="">بیماری کرونا</Link>
                     </li>
                     <li>
-                      <Link to="">4</Link>
+                      <Link to="">بهداشت روان</Link>
                     </li>
                   </ul>
                 </li>
@@ -90,6 +89,7 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <Outlet/>
     </div>
   );
 }
