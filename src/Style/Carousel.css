@@ -1,0 +1,41 @@
+.img{
+    width: 135px;
+	height: 135px;
+	margin: 0 auto;
+	padding: 5px;
+	border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.title {
+	color: #333;
+	font-family: "Sahel";
+	font-weight: bold;
+	position: relative;
+	margin: 30px 0 60px;
+}
+.title::after {
+	content: "";
+	width: 120px;
+	position: absolute;
+	margin: 0 auto;
+	height: 3px;
+	background: #8fbc54;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+}
+.carousel-indicators{
+    display: none;
+}
+.carousel-control-next-icon , .carousel-control-prev-icon{
+    background-color: #1977CC;
+    border-radius: 10%;}
+.caption{
+    padding: 1em 3em;
+    text-align: center;
+}
+.carousel-control-next , .carousel-control-prev {
+    max-height: fit-content;
+    max-width: fit-content;
+    margin: auto;
+}

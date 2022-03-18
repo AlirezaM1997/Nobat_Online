@@ -78,7 +78,7 @@ export default function WhyUs() {
             </div>
           </div>
           <div class="col-lg-4 d-flex align-items-stretch order-lg-1 order-0">
-            <div class="content text-center ">
+            <div class="content text-center text-white">
               <h3>چرا نوبت آنلاین؟</h3>
               <p>
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با

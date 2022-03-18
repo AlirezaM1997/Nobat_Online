@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./UserProfile.css";
+import "../Style/UserProfile.css";
 import Header2 from "./Header2";
 import { useEffect, useState } from "react";
 

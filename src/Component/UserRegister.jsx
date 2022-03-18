@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import Image from "react-bootstrap/Image";
-import { Manager, Reference, Popper, placements } from "react-popper"; 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
 import Header2 from "./Header2";
@@ -43,7 +41,7 @@ export default function DoctorRegister() {
 
   return (
     <div>
-      <section className="container py-3 min-vh-100 mw-100 h-custom px-5">
+      <section className="container py-3 min-vh-100 mw-100 bg-user-reg px-5">
         <Header2/>
         <div class="container  h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">

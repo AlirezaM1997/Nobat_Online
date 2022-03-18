@@ -1,9 +1,9 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Routes, Route, Link } from "react-router-dom";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {Link } from "react-router-dom";
+import "../Style/MobileMenu.css"
 
 export default function MobileMenu() {
   const [show, setShow] = useState(false);
@@ -30,21 +30,33 @@ export default function MobileMenu() {
         </Offcanvas.Header>
         <Offcanvas.Body className="">
           <div class="list-group">
-            <Link to={'#'} class="list-group-item list-group-item-action p-3">
-              صفحه اصلی
-            </Link>
-            <Link to={'#'} class="list-group-item list-group-item-action p-3">
-              منو کشویی
-            </Link>
-            <Link to={'#'} class="list-group-item list-group-item-action p-3">
-              منو
-            </Link>
-            <Link to={'#'} class="list-group-item list-group-item-action p-3">
-              مجله سلامت
-            </Link>
-            <Link to={'#'} class="list-group-item list-group-item-action p-3">
-              درباره ما
-            </Link>
+            <ul>
+              <li>
+                <Link to={'/'} class="list-group-item list-group-item-action p-3">
+                  صفحه اصلی
+                </Link>
+              </li>
+              <li>
+                <Link to={'#'} class="list-group-item list-group-item-action p-3">
+                مجله سلامت
+                </Link>
+              </li>
+              <li>
+                <Link to={'#'} class="list-group-item list-group-item-action p-3">
+                  منو
+                </Link>
+              </li>
+              <li>
+                <Link to={'#'} class="list-group-item list-group-item-action p-3">
+                منو
+                </Link>
+              </li>
+              <li>
+                <Link to={'/about'} class="list-group-item list-group-item-action p-3">
+                  درباره ما
+                </Link>
+              </li>
+            </ul>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

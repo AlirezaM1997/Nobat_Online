@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import Header2 from "./Header2";
 
-export default function UserLogin() {
+export default function Login() {
   return (
-    <div className="container py-3 px-5 min-vh-100 mw-100 bg-user-reg">
+    <div className="container py-3 px-5 min-vh-100 mw-100 bg-user-log">
       <Header2 />
       <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
         <div className="col-lg-5 col-md-8 p-5">
@@ -13,7 +13,7 @@ export default function UserLogin() {
               <div className="row d-flex flex-md-column">
                 <div className="col-md-offset-12 col-md-12 col-sm-offset-12 col-sm-12">
                   <div className="form-container">
-                    <form className="form-horizontal">
+                    <form className="bg-white form-horizontal">
                       <h3 className="title">ورود بیماران</h3>
                       <div className="form-group">
                         <span className="input-icon">

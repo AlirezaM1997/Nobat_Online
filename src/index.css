@@ -2,9 +2,7 @@
 # Public
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
-  color: #444444;
-  transition: 0.6s;
+  /* transition: 0.6s; */
 }
 @font-face {
   font-family: "Parastoo";
@@ -38,30 +36,16 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-a {
-  color: #1977cc;
+a , a:hover {
   text-decoration: none;
 }
-
-a:hover {
-  color: #3291e6;
-  text-decoration: none;
-}
-
 /*--------------------------------------------------------------
 # topbar
 --------------------------------------------------------------*/
 #topbar {
-  background: #fff;
   height: 40px;
-  font-size: 14px;
-  transition: all 0.5s;
   z-index: 996;
 }
-#topbar.topbar-scrolled {
-  top: -40px;
-}
-
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -70,54 +54,40 @@ a:hover {
     order: 3;
   }
 }
-
 @media screen and (max-width: 532px) {
   #header3 {
     display: none;
   }
 }
 #header {
-  background: #fff;
-  transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
   top: 12px;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
 }
-#header.header-scrolled {
-  top: 0;
-}
 .logo {
-  font-size: 24px;
-  margin: 0;
-  padding: 0;
   line-height: 1;
-  font-weight: 700;
+  font: 700 24px "Parastoo";
   letter-spacing: 0.5px;
-  font-family: "Parastoo";
 }
 .logo a {
-  color: #2c4964;
+  color: #000000;
   margin: 0 12px;
 }
 #header .logo img {
   max-height: 40px;
 }
-
-/**
-* Header Button *
+/*
+* Header Button 
 */
 .btnHeader {
   margin-left: 25px;
   background: #1977cc;
-  color: #fff;
   border-radius: 50px;
   padding: 8px 25px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
-  font-family: "Sahel";
-  display: inline-block;
+  font: 14px "Sahel";
 }
 .btnHeader:hover {
   background: #166ab5;
@@ -132,16 +102,12 @@ a:hover {
 #logo {
   width: 75px;
 }
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
 * Desktop Navigation 
 */
-.navbar {
-  padding: 0;
-}
 .navbar ul {
   margin: 0;
   padding: 0;
@@ -162,13 +128,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 14px;
-  /* color: #2c4964; */
+  font: 14px "Sahel";
   white-space: nowrap;
   transition: 0.3s;
   border-bottom: 2px solid #fff;
   padding: 5px 2px;
-  font-family: "Sahel";
 }
 .navbar a i,
 .navbar a:focus i {
@@ -199,15 +163,12 @@ a:hover {
 }
 .navbar .dropdown ul li {
   text-align: center;
-
   min-width: fit-content;
 }
 .navbar .dropdown ul a {
   text-align: center;
-
   padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font:500 14px;
   text-transform: none;
   color: #082744;
   border: none;
@@ -244,109 +205,6 @@ a:hover {
     left: -100%;
   }
 }
-
-/**
-* Mobile Navigation 
-*/
-.mobile-nav-toggle {
-  color: #2c4964;
-  font-size: 28px;
-  cursor: pointer;
-  display: none;
-  line-height: 0;
-  transition: 0.5s;
-}
-.mobile-nav-toggle.bi-x {
-  color: #fff;
-}
-
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-    display: block;
-  }
-
-  .navbar ul {
-    display: none;
-  }
-}
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(28, 47, 65, 0.9);
-  transition: 0.3s;
-  z-index: 999;
-}
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  background-color: #fff;
-  overflow-y: auto;
-  transition: 0.3s;
-}
-.navbar-mobile > ul > li {
-  padding: 0;
-}
-.navbar-mobile a,
-.navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #2c4964;
-  border: none;
-}
-.navbar-mobile a:hover,
-.navbar-mobile .active,
-.navbar-mobile li:hover > a {
-  color: #1977cc;
-}
-.navbar-mobile .getstarted,
-.navbar-mobile .getstarted:focus {
-  margin: 15px;
-}
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-.navbar-mobile .dropdown ul a:hover,
-.navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover > a {
-  color: #1977cc;
-}
-.navbar-mobile .dropdown > .dropdown-active {
-  display: block;
-}
-.headerBtn {
-  color: white;
-}
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -358,7 +216,6 @@ a:hover {
   margin-bottom: -200px;
   font-family: "Shabnam";
 }
-
 @media (max-width: 991px) {
   #hero {
     margin-bottom: 0;
@@ -372,34 +229,32 @@ a:hover {
 }
 .hero-title {
   font-family: "Samim";
-  text-align: center;
   line-height: 1.5em;
   letter-spacing: 00.08rem;
 }
-
-.appoinBox0 {
-  width: 100%;
+.searchBox {
   height: 200px;
   border-radius: 0.5em;
 }
-
 .expertSearch,
 .doctorSearch {
   font-family: "Shabnam";
   align-items: flex-end;
 }
-
-#docSear {
+#docSearch {
   border-radius: 0;
   border-top-left-radius: 15px;
   height: 4em;
   border: none;
 }
-#expSear {
+#expSearch {
   border-radius: 0;
   border-top-right-radius: 15px;
   height: 4em;
   border: none;
+}
+#expSearch:hover , #docSearch:hover {
+  background: #FFD659;
 }
 .input-hero:focus,
 .input-hero {
@@ -419,28 +274,19 @@ a:hover {
 ._active {
   background: #c7c7c7;
 }
-
-#expSear:focus,
-#docSear:focus {
+#expSearch:focus,
+#docSearch:focus {
   outline: none;
   box-shadow: none;
 }
-
 /*--------------------------------------------------------------
-# DoctorRegister
+# DoctorRegister & UserRegister
 --------------------------------------------------------------*/
-/* @media (max-width: 768px) {
-  .h-custom {
-    height: 110vh !important;
-  }
-} */
-.h-custom {
+.doc-reg-main {
   background: url(/src/images/backReg.jpg) center;
   background-size: cover;
   font-family: "Sahel";
-  width: 100%;
 }
-
 .doc-reg-card {
   background-image: radial-gradient(
     circle,
@@ -451,7 +297,6 @@ a:hover {
     #ececec
   );
 }
-
 .form-control:focus {
   outline: none;
   box-shadow: none;
@@ -475,28 +320,23 @@ a:hover {
   border-radius: 0.3rem;
 }
 .responsive-calendar {
-  /* by setting font-size, all the elements will correspond */
   font-size: 9px !important; /* default to 10px */
 }
-
 @media (max-width: 1500px) {
   .responsive-calendar {
     font-size: 8px !important;
   }
 }
-
 @media (max-width: 1200px) {
   .responsive-calendar {
     font-size: 7px !important;
   }
 }
-
 @media (max-width: 768px) {
   .responsive-calendar {
     font-size: 6px !important;
   }
 }
-
 /* Large screens */
 @media (min-width: 2500px) {
   .responsive-calendar {
@@ -512,13 +352,35 @@ a:hover {
   width: 5rem;
 }
 /*--------------------------------------------------------------
-# UserLogin
+# UserRegister
 --------------------------------------------------------------*/
 .bg-user-reg {
   font-family: "Sahel";
   width: 100%;
-  background: url(/src/images/reg-back.jpg);
-  background-position: center;
+  background: url(/src/images/reg-back.jpg) center;
+  background-size: cover;
+}
+#user-reg-title {
+  background: linear-gradient(
+    to right,
+    #f2bdff,
+    #f6d2ff,
+    transparent,
+    #f6d2ff,
+    #f2bdff
+  );
+}
+.-top {
+  padding-top: -100px;
+  max-height: 100px !important;
+}
+/*--------------------------------------------------------------
+# UserLogin
+--------------------------------------------------------------*/
+.bg-user-log {
+  font-family: "Sahel";
+  width: 100%;
+  background: url(/src/images/reg-back.jpg) center;
   background-size: cover;
 }
 .form-container {
@@ -527,7 +389,6 @@ a:hover {
   z-index: 1;
 }
 .form-container .form-horizontal {
-  background-color: #fff;
   padding: 30px 30px 10px;
   border: 1px solid #e7e7e7;
 }
@@ -557,8 +418,7 @@ a:hover {
     transparent,
     #f5f5f5
   );
-  font-size: 23px;
-  font-weight: 600;
+  font: 600 23px;
   text-align: center;
   text-transform: capitalize;
   padding: 2px;
@@ -584,9 +444,8 @@ a:hover {
 }
 .form-horizontal .form-control {
   color: #555;
-  font-family: "Sahel";
+  font:14px "Sahel";
   background-color: transparent;
-  font-size: 14px;
   letter-spacing: 1px;
   width: calc(100% - 55px);
   height: 40px;
@@ -596,7 +455,6 @@ a:hover {
   border-radius: 0;
   display: inline-block;
   transition: all 0.3s;
-  font-family: "Sahel";
 }
 .form-horizontal .form-control:focus {
   box-shadow: none;
@@ -610,9 +468,7 @@ a:hover {
 .form-horizontal .btn {
   color: #fff;
   background: linear-gradient(#1dd1a1, #10ac84);
-  font-size: 16px;
-  font-weight: 600;
-  font-family: "Sahel";
+  font:600 16px "Sahel";
   text-transform: capitalize;
   width: 100px;
   padding: 5px 18px;
@@ -651,7 +507,6 @@ a:hover {
   border-top: 1px solid #e7e7e7;
   display: block;
 }
-
 .register,
 .forgot-pass {
   font-family: "Sahel";
@@ -659,23 +514,7 @@ a:hover {
 #signin-doctor {
   background: #1076d6;
 }
-/*--------------------------------------------------------------
-# UserRegister
---------------------------------------------------------------*/
-#user-reg-title {
-  background: linear-gradient(
-    to right,
-    #f2bdff,
-    #f6d2ff,
-    transparent,
-    #f6d2ff,
-    #f2bdff
-  );
-}
-.-top {
-  padding-top: -100px;
-  max-height: 100px !important;
-}
+
 /*--------------------------------------------------------------
 # WhyUs
 --------------------------------------------------------------*/
@@ -685,23 +524,19 @@ a:hover {
 @media (max-width: 991px) {
   .why-us {
     margin: 70px 0 50px 0;
-
   }
 }
 .why-us .content {
   font-family: "Samim";
-
   padding: 30px;
   background: #1977cc;
   border-radius: 4px;
-  color: #fff;
 }
 .why-us h4 {
   font-family: "Samim";
 }
 .why-us .content h3 {
-  font-weight: 700;
-  font-size: 34px;
+  font:700 34px;
   margin-bottom: 30px;
 }
 .why-us .content p {
@@ -736,27 +571,10 @@ a:hover {
   margin-bottom: 30px;
 }
 .why-us .icon-boxes .icon-box h4 {
-  font-size: 20px;
-  font-weight: 700;
+  font:700 20px;
   margin: 0 0 30px 0;
 }
 .why-us .icon-boxes .icon-box p {
   font-size: 15px;
   color: #848484;
 }
-
-/*--------------------------------------------------------------
-# user-profile
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-# 
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-# 
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-# 
---------------------------------------------------------------*/

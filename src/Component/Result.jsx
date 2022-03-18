@@ -1,8 +1,13 @@
 import React, { useState, useEffect, Fragment } from "react";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import "../Style/Result.css";
+import { useFlagState } from "../Provider";
+import Header2 from "./Header2";
 
 export default function Result() {
+  const { flag } = useFlagState();
+  const [isLoaded, setIsLoaded] = useState(true);
+  // const [searchItem, setSearchItem] = useState("");
   const [items, setItems] = useState([
     {
       id: "1",
@@ -47,12 +52,8 @@ export default function Result() {
       imgUrl: "169469.jpeg",
     },
   ]);
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [searchItem, setSearchItem] = useState("");
 
-  // const getIndexById = (id) => {
-  //     return items.findIndex((item) => item.id === id);
-  //   };
+  console.log(flag);
 
   useEffect(() => {
     const url = ``;
@@ -90,19 +91,91 @@ export default function Result() {
       </svg>
     </div>
   ) : (
-    <div>
-      <div className="w-full h-max pb-4 bg-gradient-to-tr from-gray-400 to-gray-20 ">
-        <div className="container p-8 pt-3 mx-auto" >
-          {/* <input
-            className="p-3 w-72 my-3"
-            id="search"
-            value={searchItem}
-            onChange={(e) => setSearchItem(e.target.value)}
-            placeholder="search someone ..."
-          ></input> */}
-
+    <div className=" py-3 mw-100 back-prof px-5">
+      <div className="container">
+        {/* <Header2 /> */}
+        <div className="row mt-4 d-flex justify-content-center px-5">
+          <div className="col-lg-8 pb-5 order-lg-0 order-1">
+            {`${flag}`
+              ? items.map((item) => (
+                  <div className="cart-item m-auto mb-2 ">
+                    <span className="remove-item"></span>
+                    <div className="px-3 my-3">
+                      <div className="cart-item-doctor" to={"#"}>
+                        <div className="d-flex flex-column cart-item-doctor-info">
+                          <div className="row">
+                            <div className="d-flex justify-content-between">
+                              <h4 className="cart-item-doctor-title text-end d-inline">
+                                دکتر {item.fname} {item.lname}
+                              </h4>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="text-success font-weight-medium text-end">
+                              متخصص : {item.expert}
+                            </div>
+                          </div>
+                          <div className="row">
+                            <span className="text-success font-weight-medium text-end">
+                              {item.date}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="cart-item-doctor-thumb">
+                          <img
+                            src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
+                            alt="doctor"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : ""}
+            {`${!flag}`
+              ? items
+                  .filter((item) => item.cancel)
+                  .map((item) => (
+                    <div className="cart-item m-auto mb-2 ">
+                      <span className="remove-item"></span>
+                      <div className="px-3 my-3">
+                        <div className="cart-item-doctor" to={"#"}>
+                          <div className="d-flex flex-column cart-item-doctor-info">
+                            <div className="row">
+                              <div className="d-flex justify-content-between">
+                                <h4 className="cart-item-doctor-title text-end d-inline">
+                                  دکتر {item.fname} {item.lname}
+                                </h4>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="text-success font-weight-medium text-end">
+                                متخصص : {item.expert}
+                              </div>
+                            </div>
+                            <div className="row">
+                              <span className="text-success font-weight-medium text-end">
+                                {item.date}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="cart-item-doctor-thumb">
+                            <img
+                              src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
+                              alt="doctor"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+              : ""}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+// const getIndexById = (id) => {
+//     return items.findIndex((item) => item.id === id);
+//   };
