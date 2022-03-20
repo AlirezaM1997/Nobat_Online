@@ -1,9 +1,6 @@
 /*--------------------------------------------------------------
 # Public
 --------------------------------------------------------------*/
-body {
-  /* transition: 0.6s; */
-}
 @font-face {
   font-family: "Parastoo";
   src: url("./Web-font/Parastoo.eot");
@@ -36,7 +33,8 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-a , a:hover {
+a,
+a:hover {
   text-decoration: none;
 }
 /*--------------------------------------------------------------
@@ -102,6 +100,9 @@ a , a:hover {
 #logo {
   width: 75px;
 }
+.header2Back{
+  background: rgba(255, 255, 255, 0.534);
+}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -148,7 +149,8 @@ a , a:hover {
   border-color: #1977cc;
 }
 .navbar .dropdown ul {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   right: 0;
   top: calc(100% + 30px);
@@ -162,13 +164,17 @@ a , a:hover {
   transition: 0.3s;
 }
 .navbar .dropdown ul li {
-  text-align: center;
+  text-align: end;
   min-width: fit-content;
 }
+/* .navbar .dropdown ul li a{
+  text-align: start;
+
+} */
 .navbar .dropdown ul a {
   text-align: center;
   padding: 10px 20px;
-  font:500 14px;
+  font: 500 14px;
   text-transform: none;
   color: #082744;
   border: none;
@@ -253,8 +259,9 @@ a , a:hover {
   height: 4em;
   border: none;
 }
-#expSearch:hover , #docSearch:hover {
-  background: #FFD659;
+#expSearch:hover,
+#docSearch:hover {
+  background: #ffd659;
 }
 .input-hero:focus,
 .input-hero {
@@ -262,12 +269,15 @@ a , a:hover {
   box-shadow: none;
   border: solid 2px orange;
   padding: 0.4em;
+  
 }
 .searchTitle {
   color: #fff;
   text-align: right;
 }
-.hero-input:focus{
+
+.hero-input:focus,
+#searchBtn {
   outline: none;
   box-shadow: none;
 }
@@ -278,6 +288,19 @@ a , a:hover {
 #docSearch:focus {
   outline: none;
   box-shadow: none;
+}
+.hint{
+  display: block;
+  color: rgb(251, 255, 0);
+}
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.mainAbout {
+  margin-top: 200px;
+}
+.mainAbout h3{
+font-family: "Sahel";
 }
 /*--------------------------------------------------------------
 # DoctorRegister & UserRegister
@@ -444,7 +467,7 @@ a , a:hover {
 }
 .form-horizontal .form-control {
   color: #555;
-  font:14px "Sahel";
+  font: 14px "Sahel";
   background-color: transparent;
   letter-spacing: 1px;
   width: calc(100% - 55px);
@@ -468,7 +491,7 @@ a , a:hover {
 .form-horizontal .btn {
   color: #fff;
   background: linear-gradient(#1dd1a1, #10ac84);
-  font:600 16px "Sahel";
+  font: 600 16px "Sahel";
   text-transform: capitalize;
   width: 100px;
   padding: 5px 18px;
@@ -519,7 +542,7 @@ a , a:hover {
 # WhyUs
 --------------------------------------------------------------*/
 .why-us {
-  margin: 125px 0 50px 0;
+  margin: 150px 0 50px 0;
 }
 @media (max-width: 991px) {
   .why-us {
@@ -536,7 +559,7 @@ a , a:hover {
   font-family: "Samim";
 }
 .why-us .content h3 {
-  font:700 34px;
+  font: 700 34px;
   margin-bottom: 30px;
 }
 .why-us .content p {
@@ -571,7 +594,7 @@ a , a:hover {
   margin-bottom: 30px;
 }
 .why-us .icon-boxes .icon-box h4 {
-  font:700 20px;
+  font: 700 20px;
   margin: 0 0 30px 0;
 }
 .why-us .icon-boxes .icon-box p {

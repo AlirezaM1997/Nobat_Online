@@ -12,15 +12,18 @@ import Result from "./Component/Result";
 import UserProfile from "./Component/UserProfile";
 import Header from "./Component/Header";
 import reportWebVitals from "./reportWebVitals";
+import About from "./Component/About"
+import Footer from "./Component/Footer";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Provider from "./Provider"
 ReactDOM.render(
   <Provider>
     <BrowserRouter>
       <Routes>
-        <Route element={<Header />}>
+        <Route element={<><Header /><Footer /></>}>
           <Route exact path="/" element={<Home />}></Route>
           <Route path="/result" element={<Result />}></Route>
+          <Route path="/about" element={<About />}></Route>
         </Route>
         <Route path="/doctor-register" element={<DoctorRegister />}></Route>
         <Route path="/user-register" element={<UserRegister />}></Route>
@@ -46,7 +49,5 @@ function RequireAuth({ children, redirectTo }) {
   return isAuthenticated ? children : <Navigate to={redirectTo} />;
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

@@ -1,3 +1,174 @@
-.p{
-    margin-top: 200px;
+#bg-result{
+    margin: 150px 0;
 }
+#search{
+    box-shadow: 0px 5px 22px rgba(25, 119, 204, 0.5);
+    border-radius: 1rem;
+    height: 400px;
+    width: 300px;
+    right: 6%;
+}
+#StickyBox{
+    top: 150px !important;
+}
+@media (max-width: 1100px) {
+    #search {
+        width: 270px;
+    }
+  }
+@media (max-width:970px) {
+    #search {
+        width: 240px;
+    }
+  }
+  @media (max-width:880px) {
+    #search {
+        width: 220px;
+    }
+  }
+  @media (max-width:768px) {
+    #search {
+        width: 100%;
+        right: 0;
+        margin: auto;
+    }
+  }
+  .cart {
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 30px;
+    padding: 5px 50px 5px 10px;
+    background-color: #fff;
+    box-shadow: 0 9px 15px 1px rgba(64, 64, 64, 0.2);
+  }
+  .cart .cart-label {
+    display: block;
+    margin-bottom: 15px;
+    color: #8c8c8c;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .cart .cart-doctor {
+    display: table;
+    width: 100%;
+    text-decoration: none;
+  }
+  .cart .cart-doctor-thumb,
+  .cart .cart-doctor-info {
+    display: table-cell;
+    vertical-align: top;
+  }
+  .cart .cart-doctor-thumb {
+    /* width: 110px; */
+  }
+  .cart .cart-doctor-thumb > img {
+    display: block;
+    width: 100%;
+  }
+  .cart .cart-doctor-info {
+    padding-top: 5px;
+    /* padding-right: 15px; */
+  }
+  .cart .cart-doctor-info > span {
+    display: block;
+    margin-bottom: 2px;
+    color: #404040;
+    font-size: 12px;
+  }
+  .cart .cart-doctor-title {
+    margin-bottom: 8px;
+    transition: color, 0.3s;
+    color: #343b43;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .cart .count-input {
+    display: inline-block;
+    width: 85px;
+  }
+  .cart .remove {
+    right: -10px !important;
+  }
+  @media (max-width: 991px) {
+    .cart {
+      padding-right: 30px;
+    }
+    /* .cart .cart-doctor {
+      width: auto;
+    } */
+  }
+  @media (max-width: 768px) {
+    .cart {
+      padding-right: 10px;
+      padding-bottom: 15px;
+    }
+    .cart .cart-doctor {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .cart .cart-doctor-thumb,
+    .cart .cart-doctor-info {
+      display: block;
+    }
+    .cart .cart-doctor-thumb {
+      /* margin: 0 10px; */
+    }
+    .cart .cart-doctor-info {
+      padding-left: 0;
+    }
+    .cart .cart-label {
+      margin-bottom: 8px;
+    }
+  }
+  .dynamic-star-container:not(:last-child) {
+    margin-right: 0;
+}
+@media (max-width:576px) {
+    .rowOfCart {
+        align-content: center;
+    }
+  }
+@media (max-width:576px) {
+    .cart-doctor-info {
+        margin: 10px 0;
+        order: 1;
+        align-items: center;
+
+    }
+  }
+@media (max-width:576px) {
+    .star {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        
+    }
+  }
+ 
+
+  
+   #appointment {background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%)}
+   #appointment {
+     margin: 5px;
+     padding: 5px 10px;
+     text-align: center;
+     text-transform: uppercase;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;            
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     display: block;
+     font-family: "Sahel";
+     border: none;
+   }
+
+    #appointment:hover {
+     background-position: right center; /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+   }
+  

@@ -1,76 +1,51 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Result.css";
-import { useFlagState } from "../Provider";
-import Header2 from "./Header2";
+import { useAllState } from "../Provider";
+import StickyBox from "react-sticky-box";
+import { DynamicStar } from "react-dynamic-star";
+import { faLocationDot, faSearchPlus } from "@fortawesome/free-solid-svg-icons";
+import data from "../data";
+import DoctorList from "./DoctorList";
 
 export default function Result() {
-  const { flag } = useFlagState();
+  const { flag } = useAllState();
+  const { searchExp } = useAllState();
+  const { searchDoc } = useAllState('!');
+  const {allDoctors} = useAllState(data);
+  const {isAdvancedSearch} = useAllState();
+  const {setIsAdvancedSearch} = useAllState();
+
+  
   const [isLoaded, setIsLoaded] = useState(true);
-  // const [searchItem, setSearchItem] = useState("");
-  const [items, setItems] = useState([
-    {
-      id: "1",
-      fname: "علیرضا",
-      lname: "صابری",
-      expert: "اورولوژی",
-      imgUrl: "544345.jpeg",
-    },
-    {
-      id: "2",
-      fname: "محمد",
-      lname: "رضایی",
-      expert: "گوش و حلق و بینی",
-      imgUrl: "156921.jpeg",
-    },
-    {
-      id: "3",
-      fname: "علی",
-      lname: "نوروزی",
-      expert: "داخلی",
-      imgUrl: "643966.jpeg",
-    },
-    {
-      id: "4",
-      fname: "احمد",
-      lname: "قادری",
-      expert: "بیماری های عفونی",
-      imgUrl: "574387.jpeg",
-    },
-    {
-      id: "5",
-      fname: "شهرام",
-      lname: "کاظمی",
-      expert: "اعصاب و روان",
-      imgUrl: "455837.jpeg",
-    },
-    {
-      id: "6",
-      fname: "محمود",
-      lname: "علوی",
-      expert: "قلب و عروق",
-      imgUrl: "169469.jpeg",
-    },
-  ]);
+  const [nameDoc, setNameDoc] = useState("");
+  const [expertDoc, setExpertDoc] = useState("");
+console.log(isAdvancedSearch);
+  // useEffect(() => {
+  //   const url = ``;
+  //   fetch(url)
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw Error(response.status);
+  //       }
+  //     })
+  //     .then((result) => {
+  //       setItems();
+  //       setIsLoaded(true);
+  //     });
+  // }, []);
+  // const navigateToExp = useNavigate();
 
-  console.log(flag);
-
-  useEffect(() => {
-    const url = ``;
-    fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw Error(response.status);
-        }
-      })
-      .then((result) => {
-        // setItems();
-        // setIsLoaded(true);
-      });
-  }, []);
-
+  // const setRedirectDoc = () => {
+    
+  //     setIsAdvancedSearch(true)
+    
+  //     navigateToExp("/result");
+    
+  // };
   return !isLoaded ? (
     <div className="text-center mt-5">
       <svg
@@ -91,85 +66,141 @@ export default function Result() {
       </svg>
     </div>
   ) : (
-    <div className=" py-3 mw-100 back-prof px-5">
+    <div className="py-3 mw-100 px-5" id="bg-result">
       <div className="container">
-        {/* <Header2 /> */}
-        <div className="row mt-4 d-flex justify-content-center px-5">
-          <div className="col-lg-8 pb-5 order-lg-0 order-1">
-            {`${flag}`
-              ? items.map((item) => (
-                  <div className="cart-item m-auto mb-2 ">
-                    <span className="remove-item"></span>
-                    <div className="px-3 my-3">
-                      <div className="cart-item-doctor" to={"#"}>
-                        <div className="d-flex flex-column cart-item-doctor-info">
-                          <div className="row">
-                            <div className="d-flex justify-content-between">
-                              <h4 className="cart-item-doctor-title text-end d-inline">
-                                دکتر {item.fname} {item.lname}
-                              </h4>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="text-success font-weight-medium text-end">
-                              متخصص : {item.expert}
-                            </div>
-                          </div>
-                          <div className="row">
-                            <span className="text-success font-weight-medium text-end">
-                              {item.date}
-                            </span>
+        <div className="row mt-4 d-flex justify-content-center px-1">
+          <div className="col-md-8 col-12 pb-5 order-md-0 order-1">
+            {((!flag && !isAdvancedSearch)
+              ? allDoctors.filter((item) =>
+                  item.expert.toLowerCase().includes(searchExp.toLowerCase())
+                )
+              : allDoctors.filter(
+                  (item) =>
+                    item.fname
+                      .toLowerCase()
+                      .includes(searchDoc.toLowerCase()) ||
+                    item.lname.toLowerCase().includes(searchDoc.toLowerCase())
+                )
+            ).map((item) => (
+              <div className="cart m-auto mb-2 ">
+                <span className="remove-item"></span>
+                <div className="px-3 my-2">
+                  <div className="container cart-doctor p-0  justify-content-end">
+                    <div className="row d-flex flex-column flex-sm-row rowOfCart">
+                      <div className="col-sm-3 col-6 star">
+                        <DynamicStar
+                          width={15}
+                          height={15}
+                          emptyStarColor={"gray"}
+                          rating={item.rate}
+                        />
+                      </div>
+                      <div className="col-sm-6 col-6 d-flex flex-column cart-doctor-info ">
+                        <div className="row">
+                          <div className="d-flex justify-content-end flex-column flex-sm-row">
+                            <h4 className="cart-doctor-title text-end d-inline">
+                              دکتر {item.fname} {item.lname}
+                            </h4>
                           </div>
                         </div>
-                        <div className="cart-item-doctor-thumb">
-                          <img
-                            src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
-                            alt="doctor"
-                          />
+                        <div className="row">
+                          <div className="text-info fw-bold text-sm-end text-center">
+                            متخصص {item.expert}
+                          </div>
                         </div>
+                        <div className="row">
+                          <span className="text-muted font-weight-medium text-sm-end text-center">
+                            از دانشگاه : {item.university}
+                          </span>
+                        </div>
+                        <div className="row">
+                          <span className="text-secondary font-weight-medium text-sm-end text-center mt-1">
+                            : روزهای کاری <br></br>
+                            {item.date.map((i) => (
+                              <span className="d-inline-block bg-warning text-dark m-1 rounded py-1 px-2 pb-1">
+                                {" " + i + "  "}
+                              </span>
+                            ))}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="col-sm-3 col-6 cart-doctor-thumb ">
+                        <img
+                          className="rounded"
+                          src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
+                          alt="doctor"
+                        />
+                      </div>
+                    </div>
+                    <div className="row d-flex align-items-center flex-column flex-sm-row ">
+                      <div className="col order-sm-0 order-1 d-flex justify-content-sm-start justify-content-center">
+                        <Link to={"#"}>
+                          <button id="appointment">دریافت نوبت</button>
+                        </Link>
+                      </div>
+                      <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
+                        <span className="text-muted font-weight-medium text-sm-end text-center">
+                          آدرس مطب : {item.address}
+                        </span>
+                        <FontAwesomeIcon
+                          className="mx-2"
+                          icon={faLocationDot}
+                        />
                       </div>
                     </div>
                   </div>
-                ))
-              : ""}
-            {`${!flag}`
-              ? items
-                  .filter((item) => item.cancel)
-                  .map((item) => (
-                    <div className="cart-item m-auto mb-2 ">
-                      <span className="remove-item"></span>
-                      <div className="px-3 my-3">
-                        <div className="cart-item-doctor" to={"#"}>
-                          <div className="d-flex flex-column cart-item-doctor-info">
-                            <div className="row">
-                              <div className="d-flex justify-content-between">
-                                <h4 className="cart-item-doctor-title text-end d-inline">
-                                  دکتر {item.fname} {item.lname}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="row">
-                              <div className="text-success font-weight-medium text-end">
-                                متخصص : {item.expert}
-                              </div>
-                            </div>
-                            <div className="row">
-                              <span className="text-success font-weight-medium text-end">
-                                {item.date}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="cart-item-doctor-thumb">
-                            <img
-                              src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
-                              alt="doctor"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-              : ""}
+                </div>
+              </div>
+            ))}
+            {isAdvancedSearch ? (
+              <div>
+                <h3>Advanced Search</h3>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="col-md-4 col-12 pb-5 order-md-1 order-0" id="">
+            <StickyBox id="StickyBox" offsetTop={170} offsetBottom={-100}>
+              <div className="container p-1" id="search">
+                <div className="row w-100 m-0 p-3 d-flex justify-content-center">
+                  <div className="col text-center mb-2">
+                    <h5>
+                      جستجوی پیشرفته
+                      <FontAwesomeIcon
+                        className="mx-2 text-warning"
+                        icon={faSearchPlus}
+                      />
+                    </h5>
+                  </div>
+                </div>
+                <div className="row w-100 m-0 p-3 pt-0 d-flex align-items-center flex-column justify-content-center">
+                  <p className="text-end mb-1">نام پزشک</p>
+                  <input
+                    dir="rtl"
+                    className=""
+                    value={nameDoc}
+                    onChange={(e) => setNameDoc(e.target.value)}
+                  ></input>
+                  <p className="text-end mb-1">تخصص</p>
+                  <select
+                    dir="rtl"
+                    class=" bg-light my-2 w-100  py-2 border-0"
+                    value={expertDoc}
+                    onChange={(e) => {
+                      setExpertDoc(e.target.value);
+                    }}
+                  >
+                    <DoctorList />
+                  </select>
+                </div>
+                <div className="row w-100 m-0 p-3">
+                  <button onClick={setIsAdvancedSearch(true)}>
+                    جستجو
+                  </button>
+                </div>
+              </div>
+            </StickyBox>
           </div>
         </div>
       </div>

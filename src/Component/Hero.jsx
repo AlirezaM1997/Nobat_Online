@@ -1,16 +1,40 @@
 import React, { useState } from "react";
-import { Search } from "react-bootstrap-icons";
-import SearchBox from "./SearchBox";
-import { Link } from "react-router-dom";
-import { useFlagState } from "../Provider";
+import { Link, useNavigate } from "react-router-dom";
+import { useAllState } from "../Provider";
+import { useExpState } from "../Provider";
+import { useDocState } from "../Provider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+import DoctorList from "./DoctorList";
 
 export default function Hero() {
-  const { flag } = useFlagState(false);
-  const  {setFlag}  = useFlagState();
+  const [hintExp, setHintExp] = useState(false);
+  const [hintDoc, setHintDoc] = useState(false);
+  const { flag } = useAllState(false);
+  const { setFlag } = useAllState();
+  const { searchExp } = useAllState("");
+  const { setSearchExp } = useAllState();
+  const { searchDoc } = useAllState("");
+  const { setSearchDoc } = useAllState();
   console.log(flag);
-  // const [flag, setFlag] = useState(false);
-  const [searchDoc, setSearchDoc] = useState("");
-  const [searchExp, setSearchExp] = useState("");
+
+  const navigateToExp = useNavigate();
+  const setRedirectExp = () => {
+    if (searchExp === "") {
+      setHintExp(true);
+    } else {
+      navigateToExp("/result");
+    }
+  };
+  const setRedirectDoc = () => {
+    if (searchDoc === "") {
+      setHintDoc(true);
+    } else {
+      navigateToExp("/result");
+    }
+  };
+
   return (
     <section id="hero" className="d-flex align-items-center p-4">
       <div className="container">
@@ -32,7 +56,9 @@ export default function Hero() {
                           : "btn btn-warning w-100"
                       }`}
                       id="docSearch"
-                      onClick={() => {setFlag(true)}}
+                      onClick={() => {
+                        setFlag(true);
+                      }}
                     >
                       جستجوی نام پزشک
                     </button>
@@ -45,7 +71,9 @@ export default function Hero() {
                           : "btn btn-warning w-100"
                       }`}
                       id="expSearch"
-                      onClick={() => {setFlag(false)}}
+                      onClick={() => {
+                        setFlag(false);
+                      }}
                     >
                       جستجو بر اساس تخصص
                     </button>
@@ -53,26 +81,35 @@ export default function Hero() {
                 </div>
                 <div className="row h-100">
                   <div className="bg-primary p-4">
-                    {{flag} ? (
+                    {flag ? (
                       <div className="doctorSearch d-flex flex-column ">
                         <h5 className="searchTitle">
                           نام پزشک مورد نظر خود را وارد کنید{" "}
                         </h5>
                         <input
-                          className="w-75 bg-light py-2 my-2 w-100 hero-input border-0"
+                          className="w-75 bg-light py-2 my-2 w-100 hero-input rounded border-0"
                           dir="rtl"
                           value={searchDoc}
-                          onChange={(e) => setSearchDoc(e.target.value)}
+                          onChange={(e) => {
+                            setSearchDoc(e.target.value);
+                            setHintDoc(false);
+                          }}
                         ></input>
 
-                        <Link
-                          className="text-black align-self-center"
-                          to={`/result`}
+                        <span className={`${hintDoc ? "hint" : "d-none"}`}>
+                          لطفا نام یک پزشک را وارد نمایید
+                          <FontAwesomeIcon
+                            className="mx-2 text-danger"
+                            icon={faArrowLeft}
+                          />
+                        </span>
+                        <button
+                          className="btn btn-warning text-black align-self-center px-5 mt-2 "
+                          id="searchBtn"
+                          onClick={setRedirectDoc}
                         >
-                          <button className="btn btn-warning  px-5 mt-2">
-                            جستجو
-                          </button>
-                        </Link>
+                          جستجو
+                        </button>
                       </div>
                     ) : (
                       <div className="expertSearch d-flex flex-column">
@@ -81,45 +118,31 @@ export default function Hero() {
                         </h5>
                         <select
                           dir="rtl"
-                          class="w-75 bg-light my-2 w-100 hero-input py-2 border-0"
+                          class="w-75 bg-light my-2 w-100 hero-input py-2 border-0 rounded"
                           value={searchExp}
-                          onChange={(e) => setSearchExp(e.target.value)}
+                          onChange={(e) => {
+                            setSearchExp(e.target.value);
+                            setHintExp(false);
+                          }}
+                       
                         >
-                          <option value={`عمومی`}>پزشک عمومی</option>
-                          <option value={`داخلی`}>متخصص داخلی</option>
-                          <option value={`زنان`}>متخصص زنان</option>
-                          <option value={`اعصاب`}>متخصص اعصاب و روان</option>
-                          <option value={`اطفال`}>متخصص اطفال</option>
-                          <option value={`حلق`}>متخصص گوش و حلق و بینی</option>
-                          <option value={`قلب`}>متخصص قلب و عروق</option>
-                          <option value={`پوست`}>متخصص پوست</option>
-                          <option value={`اورولوژی`}>متخصص اورولوژی</option>
-                          <option value={`چشم`}>متخصص چشم</option>
-                          <option value={`غدد`}>متخصص غدد</option>
-                          <option value={`ارتوپدی`}>متخصص ارتوپدی</option>
-                          <option value={`بیهوشی`}>متخصص بیهوشی</option>
-                          <option value={`رادیولوژی`}>متخصص رادیولوژی</option>
-                          <option value={`جراحی`}>متخصص جراحی</option>
-                          <option value={`زیبایی`}>متخصص زیبایی</option>
-                          <option value={`عفونی`}>
-                            متخصص بیماری های عفونی
-                          </option>
-                          <option value={`روماتولوژی`}>متخصص روماتولوژی</option>
-                          <option value={`تغذیه`}>متخصص تغذیه</option>
-                          <option value={`مامایی`}>مامایی</option>
-                          <option value={`دندانپزشکی`}>دندانپزشکی</option>
-                          <option value={`روانپزشکی`}> روانپزشکی</option>
-                          <option value={`روانشناسی`}>روانشناسی</option>
+                          <DoctorList/>
                         </select>
-                        <Link
-                          className="text-black align-self-center"
-                          to={`/result`}
+
+                        <span className={`${hintExp ? "hint" : "d-none"}`}>
+                          لطفا یک تخصص را انتخاب کنید
+                          <FontAwesomeIcon
+                            className="mx-2 text-danger"
+                            icon={faArrowLeft}
+                          />
+                        </span>
+                        <button
+                          className="btn btn-warning text-black align-self-center px-5 mt-2 "
+                          id="searchBtn"
+                          onClick={setRedirectExp}
                         >
-                          <button className="btn btn-warning  px-5 mt-2">
-                            جستجو
-                          </button>
-                          
-                        </Link>
+                          جستجو
+                        </button>
                       </div>
                     )}
                   </div>

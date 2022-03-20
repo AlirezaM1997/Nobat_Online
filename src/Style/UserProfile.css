@@ -1,5 +1,12 @@
 .back-prof {
-    background-image: radial-gradient(circle, #c5fff1, #bbf9ea, #b0f3e3, #a6eddc, #9be7d5);
+  background-image: radial-gradient(
+    circle,
+    #c5fff1,
+    #bbf9ea,
+    #b0f3e3,
+    #bbf9ea,
+    #c5fff1
+  );
   /* margin-top: 40px; */
   font-family: "Sahel";
   background-position: center;
@@ -9,14 +16,21 @@
 .widget-author {
   margin-bottom: 58px;
 }
+.wizard {
+  border-radius: 1rem;
+}
 .author-card {
+  border-radius: 1rem;
   position: relative;
   padding-bottom: 48px;
   background-color: #fff;
-  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
+  box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
+  z-index: 999;
 }
 .author-card .author-card-cover {
   position: relative;
+  border-radius: 1rem;
+
   width: 100%;
   height: 100px;
   background-position: center;
@@ -109,13 +123,11 @@
 .btn-style-1.btn-white {
   background-color: #fff;
 }
-.list-group-item i {
-  display: inline-block;
-  margin-top: -1px;
-  margin-right: 8px;
-  font-size: 1.2em;
-  vertical-align: middle;
-}
+/* .list-group-flush .list-group-item  {
+  background-color: lightgoldenrodyellow;
+    padding: 1.1rem 0.4rem;
+
+} */
 .mr-1,
 .mx-1 {
   margin-right: 0.25rem !important;
@@ -128,7 +140,7 @@
   cursor: default;
   pointer-events: none;
 }
-.list-group-flush:last-child .list-group-item:last-child {
+/* .list-group-flush:last-child .list-group-item:last-child {
   border-bottom: 0;
 }
 
@@ -141,24 +153,20 @@
   border-right: 0;
   border-left: 0;
   border-radius: 0;
-}
+} */
 .list-group-item.active {
   z-index: 2;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
-.list-group-item:last-child {
-  margin-bottom: 0;
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-}
+
 a.list-group-item,
 .list-group-item-action {
   color: #404040;
   font-weight: 600;
 }
-.list-group-item {
+/* .list-group-item {
   padding-top: 16px;
   padding-bottom: 16px;
   -webkit-transition: all 0.3s;
@@ -179,8 +187,23 @@ a.list-group-item,
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: lightgoldenrodyellow;
+    padding: 1.1rem 0.4rem;
+} */
+.list-group-item {
+  transition: all 0.3s;
+  color: #404040;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 0;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 230);
+  padding: 1.1rem 0.4rem;
 }
-
+.list-group-item:last-child , .list-group-item:first-child {
+  border-radius: 0.5rem;
+}
 .doctor-card {
   position: relative;
   max-width: 380px;

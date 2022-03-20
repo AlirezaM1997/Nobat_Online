@@ -6,10 +6,10 @@ import Image from "react-bootstrap/Image";
 export default function Header() {
   return (
     <div>
-      <div id="topbar" class="d-flex align-items-center fixed-top bg-white">
-        <div class="container d-flex justify-content-between">
-          <div class="contact-info d-flex align-items-center"></div>
-          <div class="d-none d-lg-flex social-links align-items-center"></div>
+      <div id="topbar" className="d-flex align-items-center fixed-top bg-white">
+        <div className="container d-flex justify-content-between">
+          <div className="contact-info d-flex align-items-center"></div>
+          <div className="d-none d-lg-flex social-links align-items-center"></div>
         </div>
       </div>
       <header id="header" className="fixed-top bg-white">
@@ -36,7 +36,7 @@ export default function Header() {
             <nav id="navbar" className="navbar order-last order-lg-0 p-0">
               <ul>
                 <li>
-                  <Link to="" className="nav-link scrollto">
+                  <Link to="/about" className="nav-link scrollto">
                     درباره ما
                   </Link>
                 </li>
@@ -70,7 +70,7 @@ export default function Header() {
                   </ul>
                 </li>
                 <li>
-                  <Link to="" className="nav-link scrollto ">
+                  <Link to="/" className="nav-link scrollto ">
                     صفحه اصلی
                   </Link>
                 </li>
@@ -85,7 +85,7 @@ export default function Header() {
             <Image
             className="m-0 p-0"
               id="logo"
-              src={require("/Users/alireza/Desktop/Makeen/Project/Online appointments/src/images/logo.png")}
+              src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/logo.png")}
             ></Image>
           </div>
         </div>

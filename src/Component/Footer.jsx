@@ -42,10 +42,10 @@ export default function Footer() {
               <ul className="d-flex flex-column align-items-center">
                 <li>
                   <FontAwesomeIcon className="icon" icon={faUserDoctor} />{" "}
-                  <Link to={"#"}>صفحه اصلی</Link>
+                  <Link to={"/"}>صفحه اصلی</Link>
                 </li>
                 <li>
-                  <Link to={"#"}>درباره ما</Link>
+                  <Link to={"/about"}>درباره ما</Link>
                 </li>
                 <li>
                   <Link to={"#"}>ارتباط با ما</Link>

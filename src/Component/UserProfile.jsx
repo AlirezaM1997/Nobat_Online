@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../Style/UserProfile.css";
 import Header2 from "./Header2";
 import { useEffect, useState } from "react";
-
+import Image from "react-bootstrap/Image";
 export default function UserProfile() {
   const [state, setState] = useState({
     history: false,
@@ -100,10 +100,10 @@ export default function UserProfile() {
   ];
 
   return (
-    <div className=" py-3 mw-100 back-prof px-5">
-      <div className="container">
+    <div className="  mw-100  ">
+      <div className="container back-prof p-3">
         <Header2 />
-        <div className="row mt-4 d-flex justify-content-center px-5">
+        <div className="row mt-4 d-flex justify-content-center ">
           <div className="col-lg-8 pb-5 order-lg-0 order-1">
             {state.history ? (
               <h5 className="text-end mb-3 bg-warning p-2 border border-primary">
@@ -217,7 +217,7 @@ export default function UserProfile() {
                 ))
               : ""}
           </div>
-          <div className="col-lg-4 col-8 pb-5 order-lg-1 order-0 ">
+          <div className="col-lg-4 col-12 pb-5 order-lg-1 order-0 ">
             <div className="author-card pb-3">
               <div className="author-card-cover"></div>
               <div className="author-card-profile d-flex  justify-content-end ">
@@ -232,9 +232,9 @@ export default function UserProfile() {
                 </div>
                 <div className="author-card-avatar">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                    alt="Daniel Adams"
-                  />
+                    src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/avatar.jpg")}
+                    
+                  ></img>
                 </div>
               </div>
             </div>

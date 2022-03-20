@@ -24,5 +24,14 @@
 }
 .offcanvas-body a{
   font: 1em "Samim";
-
+}
+.list-group ul{
+    list-style: none;
+    padding: 0;
+}
+#mobile-btn-nav{
+    background: transparent;
+    border: none;
+    padding: 0;
+    min-width: 100%;
 }
