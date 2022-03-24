@@ -12,16 +12,16 @@ import DoctorList from "./DoctorList";
 export default function Result() {
   const { flag } = useAllState();
   const { searchExp } = useAllState();
-  const { searchDoc } = useAllState('!');
+  const { searchDoc } = useAllState();
   const {allDoctors} = useAllState(data);
-  const {isAdvancedSearch} = useAllState();
+  const {isAdvancedSearch} = useAllState(false);
   const {setIsAdvancedSearch} = useAllState();
 
   
   const [isLoaded, setIsLoaded] = useState(true);
   const [nameDoc, setNameDoc] = useState("");
   const [expertDoc, setExpertDoc] = useState("");
-console.log(isAdvancedSearch);
+// console.log(isAdvancedSearch);
   // useEffect(() => {
   //   const url = ``;
   //   fetch(url)
@@ -195,7 +195,7 @@ console.log(isAdvancedSearch);
                   </select>
                 </div>
                 <div className="row w-100 m-0 p-3">
-                  <button onClick={setIsAdvancedSearch(true)}>
+                  <button >
                     جستجو
                   </button>
                 </div>

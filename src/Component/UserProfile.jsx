@@ -100,7 +100,7 @@ export default function UserProfile() {
   ];
 
   return (
-    <div className="  mw-100  ">
+    <div className="mw-100 fixedBack">
       <div className="container back-prof p-3">
         <Header2 />
         <div className="row mt-4 d-flex justify-content-center ">

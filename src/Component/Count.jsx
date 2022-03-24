@@ -9,45 +9,45 @@ export default function Count() {
     new PureCounter();
   });
   return (
-    <section id="counts" class="counts">
-      <div class="container">
-        <div class="row">
-          <div class=" col-md-4">
-            <div class="count-box mb-5">
+    <section id="counts" className="counts">
+      <div className="container">
+        <div className="row">
+          <div className=" col-md-4">
+            <div className="count-box mb-5">
               <FontAwesomeIcon icon={faUserDoctor} className="icon"/>
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="185"
                 data-purecounter-duration="2.3"
-                class="purecounter"
+                className="purecounter"
               ></span>
               <p>پزشکان</p>
             </div>
           </div>
 
-          <div class=" col-md-4">
-            <div class="count-box mb-5">
+          <div className=" col-md-4">
+            <div className="count-box mb-5">
               <FontAwesomeIcon icon={faUser} className="icon"/>
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="1810"
                 data-purecounter-duration="2.3"
-                class="purecounter"
+                className="purecounter"
               ></span>
               <p>کاربران</p>
             </div>
           </div>
 
-          <div class=" col-md-4 ">
-            <div class="count-box mb-5">
+          <div className=" col-md-4 ">
+            <div className="count-box mb-5">
               <FontAwesomeIcon icon={faListCheck} className="icon"/>
 
-              <i class="fas fa-flask"></i>
+              <i className="fas fa-flask"></i>
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="2543"
                 data-purecounter-duration="2.3"
-                class="purecounter"
+                className="purecounter"
               ></span>
               <p>کل نوبت ها</p>
             </div>

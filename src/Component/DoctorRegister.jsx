@@ -1,12 +1,35 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import "../Style/Register.css";
+import React, { useState, useRef } from "react";
 import Header2 from "./Header2";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+// import DatePicker from "react-multi-date-picker";
+import { Calendar } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import DoctorList from "./DoctorList";
+import ModalDoc from "./ModalDoc";
 export default function DoctorRegister() {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  // const [submittedDate, setSubmittedDate] = useState();
+
+  // const onSubmit = ({ date }) => {
+  //   setSubmittedDate(date);
+  //   // console.log(data);
+  // };
+
+  const onSubmit = (data) => console.log(data);
+  
   const [selectedDay, setSelectedDay] = useState(null);
-  // render regular HTML input element
+  console.log(selectedDay);
   const renderCustomInput = ({ ref }) => (
     <input
       readOnly
@@ -18,7 +41,7 @@ export default function DoctorRegister() {
           : ""
       }
       style={{
-        textAlign: "center",
+        textAlign: "end",
         padding: "0.375rem 0.75rem",
         fontSize: "1rem",
         border: "1px rgb(0, 217, 255) solid",
@@ -38,175 +61,275 @@ export default function DoctorRegister() {
       id="exampleDatepicker1"
     />
   );
-
+  const [show, setShow] = useState(false);
+  const [showHideClassName, setShowHideClassName] = useState("modal-doc-hide");
+  const showModal = () => {
+    setShow(true);
+    setShowHideClassName("modal-doc-show");
+    document.getElementsByClassName("DatePicker")[0].classList.add("changePos");
+  };
+  const hideModal = () => {
+    setShow(false);
+    setShowHideClassName("modal-doc-hide");
+    document
+      .getElementsByClassName("DatePicker")[0]
+      .classList.remove("changePos");
+  };
+  const [checked, setChecked] = useState(false);
+  // const [birthdate, setBirthdate] = useState("");
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
-        <Header2/>
-        <div class="container  h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-8 col-xl-6">
-              <div class="card doc-reg-card rounded-3">
-                <div class="card-body d-flex flex-column p-4 p-md-5">
-                  <h3 class=" pb-2 pb-md-0 mb-3 md-5 px-md-2 text-center py-2 doc-reg-title">
+        <Header2 />
+        <div className="container h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-lg-8 ">
+              <div className="card doc-reg-card rounded-3">
+                <div className="card-body d-flex flex-column p-4 p-md-5">
+                  <h3 className=" pb-2 pb-md-0 mb-3 md-5 px-md-2 text-center py-2 doc-reg-title">
                     فرم عضویت پزشکان
                   </h3>
-                  <form class="p-2 border border-2">
-                    <div class="form-outline text-end ">
-                      <div className="row mb-3 align-items-center">
-                        <div class="col-3 text-end ">
-                          <label class="form-label" for="grnder">
+                  <form
+                    className="p-2 border border-2"
+                    onSubmit={handleSubmit(onSubmit)}
+                  >
+                    <div className="form-outline text-end ">
+                      <div className="row mb-3 align-items-center justify-content-end">
+                        <div className="col-md-3 col-6 text-md-end order-1 order-md-0 ">
+                          <label className="form-label" htmlFor="grnder">
                             جنسیت
                           </label>
                           <select
                             id="grnder"
                             dir="rtl"
-                            class="form-control select px-2 py-1"
+                            className="form-control select px-2 py-1"
+                            defaultValue={""}
+                            {...register("grnder", { required: true })}
                           >
-                            <option value="2">زن</option>
-                            <option value="3">مرد</option>
+                            <option value={""} disabled >
+                              انتخاب کنید
+                            </option>
+                            <option value="woman">زن</option>
+                            <option value="man">مرد</option>
                           </select>
+                          {errors.grnder && (
+                            <span
+                              className="small text-danger"
+                              style={{ fontSize: "11px" }}
+                            >
+                              یک مورد را انتخاب کنید
+                            </span>
+                          )}
                         </div>
-                        <div className="col-9">
-                          <label class="form-label" for="name">
+                        <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
+                          <label className="form-label" htmlFor="name">
                             نام و نام خانوادگی
                           </label>
                           <input
                             dir="rtl"
                             type="text"
                             id="name"
-                            class="form-control"
+                            className="form-control"
+                            {...register("fullName", { required: true })}
                           />
+                          {errors.fullName && (
+                            <span className=" text-danger">
+                              پر کردن این فیلد الزامی است
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <div class="col-6 text-end">
-                        <label for="datepicker1" class="form-label">
+                    <div className="row mb-3">
+                      <div className="col-sm-6 text-end">
+                        <label htmlFor="datepicker1" className="form-label">
                           تاریخ تولد
                         </label>
-                        <DatePicker
-                        id="datepicker1"
-                          popperPlacement="bottom-end"
-                          class="responsive-calendar d-block"
-                          value={selectedDay}
-                          onChange={setSelectedDay}
-                          renderInput={renderCustomInput}
-                          shouldHighlightWeekends
-                          locale="fa" // add this
-                          style={{
-                            position: "relative",
-                            display: "block",
-                            zIndex: "100",
-                          }}
+                       
+                        {/* <Controller
+                          control={control}
+                          name="date"
+                          rules={{ required: true }} //optional
+                          render={({
+                            field: { onChange, name, value },
+                            formState: { errors }, //optional, but necessary if you want to show an error message
+                          }) => (
+                            <>
+                              <DatePicker
+                                value={value || ''}
+                                onChange={(date) => {
+                                  onChange(date?.isValid ? date : "");
+                                }}
+                                // format={"YYYY/MM/DD"}
+                                calendar={persian}
+                                locale={persian_fa}
+                                calendarPosition="bottom-right"
+                              />
+                              {errors &&
+                                errors[name] &&
+                                errors[name].type === "required" && (
+                                  //if you want to show an error message
+                                  <span>your error message !</span>
+                                )}
+                            </>
+                          )}
+                        /> */}
+                        <Controller
+                          control={control}
+                          name="ReactDatepicker"
+                          render={({
+                            field: { onChange, onBlur, value, ref },
+                          }) => (
+                            <DatePicker
+                              id="datepicker1"
+                              popperPlacement="bottom-end"
+                              className="responsive-calendar d-block"
+                              value={selectedDay}
+                              onChange={setSelectedDay}
+                              renderInput={renderCustomInput}
+                              // onChange={onChange }
+                              onBlur={onBlur}
+                              selected={value}
+                              shouldHighlightWeekends
+                              locale="fa"
+                              style={{
+                                position: "relative",
+                                display: "block",
+                                zIndex: "100",
+                              }}
+                            />
+                          )}
                         />
+                        {/* {errors.birthdate && (
+                          <span className=" text-danger">
+                            پر کردن این فیلد الزامی است
+                          </span>
+                        )} */}
                       </div>
-                      <div className="col-6 w-sm text-end ">
-                        <label class="form-label" for="city">
+                      <div className="col-sm-6 w-sm text-end ">
+                        <label className="form-label" htmlFor="city">
                           شهر محل سکونت
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="city"
-                          class="form-control"
+                          className="form-control"
+                          {...register("city", { required: true })}
                         />
+                        {errors.city && (
+                          <span className=" text-danger">
+                            پر کردن این فیلد الزامی است
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="row mb-3 align-items-center">
                       <div className="col-6 text-end">
-                        <div class="">
-                          <label class="form-label" for="expert">
+                        <div className="">
+                          <label className="form-label" htmlFor="expert">
                             تخصص
                           </label>
                           <select
                             id="expert"
-                            class="form-control select py-1 px-2"
+                            className="form-control select py-1 px-2"
                             dir="rtl"
                             placeholder="انتخاب کنید"
                           >
-                            <DoctorList/>
+                            <DoctorList />
                           </select>
                         </div>
                       </div>
                       <div className="col-6 text-end">
-                        <label class="form-label" for="code">
+                        <label className="form-label" htmlFor="code">
                           کد نظام پزشکی
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="code"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <div class="col text-end">
-                        <label class="form-label" for="email">
+                    <div className="row mb-3">
+                      <div className="col text-end">
+                        <label className="form-label" htmlFor="email">
                           ایمیل
                         </label>
-                        <input
-                          type="email"
-                          id="email"
-                          class="form-control"
-                        />
+                        <input type="email" id="email" className="form-control" />
                       </div>
                     </div>
-                    <div class="row d-flex mb-3">
-                      <div class="col-md-6 order-md-0 order-1  text-end">
-                        <label class="form-label" for="pass">
+                    <div className="row d-flex mb-3">
+                      <div className="col-md-6 order-md-0 order-1  text-end">
+                        <label className="form-label" htmlFor="pass">
                           رمز عبور
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="pass"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
-                      <div class="col-md-6 order-md-1 order-0 mb-3 mb-md-0 text-end">
-                        <label class="form-label" for="username">
+                      <div className="col-md-6 order-md-1 order-0 mb-3 mb-md-0 text-end">
+                        <label className="form-label" htmlFor="username">
                           نام کاربری
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="username"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <div class="col text-end">
-                        <label class="form-label" for="picture">
+                    <div className="row mb-3">
+                      <div className="col text-end">
+                        <label className="form-label" htmlFor="picture">
                           آپلود عکس
                         </label>
                         <input
-                          dir="rtl"
+                          placeholder="هیچ فایلی انتخاب نشده است"
                           type="file"
                           id="picture"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col text-end">
-                        <Link to={"#"}>
+                        <span
+                          onClick={showModal}
+                          className={`docRules ${
+                            checked ? "checkboxInput" : ""
+                          }`}
+                        >
                           شرایط و قوانین سایت نوبت آنلاین را می پذیرم
-                        </Link>
-                        <input className="align-middle ms-1" type="checkbox" />
+                        </span>
+                        <input
+                          className="align-middle ms-1"
+                          type="checkbox"
+                          value={checked}
+                          onChange={(e) => setChecked(e.target.checked)}
+                        />
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-success btn-lg mb-1">
-                      تایید
-                    </button>
+                    <input
+                      value={"تایید"}
+                      type="submit"
+                      className="btn btn-success btn-lg mb-1"
+                    />
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <ModalDoc
+          hideModal={hideModal}
+          showHideClassName={showHideClassName}
+        ></ModalDoc>
       </section>
     </div>
   );

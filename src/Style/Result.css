@@ -7,6 +7,18 @@
     height: 400px;
     width: 300px;
     right: 6%;
+    animation: move_show 1.3s;
+}
+@keyframes move_show {
+  0% {
+       opacity: 0;
+       transform: translate(0, 50%);
+  }
+
+  100% {
+       opacity: 1;
+       transform: translate(0, 0);
+  }
 }
 #StickyBox{
     top: 150px !important;
@@ -41,6 +53,19 @@
     padding: 5px 50px 5px 10px;
     background-color: #fff;
     box-shadow: 0 9px 15px 1px rgba(64, 64, 64, 0.2);
+    animation: fade_in_show 1s;
+
+  }
+  @keyframes fade_in_show {
+    0% {
+         opacity: 0;
+         transform: scale(0.5)
+    }
+  
+    100% {
+         opacity: 1;
+         transform: scale(1)
+    }
   }
   .cart .cart-label {
     display: block;

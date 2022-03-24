@@ -1,4 +1,4 @@
-.back-prof {
+.fixedBack{
   background-image: radial-gradient(
     circle,
     #c5fff1,
@@ -7,7 +7,11 @@
     #bbf9ea,
     #c5fff1
   );
+}
+.back-prof {
+ 
   /* margin-top: 40px; */
+  background: rgb(250, 250, 235);
   font-family: "Sahel";
   background-position: center;
   background-size: cover;
@@ -198,7 +202,7 @@ a.list-group-item,
   letter-spacing: 0.08em;
   margin-bottom: 0;
   border-radius: 0.5rem;
-  background-color: rgb(255, 255, 230);
+  background-color: rgb(255, 211, 191);
   padding: 1.1rem 0.4rem;
 }
 .list-group-item:last-child , .list-group-item:first-child {

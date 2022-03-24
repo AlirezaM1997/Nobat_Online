@@ -29,12 +29,12 @@ export default function MobileMenu() {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className="">
-          <div class="list-group">
+          <div className="list-group">
             <ul>
               <li>
                 <Link
                   to={"/"}
-                  class="list-group-item list-group-item-action p-3"
+                  className="list-group-item list-group-item-action p-3"
                 >
                   صفحه اصلی
                 </Link>
@@ -42,7 +42,7 @@ export default function MobileMenu() {
               <li className="dropdown">
                 <Link
                   to={"#"}
-                  class="list-group-item list-group-item-action p-3"
+                  className="list-group-item list-group-item-action p-3"
                 >
                   <div className="d-flex justify-content-between align-items-center">
                     <button
@@ -61,20 +61,20 @@ export default function MobileMenu() {
                     </button>
                     
                   </div>
-                  <div class="collapse" id="collapseExample">
-                    <div class="card card-body my-3 p-0">
+                  <div className="collapse" id="collapseExample">
+                    <div className="card card-body my-3 p-0">
                     <ul>
                   <li>
-                    <Link to="" class="list-group-item list-group-item-action p-3">سلامت زنان</Link>
+                    <Link to="" className="list-group-item list-group-item-action p-3">سلامت زنان</Link>
                   </li>
                   <li>
-                    <Link to="" class="list-group-item list-group-item-action p-3">سلامت خانواده</Link>
+                    <Link to="" className="list-group-item list-group-item-action p-3">سلامت خانواده</Link>
                   </li>
                   <li>
-                    <Link to="" class="list-group-item list-group-item-action p-3">بیماری کرونا</Link>
+                    <Link to="" className="list-group-item list-group-item-action p-3">بیماری کرونا</Link>
                   </li>
                   <li>
-                    <Link to="" class="list-group-item list-group-item-action p-3">بهداشت روان</Link>
+                    <Link to="" className="list-group-item list-group-item-action p-3">بهداشت روان</Link>
                   </li>
                 </ul>
                     </div>
@@ -85,7 +85,7 @@ export default function MobileMenu() {
               <li>
                 <Link
                   to={"#"}
-                  class="list-group-item list-group-item-action p-3"
+                  className="list-group-item list-group-item-action p-3"
                 >
                   منو
                 </Link>
@@ -93,7 +93,7 @@ export default function MobileMenu() {
               <li>
                 <Link
                   to={"#"}
-                  class="list-group-item list-group-item-action p-3"
+                  className="list-group-item list-group-item-action p-3"
                 >
                   منو
                 </Link>
@@ -101,7 +101,7 @@ export default function MobileMenu() {
               <li>
                 <Link
                   to={"/about"}
-                  class="list-group-item list-group-item-action p-3"
+                  className="list-group-item list-group-item-action p-3"
                 >
                   درباره ما
                 </Link>

@@ -1,20 +1,32 @@
 import { Link } from "react-router-dom";
-import Image from "react-bootstrap/Image";
-import Header2 from "./Header2";
-
+import '../Style/Login.css'
 export default function Login() {
   return (
+
     <div className="container py-3 px-5 min-vh-100 mw-100 bg-user-log">
-      <Header2 />
+      <div className="d-flex w-100 px-2 mb-5 rounded justify-content-sm-between justify-content-center " id="loginHeader">
+        <div className="d-sm-flex d-none align-items-center ">
+          <Link to={"/"}>
+            <button className="btn py-1 px-2 bg-danger text-light">
+              صفحه اصلی
+            </button>
+          </Link>
+        </div>
+        <div id="" className="d-flex  align-items-center ">
+          <h1 id="loginLogo">
+            <Link to={"/"}>نوبت آنلاین</Link>
+          </h1>
+        </div>
+      </div>
       <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
-        <div className="col-lg-5 col-md-8 p-5">
+        <div className="col-lg-5 col-md-8 col-12 p-md-5 p-1 mb-md-0 mb-4">
           <div className="form-bg">
             <div className="container">
               <div className="row d-flex flex-md-column">
                 <div className="col-md-offset-12 col-md-12 col-sm-offset-12 col-sm-12">
                   <div className="form-container">
                     <form className="bg-white form-horizontal">
-                      <h3 className="title">ورود بیماران</h3>
+                      <h3 className="Title">ورود بیماران</h3>
                       <div className="form-group">
                         <span className="input-icon">
                           <i className="fa fa-user"></i>
@@ -47,7 +59,7 @@ export default function Login() {
                         </span>
                       </div>
                       <span className="register">
-                        <Link className="h6 text-danger" to={"/user-register"}>
+                        <Link className="h6 text-dark" to={"/user-register"}>
                           ثبت نام نکردی ؟
                         </Link>
                       </span>
@@ -58,14 +70,16 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="col-lg-5 col-md-8 p-5">
+        <div className="col-lg-5 col-md-8 col-12 p-md-5 p-1 mb-md-0 mb-4">
           <div className="form-bg">
             <div className="container">
               <div className="row">
                 <div className="col-md-offset-12 col-md-12 col-sm-offset-12 col-sm-12">
                   <div className="form-container">
-                    <form className="form-horizontal">
-                      <h3 className="title">ورود پزشکان</h3>
+                    <form className="bg-primary form-horizontal " id="docLog">
+                      <h3 className="Title" id="docTitle">
+                        ورود پزشکان
+                      </h3>
                       <div className="form-group">
                         <span className="input-icon">
                           <i className="fa fa-user"></i>
@@ -96,12 +110,12 @@ export default function Login() {
                           </button>
                         </Link>
                         <span className="forgot-pass">
-                          <Link to={"#"}>رمز عبور را فراموش کردی؟</Link>
+                          <Link id="forgetPassDoc" to={"#"}>رمز عبور را فراموش کردی؟</Link>
                         </span>
                       </div>
                       <span className="register">
                         <Link
-                          className="h6 text-danger"
+                          className="h6 text-white"
                           to={"/doctor-register"}
                         >
                           ثبت نام پزشکان
@@ -116,5 +130,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+
   );
 }

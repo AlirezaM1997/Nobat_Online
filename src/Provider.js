@@ -4,11 +4,14 @@ const Context = React.createContext();
 
 export default function Provider({ children }) {
   const [flag, setFlag] = useState(false);
-  const [searchDoc, setSearchDoc] = useState("!");
-  const [searchExp, setSearchExp] = useState("!");
+  const [searchDoc, setSearchDoc] = useState("");
+  const [searchExp, setSearchExp] = useState("");
   const [allDoctors, setAllDoctors] = useState(data);
-  const [isAdvancedSearch, setIsAdvancedSearch] = useState();
-console.log(isAdvancedSearch);
+  let [isAdvancedSearch, setIsAdvancedSearch] = useState(false);
+  // if (!flag) {
+  //   isAdvancedSearch = '44'
+  // }
+// console.log(isAdvancedSearch);
   return (
     <Context.Provider
       value={{

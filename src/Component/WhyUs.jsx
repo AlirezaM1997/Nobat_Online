@@ -1,13 +1,13 @@
 export default function WhyUs() {
   return (
     <section id="why-us" class="why-us">
-      <div class="container">
-        <div class="row d-flex">
-          <div class="col-lg-8 d-flex align-items-stretch order-lg-0 order-1">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
-              <div class="row ">
-                <div class="col-xl-4 d-flex align-items-stretch  ">
-                  <div class="icon-box mt-4 mt-xl-0 ">
+      <div className="container">
+        <div className="row d-flex">
+          <div className="col-lg-8 d-flex align-items-stretch order-lg-0 order-1">
+            <div className="icon-boxes d-flex flex-column justify-content-center">
+              <div className="row ">
+                <div className="col-xl-4 d-flex align-items-stretch  ">
+                  <div className="icon-box mt-4 mt-xl-0 ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -29,8 +29,8 @@ export default function WhyUs() {
                     </p>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
+                <div className="col-xl-4 d-flex align-items-stretch">
+                  <div className="icon-box mt-4 mt-xl-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -49,8 +49,8 @@ export default function WhyUs() {
                     </p>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
+                <div className="col-xl-4 d-flex align-items-stretch">
+                  <div className="icon-box mt-4 mt-xl-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -77,8 +77,8 @@ export default function WhyUs() {
               </div>
             </div>
           </div>
-          <div class="col-lg-4 d-flex align-items-stretch order-lg-1 order-0">
-            <div class="content text-center text-white">
+          <div className="col-lg-4 d-flex align-items-stretch order-lg-1 order-0">
+            <div className="content text-center text-white">
               <h3>چرا نوبت آنلاین؟</h3>
               <p>
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -93,8 +93,8 @@ export default function WhyUs() {
                 زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
                 پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
               </p>
-              <div class="text-center">
-                <a href="#" class="more-btn">
+              <div className="text-center">
+                <a href="#" className="more-btn">
                   بیشتر بدانید
                 </a>
               </div>

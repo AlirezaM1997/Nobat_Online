@@ -54,7 +54,7 @@ export default function MyCarousel() {
                     <p className="caption">
                      <span><b>دکتر طاها علیزاده قویمی</b></span><br></br>
                      <span> متخصص گوش و حلق و بینی</span><br></br>
-                     <span>ف.ق تخصص گوش/فلوشیپ بینی و سینوس</span>
+                     <span>فوق تخصص گوش/فلوشیپ بینی و سینوس</span>
                     </p>
                   </div>
                 </div>

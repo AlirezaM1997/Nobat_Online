@@ -39,7 +39,7 @@ export default function Hero() {
     <section id="hero" className="d-flex align-items-center p-4">
       <div className="container">
         <div className="row">
-          <div className="col-sm-8 col-md-6">
+          <div className="col-sm-8 col-md-6 searchBoxCol">
             <div className="row">
               <h3 className="hero-title text-center p-3">
                 به سایت نوبت دهی آنلاین پزشکان ایران خوش آمدید
@@ -80,7 +80,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="row h-100">
-                  <div className="bg-primary p-4">
+                  <div className="bg-primary p-4 searchBoxBottom">
                     {flag ? (
                       <div className="doctorSearch d-flex flex-column ">
                         <h5 className="searchTitle">
@@ -96,7 +96,7 @@ export default function Hero() {
                           }}
                         ></input>
 
-                        <span className={`${hintDoc ? "hint" : "d-none"}`}>
+                        <span className={`${hintDoc ? "showHint" : "hideHint"}`}>
                           لطفا نام یک پزشک را وارد نمایید
                           <FontAwesomeIcon
                             className="mx-2 text-danger"
@@ -129,7 +129,7 @@ export default function Hero() {
                           <DoctorList/>
                         </select>
 
-                        <span className={`${hintExp ? "hint" : "d-none"}`}>
+                        <span className={`${hintExp ? "showHint" : "hideHint"}`}>
                           لطفا یک تخصص را انتخاب کنید
                           <FontAwesomeIcon
                             className="mx-2 text-danger"

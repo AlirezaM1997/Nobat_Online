@@ -15,7 +15,8 @@ import reportWebVitals from "./reportWebVitals";
 import About from "./Component/About"
 import Footer from "./Component/Footer";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Provider from "./Provider"
+import Provider from "./Provider";
+// import BackToTopBtn from "./Component/BackTopBtn"
 ReactDOM.render(
   <Provider>
     <BrowserRouter>

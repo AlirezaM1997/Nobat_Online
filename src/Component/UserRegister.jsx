@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../Style/Register.css"
 import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
@@ -43,51 +44,51 @@ export default function DoctorRegister() {
     <div>
       <section className="container py-3 min-vh-100 mw-100 bg-user-reg px-5">
         <Header2/>
-        <div class="container  h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-8 col-xl-6">
-              <div class="card doc-reg-card rounded-3">
-                <div class="card-body d-flex flex-column p-4 p-md-5">
-                  <h3 class=" pb-2 pb-md-0 mb-3 md-5 px-md-2 text-center py-2 doc-reg-title" id="user-reg-title">
+        <div className="container  h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-lg-8 col-xl-6">
+              <div className="card doc-reg-card rounded-3">
+                <div className="card-body d-flex flex-column p-4 p-md-5">
+                  <h3 className=" pb-2 pb-md-0 mb-3 md-5 px-md-2 text-center py-2 doc-reg-title" id="user-reg-title">
                     فرم عضویت بیماران
                   </h3>
-                  <form class="p-2 border border-2">
-                    <div class="form-outline text-end ">
+                  <form className="p-2 border border-2">
+                    <div className="form-outline text-end ">
                       <div className="row mb-3 align-items-center">
-                        <div class="col-3 text-end ">
-                          <label class="form-label" for="form0Example1q">
+                        <div className="col-3 text-end ">
+                          <label className="form-label" htmlFor="form0Example1q">
                             جنسیت
                           </label>
                           <select
                             id="form0Example1q"
                             dir="rtl"
-                            class="form-control select px-2 py-1"
+                            className="form-control select px-2 py-1"
                           >
                             <option value="2">زن</option>
                             <option value="3">مرد</option>
                           </select>
                         </div>
                         <div className="col-9">
-                          <label class="form-label" for="form1Example1q">
+                          <label className="form-label" htmlFor="form1Example1q">
                             نام و نام خانوادگی
                           </label>
                           <input
                             dir="rtl"
                             type="text"
                             id="form1Example1q"
-                            class="form-control"
+                            className="form-control"
                           />
                         </div>
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <div class="col-6 text-end">
-                      <label class="form-label" for="form4Example1q">
+                    <div className="row mb-3">
+                      <div className="col-6 text-end">
+                      <label className="form-label" htmlFor="form4Example1q">
                             میزان تحصیلات
                           </label>
                           <select
                             id="form4Example1q"
-                            class="form-control select py-1 px-2"
+                            className="form-control select py-1 px-2"
                             dir="rtl"
                             placeholder="انتخاب کنید"
                           >
@@ -105,21 +106,21 @@ export default function DoctorRegister() {
                           </select>
                       </div>
                       <div className="col-6 w-sm text-end ">
-                        <label class="form-label" for="form2Example1q">
+                        <label className="form-label" htmlFor="form2Example1q">
                           شهر محل سکونت
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="form2Example1q"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>
                     <div className="row mb-3 align-items-center">
                       <div className="col-6 text-end">
-                        <div class="">
-                        <label for="exampleDatepicker1" class="form-label">
+                        <div className="">
+                        <label htmlFor="exampleDatepicker1" className="form-label">
                           تاریخ تولد
                         </label>
                         
@@ -137,7 +138,7 @@ export default function DoctorRegister() {
                         //         enabled: false // turn off since needs preventOverflow to be enabled
                         //     }
                         // }}
-                          class="responsive-calendar d-block"
+                          className="responsive-calendar d-block"
                           value={selectedDay}
                           onChange={setSelectedDay}
                           renderInput={renderCustomInput}
@@ -153,44 +154,44 @@ export default function DoctorRegister() {
                         </div>
                       </div>
                       <div className="col-6 text-end">
-                        <label class="form-label" for="form3Example1q">
+                        <label className="form-label" htmlFor="form3Example1q">
                          شماره همراه
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="form3Example1q"
-                          class="form-control"
+                          className="form-control"
                           
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <div class="col text-end">
-                        <label class="form-label" for="form5Example1q">
+                    <div className="row mb-3">
+                      <div className="col text-end">
+                        <label className="form-label" htmlFor="form5Example1q">
                           ایمیل
                         </label>
                         <input
                           type="email"
                           id="form5Example1q"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>
-                    <div class="row d-flex mb-3">
-                      <div class="col-md-6 order-md-0 order-1  text-end">
-                        <label class="form-label" for="form3Example1q">
+                    <div className="row d-flex mb-3">
+                      <div className="col-md-6 order-md-0 order-1  text-end">
+                        <label className="form-label" htmlFor="form3Example1q">
                           رمز عبور
                         </label>
                         <input
                           dir="rtl"
                           type="text"
                           id="form3Example1q"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
-                      <div class="col-md-6 order-md-1 order-0 mb-3 mb-md-0 text-end">
-                        <label class="form-label" for="form6Example1q">
+                      <div className="col-md-6 order-md-1 order-0 mb-3 mb-md-0 text-end">
+                        <label className="form-label" htmlFor="form6Example1q">
                           نام کاربری
                         </label>
                         <input
@@ -207,7 +208,7 @@ export default function DoctorRegister() {
                       <Link to={'#'}>شرایط و قوانین سایت نوبت آنلاین را می پذیرم</Link><input className="align-middle ms-1" type="checkbox"/>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-success btn-lg mb-1">
+                    <button type="submit" className="btn btn-success btn-lg mb-1">
                       تایید
                     </button>
                   </form>

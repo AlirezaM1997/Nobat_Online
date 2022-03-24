@@ -1,0 +1,140 @@
+.doc-reg-main {
+  background: white center;
+  background-size: cover;
+  font-family: "Sahel";
+}
+.doc-reg-card {
+  background-image: radial-gradient(
+    circle,
+    #ffffff,
+    #fafafa00,
+    #f5f5f5,
+    #f1f1f1,
+    #ececec
+  );
+}
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.form-control {
+  border: 1px rgb(0, 217, 255) solid;
+}
+.form-control:focus {
+  border: 1px rgb(255, 174, 0) solid;
+}
+.doc-reg-title {
+  background: linear-gradient(
+    to right,
+    #bdfff6,
+    #dcfffa,
+    transparent,
+    #dcfffa,
+    #bdfff6
+  );
+  border-radius: 0.3rem;
+}
+.responsive-calendar {
+  font-size: 9px !important; /* default to 10px */
+}
+@media (max-width: 1500px) {
+  .responsive-calendar {
+    font-size: 8px !important;
+  }
+}
+@media (max-width: 1200px) {
+  .responsive-calendar {
+    font-size: 7px !important;
+  }
+}
+@media (max-width: 768px) {
+  .responsive-calendar {
+    font-size: 6px !important;
+  }
+}
+/* Large screens */
+@media (min-width: 2500px) {
+  .responsive-calendar {
+    font-size: 12px !important;
+  }
+}
+.DatePicker {
+  position: relative;
+  display: block !important;
+}
+.DatePickerOnShowModal {
+  position: static !important;
+  display: block !important;
+}
+#doc-reg-logo {
+  width: 5rem;
+}
+
+.changePos {
+  position: static !important;
+}
+
+.bg-user-reg {
+  font-family: "Sahel";
+  width: 100%;
+  background: white center;
+  background-size: cover;
+}
+#user-reg-title {
+  background: linear-gradient(
+    to right,
+    #f2bdff,
+    #f6d2ff,
+    transparent,
+    #f6d2ff,
+    #f2bdff
+  );
+}
+.-top {
+  padding-top: -100px;
+  max-height: 100px !important;
+}
+.docRules {
+  cursor: pointer;
+  color: #999;
+}
+.docRules:hover {
+  color: black;
+}
+.modal-doc-show {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(202, 202, 202, 0.548);
+}
+.modal-doc-hide {
+  display: none;
+}
+#Modal-Doc {
+  position: fixed;
+  width: 50%;
+  height: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  animation: move_to_show 1s;
+}
+@keyframes move_to_show {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}
+.checkboxInput{
+  color: black;
+}
