@@ -1,7 +1,7 @@
 const DoctorList = () => {
   return (
     <>
-      <option value={``} disabled>
+      <option value={""} disabled>
         انتخاب کنید
       </option>
       <option value={`عمومی`}>پزشک عمومی</option>

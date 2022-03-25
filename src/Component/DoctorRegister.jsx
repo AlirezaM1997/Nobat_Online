@@ -1,40 +1,60 @@
+import "../Style/Register.css";
+
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import "../Style/Register.css";
-import React, { useState, useRef } from "react";
-import Header2 from "./Header2";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import Select from 'react-select';
+
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-// import DatePicker from "react-multi-date-picker";
-import { Calendar } from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+
+import Header2 from "./Header2";
 import DoctorList from "./DoctorList";
 import ModalDoc from "./ModalDoc";
+
 export default function DoctorRegister() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const validationSchema = Yup.object().shape({
+    checkbox: Yup.bool().oneOf([true], "پر کردن این فیلد الزامی است"),
+    email: Yup.string()
+      .email("لطفا یک ایمیل صحیح وارد نمایید")
+      .required("لطفا یک ایمیل  وارد نمایید"),
+    username: Yup.string("لطفا یک نام کاربری وارد نمایید").required(
+      "لطفا یک نام کاربری وارد نمایید"
+    ),
+    fullname: Yup.string("لطفا نام کامل خود را وارد نمایید").required(
+      "لطفا نام کامل خود را وارد نمایید"
+    ),
+    password: Yup.string("رمز عبور باید بین 8 تا 12 کاراکتر باشد")
+      .required("لطفا رمز عبور را وارد نمایید")
+      .min(8, "رمز عبور باید بین 8 تا 12 کاراکتر باشد")
+      .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
+    // gender: Yup.object("لطفا یک مورد را انتخاب کنید").required(
+    //   "لطفا یک مورد را انتخاب کنید"
+    // ).nullable("لطفا یک مورد را انتخاب کنید"),
+    expert: Yup.string("لطفا یک مورد را انتخاب کنید").required(
+      "لطفا یک مورد را انتخاب کنید"
+    ),
+    code: Yup.string("لطفا کد صحیح وارد نمایید")
+      .required("لطفا کد صحیح وارد نمایید")
+      .min(4, "لطفا کد صحیح وارد نمایید")
+      .max(4, "لطفا کد صحیح وارد نمایید"),
+  });
 
-  // const [submittedDate, setSubmittedDate] = useState();
-
-  // const onSubmit = ({ date }) => {
-  //   setSubmittedDate(date);
-  //   // console.log(data);
-  // };
+  const { register, handleSubmit, control, reset, formState } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  const { errors } = formState;
 
   const onSubmit = (data) => console.log(data);
-  
+
   const [selectedDay, setSelectedDay] = useState(null);
-  console.log(selectedDay);
-  const renderCustomInput = ({ ref }) => (
+  const renderBirthdateInput = ({ ref }) => (
     <input
       readOnly
       ref={ref} // necessary
-      // placeholder="انتخاب کنید"
+      placeholder="انتخاب کنید"
       value={
         selectedDay
           ? `${selectedDay.year}/${selectedDay.month}/${selectedDay.day}`
@@ -77,6 +97,11 @@ export default function DoctorRegister() {
   };
   const [checked, setChecked] = useState(false);
   // const [birthdate, setBirthdate] = useState("");
+  // const gender = [
+  //   { value: 'man', label: 'm' },
+  //   { value: 'woman', label: 'w' },
+    
+  // ]
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
@@ -96,47 +121,46 @@ export default function DoctorRegister() {
                     <div className="form-outline text-end ">
                       <div className="row mb-3 align-items-center justify-content-end">
                         <div className="col-md-3 col-6 text-md-end order-1 order-md-0 ">
-                          <label className="form-label" htmlFor="grnder">
+                          <label className="form-label" htmlFor="gender">
                             جنسیت
                           </label>
-                          <select
-                            id="grnder"
+                          {/* <Select id="gender"  options={gender} /> */}
+                          {/* <select
+                            id="gender"
                             dir="rtl"
-                            className="form-control select px-2 py-1"
                             defaultValue={""}
-                            {...register("grnder", { required: true })}
+                            {...register("gender")}
+                            className={`form-control select px-2 py-1${
+                              errors.gender ? "is-invalid" : ""
+                            }`}
                           >
-                            <option value={""} disabled >
+                            <option value={""} disabled>
                               انتخاب کنید
                             </option>
                             <option value="woman">زن</option>
                             <option value="man">مرد</option>
-                          </select>
-                          {errors.grnder && (
-                            <span
-                              className="small text-danger"
-                              style={{ fontSize: "11px" }}
-                            >
-                              یک مورد را انتخاب کنید
-                            </span>
-                          )}
+                          </select> */}
+
+                          <span className="invalid-feedback">
+                            {errors.gender?.message}
+                          </span>
                         </div>
                         <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
-                          <label className="form-label" htmlFor="name">
+                          <label className="form-label" htmlFor="fullname">
                             نام و نام خانوادگی
                           </label>
                           <input
                             dir="rtl"
                             type="text"
-                            id="name"
-                            className="form-control"
-                            {...register("fullName", { required: true })}
+                            id="fullname"
+                            {...register("fullname")}
+                            className={`form-control ${
+                              errors.fullname ? "is-invalid" : ""
+                            }`}
                           />
-                          {errors.fullName && (
-                            <span className=" text-danger">
-                              پر کردن این فیلد الزامی است
-                            </span>
-                          )}
+                          <span className="invalid-feedback">
+                            {errors.fullname?.message}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -145,38 +169,12 @@ export default function DoctorRegister() {
                         <label htmlFor="datepicker1" className="form-label">
                           تاریخ تولد
                         </label>
-                       
-                        {/* <Controller
-                          control={control}
-                          name="date"
-                          rules={{ required: true }} //optional
-                          render={({
-                            field: { onChange, name, value },
-                            formState: { errors }, //optional, but necessary if you want to show an error message
-                          }) => (
-                            <>
-                              <DatePicker
-                                value={value || ''}
-                                onChange={(date) => {
-                                  onChange(date?.isValid ? date : "");
-                                }}
-                                // format={"YYYY/MM/DD"}
-                                calendar={persian}
-                                locale={persian_fa}
-                                calendarPosition="bottom-right"
-                              />
-                              {errors &&
-                                errors[name] &&
-                                errors[name].type === "required" && (
-                                  //if you want to show an error message
-                                  <span>your error message !</span>
-                                )}
-                            </>
-                          )}
-                        /> */}
+
                         <Controller
                           control={control}
                           name="ReactDatepicker"
+                       
+                          
                           render={({
                             field: { onChange, onBlur, value, ref },
                           }) => (
@@ -186,7 +184,8 @@ export default function DoctorRegister() {
                               className="responsive-calendar d-block"
                               value={selectedDay}
                               onChange={setSelectedDay}
-                              renderInput={renderCustomInput}
+                              renderInput={renderBirthdateInput}
+                              // onClick={setSelectedDay}
                               // onChange={onChange }
                               onBlur={onBlur}
                               selected={value}
@@ -200,11 +199,6 @@ export default function DoctorRegister() {
                             />
                           )}
                         />
-                        {/* {errors.birthdate && (
-                          <span className=" text-danger">
-                            پر کردن این فیلد الزامی است
-                          </span>
-                        )} */}
                       </div>
                       <div className="col-sm-6 w-sm text-end ">
                         <label className="form-label" htmlFor="city">
@@ -232,12 +226,21 @@ export default function DoctorRegister() {
                           </label>
                           <select
                             id="expert"
-                            className="form-control select py-1 px-2"
+                            className="form-control "
                             dir="rtl"
                             placeholder="انتخاب کنید"
+                            defaultValue={""}
+                            {...register("expert")}
+                            className={`form-control select py-1 px-2${
+                              errors.expert ? "is-invalid" : ""
+                            }`}
                           >
                             <DoctorList />
                           </select>
+
+                          <span className="invalid-feedback">
+                            {errors.expert?.message}
+                          </span>
                         </div>
                       </div>
                       <div className="col-6 text-end">
@@ -246,10 +249,16 @@ export default function DoctorRegister() {
                         </label>
                         <input
                           dir="rtl"
-                          type="text"
+                          type="number"
                           id="code"
-                          className="form-control"
+                          {...register("code")}
+                          className={`form-control ${
+                            errors.code ? "is-invalid" : ""
+                          }`}
                         />
+                        <span className="invalid-feedback">
+                          {errors.code?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="row mb-3">
@@ -257,7 +266,17 @@ export default function DoctorRegister() {
                         <label className="form-label" htmlFor="email">
                           ایمیل
                         </label>
-                        <input type="email" id="email" className="form-control" />
+                        <input
+                          type="email"
+                          id="email"
+                          {...register("email")}
+                          className={`form-control ${
+                            errors.email ? "is-invalid" : ""
+                          }`}
+                        />
+                        <span className="invalid-feedback">
+                          {errors.email?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="row d-flex mb-3">
@@ -268,9 +287,15 @@ export default function DoctorRegister() {
                         <input
                           dir="rtl"
                           type="text"
-                          id="pass"
-                          className="form-control"
+                          id="password"
+                          {...register("password")}
+                          className={`form-control ${
+                            errors.password ? "is-invalid" : ""
+                          }`}
                         />
+                        <span className="invalid-feedback">
+                          {errors.password?.message}
+                        </span>
                       </div>
                       <div className="col-md-6 order-md-1 order-0 mb-3 mb-md-0 text-end">
                         <label className="form-label" htmlFor="username">
@@ -280,8 +305,14 @@ export default function DoctorRegister() {
                           dir="rtl"
                           type="text"
                           id="username"
-                          className="form-control"
+                          {...register("username")}
+                          className={`form-control ${
+                            errors.username ? "is-invalid" : ""
+                          }`}
                         />
+                        <span className="invalid-feedback">
+                          {errors.username?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="row mb-3">
@@ -294,7 +325,13 @@ export default function DoctorRegister() {
                           type="file"
                           id="picture"
                           className="form-control"
+                          {...register("picture", { required: true })}
                         />
+                        {errors.picture && (
+                          <span className=" text-danger">
+                            لطفا یک عکس انتخاب کنید
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="row">
@@ -302,17 +339,24 @@ export default function DoctorRegister() {
                         <span
                           onClick={showModal}
                           className={`docRules ${
-                            checked ? "checkboxInput" : ""
+                            errors.checkbox ? "" : "checkboxInput"
                           }`}
                         >
                           شرایط و قوانین سایت نوبت آنلاین را می پذیرم
                         </span>
+
                         <input
-                          className="align-middle ms-1"
                           type="checkbox"
-                          value={checked}
-                          onChange={(e) => setChecked(e.target.checked)}
+                          {...register("checkbox")}
+                          id="checkbox"
+                          className={`align-middle m-0 ms-1 form-check-input ${
+                            errors.checkbox ? "is-invalid" : ""
+                          }`}
                         />
+
+                        <span className="invalid-feedback">
+                          {errors.checkbox?.message}
+                        </span>
                       </div>
                     </div>
                     <input
