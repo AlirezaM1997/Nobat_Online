@@ -22,16 +22,37 @@
 .offcanvas-title {
   font: 1.5em "Samim";
 }
-.offcanvas-body a{
+.offcanvas-body a {
   font: 1em "Samim";
 }
-.list-group ul{
-    list-style: none;
-    padding: 0;
+.list-group ul {
+  list-style: none;
+  padding: 0;
 }
-#mobile-btn-nav{
-    background: transparent;
-    border: none;
-    padding: 0;
-    min-width: 100%;
+#mobile-btn-nav {
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-width: 100%;
+}
+.mob-item {
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  margin-bottom: 0;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  display: block;
+  color: #212529;
+  text-decoration: none;
+  width: 100%;
+  text-align: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.mob-item:hover{
+  background: #1076d6;
+  color: white !important;
+}
+#mobile-btn-nav:hover {
+  color: white ;
+
 }

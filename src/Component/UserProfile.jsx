@@ -131,7 +131,7 @@ export default function UserProfile() {
             {state.history
               ? History.map((item) => (
                   <div className="cart-item m-auto mb-2 ">
-                    <span className="remove-item"></span>
+                    <span className="top-right-dot"></span>
                     <div className="px-3 my-3">
                       <div className="cart-item-doctor" to={"#"}>
                         <div className="d-flex flex-column cart-item-doctor-info">
@@ -176,7 +176,7 @@ export default function UserProfile() {
             {state.canceled
               ? History.filter((item) => item.cancel).map((item) => (
                   <div className="cart-item m-auto mb-2 ">
-                    <span className="remove-item"></span>
+                    <span className="top-right-dot"></span>
                     <div className="px-3 my-3">
                       <div className="cart-item-doctor" to={"#"}>
                         <div className="d-flex flex-column cart-item-doctor-info">
@@ -225,7 +225,7 @@ export default function UserProfile() {
                   <h5 className="author-card-name text-end text-lg">
                     {`علی اصغر آقچه لو`}
                   </h5>
-                  <span className="author-card-position text-center">
+                  <span className="author-card-joined text-center">
                     Joined <br></br>
                     {`February 06, 2017`}
                   </span>
@@ -238,9 +238,9 @@ export default function UserProfile() {
                 </div>
               </div>
             </div>
-            <div className="wizard">
-              <nav className="list-group list-group-flush">
-                <Link className="list-group-item " to={"#"}>
+            <div className="panel">
+              <nav className="">
+                <Link className="panel-item " to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium">
@@ -249,7 +249,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="list-group-item" to={"#"}>
+                <Link className="panel-item" to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">
@@ -259,7 +259,7 @@ export default function UserProfile() {
                   </div>
                 </Link>
                 <Link
-                  className="list-group-item"
+                  className="panel-item"
                   to={"#"}
                   onClick={() => clickHandler("canceled")}
                 >
@@ -272,7 +272,7 @@ export default function UserProfile() {
                   </div>
                 </Link>
                 <Link
-                  className="list-group-item"
+                  className="panel-item"
                   to={"#"}
                   onClick={() => clickHandler("history")}
                 >
@@ -284,7 +284,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="list-group-item" to={"#"}>
+                <Link className="panel-item" to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">

@@ -28,25 +28,19 @@ export default function MobileMenu() {
             نوبت آنلاین
           </Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body className="">
-          <div className="list-group">
+        <Offcanvas.Body className="container">
+          <div className="row list-group">
             <ul>
               <li>
-                <Link
-                  to={"/"}
-                  className="list-group-item list-group-item-action p-3"
-                >
+                <Link to={"/"} className="mob-item p-3">
                   صفحه اصلی
                 </Link>
               </li>
               <li className="dropdown">
-                <Link
-                  to={"#"}
-                  className="list-group-item list-group-item-action p-3"
-                >
+                <Link to={"#"} className="mob-item">
                   <div className="d-flex justify-content-between align-items-center">
                     <button
-                    className="d-flex justify-content-between align-items-center"
+                      className="d-flex justify-content-between align-items-center  p-3"
                       id="mobile-btn-nav"
                       type="button"
                       data-bs-toggle="collapse"
@@ -55,58 +49,73 @@ export default function MobileMenu() {
                       aria-controls="collapseExample"
                     >
                       مجله سلامت
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                    </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-caret-down-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                      </svg>
                     </button>
-                    
                   </div>
                   <div className="collapse" id="collapseExample">
                     <div className="card card-body my-3 p-0">
-                    <ul>
-                  <li>
-                    <Link to="" className="list-group-item list-group-item-action p-3">سلامت زنان</Link>
-                  </li>
-                  <li>
-                    <Link to="" className="list-group-item list-group-item-action p-3">سلامت خانواده</Link>
-                  </li>
-                  <li>
-                    <Link to="" className="list-group-item list-group-item-action p-3">بیماری کرونا</Link>
-                  </li>
-                  <li>
-                    <Link to="" className="list-group-item list-group-item-action p-3">بهداشت روان</Link>
-                  </li>
-                </ul>
+                      <ul>
+                        <li>
+                          <Link to="" className="mob-item p-3">
+                            سلامت زنان
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="" className="mob-item p-3">
+                            سلامت خانواده
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="" className="mob-item p-3">
+                            بیماری کرونا
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="" className="mob-item p-3">
+                            بهداشت روان
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </Link>
-               
               </li>
               <li>
-                <Link
-                  to={"#"}
-                  className="list-group-item list-group-item-action p-3"
-                >
+                <Link to={"#"} className="mob-item p-3">
                   منو
                 </Link>
               </li>
               <li>
-                <Link
-                  to={"#"}
-                  className="list-group-item list-group-item-action p-3"
-                >
+                <Link to={"#"} className="mob-item p-3">
                   منو
                 </Link>
               </li>
               <li>
-                <Link
-                  to={"/about"}
-                  className="list-group-item list-group-item-action p-3"
-                >
+                <Link to={"/about"} className="mob-item p-3">
                   درباره ما
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="row">
+            <div className="col-4 d-flex justify-content-center">
+              <Link to={"/login"}>ورود کاربران</Link>
+            </div>
+            <div className="col-4 d-flex justify-content-center">
+              <Link to={"/doctor-register"}>ثبت نام پزشکان</Link>
+            </div>
+            <div className="col-4 d-flex justify-content-center">
+              <Link to={"/user-register"}>ثبت نام کاربران</Link>
+            </div>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

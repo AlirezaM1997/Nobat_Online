@@ -103,7 +103,6 @@ a:hover {
 .header2Back {
   background: white;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
-
 }
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -171,7 +170,6 @@ a:hover {
 }
 /* .navbar .dropdown ul li a{
   text-align: start;
-
 } */
 .navbar .dropdown ul a {
   text-align: center;
@@ -240,16 +238,19 @@ a:hover {
   line-height: 1.5em;
   letter-spacing: 00.08rem;
 }
+@media (max-width : 576px) {
+  .hero-title{
+    background: #ffc107;
+    border-radius: 0.7rem;
+    margin-bottom: 3em;
+  }
+}
 .searchBox {
   height: 200px;
   border-radius: 0.5em;
-  /* transition: all 0.4s ease-in; */
-
 }
 .searchBoxCol{
   animation: fade_in_show 1s;
-
-
 }
 .expertSearch,
 .doctorSearch {
@@ -283,7 +284,6 @@ a:hover {
   color: #fff;
   text-align: right;
 }
-
 .hero-input:focus,
 #searchBtn {
   outline: none;
@@ -305,7 +305,6 @@ a:hover {
        opacity: 0;
        transform: scale(0.5)
   }
-
   100% {
        opacity: 1;
        transform: scale(1)
@@ -330,7 +329,6 @@ a:hover {
 .mainAbout h3 {
   font-family: "Sahel";
 }
-
 /*--------------------------------------------------------------
 # WhyUs
 --------------------------------------------------------------*/

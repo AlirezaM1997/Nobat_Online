@@ -30,9 +30,11 @@ export default function DoctorRegister() {
       .required("لطفا رمز عبور را وارد نمایید")
       .min(8, "رمز عبور باید بین 8 تا 12 کاراکتر باشد")
       .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
-    // gender: Yup.object("لطفا یک مورد را انتخاب کنید").required(
-    //   "لطفا یک مورد را انتخاب کنید"
-    // ).nullable("لطفا یک مورد را انتخاب کنید"),
+    gender: Yup.string("Required") ,
+    //  Yup.object().shape({
+      // label: Yup.string().required("Required"),
+      // value: Yup.string().required("Required")
+  // }),
     expert: Yup.string("لطفا یک مورد را انتخاب کنید").required(
       "لطفا یک مورد را انتخاب کنید"
     ),
@@ -96,12 +98,12 @@ export default function DoctorRegister() {
       .classList.remove("changePos");
   };
   const [checked, setChecked] = useState(false);
-  // const [birthdate, setBirthdate] = useState("");
-  // const gender = [
-  //   { value: 'man', label: 'm' },
-  //   { value: 'woman', label: 'w' },
-    
-  // ]
+  const [birthdate, setBirthdate] = useState("");
+  const gender = [
+    { value: null, label: 'انتخاب کنید' },
+    { value: 'man', label: 'مرد' },
+    { value: 'woman', label: 'زن' },   
+  ]
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
@@ -124,7 +126,7 @@ export default function DoctorRegister() {
                           <label className="form-label" htmlFor="gender">
                             جنسیت
                           </label>
-                          {/* <Select id="gender"  options={gender} /> */}
+                          <Select id="gender"  options={gender} defaultValue={''}/>
                           {/* <select
                             id="gender"
                             dir="rtl"
@@ -172,9 +174,7 @@ export default function DoctorRegister() {
 
                         <Controller
                           control={control}
-                          name="ReactDatepicker"
-                       
-                          
+                          name="ReactDatepicker" 
                           render={({
                             field: { onChange, onBlur, value, ref },
                           }) => (
