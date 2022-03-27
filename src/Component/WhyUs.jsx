@@ -1,6 +1,6 @@
 export default function WhyUs() {
   return (
-    <section id="why-us" class="why-us">
+    <section id="why-us" className="why-us">
       <div className="container">
         <div className="row d-flex">
           <div className="col-lg-8 d-flex align-items-stretch order-lg-0 order-1">

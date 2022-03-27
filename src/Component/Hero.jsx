@@ -1,26 +1,25 @@
+import "../Style/Hero.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAllState } from "../Provider";
-import { useExpState } from "../Provider";
-import { useDocState } from "../Provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
 import DoctorList from "./DoctorList";
 
 export default function Hero() {
   const [hintExp, setHintExp] = useState(false);
   const [hintDoc, setHintDoc] = useState(false);
-  const { flag } = useAllState(false);
+  const { flag } = useAllState(1);
   const { setFlag } = useAllState();
   const { searchExp } = useAllState("");
   const { setSearchExp } = useAllState();
   const { searchDoc } = useAllState("");
   const { setSearchDoc } = useAllState();
-  console.log(flag);
+  // console.log(flag);
 
   const navigateToExp = useNavigate();
   const setRedirectExp = () => {
+    setFlag(1);
     if (searchExp === "") {
       setHintExp(true);
     } else {
@@ -28,6 +27,7 @@ export default function Hero() {
     }
   };
   const setRedirectDoc = () => {
+    setFlag(2);
     if (searchDoc === "") {
       setHintDoc(true);
     } else {
@@ -51,13 +51,13 @@ export default function Hero() {
                   <div className="col-6 p-0 ">
                     <button
                       className={`${
-                        !flag
+                        flag === 1
                           ? "btn btn-warning w-100 _active"
                           : "btn btn-warning w-100"
                       }`}
                       id="docSearch"
                       onClick={() => {
-                        setFlag(true);
+                        setFlag(2);
                       }}
                     >
                       جستجوی نام پزشک
@@ -66,13 +66,13 @@ export default function Hero() {
                   <div className="col-6 p-0">
                     <button
                       className={`${
-                        flag
+                        flag === 2 || flag === 3
                           ? "btn btn-warning w-100 _active"
                           : "btn btn-warning w-100"
                       }`}
                       id="expSearch"
                       onClick={() => {
-                        setFlag(false);
+                        setFlag(1);
                       }}
                     >
                       جستجو بر اساس تخصص
@@ -81,13 +81,13 @@ export default function Hero() {
                 </div>
                 <div className="row h-100">
                   <div className="bg-primary p-4 searchBoxBottom">
-                    {flag ? (
+                    {flag === 2 || flag === 3 ? (
                       <div className="doctorSearch d-flex flex-column ">
-                        <h5 className="searchTitle">
+                        <h5 className="text-white text-right">
                           نام پزشک مورد نظر خود را وارد کنید{" "}
                         </h5>
                         <input
-                          className="w-75 bg-light py-2 my-2 w-100 hero-input rounded border-0"
+                          className="bg-light py-2 my-2 w-100 hero-input rounded border-0"
                           dir="rtl"
                           value={searchDoc}
                           onChange={(e) => {
@@ -96,7 +96,9 @@ export default function Hero() {
                           }}
                         ></input>
 
-                        <span className={`${hintDoc ? "showHint" : "hideHint"}`}>
+                        <span
+                          className={`${hintDoc ? "showHint" : "hideHint"}`}
+                        >
                           لطفا نام یک پزشک را وارد نمایید
                           <FontAwesomeIcon
                             className="mx-2 text-danger"
@@ -113,23 +115,24 @@ export default function Hero() {
                       </div>
                     ) : (
                       <div className="expertSearch d-flex flex-column">
-                        <h5 className="searchTitle">
+                        <h5 className="text-white text-right">
                           تخصص مورد نظر خود را وارد کنید{" "}
                         </h5>
                         <select
                           dir="rtl"
-                          class="w-75 bg-light my-2 w-100 hero-input py-2 border-0 rounded"
+                          className="w-75 bg-light my-2 w-100 hero-input py-2 border-0 rounded"
                           value={searchExp}
                           onChange={(e) => {
                             setSearchExp(e.target.value);
                             setHintExp(false);
                           }}
-                       
                         >
-                          <DoctorList/>
+                          <DoctorList />
                         </select>
 
-                        <span className={`${hintExp ? "showHint" : "hideHint"}`}>
+                        <span
+                          className={`${hintExp ? "showHint" : "hideHint"}`}
+                        >
                           لطفا یک تخصص را انتخاب کنید
                           <FontAwesomeIcon
                             className="mx-2 text-danger"

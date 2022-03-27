@@ -4,24 +4,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Result.css";
 import { useAllState } from "../Provider";
 import StickyBox from "react-sticky-box";
-import { DynamicStar } from "react-dynamic-star";
-import { faLocationDot, faSearchPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarDays,
+  faCalendarTimes,
+  faNotesMedical,
+  faSearchPlus,
+  faUserDoctor,
+} from "@fortawesome/free-solid-svg-icons";
 import data from "../data";
 import DoctorList from "./DoctorList";
+import ResultItem from "./ResultItem";
 
 export default function Result() {
   const { flag } = useAllState();
+  const { setFlag } = useAllState();
   const { searchExp } = useAllState();
   const { searchDoc } = useAllState();
-  const {allDoctors} = useAllState(data);
-  const {isAdvancedSearch} = useAllState(false);
-  const {setIsAdvancedSearch} = useAllState();
+  const { allDoctors } = useAllState(data);
 
-  
   const [isLoaded, setIsLoaded] = useState(true);
   const [nameDoc, setNameDoc] = useState("");
   const [expertDoc, setExpertDoc] = useState("");
-// console.log(isAdvancedSearch);
+  const [workingDay, setWorkingDay] = useState("");
+
   // useEffect(() => {
   //   const url = ``;
   //   fetch(url)
@@ -37,15 +42,7 @@ export default function Result() {
   //       setIsLoaded(true);
   //     });
   // }, []);
-  // const navigateToExp = useNavigate();
 
-  // const setRedirectDoc = () => {
-    
-  //     setIsAdvancedSearch(true)
-    
-  //     navigateToExp("/result");
-    
-  // };
   return !isLoaded ? (
     <div className="text-center mt-5">
       <svg
@@ -70,102 +67,47 @@ export default function Result() {
       <div className="container">
         <div className="row mt-4 d-flex justify-content-center px-1">
           <div className="col-md-8 col-12 pb-5 order-md-0 order-1">
-            {((!flag && !isAdvancedSearch)
-              ? allDoctors.filter((item) =>
-                  item.expert.toLowerCase().includes(searchExp.toLowerCase())
-                )
-              : allDoctors.filter(
-                  (item) =>
-                    item.fname
-                      .toLowerCase()
-                      .includes(searchDoc.toLowerCase()) ||
-                    item.lname.toLowerCase().includes(searchDoc.toLowerCase())
-                )
-            ).map((item) => (
-              <div className="cart m-auto mb-2 ">
-                <span className="remove-item"></span>
-                <div className="px-3 my-2">
-                  <div className="container cart-doctor p-0  justify-content-end">
-                    <div className="row d-flex flex-column flex-sm-row rowOfCart">
-                      <div className="col-sm-3 col-6 star">
-                        <DynamicStar
-                          width={15}
-                          height={15}
-                          emptyStarColor={"gray"}
-                          rating={item.rate}
-                        />
-                      </div>
-                      <div className="col-sm-6 col-6 d-flex flex-column cart-doctor-info ">
-                        <div className="row">
-                          <div className="d-flex justify-content-end flex-column flex-sm-row">
-                            <h4 className="cart-doctor-title text-end d-inline">
-                              دکتر {item.fname} {item.lname}
-                            </h4>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="text-info fw-bold text-sm-end text-center">
-                            متخصص {item.expert}
-                          </div>
-                        </div>
-                        <div className="row">
-                          <span className="text-muted font-weight-medium text-sm-end text-center">
-                            از دانشگاه : {item.university}
-                          </span>
-                        </div>
-                        <div className="row">
-                          <span className="text-secondary font-weight-medium text-sm-end text-center mt-1">
-                            : روزهای کاری <br></br>
-                            {item.date.map((i) => (
-                              <span className="d-inline-block bg-warning text-dark m-1 rounded py-1 px-2 pb-1">
-                                {" " + i + "  "}
-                              </span>
-                            ))}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-sm-3 col-6 cart-doctor-thumb ">
-                        <img
-                          className="rounded"
-                          src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
-                          alt="doctor"
-                        />
-                      </div>
-                    </div>
-                    <div className="row d-flex align-items-center flex-column flex-sm-row ">
-                      <div className="col order-sm-0 order-1 d-flex justify-content-sm-start justify-content-center">
-                        <Link to={"#"}>
-                          <button id="appointment">دریافت نوبت</button>
-                        </Link>
-                      </div>
-                      <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
-                        <span className="text-muted font-weight-medium text-sm-end text-center">
-                          آدرس مطب : {item.address}
-                        </span>
-                        <FontAwesomeIcon
-                          className="mx-2"
-                          icon={faLocationDot}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-            {isAdvancedSearch ? (
-              <div>
-                <h3>Advanced Search</h3>
-              </div>
-            ) : (
-              ""
-            )}
+            {flag === 1
+              ? allDoctors
+                  .filter((item , index , arr) =>
+                    item.expert.toLowerCase().includes(searchExp.toLowerCase())
+                  )
+                  .map((item , index , arr) => <ResultItem item={item} />)
+              : ""}
+            {flag === 2
+              ? allDoctors
+                  .filter(
+                    (item) =>
+                      item.fname
+                        .toLowerCase()
+                        .includes(searchDoc.toLowerCase()) ||
+                      item.lname.toLowerCase().includes(searchDoc.toLowerCase())
+                  )
+                  .map((item) => <ResultItem item={item} />)
+              : ""}
+            {flag === 3
+              ? allDoctors
+                  .filter(
+                    (item) =>
+                      (item.fname
+                        .toLowerCase()
+                        .includes(nameDoc.toLowerCase()) ||
+                        item.lname
+                          .toLowerCase()
+                          .includes(nameDoc.toLowerCase())) &&
+                      item.expert
+                        .toLowerCase()
+                        .includes(expertDoc.toLowerCase())
+                  )
+                  .map((item) => <ResultItem item={item} />)
+              : ""}
           </div>
           <div className="col-md-4 col-12 pb-5 order-md-1 order-0" id="">
             <StickyBox id="StickyBox" offsetTop={170} offsetBottom={-100}>
               <div className="container p-1" id="search">
                 <div className="row w-100 m-0 p-3 d-flex justify-content-center">
                   <div className="col text-center mb-2">
-                    <h5>
+                    <h5 className="adSearchTitle">
                       جستجوی پیشرفته
                       <FontAwesomeIcon
                         className="mx-2 text-warning"
@@ -175,17 +117,29 @@ export default function Result() {
                   </div>
                 </div>
                 <div className="row w-100 m-0 p-3 pt-0 d-flex align-items-center flex-column justify-content-center">
-                  <p className="text-end mb-1">نام پزشک</p>
+                  <p className="text-end text-warning h6 mb-1">
+                    نام پزشک{" "}
+                    <FontAwesomeIcon
+                      className="mx-2 text-white"
+                      icon={faUserDoctor}
+                    />
+                  </p>
                   <input
                     dir="rtl"
-                    className=""
+                    className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
                     value={nameDoc}
                     onChange={(e) => setNameDoc(e.target.value)}
                   ></input>
-                  <p className="text-end mb-1">تخصص</p>
+                  <p className="text-end text-warning h6 mb-1">
+                    تخصص{" "}
+                    <FontAwesomeIcon
+                      className="mx-2 text-white"
+                      icon={faNotesMedical}
+                    />
+                  </p>
                   <select
                     dir="rtl"
-                    class=" bg-light my-2 w-100  py-2 border-0"
+                    className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
                     value={expertDoc}
                     onChange={(e) => {
                       setExpertDoc(e.target.value);
@@ -193,9 +147,31 @@ export default function Result() {
                   >
                     <DoctorList />
                   </select>
+                  <p className="text-end text-warning h6 mb-1">
+                    روزهای کاری{" "}
+                    <FontAwesomeIcon
+                      className="mx-2 text-white"
+                      icon={faCalendarDays}
+                    />
+                  </p>
+                  <select
+                    dir="rtl"
+                    className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
+                    value={workingDay}
+                    onChange={(e) => {
+                      setWorkingDay(e.target.value);
+                    }}
+                  >
+                    <option value={`شنبه`}>شنبه</option>
+                    <option value={`یکشنبه`}>یکشنبه</option>
+                    <option value={`دوشنبه`}>دوشنبه</option>
+                    <option value={`سه شنبه`}>سه شنبه</option>
+                    <option value={`چهارشنبه`}>چهارشنبه</option>
+                    <option value={`پنجشنبه`}>پنجشنبه</option>
+                  </select>
                 </div>
-                <div className="row w-100 m-0 p-3">
-                  <button >
+                <div className="row w-75 m-auto p-3">
+                  <button className="adSearchBtn" onClick={() => setFlag(3)}>
                     جستجو
                   </button>
                 </div>
@@ -207,6 +183,4 @@ export default function Result() {
     </div>
   );
 }
-// const getIndexById = (id) => {
-//     return items.findIndex((item) => item.id === id);
-//   };
+

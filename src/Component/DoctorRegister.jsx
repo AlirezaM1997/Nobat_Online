@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import Select from 'react-select';
+import Select from "react-select";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
@@ -30,11 +30,11 @@ export default function DoctorRegister() {
       .required("لطفا رمز عبور را وارد نمایید")
       .min(8, "رمز عبور باید بین 8 تا 12 کاراکتر باشد")
       .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
-    gender: Yup.string("Required") ,
+    gender: Yup.string("Required"),
     //  Yup.object().shape({
-      // label: Yup.string().required("Required"),
-      // value: Yup.string().required("Required")
-  // }),
+    // label: Yup.string().required("Required"),
+    // value: Yup.string().required("Required")
+    // }),
     expert: Yup.string("لطفا یک مورد را انتخاب کنید").required(
       "لطفا یک مورد را انتخاب کنید"
     ),
@@ -97,17 +97,29 @@ export default function DoctorRegister() {
       .getElementsByClassName("DatePicker")[0]
       .classList.remove("changePos");
   };
-  const [checked, setChecked] = useState(false);
-  const [birthdate, setBirthdate] = useState("");
+  const [check, setCheck] = useState(true);
+  const OnCheckboxClick= (e) => {
+    if(e.target.checked) {
+      setCheck(false)
+        console.log(check);
+
+    }
+    else {
+      setCheck(true)
+        console.log(check);
+    }
+}
+  // console.log(check);
+  // const [birthdate, setBirthdate] = useState("");
   const gender = [
-    { value: null, label: 'انتخاب کنید' },
-    { value: 'man', label: 'مرد' },
-    { value: 'woman', label: 'زن' },   
-  ]
+    { value: null, label: "انتخاب کنید" },
+    { value: "man", label: "مرد" },
+    { value: "woman", label: "زن" },
+  ];
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
-        <Header2 />
+        {/* <Header2 /> */}
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-8 ">
@@ -126,7 +138,11 @@ export default function DoctorRegister() {
                           <label className="form-label" htmlFor="gender">
                             جنسیت
                           </label>
-                          <Select id="gender"  options={gender} defaultValue={''}/>
+                          <Select
+                            id="gender"
+                            options={gender}
+                            defaultValue={""}
+                          />
                           {/* <select
                             id="gender"
                             dir="rtl"
@@ -174,7 +190,7 @@ export default function DoctorRegister() {
 
                         <Controller
                           control={control}
-                          name="ReactDatepicker" 
+                          name="ReactDatepicker"
                           render={({
                             field: { onChange, onBlur, value, ref },
                           }) => (
@@ -338,15 +354,15 @@ export default function DoctorRegister() {
                       <div className="col text-end">
                         <span
                           onClick={showModal}
-                          className={`docRules ${
-                            errors.checkbox ? "" : "checkboxInput"
-                          }`}
+                          className={`docRules ${!errors.checkbox && check ? "" : "checkboxInput"}`}
                         >
                           شرایط و قوانین سایت نوبت آنلاین را می پذیرم
                         </span>
 
                         <input
                           type="checkbox"
+                          value={check}
+                          onClick={(e) => OnCheckboxClick(e)}
                           {...register("checkbox")}
                           id="checkbox"
                           className={`align-middle m-0 ms-1 form-check-input ${

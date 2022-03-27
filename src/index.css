@@ -75,9 +75,7 @@ a:hover {
 #header .logo img {
   max-height: 40px;
 }
-/*
-* Header Button 
-*/
+/* Header Button */ 
 .btnHeader {
   margin-left: 25px;
   background: #1977cc;
@@ -101,21 +99,14 @@ a:hover {
   width: 75px;
 }
 .header2Back {
-  background: white;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
 }
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-/**
-* Desktop Navigation 
-*/
+/* Desktop Navigation */
 .navbar ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
   list-style: none;
-  align-items: center;
 }
 .navbar li {
   position: relative;
@@ -150,29 +141,18 @@ a:hover {
   border-color: #1977cc;
 }
 .navbar .dropdown ul {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
   top: calc(100% + 30px);
-  margin: 0;
   padding: 10px 0;
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  background: #fff;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
   transition: 0.3s;
 }
 .navbar .dropdown ul li {
-  text-align: end;
   min-width: fit-content;
 }
-/* .navbar .dropdown ul li a{
-  text-align: start;
-} */
 .navbar .dropdown ul a {
-  text-align: center;
   padding: 10px 20px;
   font: 500 14px;
   text-transform: none;
@@ -210,115 +190,6 @@ a:hover {
   .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
-}
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
-#hero {
-  width: 100%;
-  height: 90vh;
-  background: url(/src/images/hero-bg.jpg) top center;
-  background-size: cover;
-  margin-bottom: -200px;
-  font-family: "Shabnam";
-}
-@media (max-width: 991px) {
-  #hero {
-    margin-bottom: 0;
-    height: 100vh;
-  }
-}
-@media (min-width: 1024px) {
-  #hero {
-    background-attachment: fixed;
-  }
-}
-.hero-title {
-  font-family: "Samim";
-  line-height: 1.5em;
-  letter-spacing: 00.08rem;
-}
-@media (max-width : 576px) {
-  .hero-title{
-    background: #ffc107;
-    border-radius: 0.7rem;
-    margin-bottom: 3em;
-  }
-}
-.searchBox {
-  height: 200px;
-  border-radius: 0.5em;
-}
-.searchBoxCol{
-  animation: fade_in_show 1s;
-}
-.expertSearch,
-.doctorSearch {
-  font-family: "Shabnam";
-  align-items: flex-end;
-}
-#docSearch {
-  border-radius: 0;
-  border-top-left-radius: 15px;
-  height: 4em;
-  border: none;
-}
-#expSearch {
-  border-radius: 0;
-  border-top-right-radius: 15px;
-  height: 4em;
-  border: none;
-}
-#expSearch:hover,
-#docSearch:hover {
-  background: #ffd659;
-}
-.input-hero:focus,
-.input-hero {
-  outline: none;
-  box-shadow: none;
-  border: solid 2px orange;
-  padding: 0.4em;
-}
-.searchTitle {
-  color: #fff;
-  text-align: right;
-}
-.hero-input:focus,
-#searchBtn {
-  outline: none;
-  box-shadow: none;
-}
-._active {
-  background: #c7c7c7;
-}
-#expSearch:focus,
-#docSearch:focus {
-  outline: none;
-  box-shadow: none;
-}
-.searchBoxBottom{
-  /* animation: fade_in_show 1s; */
-}
-@keyframes fade_in_show {
-  0% {
-       opacity: 0;
-       transform: scale(0.5)
-  }
-  100% {
-       opacity: 1;
-       transform: scale(1)
-  }
-}
-.showHint {
-  display: block;
-  animation: fade_in_show 1s;
-  color: rgb(251, 255, 0);
-  opacity: 1;
-}
-.hideHint {
-  display: none;
-  opacity: 0;
 }
 /*--------------------------------------------------------------
 # About

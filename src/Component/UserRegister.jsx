@@ -43,7 +43,7 @@ export default function DoctorRegister() {
   return (
     <div>
       <section className="container py-3 min-vh-100 mw-100 bg-user-reg px-5">
-        <Header2/>
+        {/* <Header2/> */}
         <div className="container  h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-8 col-xl-6">
@@ -125,19 +125,7 @@ export default function DoctorRegister() {
                         </label>
                         
                         <DatePicker
-                        //   popperPlacement="bottom"
                         
-                        //   popperModifiers={{
-                        //     flip: {
-                        //         behavior: ["bottom"] // don't allow it to flip to be above
-                        //     },
-                        //     preventOverflow: {
-                        //         enabled: false // tell it not to try to stay within the view (this prevents the popper from covering the element you clicked)
-                        //     },
-                        //     hide: {
-                        //         enabled: false // turn off since needs preventOverflow to be enabled
-                        //     }
-                        // }}
                           className="responsive-calendar d-block"
                           value={selectedDay}
                           onChange={setSelectedDay}
@@ -198,7 +186,7 @@ export default function DoctorRegister() {
                           dir="rtl"
                           type="text"
                           id="form3Example1q"
-                          class="form-control"
+                          className="form-control"
                         />
                       </div>
                     </div>

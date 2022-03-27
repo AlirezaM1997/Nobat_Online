@@ -1,0 +1,99 @@
+#hero {
+    width: 100%;
+    height: 90vh;
+    background: url(/src/images/hero-bg.jpg) top center;
+    background-size: cover;
+    margin-bottom: -200px;
+    font-family: "Shabnam";
+  }
+  @media (max-width: 991px) {
+    #hero {
+      margin-bottom: 0;
+      height: 100vh;
+    }
+  }
+  @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+  }
+  .hero-title {
+    font-family: "Samim";
+    line-height: 1.5em;
+    letter-spacing: 00.08rem;
+  }
+  @media (max-width : 576px) {
+    .hero-title{
+      background: #ffc107;
+      border-radius: 0.7rem;
+      margin-bottom: 3em;
+    }
+  }
+  .searchBox {
+    height: 200px;
+    border-radius: 0.5em;
+  }
+  .searchBoxCol{
+    animation: fade_in_show 1s;
+  }
+  .expertSearch,
+  .doctorSearch {
+    font-family: "Shabnam";
+    align-items: flex-end;
+  }
+  #docSearch {
+    border-radius: 0;
+    border-top-left-radius: 15px;
+    height: 4em;
+    border: none;
+  }
+  #expSearch {
+    border-radius: 0;
+    border-top-right-radius: 15px;
+    height: 4em;
+    border: none;
+  }
+  #expSearch:hover,
+  #docSearch:hover {
+    background: #ffd659;
+  }
+  .input-hero:focus,
+  .input-hero {
+    outline: none;
+    box-shadow: none;
+    border: solid 2px orange;
+    padding: 0.4em;
+  }
+  .hero-input:focus,
+  #searchBtn {
+    outline: none;
+    box-shadow: none;
+  }
+  ._active {
+    background: #c7c7c7;
+  }
+  #expSearch:focus,
+  #docSearch:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  @keyframes fade_in_show {
+    0% {
+         opacity: 0;
+         transform: scale(0.5)
+    }
+    100% {
+         opacity: 1;
+         transform: scale(1)
+    }
+  }
+  .showHint {
+    display: block;
+    animation: fade_in_show 1s;
+    color: rgb(251, 255, 0);
+    opacity: 1;
+  }
+  .hideHint {
+    display: none;
+    opacity: 0;
+  }

@@ -89,7 +89,6 @@
     box-shadow: none;
     border: none;
     border-radius: 0;
-    display: inline-block;
     transition: all 0.3s;
   }
   .form-horizontal .form-control:focus {

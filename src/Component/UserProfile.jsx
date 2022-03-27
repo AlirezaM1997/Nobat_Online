@@ -100,10 +100,9 @@ export default function UserProfile() {
   ];
 
   return (
-    <div className="mw-100 fixedBack">
-      <div className="container back-prof p-3">
-        <Header2 />
-        <div className="row mt-4 d-flex justify-content-center ">
+    <div className="mw-100">
+      <div className="container back-prof ">
+        <div className="row d-flex justify-content-center ">
           <div className="col-lg-8 pb-5 order-lg-0 order-1">
             {state.history ? (
               <h5 className="text-end mb-3 bg-warning p-2 border border-primary">
@@ -240,7 +239,7 @@ export default function UserProfile() {
             </div>
             <div className="panel">
               <nav className="">
-                <Link className="panel-item " to={"#"}>
+                <Link className="panel-item d-block bg-primary mb-1 position-relative " to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium">
@@ -249,7 +248,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="panel-item" to={"#"}>
+                <Link className="panel-item d-block bg-primary mb-1 position-relative" to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">
@@ -259,7 +258,7 @@ export default function UserProfile() {
                   </div>
                 </Link>
                 <Link
-                  className="panel-item"
+                  className="panel-item d-block bg-primary mb-1 position-relative"
                   to={"#"}
                   onClick={() => clickHandler("canceled")}
                 >
@@ -272,7 +271,7 @@ export default function UserProfile() {
                   </div>
                 </Link>
                 <Link
-                  className="panel-item"
+                  className="panel-item d-block bg-primary mb-1 position-relative"
                   to={"#"}
                   onClick={() => clickHandler("history")}
                 >
@@ -284,7 +283,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="panel-item" to={"#"}>
+                <Link className="panel-item d-block bg-primary mb-1 position-relative" to={"#"}>
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">

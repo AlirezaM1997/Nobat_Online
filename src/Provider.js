@@ -3,15 +3,11 @@ import data from "./data";
 const Context = React.createContext();
 
 export default function Provider({ children }) {
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(1);
   const [searchDoc, setSearchDoc] = useState("");
   const [searchExp, setSearchExp] = useState("");
   const [allDoctors, setAllDoctors] = useState(data);
-  let [isAdvancedSearch, setIsAdvancedSearch] = useState(false);
-  // if (!flag) {
-  //   isAdvancedSearch = '44'
-  // }
-// console.log(isAdvancedSearch);
+
   return (
     <Context.Provider
       value={{
@@ -23,8 +19,6 @@ export default function Provider({ children }) {
         setSearchExp,
         allDoctors,
         setAllDoctors,
-        isAdvancedSearch,
-        setIsAdvancedSearch,
       }}
     >
       {children}

@@ -32,7 +32,7 @@ export default function Login() {
                           <i className="fa fa-user"></i>
                         </span>
                         <input
-                          className="form-control"
+                          className="form-control d-inline-block"
                           type="email"
                           placeholder="نام کاربری"
                           dir="rtl"
@@ -43,7 +43,7 @@ export default function Login() {
                           <i className="fa fa-lock"></i>
                         </span>
                         <input
-                          className="form-control"
+                          className="form-control d-inline-block"
                           type="password"
                           placeholder="رمز عبور"
                           dir="rtl"
@@ -85,7 +85,7 @@ export default function Login() {
                           <i className="fa fa-user"></i>
                         </span>
                         <input
-                          className="form-control"
+                          className="form-control d-inline-block"
                           type="email"
                           placeholder="نام کاربری"
                           dir="rtl"
@@ -96,7 +96,7 @@ export default function Login() {
                           <i className="fa fa-lock"></i>
                         </span>
                         <input
-                          className="form-control"
+                          className="form-control d-inline-block"
                           type="password"
                           placeholder="رمز عبور"
                           dir="rtl"

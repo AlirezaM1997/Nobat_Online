@@ -2,6 +2,7 @@
   background: white center;
   background-size: cover;
   font-family: "Sahel";
+  margin-top: 150px;
 }
 .doc-reg-card {
   background-image: radial-gradient(
@@ -80,6 +81,7 @@
   width: 100%;
   background: white center;
   background-size: cover;
+  margin-top: 150px;
 }
 #user-reg-title {
   background: linear-gradient(
@@ -98,9 +100,6 @@
 .docRules {
   cursor: pointer;
   color: #999;
-}
-.docRules:hover {
-  color: black;
 }
 .modal-doc-show {
   display: block;
@@ -136,12 +135,17 @@
   }
 }
 .checkboxInput{
+  color: black ;
+}
+.notCheckboxInput{
+  color: #999 ;
+}
+.docRules:hover {
   color: black;
 }
 input[type='number'] {
   -moz-appearance:textfield;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
