@@ -1,10 +1,11 @@
 import "../Style/Footer.css";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
+
   return (
   
       <footer id="footer">
@@ -12,7 +13,7 @@ export default function Footer() {
           <div className="container">
             <div className="row d-flex ">
               <div className="col-lg-4 col-md-6 order-lg-0 order-md-3 order-3 footer-newsletter  d-flex flex-column align-items-center">
-                <h4> اخبار و مقالات</h4>
+                <h6 className="text-center mb-3"> اخبار و مقالات</h6>
                 <p className="text-center">
                   برای دریافت جدیدترین اخبار و مقالات ، ایمیل خود را وارد کنید
                 </p>
@@ -35,7 +36,7 @@ export default function Footer() {
                 </form>
               </div>
               <div className="col-lg-2 col-md-6 order-lg-1 order-md-2 order-2 d-flex flex-column align-items-center footer-links">
-                <h4>لینک های مفید</h4>
+                <h6 className="text-center mb-3">لینک های مفید</h6>
                 <ul className="d-flex flex-column align-items-center">
                   <li>
                     <Link to={"/"}>صفحه اصلی</Link>
@@ -55,7 +56,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="col-lg-3 col-md-6 order-lg-2 order-md-0 order-1 d-flex flex-column align-items-center footer-links">
-                <h4>خدمات ما</h4>
+                <h6 className="text-center mb-3">خدمات ما</h6>
                 <ul className="d-flex flex-column align-items-center">
                   <li>
                     <Link to={"#"}>1</Link>

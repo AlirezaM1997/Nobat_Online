@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import Image from "react-bootstrap/Image";
+import "../Style/Header.css"
 
 export default function Header() {
   return (
@@ -18,14 +19,14 @@ export default function Header() {
         >
           <div id="header3">
             <Link
-              className="btn btn-primary me-2 btnHeader d-inline-block text-white headerBtn"
+              className="btn btn-primary me-2 btnHeader d-inline-block text-white"
               to={"/login"}
             >
               ورود کاربران
             </Link>
 
             <Link
-              className="btn btn-primary btnHeader d-inline-block text-white headerBtn"
+              className="btn btn-primary btnHeader d-inline-block text-white"
               to={"/doctor-register"}
             >
               ثبت نام پزشکان
@@ -33,7 +34,7 @@ export default function Header() {
           </div>
           <div id="header2">
             <nav id="navbar" className="navbar order-last order-lg-0 p-0">
-              <ul className="d-flex m-0 p-0 align-items-center">
+              <ul className="m-0 p-0 align-items-center">
                 <li>
                   <Link to="/about" className="nav-link">
                     درباره ما

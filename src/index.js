@@ -15,6 +15,7 @@ import reportWebVitals from "./reportWebVitals";
 import About from "./Component/About";
 import Header2 from "./Component/Header2";
 import Footer from "./Component/Footer";
+import Appointment from "./Component/Appointment";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Provider from "./Provider";
 // import BackToTopBtn from "./Component/BackTopBtn"
@@ -29,12 +30,13 @@ const PublicHeader = () => (
         <Route path="/doctor-register" element={<DoctorRegister />}></Route>
         <Route path="/user-register" element={<UserRegister />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/appointment" element={<Appointment />}></Route>
       </Route>
     </Routes>
   </div>
 );
 const SpecialHeader = () => (
-  <div className="">
+  <div>
     <Routes>
       <Route element={<Header2 />}>
         <Route

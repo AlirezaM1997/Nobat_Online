@@ -2,10 +2,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Result.css";
 import { DynamicStar } from "react-dynamic-star";
-import { faLocationDot, faSearchPlus } from "@fortawesome/free-solid-svg-icons";
-import { Key } from "heroicons-react";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useAllState } from "../Provider";
 
 const ResultItem = (props) => {
+  const { currentAppoin } = useAllState();
+  const { setCurrentAppoin } = useAllState();
+
  const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
   };
@@ -63,8 +66,8 @@ const ResultItem = (props) => {
             </div>
             <div className="row d-flex align-items-center flex-column flex-sm-row ">
               <div className="col order-sm-0 order-1 d-flex justify-content-sm-start justify-content-center">
-                <Link to={"#"}>
-                  <button id="appointment">دریافت نوبت</button>
+                <Link to={"/appointment"}>
+                  <button id="appointment" onClick={()=>setCurrentAppoin(props.item.id)}>دریافت نوبت</button>
                 </Link>
               </div>
               <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">

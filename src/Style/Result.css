@@ -222,3 +222,6 @@ transform: scale(1.1);
   outline: none;
   box-shadow: none;
 }
+.noResult{
+  animation: fade_in_show 1s;
+}

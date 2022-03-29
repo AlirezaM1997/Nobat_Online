@@ -3,10 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Result.css";
 import { useAllState } from "../Provider";
+import Image from "react-bootstrap/Image";
 import StickyBox from "react-sticky-box";
 import {
   faCalendarDays,
-  faCalendarTimes,
   faNotesMedical,
   faSearchPlus,
   faUserDoctor,
@@ -21,6 +21,8 @@ export default function Result() {
   const { searchExp } = useAllState();
   const { searchDoc } = useAllState();
   const { allDoctors } = useAllState(data);
+  const { noResult } = useAllState(false);
+  const { setNoResult } = useAllState();
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [nameDoc, setNameDoc] = useState("");
@@ -42,6 +44,29 @@ export default function Result() {
   //       setIsLoaded(true);
   //     });
   // }, []);
+
+  if (flag === 1) {
+    const array = allDoctors.filter((item, index, arr) =>
+      item.expert.toLowerCase().includes(searchExp.toLowerCase())
+    );
+    if (array.length === 0) {
+      setNoResult(true);
+    } else {
+      setNoResult(false);
+    }
+  } else if (flag === 2) {
+    const array = allDoctors.filter(
+      (item) =>
+        item.fname.toLowerCase().includes(searchDoc.toLowerCase()) ||
+        item.lname.toLowerCase().includes(searchDoc.toLowerCase())
+    );
+    if (array.length === 0) {
+      setNoResult(true);
+    } else {
+      setNoResult(false);
+    }
+  } else {
+  }
 
   return !isLoaded ? (
     <div className="text-center mt-5">
@@ -69,10 +94,10 @@ export default function Result() {
           <div className="col-md-8 col-12 pb-5 order-md-0 order-1">
             {flag === 1
               ? allDoctors
-                  .filter((item , index , arr) =>
+                  .filter((item, index, arr) =>
                     item.expert.toLowerCase().includes(searchExp.toLowerCase())
                   )
-                  .map((item , index , arr) => <ResultItem item={item} />)
+                  .map((item, index, arr) => <ResultItem item={item} />)
               : ""}
             {flag === 2
               ? allDoctors
@@ -101,6 +126,14 @@ export default function Result() {
                   )
                   .map((item) => <ResultItem item={item} />)
               : ""}
+            {noResult ? (
+              <Image
+                className="img-fluid noResult"
+                src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/no-result.png")}
+              ></Image>
+            ) : (
+              ""
+            )}
           </div>
           <div className="col-md-4 col-12 pb-5 order-md-1 order-0" id="">
             <StickyBox id="StickyBox" offsetTop={170} offsetBottom={-100}>
@@ -183,4 +216,3 @@ export default function Result() {
     </div>
   );
 }
-

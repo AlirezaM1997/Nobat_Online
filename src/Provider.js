@@ -7,6 +7,8 @@ export default function Provider({ children }) {
   const [searchDoc, setSearchDoc] = useState("");
   const [searchExp, setSearchExp] = useState("");
   const [allDoctors, setAllDoctors] = useState(data);
+  const [currentAppoin, setCurrentAppoin] = useState();
+  const [noResult, setNoResult] = useState(false);
 
   return (
     <Context.Provider
@@ -19,6 +21,8 @@ export default function Provider({ children }) {
         setSearchExp,
         allDoctors,
         setAllDoctors,
+        currentAppoin,
+        setCurrentAppoin,noResult,setNoResult
       }}
     >
       {children}

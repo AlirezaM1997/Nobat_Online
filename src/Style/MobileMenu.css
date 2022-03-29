@@ -11,7 +11,7 @@
     display: block;
   }
   .navbar ul {
-    display: none;
+    display: none !important;
   }
 }
 .navbar-mobile .mobile-nav-toggle {
