@@ -1,715 +1,188 @@
 import "../Style/Appointment.css";
 import { useAllState } from "../Provider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommentsBlock from "simple-react-comments";
 import commentsData from "../commentsData";
 import data from "../data";
+import { DynamicStar } from "react-dynamic-star";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faArrowCircleDown,
+  faArrowLeft,
+  faLocationDot,
+  faMoneyCheck,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 export default function Appointment() {
   const { allDoctors } = useAllState(data);
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
-  const [selectedTime, setSelectedTime] = useState();
-  console.log(selectedTime);
-  // cons () => {
-  //   document.getElementById(selectedTime).classList.toggle("bg-warning");
-  // };
+  const [selectedTime, setSelectedTime] = useState("");
+  // console.log(selectedTime);
 
+  useEffect(() => {
+    if (selectedTime !== "") {
+      let scrollDiv = document.getElementById("getAppoinRow").offsetTop;
+      window.scrollTo({ top: scrollDiv - 400, behavior: "smooth" });
+    }
+  });
+  const makeDate = (s) => {
+    let n = String(s);
+    let arr = [n.slice(0, 4), n.slice(4, 6), n.slice(6, 8)];
+    return `${arr[0]}/${arr[1]}/${arr[2]}`;
+  };
+
+  const currentDocTimes = allDoctors
+    .filter((item) => item.id === currentAppoin)
+    .map((item) => item.date);
+  const UpdateTable = () => {
+    let values = Object.values(currentDocTimes[0]);
+    let keys = Object.keys(currentDocTimes[0]);
+    return keys.map((key, index) => {
+      return (
+        <tr>
+          <th className="text-center bg-info p-2" key={index}>
+            {makeDate(key)}
+          </th>
+          {values[index].map((value) => {
+            return (
+              <td>
+                <button
+                  disabled={false}
+                  className={`table-btn ${
+                    selectedTime === key + value ? "bg-warning" : ""
+                  }`}
+                  value={key + value}
+                  id={key + value}
+                  onClick={(e) => setSelectedTime(e.target.value)}
+                >
+                  {value}
+                </button>
+              </td>
+            );
+          })}
+        </tr>
+      );
+    });
+  };
   return (
     <>
       <div>
+        <Link to={"/result"} className="">
+          <div className="m-3 text-center text-md-start backToResult">
+            {" "}
+            <FontAwesomeIcon className="ms-1" icon={faArrowLeft} /> بازگشت به
+            نتایج جستجو
+          </div>
+        </Link>
         <div className="appoinContent">
           <div className="container">
             {allDoctors
               .filter((item) => item.id === currentAppoin)
               .map((item) => (
                 <div className="shadow-lg bg-white appoinBox">
-                  <div className="cover-bg p-3 p-lg-4 text-white">
+                  <div className="cover-bg p-3 p-lg-4 ">
                     <div className="row">
-                      <div className="col-lg-4 col-md-5">
+                      <div className="col-lg-4 col-md-5 d-flex flex-column align-items-center">
+                        <div>
+                          {" "}
+                          <DynamicStar
+                            className="justify-content-center"
+                            width={20}
+                            height={20}
+                            emptyStarColor={"gray"}
+                            rating={item.rate}
+                          />
+                        </div>
                         <div className="docImg hover-effect bg-white shadow-sm p-1">
                           <img
                             src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl}`}
                           />
                         </div>
                       </div>
-                      <div className="col-lg-8 col-md-7 text-center text-md-end">
-                        <h2 className="h1 mt-2">
+                      <div
+                        className="col-lg-8 col-md-7 text-center text-md-end"
+                        id="docInfo"
+                      >
+                        <h2 className="h1 mt-2 text-white">
                           دکتر {item.fname} {item.lname}
                         </h2>
-                        <p>متخصص {item.expert}</p>
-                        <div className=""></div>
+                        <p className="h4 my-3 text-warning">
+                          متخصص {item.expert}
+                        </p>
+                        <h5 className="text-light">
+                          از دانشگاه {item.university}
+                        </h5>
                       </div>
                     </div>
                   </div>
-                  <div className="getAppoin-section pt-4 px-3 px-lg-4 mt-5">
-                    <div className="row my-3">
-                      <h3 className="text-center text-primary">
+                  <div className="row p-2">
+                    <div className="col">
+                      <div className="text-md-end text-center mb-2 d-flex align-items-center justify-content-center justify-content-md-end">
+                        {`تومان`}{" "}
+                        <b className="mx-1">
+                          <span className="h5"> {item.visit} </span>
+                          {" : "}
+                          {` ویزیت`}
+                        </b>{" "}
+                        <FontAwesomeIcon className="ms-1" icon={faMoneyCheck} />
+                      </div>
+                      <div className="text-md-end text-center mb-2">
+                        <b>
+                          {` تلفن مطب`}
+                          {" : "}
+                        </b>{" "}
+                        {item.phone}
+                        <FontAwesomeIcon className="ms-1" icon={faPhone} />
+                      </div>
+                      <div className="text-md-end text-center mb-2">
+                        <b>
+                          {` نشانی`}
+                          {" : "}
+                        </b>{" "}
+                        {item.address2}
+                        <FontAwesomeIcon
+                          className="ms-1"
+                          icon={faLocationDot}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="getAppoin-section pt-4 px-3 px-lg-4 mt-2">
+                    <div className="row my-3 justify-content-center">
+                      <h5 className="text-center py-2 px-3 text-white bg-primary chooseAppoin">
                         لطفا از بین ساعت های فعال یکی را انتخاب نمایید
-                      </h3>
+                      </h5>
                       <FontAwesomeIcon
-                        className="arrowDown my-3"
+                        className="arrowDown my-3 text-success"
                         icon={faArrowCircleDown}
                       />
                     </div>
-                    <div className="row">
+                    <div className="row mb-4">
                       <div className="col d-flex justify-content-center">
-                        <table>
-                          <thead className="">
-                            <tr>
-                              <th className="text-center bg-warning">
-                                پنجشنبه
-                              </th>
-                              <th className="text-center bg-warning">
-                                چهارشنبه
-                              </th>
-                              <th className="text-center bg-warning">
-                                سه شنبه
-                              </th>
-                              <th className="text-center bg-warning">دوشنبه</th>
-                              <th className="text-center bg-warning">یکشنبه</th>
-                              <th className="text-center bg-warning">شنبه</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <button
-                                  id="10Thu"
-                                  value={`10Thu`}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                  className={`table-btn ${
-                                    selectedTime === "10Thu" ? "bg-warning" : ""
-                                  }`}
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  value={"10Wed"}
-                                  id={"10Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                  className={`table-btn ${
-                                    selectedTime === "10Wed" ? "bg-warning" : ""
-                                  }`}
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "10Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"10Tue"}
-                                  id={"10Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "10Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"10Mon"}
-                                  id={"10Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "10Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"10Sun"}
-                                  id={"10Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "10Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"10Sat"}
-                                  id={"10Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  10 AM
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Thu" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Thu"}
-                                  id={"11Thu"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Wed" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Wed"}
-                                  id={"11Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Tue"}
-                                  id={"11Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Mon"}
-                                  id={"11Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Sun"}
-                                  id={"11Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "11Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"11Sat"}
-                                  id={"11Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  11 AM
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Thu" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Thu"}
-                                  id={"12Thu"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Wed" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Wed"}
-                                  id={"12Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Tue"}
-                                  id={"12Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Mon"}
-                                  id={"12Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Sun"}
-                                  id={"12Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "12Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"12Sat"}
-                                  id={"12Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  12 AM
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Thu" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Thu"}
-                                  id={"16Thu"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Wed" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Wed"}
-                                  id={"16Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Tue"}
-                                  id={"16Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Mon"}
-                                  id={"16Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Sun"}
-                                  id={"16Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "16Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"16Sat"}
-                                  id={"16Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  16 PM
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Thu" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Thu"}
-                                  id={"18Thu"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Wed" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Wed"}
-                                  id={"18Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Tue"}
-                                  id={"18Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Mon"}
-                                  id={"18Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Sun"}
-                                  id={"18Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "18Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"18Sat"}
-                                  id={"18Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  18 PM
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Thu" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Thu"}
-                                  id={"19Thu"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Wed" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Wed"}
-                                  id={"19Wed"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Tue" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Tue"}
-                                  id={"19Tue"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Mon" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Mon"}
-                                  id={"19Mon"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Sun" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Sun"}
-                                  id={"19Sun"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                              <td>
-                                <button
-                                  className={`table-btn ${
-                                    selectedTime === "19Sat" ? "bg-warning" : ""
-                                  }`}
-                                  value={"19Sat"}
-                                  id={"19Sat"}
-                                  onClick={(e) =>
-                                    setSelectedTime(e.target.value)
-                                  }
-                                >
-                                  19 PM
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
+                        <table dir="rtl">
+                          <UpdateTable />
                         </table>
                       </div>
                     </div>
-                    <div className="row my-5">
-                      <div className="col-sm-6 d-flex justify-content-center">
-                        <button>دریافت نوبت</button>
-                      </div>
-                      <div className="col-sm-6 text-center">
-                        {`ویزیت : ${item.visit} تومان`}
-                      </div>
-                    </div>
-                  </div>
-                  {/* <hr className="" /> */}
-                  {/* <div className="skills-section px-3 px-lg-4">
-                <h2 className="h3 mb-3">Professional Skills</h2>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="mb-2">
-                      <span>HTML</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="100"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "90%" }}
-                          aria-valuenow="90"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <span>CSS</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="200"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "85%" }}
-                          aria-valuenow="85"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <span>JavaScript</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="300"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "75%" }}
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
+                    <div
+                      className={`row mb-5 mt-2 align-items-center ${
+                        selectedTime === "" ? "d-none" : ""
+                      }`}
+                      id="getAppoinRow"
+                    >
+                      <div className="col d-flex flex-column justify-content-center align-items-center">
+                        <FontAwesomeIcon
+                          className="arrowDown my-3 text-warning"
+                          icon={faArrowCircleDown}
+                        />
+                        <button className="getAppoinBtn">دریافت نوبت</button>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="mb-2">
-                      <span>Adobe Photoshop</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-success"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="400"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "80%" }}
-                          aria-valuenow="90"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <span>Sketch</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-success"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="500"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "85%" }}
-                          aria-valuenow="85"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <span>Adobe XD</span>
-                      <div className="progress my-1">
-                        <div
-                          className="progress-bar bg-success"
-                          role="progressbar"
-                          data-aos="zoom-in-right"
-                          data-aos-delay="600"
-                          data-aos-anchor=".skills-section"
-                          style={{ width: "75%" }}
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-                  <hr className="" />
+
+                  <hr className="mt-5" />
                   <div className="work-experience-section px-3 px-lg-4">
                     <h2 className="h3 mb-4 text-end">نظرات کاربران</h2>
                     {/* <CommentsBlock
@@ -735,32 +208,31 @@ export default function Appointment() {
                   //   }
                   // }}
                 /> */}
-                    {/* <div className="comments">
-                  <div className="comments-card comments-card-primary card shadow-sm">
-                    <div className="comments-body">
-                      <div className="h5 mb-1">
-                        Junior Web Developer
-                        <span className="text-muted h6">at Indie Studio</span>
-                      </div>
-                      <div className="text-muted text-small mb-2">
-                        Jan, 2011 - May, 2013
-                      </div>
-                      <div>
-                        User generated content in real-time will have multiple
-                        touchpoints for offshoring. Organically grow the
-                        holistic world view of disruptive innovation via
-                        workplace diversity and empowerment.
-                      </div>
+                    <div className="comments">
+                      {item.comments.map((i) => (
+                        <div className="comments-card comments-card-primary card shadow-sm">
+                          <div className="comments-body">
+                            <div className="h5 mb-1">
+                              {i.name}
+                            </div>
+                            <div className="text-muted text-small mb-2">
+                              {i.date}
+                            </div>
+                            <div>{i.text}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </div> */}
                   </div>
                   <hr className="" />
                   <div
                     className="contant-section px-3 px-lg-4 pb-4"
                     id="contact"
                   >
-                    <h2 className="h3 text mb-3">Contact</h2>
+                    <h2 className="h3 text-end mb-3">نظرات</h2>
+                    <h6 className="text-end mb-3">
+                      لطفا نظر خود را ثبت نمایید
+                    </h6>
                     <div className="row">
                       <div className="col-md-7 ">
                         <div className="my-2">
@@ -808,56 +280,6 @@ export default function Appointment() {
                               Send
                             </button>
                           </form>
-                        </div>
-                      </div>
-                      <div className="col">
-                        <div className="mt-2">
-                          <h3 className="h6">Address</h3>
-                          <div className="pb-2 text-secondary">
-                            140, City Center, New York, U.S.A
-                          </div>
-                          <h3 className="h6">Phone</h3>
-                          <div className="pb-2 text-secondary">
-                            +0718-111-0011
-                          </div>
-                          <h3 className="h6">Email</h3>
-                          <div className="pb-2 text-secondary">
-                            Joyce@company.com
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col d-none d-print-block">
-                        <div className="mt-2">
-                          <div>
-                            <div className="mb-2">
-                              <div className="text-dark">
-                                <i className="fab fa-twitter mr-1"></i>
-                                <span>https://twitter.com/templateflip</span>
-                              </div>
-                            </div>
-                            <div className="mb-2">
-                              <div className="text-dark">
-                                <i className="fab fa-facebook mr-1"></i>
-                                <span>
-                                  https://www.facebook.com/templateflip
-                                </span>
-                              </div>
-                            </div>
-                            <div className="mb-2">
-                              <div className="text-dark">
-                                <i className="fab fa-instagram mr-1"></i>
-                                <span>
-                                  https://www.instagram.com/templateflip
-                                </span>
-                              </div>
-                            </div>
-                            <div className="mb-2">
-                              <div className="text-dark">
-                                <i className="fab fa-github mr-1"></i>
-                                <span>https://github.com/templateflip</span>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>

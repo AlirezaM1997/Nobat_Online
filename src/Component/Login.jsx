@@ -3,21 +3,8 @@ import '../Style/Login.css'
 export default function Login() {
   return (
 
-    <div className="container py-3 px-5 min-vh-100 mw-100 bg-user-log">
-      <div className="d-flex w-100 px-2 mb-5 rounded justify-content-sm-between justify-content-center " id="loginHeader">
-        <div className="d-sm-flex d-none align-items-center ">
-          <Link to={"/"}>
-            <button className="btn py-1 px-2 bg-danger text-light">
-              صفحه اصلی
-            </button>
-          </Link>
-        </div>
-        <div id="" className="d-flex  align-items-center ">
-          <h1 id="loginLogo">
-            <Link to={"/"}>نوبت آنلاین</Link>
-          </h1>
-        </div>
-      </div>
+    <div className="container py-3 px-5  mw-100 bg-user-log">
+
       <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
         <div className="col-lg-5 col-md-8 col-12 p-md-5 p-1 mb-md-0 mb-4">
           <div className="form-bg">

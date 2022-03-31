@@ -83,12 +83,14 @@ export default function DoctorRegister() {
       id="exampleDatepicker1"
     />
   );
+
   const [show, setShow] = useState(false);
   const [showHideClassName, setShowHideClassName] = useState("modal-doc-hide");
   const showModal = () => {
     setShow(true);
     setShowHideClassName("modal-doc-show");
     document.getElementsByClassName("DatePicker")[0].classList.add("changePos");
+    document.body.classList.add("stopScroll");
   };
   const hideModal = () => {
     setShow(false);
@@ -96,21 +98,20 @@ export default function DoctorRegister() {
     document
       .getElementsByClassName("DatePicker")[0]
       .classList.remove("changePos");
+    document.body.classList.remove("stopScroll");
   };
-  const [check, setCheck] = useState(true);
-  const OnCheckboxClick= (e) => {
-    if(e.target.checked) {
-      setCheck(false)
-        console.log(check);
+  //   const [check, setCheck] = useState(true);
+  //   const OnCheckboxClick= (e) => {
+  //     if(e.target.checked) {
+  //       setCheck(false)
+  //         console.log(check);
+  //     }
+  //     else {
+  //       setCheck(true)
+  //         console.log(check);
+  //     }
+  // }
 
-    }
-    else {
-      setCheck(true)
-        console.log(check);
-    }
-}
-  // console.log(check);
-  // const [birthdate, setBirthdate] = useState("");
   const gender = [
     { value: null, label: "انتخاب کنید" },
     { value: "man", label: "مرد" },
@@ -119,7 +120,6 @@ export default function DoctorRegister() {
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
-        {/* <Header2 /> */}
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-8 ">
@@ -138,12 +138,12 @@ export default function DoctorRegister() {
                           <label className="form-label" htmlFor="gender">
                             جنسیت
                           </label>
-                          <Select
+                          {/* <Select
                             id="gender"
                             options={gender}
                             defaultValue={""}
-                          />
-                          {/* <select
+                          /> */}
+                          <select
                             id="gender"
                             dir="rtl"
                             defaultValue={""}
@@ -157,7 +157,7 @@ export default function DoctorRegister() {
                             </option>
                             <option value="woman">زن</option>
                             <option value="man">مرد</option>
-                          </select> */}
+                          </select>
 
                           <span className="invalid-feedback">
                             {errors.gender?.message}
@@ -199,10 +199,11 @@ export default function DoctorRegister() {
                               popperPlacement="bottom-end"
                               className="responsive-calendar d-block"
                               value={selectedDay}
-                              onChange={setSelectedDay}
+                              onChange={(e) => {
+                                setSelectedDay(e);
+                                onChange(e);
+                              }}
                               renderInput={renderBirthdateInput}
-                              // onClick={setSelectedDay}
-                              // onChange={onChange }
                               onBlur={onBlur}
                               selected={value}
                               shouldHighlightWeekends
@@ -352,17 +353,14 @@ export default function DoctorRegister() {
                     </div>
                     <div className="row">
                       <div className="col text-end">
-                        <span
-                          onClick={showModal}
-                          className={`docRules ${!errors.checkbox && check ? "" : "checkboxInput"}`}
-                        >
+                        <span onClick={showModal} className={`docRules `}>
                           شرایط و قوانین سایت نوبت آنلاین را می پذیرم
                         </span>
 
                         <input
                           type="checkbox"
-                          value={check}
-                          onClick={(e) => OnCheckboxClick(e)}
+                          // value={check}
+                          // onClick={(e) => OnCheckboxClick(e)}
                           {...register("checkbox")}
                           id="checkbox"
                           className={`align-middle m-0 ms-1 form-check-input ${

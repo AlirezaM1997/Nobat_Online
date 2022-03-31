@@ -36,7 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="d-flex align-items-center p-4">
+    <section id="hero" className="d-flex  p-4">
       <div className="container">
         <div className="row">
           <div className="col-sm-8 col-md-6 searchBoxCol">

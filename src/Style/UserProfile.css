@@ -24,7 +24,7 @@
   padding-bottom: 48px;
   background-color: #fff;
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
-  z-index: 999;
+  z-index: 20;
 }
 .author-card .author-card-cover {
   position: relative;

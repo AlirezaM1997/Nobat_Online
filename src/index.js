@@ -18,46 +18,35 @@ import Footer from "./Component/Footer";
 import Appointment from "./Component/Appointment";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Provider from "./Provider";
-// import BackToTopBtn from "./Component/BackTopBtn"
+import ScrollToTop from "./ScrollToTop"
 
-const PublicHeader = () => (
-  <div>
-    <Routes>
-      <Route element={<Header />}>
-        <Route exact path="/" element={<Home />}></Route>
-        <Route path="/result" element={<Result />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/doctor-register" element={<DoctorRegister />}></Route>
-        <Route path="/user-register" element={<UserRegister />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/appointment" element={<Appointment />}></Route>
-      </Route>
-    </Routes>
-  </div>
-);
-const SpecialHeader = () => (
-  <div>
-    <Routes>
-      <Route element={<Header2 />}>
-        <Route
-          exact
-          path="/userprofile"
-          element={
-            <RequireAuth redirectTo="/login">
-              <UserProfile />
-            </RequireAuth>
-          }
-        ></Route>
-      </Route>
-    </Routes>
-  </div>
-);
+// import BackToTopBtn from "./Component/BackTopBtn"
 
 ReactDOM.render(
   <Provider>
     <BrowserRouter>
-      <PublicHeader />
-      <SpecialHeader />
+    <ScrollToTop/>
+      <Routes>
+        <Route element={<Header />}>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route path="/result" element={<Result />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/doctor-register" element={<DoctorRegister />}></Route>
+          <Route path="/user-register" element={<UserRegister />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/appointment" element={<Appointment />}></Route>
+          <Route
+            exact
+            path="/userprofile"
+            element={
+              <RequireAuth redirectTo="/login">
+                <UserProfile />
+              </RequireAuth>
+            }
+          ></Route>
+        </Route>
+        {/* <Route element={<Header2 />}></Route> */}
+      </Routes>
       <Footer />
     </BrowserRouter>
   </Provider>,

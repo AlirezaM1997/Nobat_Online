@@ -14,6 +14,7 @@ import {
 import data from "../data";
 import DoctorList from "./DoctorList";
 import ResultItem from "./ResultItem";
+import { X } from "heroicons-react";
 
 export default function Result() {
   const { flag } = useAllState();
@@ -28,7 +29,9 @@ export default function Result() {
   const [nameDoc, setNameDoc] = useState("");
   const [expertDoc, setExpertDoc] = useState("");
   const [workingDay, setWorkingDay] = useState("");
-
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  // }, [])
   // useEffect(() => {
   //   const url = ``;
   //   fetch(url)
@@ -67,7 +70,7 @@ export default function Result() {
     }
   } else {
   }
-
+ 
   return !isLoaded ? (
     <div className="text-center mt-5">
       <svg
@@ -136,7 +139,7 @@ export default function Result() {
             )}
           </div>
           <div className="col-md-4 col-12 pb-5 order-md-1 order-0" id="">
-            <StickyBox id="StickyBox" offsetTop={170} offsetBottom={-100}>
+            <StickyBox id="StickyBox" offsetTop={100} offsetBottom={-100}>
               <div className="container p-1" id="search">
                 <div className="row w-100 m-0 p-3 d-flex justify-content-center">
                   <div className="col text-center mb-2">

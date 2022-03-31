@@ -1,165 +1,152 @@
-#loginHeader{
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(to left, #1076d6 50%, white 50%);
-  }
-  #loginLogo {
-    line-height: 1;
-    font: 700 24px "Parastoo";
-    letter-spacing: 0.5px;
-  }
-  #loginLogo a {
-    color: #ffffff;
-    margin: 0 12px;
-  }
-  .bg-user-log {
-    font-family: "Sahel";
-    width: 100%;
-    background: linear-gradient(to right, #1076d6 50%, white 50%);
-    background-size: cover;
-  }
-  .form-container {
-    font-family: "Poppins", sans-serif;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-  
-  }
-  .form-container .form-horizontal {
-    padding: 30px 30px 10px;
-    border: 1px solid #e7e7e7;
-  }
-  .form-container .form-horizontal:before,
-  .form-container .form-horizontal:after {
-    content: "";
-    background-color: #fff;
-    height: 100%;
-    width: 100%;
-    border: 1px solid #e7e7e7;
-    transform: rotate(3deg);
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-  }
-  .form-container .form-horizontal:after {
-    transform: rotate(-3deg);
-  }
-  .form-container .Title {
-    color: #777;
-    background: linear-gradient(
-      to right,
-      #f5f5f5,
-      transparent,
-      transparent,
-      transparent,
-      #f5f5f5
-    );
-    font: 600 23px;
-    text-align: center;
-    padding: 2px;
-    margin: 0 0 20px 0;
-    font-family: "Sahel";
-    border-radius: 1em;
-  }
-  .form-horizontal .form-group {
-    background-color: #eaeaea;
-    font-size: 0;
-    margin: 0 0 15px;
-    border: 1px solid #d1d1d1;
-    border-radius: 3px;
-  }
-  .form-horizontal .input-icon {
-    color: #888;
-    font-size: 18px;
-    text-align: center;
-    line-height: 40px;
-    height: 40px;
-    width: 40px;
-    vertical-align: top;
-    display: inline-block;
-  }
-  .form-horizontal .form-control {
-    color: #555;
-    font: 14px "Sahel";
-    background-color: transparent;
-    letter-spacing: 1px;
-    width: calc(100% - 55px);
-    height: 40px;
-    padding: 2px 10px 2px 0;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-    transition: all 0.3s;
-  }
-  .form-horizontal .form-control:focus {
-    box-shadow: none;
-    border: none;
-  }
-  .form-horizontal .form-control::placeholder {
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 14px;
-    text-transform: capitalize;
-  }
-  .form-horizontal .btn {
-    color: #fff;
-    background: linear-gradient(#449df0, #1076d6);
-    font: 600 16px "Sahel";
-    text-transform: capitalize;
-    width: 100px;
-    padding: 5px 18px;
-    margin: 0 0 15px 0;
-    border: none;
-    border-radius: 30px;
-    display: inline-block;
-    transition: all 0.3s ease;
-  }
-  .form-horizontal .btn:hover,
-  .form-horizontal .btn:focus {
-    color: #fff;
-    letter-spacing: 2px;
-  }
-  .form-horizontal .forgot-pass {
-    font-size: 12px;
-    text-align: right;
-    width: calc(100% - 105px);
-    display: inline-block;
-    vertical-align: top;
-  }
-  .form-horizontal .forgot-pass a,
-  .form-horizontal .register a {
-    color: #999;
-    transition: all 0.3s ease;
-  }
-  .form-horizontal .forgot-pass a:hover,
-  .form-horizontal .register a:hover {
-    color: rgb(0, 0, 0);
-    
-  }
-  .form-horizontal .register {
-    font-size: 12px;
-    text-align: center;
-    padding-top: 8px;
-    border-top: 1px solid #e7e7e7;
-    display: block;
-  }
-  .register,
-  .forgot-pass {
-    font-family: "Sahel";
-  }
-  #signin-doctor {
-    background: linear-gradient(white , #c7c7c7);
+.bg-user-log {
+  font-family: "Sahel";
+  width: 100%;
+  background: linear-gradient(to right, #1076d6 50%, white 50%);
+  background-size: cover;
+  min-height: fit-content;
+  border-top: solid 1px #1076d6;
+}
+.form-container {
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+}
+.form-container .form-horizontal {
+  padding: 30px 30px 10px;
+  border: 1px solid #e7e7e7;
+}
+.form-container .form-horizontal:before,
+.form-container .form-horizontal:after {
+  content: "";
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  transform: rotate(3deg);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.form-container .form-horizontal:after {
+  transform: rotate(-3deg);
+}
+.form-container .Title {
+  color: #777;
+  background: linear-gradient(
+    to right,
+    #f5f5f5,
+    transparent,
+    transparent,
+    transparent,
+    #f5f5f5
+  );
+  font: 600 23px;
+  text-align: center;
+  padding: 2px;
+  margin: 0 0 20px 0;
+  font-family: "Sahel";
+  border-radius: 1em;
+}
+.form-horizontal .form-group {
+  background-color: #eaeaea;
+  font-size: 0;
+  margin: 0 0 15px;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+}
+.form-horizontal .input-icon {
+  color: #888;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  width: 40px;
+  vertical-align: top;
+  display: inline-block;
+}
+.form-horizontal .form-control {
+  color: #555;
+  font: 14px "Sahel";
+  background-color: transparent;
+  letter-spacing: 1px;
+  width: calc(100% - 55px);
+  height: 40px;
+  padding: 2px 10px 2px 0;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  transition: all 0.3s;
+}
+.form-horizontal .form-control:focus {
+  box-shadow: none;
+  border: none;
+}
+.form-horizontal .form-control::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.form-horizontal .btn {
+  color: #fff;
+  background: linear-gradient(#449df0, #1076d6);
+  font: 600 16px "Sahel";
+  text-transform: capitalize;
+  width: 100px;
+  padding: 5px 18px;
+  margin: 0 0 15px 0;
+  border: none;
+  border-radius: 30px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.form-horizontal .btn:hover,
+.form-horizontal .btn:focus {
+  color: #fff;
+  letter-spacing: 2px;
+}
+.form-horizontal .forgot-pass {
+  font-size: 12px;
+  text-align: right;
+  width: calc(100% - 105px);
+  display: inline-block;
+  vertical-align: top;
+}
+.form-horizontal .forgot-pass a,
+.form-horizontal .register a {
+  color: #999;
+  transition: all 0.3s ease;
+}
+.form-horizontal .forgot-pass a:hover,
+.form-horizontal .register a:hover {
+  color: rgb(0, 0, 0);
+}
+.form-horizontal .register {
+  font-size: 12px;
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid #e7e7e7;
+  display: block;
+}
+.register,
+.forgot-pass {
+  font-family: "Sahel";
+}
+#signin-doctor {
+  background: linear-gradient(white, #c7c7c7);
   color: #1076d6;
-  }
-  #docLog:before , #docLog:after{
+}
+#docLog:before,
+#docLog:after {
   background-color: #1076d6;
-  }
-  #docTitle{
+}
+#docTitle {
   color: white;
-  }
-  #forgetPassDoc{
-      color: beige;
-  }
-  #forgetPassDoc:hover{
-      color: rgb(194, 194, 194);
-  }
-  
+}
+#forgetPassDoc {
+  color: beige;
+}
+#forgetPassDoc:hover {
+  color: rgb(194, 194, 194);
+}

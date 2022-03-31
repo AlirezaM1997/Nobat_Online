@@ -101,7 +101,7 @@ export default function UserProfile() {
 
   return (
     <div className="mw-100">
-      <div className="container back-prof ">
+      <div className="container back-prof mt-5">
         <div className="row d-flex justify-content-center ">
           <div className="col-lg-8 pb-5 order-lg-0 order-1">
             {state.history ? (

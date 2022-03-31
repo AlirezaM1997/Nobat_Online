@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Result.css";
 import { DynamicStar } from "react-dynamic-star";
@@ -8,7 +9,9 @@ import { useAllState } from "../Provider";
 const ResultItem = (props) => {
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
-
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  // }, [])
  const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
   };
@@ -48,7 +51,7 @@ const ResultItem = (props) => {
                 <div className="row">
                   <span className="text-secondary font-weight-medium text-sm-end text-center mt-1">
                     : روزهای کاری <br></br>
-                    {props.item.date.map((i) => (
+                    {props.item.workDay.map((i) => (
                       <span key={UID()} className="d-inline-block bg-warning text-dark m-1 rounded py-1 px-2 pb-1">
                         {" " + i + "  "}
                       </span>
@@ -72,7 +75,7 @@ const ResultItem = (props) => {
               </div>
               <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
                 <span className="text-muted font-weight-medium text-sm-end text-center">
-                  آدرس مطب : {props.item.address}
+                  آدرس مطب : {props.item.address1}
                 </span>
                 <FontAwesomeIcon className="mx-2" icon={faLocationDot} />
               </div>

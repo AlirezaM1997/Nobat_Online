@@ -1,7 +1,6 @@
 @media screen and (max-width: 991px) {
   #header2 {
     order: 3;
-    
   }
 }
 /* @media screen and (max-width: 991px) {
@@ -14,11 +13,29 @@
     display: none;
   }
 }
+
 #header {
   z-index: 997;
   padding: 15px 0;
-  top: 12px;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
+  top: -80px;
+  animation: top 0.5s;
+  transition: top 0.5s ease-in-out;
+}
+#header.sticky {
+  position: sticky;
+  top: 0;
+  animation: top 0.5s;
+
+  transition: top 0.5s ease-in-out;
+}
+@keyframes top {
+  0% {
+       top: -80px;
+  }
+  100% {
+       top: 0;
+  }
 }
 .logo {
   line-height: 1;
@@ -51,12 +68,12 @@
     padding: 6px 18px;
   }
 }
-
 #logo {
   width: 75px;
 }
 .header2Back {
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
+  font-family: "Sahel";
 }
 /*--------------------------------------------------------------
   # Navigation Menu

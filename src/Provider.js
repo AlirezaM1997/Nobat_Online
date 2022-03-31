@@ -22,7 +22,9 @@ export default function Provider({ children }) {
         allDoctors,
         setAllDoctors,
         currentAppoin,
-        setCurrentAppoin,noResult,setNoResult
+        setCurrentAppoin,
+        noResult,
+        setNoResult,
       }}
     >
       {children}

@@ -2,7 +2,7 @@
   background: white center;
   background-size: cover;
   font-family: "Sahel";
-  margin-top: 150px;
+  margin-top: 50px;
 }
 .doc-reg-card {
   background-image: radial-gradient(
@@ -81,7 +81,7 @@
   width: 100%;
   background: white center;
   background-size: cover;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 #user-reg-title {
   background: linear-gradient(
@@ -99,7 +99,7 @@
 }
 .docRules {
   cursor: pointer;
-  color: #999;
+  color: black;
 }
 .modal-doc-show {
   display: block;
@@ -149,4 +149,9 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+.stopScroll{
+  position: fixed;
+  overflow-y:scroll;
+  width: 100vw;
 }
