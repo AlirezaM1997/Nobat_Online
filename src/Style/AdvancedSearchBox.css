@@ -1,0 +1,75 @@
+#search {
+    box-shadow: 0px 5px 22px rgba(25, 119, 204, 0.5);
+    border-radius: 1rem;
+    height: 430px;
+    width: 300px;
+    right: 6%;
+    animation: move_show 1.3s;
+    background: #1076d6;
+  }
+  .adSearchTitle {
+    color: white;
+  }
+  @keyframes move_show {
+    0% {
+      opacity: 0;
+      transform: translate(0, 50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  #StickyBox {
+    top: 150px !important;
+  }
+  @media (max-width: 1100px) {
+    #search {
+      width: 270px;
+    }
+  }
+  @media (max-width: 970px) {
+    #search {
+      width: 240px;
+    }
+  }
+  @media (max-width: 880px) {
+    #search {
+      width: 220px;
+    }
+  }
+  @media (max-width: 768px) {
+    #search {
+      width: 100%;
+      right: 0;
+      margin: auto;
+    }
+  }
+  .adSearchBtn {
+    background-image: linear-gradient(
+      to right,
+      #f7971e 0%,
+      #ffd200 51%,
+      #f7971e 100%
+    );
+    margin: 10px;
+    border: none;
+    padding: 5px 15px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    display: block;
+  }
+  .adSearchBtn:hover {
+    background-position: right center;
+    color: rgb(0, 0, 0);
+  }
+  .adSearchBtn:active {
+    transform: scale(1.1);
+  }
+  .expertInput:focus {
+    outline: none;
+    box-shadow: none;
+  }

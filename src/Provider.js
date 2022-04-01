@@ -9,6 +9,10 @@ export default function Provider({ children }) {
   const [allDoctors, setAllDoctors] = useState(data);
   const [currentAppoin, setCurrentAppoin] = useState();
   const [noResult, setNoResult] = useState(false);
+  const [adSearchName, setAdSearchName] = useState("");
+  const [adSearchExp, setAdSearchExp] = useState("");
+  const [workingDay, setWorkingDay] = useState("");
+ 
 
   return (
     <Context.Provider
@@ -25,6 +29,12 @@ export default function Provider({ children }) {
         setCurrentAppoin,
         noResult,
         setNoResult,
+        adSearchName,
+        setAdSearchName,
+        adSearchExp,
+        setAdSearchExp,
+        workingDay,
+        setWorkingDay
       }}
     >
       {children}

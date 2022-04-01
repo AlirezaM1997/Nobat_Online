@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAllState } from "../Provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import DoctorList from "./DoctorList";
+import DoctorList from "../DoctorList";
+import Select from "react-select";
 
 export default function Hero() {
   const [hintExp, setHintExp] = useState(false);
@@ -16,6 +17,12 @@ export default function Hero() {
   const { searchDoc } = useAllState("");
   const { setSearchDoc } = useAllState();
   // console.log(flag);
+
+  const handlerSearchExp = (event) => {
+    const value = event.value
+    setSearchExp(value)
+    setHintExp(false);
+}
 
   const navigateToExp = useNavigate();
   const setRedirectExp = () => {
@@ -118,17 +125,17 @@ export default function Hero() {
                         <h5 className="text-white text-right">
                           تخصص مورد نظر خود را وارد کنید{" "}
                         </h5>
-                        <select
-                          dir="rtl"
-                          className="w-75 bg-light my-2 w-100 hero-input py-2 border-0 rounded"
-                          value={searchExp}
-                          onChange={(e) => {
-                            setSearchExp(e.target.value);
-                            setHintExp(false);
-                          }}
-                        >
-                          <DoctorList />
-                        </select>
+                        <Select 
+                          menuPlacement="bottom"
+                          className="w-75 bg-light my-2 w-100 hero-input text-end border-0 rounded"
+                          placeholder="انتخاب کنید"
+                          value={DoctorList.filter((obj) =>
+                            searchExp.includes(obj.value)
+                          )}
+                          options={DoctorList}
+                          onChange={handlerSearchExp}
+                          isSearchable={false}
+                        />
 
                         <span
                           className={`${hintExp ? "showHint" : "hideHint"}`}

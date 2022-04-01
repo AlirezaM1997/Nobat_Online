@@ -1,7 +1,6 @@
 import "../Style/Register.css";
 
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -9,10 +8,8 @@ import Select from "react-select";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-
-import Header2 from "./Header2";
-import DoctorList from "./DoctorList";
-import ModalDoc from "./ModalDoc";
+import DoctorList from "../DoctorList";
+import Modal from "./Modal";
 
 export default function DoctorRegister() {
   const validationSchema = Yup.object().shape({
@@ -30,23 +27,18 @@ export default function DoctorRegister() {
       .required("لطفا رمز عبور را وارد نمایید")
       .min(8, "رمز عبور باید بین 8 تا 12 کاراکتر باشد")
       .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
-    gender: Yup.string("Required"),
-    //  Yup.object().shape({
-    // label: Yup.string().required("Required"),
-    // value: Yup.string().required("Required")
-    // }),
-    expert: Yup.string("لطفا یک مورد را انتخاب کنید").required(
-      "لطفا یک مورد را انتخاب کنید"
-    ),
+    gender: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
+    expert: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
     code: Yup.string("لطفا کد صحیح وارد نمایید")
       .required("لطفا کد صحیح وارد نمایید")
       .min(4, "لطفا کد صحیح وارد نمایید")
       .max(4, "لطفا کد صحیح وارد نمایید"),
   });
 
-  const { register, handleSubmit, control, reset, formState } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
+  const { register, handleSubmit, control, reset, formState, setValue } =
+    useForm({
+      resolver: yupResolver(validationSchema),
+    });
   const { errors } = formState;
 
   const onSubmit = (data) => console.log(data);
@@ -86,20 +78,21 @@ export default function DoctorRegister() {
 
   const [show, setShow] = useState(false);
   const [showHideClassName, setShowHideClassName] = useState("modal-doc-hide");
+
   const showModal = () => {
     setShow(true);
     setShowHideClassName("modal-doc-show");
     document.getElementsByClassName("DatePicker")[0].classList.add("changePos");
-    document.body.classList.add("stopScroll");
   };
+
   const hideModal = () => {
     setShow(false);
     setShowHideClassName("modal-doc-hide");
     document
       .getElementsByClassName("DatePicker")[0]
       .classList.remove("changePos");
-    document.body.classList.remove("stopScroll");
   };
+  const [isDoctor, setIsDoctor] = useState("doctor");
   //   const [check, setCheck] = useState(true);
   //   const OnCheckboxClick= (e) => {
   //     if(e.target.checked) {
@@ -111,12 +104,11 @@ export default function DoctorRegister() {
   //         console.log(check);
   //     }
   // }
+  // const handlerSearchExp = (event) => {
+  //   const value = event.value;
+  //   setSearchExp(value);
+  // };
 
-  const gender = [
-    { value: null, label: "انتخاب کنید" },
-    { value: "man", label: "مرد" },
-    { value: "woman", label: "زن" },
-  ];
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
@@ -138,18 +130,18 @@ export default function DoctorRegister() {
                           <label className="form-label" htmlFor="gender">
                             جنسیت
                           </label>
-                          {/* <Select
-                            id="gender"
-                            options={gender}
-                            defaultValue={""}
-                          /> */}
                           <select
                             id="gender"
                             dir="rtl"
                             defaultValue={""}
                             {...register("gender")}
-                            className={`form-control select px-2 py-1${
-                              errors.gender ? "is-invalid" : ""
+                            onChange={(e) =>
+                              setValue("gender", e.target.value, {
+                                shouldValidate: true,
+                              })
+                            }
+                            className={`form-control select px-2 py-1 ${
+                              errors.gender ? "invalidSelectInput" : ""
                             }`}
                           >
                             <option value={""} disabled>
@@ -158,10 +150,14 @@ export default function DoctorRegister() {
                             <option value="woman">زن</option>
                             <option value="man">مرد</option>
                           </select>
-
-                          <span className="invalid-feedback">
+                          {errors.gender && (
+                            <p className="text-danger text-center genderError mb-0">
+                              {errors.gender.message}
+                            </p>
+                          )}
+                          {/* <span className="invalid-feedback">
                             {errors.gender?.message}
-                          </span>
+                          </span> */}
                         </div>
                         <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
                           <label className="form-label" htmlFor="fullname">
@@ -237,28 +233,38 @@ export default function DoctorRegister() {
                     </div>
                     <div className="row mb-3 align-items-center">
                       <div className="col-6 text-end">
-                        <div className="">
-                          <label className="form-label" htmlFor="expert">
-                            تخصص
-                          </label>
-                          <select
-                            id="expert"
-                            className="form-control "
-                            dir="rtl"
-                            placeholder="انتخاب کنید"
-                            defaultValue={""}
-                            {...register("expert")}
-                            className={`form-control select py-1 px-2${
-                              errors.expert ? "is-invalid" : ""
-                            }`}
-                          >
-                            <DoctorList />
-                          </select>
-
-                          <span className="invalid-feedback">
-                            {errors.expert?.message}
-                          </span>
-                        </div>
+                        <label className="form-label" htmlFor="expert">
+                          تخصص
+                        </label>
+                        <Controller
+                          control={control}
+                          name="expert"   
+                          render={({ field: { onChange, value, ref } }) => (
+                            <Select
+                              menuPlacement="bottom"
+                              name="expert"
+                              id="expert"
+                              {...register("expert")}  
+                              placeholder="انتخاب کنید"
+                              options={DoctorList}
+                              onChange={(e) => {
+                                onChange(e)
+                                setValue("expert", e.value , {
+                                  shouldValidate: true,
+                                })
+                              }}
+                              className={`form-control select p-0 ${
+                                errors.expert ? "invalidSelectInput" : ""
+                              }`}
+                              isSearchable={false}
+                            />
+                          )}
+                        />
+                        {errors.expert && (
+                          <p className="text-danger expertError mb-0">
+                            {errors.expert.message}
+                          </p>
+                        )}
                       </div>
                       <div className="col-6 text-end">
                         <label className="form-label" htmlFor="code">
@@ -384,10 +390,11 @@ export default function DoctorRegister() {
             </div>
           </div>
         </div>
-        <ModalDoc
+        <Modal
           hideModal={hideModal}
           showHideClassName={showHideClassName}
-        ></ModalDoc>
+          flag={false}
+        ></Modal>
       </section>
     </div>
   );

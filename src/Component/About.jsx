@@ -5,13 +5,17 @@ const About = () => {
   return (
     <div className="container mainAbout">
       <div className="row">
-        <div className="col">
-          <h3 className="text-sm-end text-center my-3 ">
-            درباره نوبت آنلاین
-            <FontAwesomeIcon className="text-primary mx-2" icon={faNotesMedical} />
-
-          </h3>
-          <p className="text-end">
+        <h3 className="text-sm-end text-center my-3 ">
+          درباره نوبت آنلاین
+          <FontAwesomeIcon
+            className="text-primary mx-2"
+            icon={faNotesMedical}
+          />
+        </h3>
+      </div>
+      <div className="row d-flex justify-content-center">
+        <div className="col-10 text-end">
+          <p dir="rtl" className="text-justify">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
             ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
