@@ -19,7 +19,7 @@ export default function AdvancedSearchBox() {
   const { setAdSearchName } = useAllState();
   const { adSearchExp } = useAllState();
   const { setAdSearchExp } = useAllState();
-  const { workingDay } = useAllState();
+  const { workingDay } = useAllState('');
   const { setWorkingDay } = useAllState();
 
   const weekDays = [
@@ -49,7 +49,7 @@ export default function AdvancedSearchBox() {
     },
   ];
   const handleChangeDay = (e) => {
-    setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : []);
+    setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : '');
   };
   return (
     <>
@@ -89,7 +89,7 @@ export default function AdvancedSearchBox() {
               />
             </p>
             <Select
-              menuPlacement="top"
+              menuPlacement="bottom"
               className="px-1 my-2 w-100 rounded border-0 expertInput text-end"
               placeholder="انتخاب کنید"
               value={DoctorList.filter((obj) =>
@@ -117,6 +117,7 @@ export default function AdvancedSearchBox() {
               onChange={handleChangeDay}
               isMulti
               isClearable
+              isSearchable={false}
             />
           </div>
           <div className="row w-75 m-auto p-3">

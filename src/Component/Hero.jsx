@@ -102,7 +102,6 @@ export default function Hero() {
                             setHintDoc(false);
                           }}
                         ></input>
-
                         <span
                           className={`${hintDoc ? "showHint" : "hideHint"}`}
                         >

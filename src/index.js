@@ -18,14 +18,14 @@ import Footer from "./Component/Footer";
 import Appointment from "./Component/Appointment";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Provider from "./Provider";
-import ScrollToTop from "./ScrollToTop"
+import ScrollToTop from "./ScrollToTop";
 
 // import BackToTopBtn from "./Component/BackTopBtn"
 
 ReactDOM.render(
   <Provider>
     <BrowserRouter>
-    <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route element={<Header />}>
           <Route exact path="/" element={<Home />}></Route>
@@ -36,10 +36,9 @@ ReactDOM.render(
           <Route path="/login" element={<Login />}></Route>
           <Route path="/appointment" element={<Appointment />}></Route>
           <Route
-            exact
             path="/userprofile"
             element={
-              <RequireAuth redirectTo="/login">
+              <RequireAuth redirectTo={'/login'}>
                 <UserProfile />
               </RequireAuth>
             }

@@ -9,9 +9,7 @@ import { useAllState } from "../Provider";
 const ResultItem = (props) => {
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [])
+
  const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
   };
@@ -48,11 +46,11 @@ const ResultItem = (props) => {
                     از دانشگاه : {props.item.university}
                   </span>
                 </div>
-                <div className="row">
+                <div className="row" dir="rtl">
                   <span className="text-secondary font-weight-medium text-sm-end text-center mt-1">
-                    : روزهای کاری <br></br>
+                    روزهای کاری :<br></br>
                     {props.item.workDay.map((i) => (
-                      <span key={UID()} className="d-inline-block bg-warning text-dark m-1 rounded py-1 px-2 pb-1">
+                      <span key={UID()} className="d-inline-block bg-warning text-dark m-1 rounded py-1 px-2 workDaySpan">
                         {" " + i + "  "}
                       </span>
                     ))}

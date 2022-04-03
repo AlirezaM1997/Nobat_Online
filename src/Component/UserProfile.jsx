@@ -2,8 +2,18 @@ import { Link } from "react-router-dom";
 import "../Style/UserProfile.css";
 import Header2 from "./Header2";
 import { useEffect, useState } from "react";
-import Image from "react-bootstrap/Image";
+import users from "../users";
+import { useAllState } from "../Provider";
+
 export default function UserProfile() {
+  const { currentUser } = useAllState({ userNameOfUser: "" });
+
+  const getIndexByUserName = (currentUsername) => {
+    return users.findIndex(
+      (item) => item.username === currentUsername.userNameOfUser
+    );
+  };
+  console.log(users[getIndexByUserName(currentUser)].id);
   const [state, setState] = useState({
     history: false,
     canceled: false,
@@ -232,14 +242,16 @@ export default function UserProfile() {
                 <div className="author-card-avatar">
                   <img
                     src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/avatar.jpg")}
-                    
                   ></img>
                 </div>
               </div>
             </div>
             <div className="panel">
               <nav className="">
-                <Link className="panel-item d-block bg-primary mb-1 position-relative " to={"#"}>
+                <Link
+                  className="panel-item d-block bg-primary mb-1 position-relative "
+                  to={"#"}
+                >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium">
@@ -248,7 +260,10 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="panel-item d-block bg-primary mb-1 position-relative" to={"#"}>
+                <Link
+                  className="panel-item d-block bg-primary mb-1 position-relative"
+                  to={"#"}
+                >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">
@@ -283,7 +298,10 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </Link>
-                <Link className="panel-item d-block bg-primary mb-1 position-relative" to={"#"}>
+                <Link
+                  className="panel-item d-block bg-primary mb-1 position-relative"
+                  to={"#"}
+                >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
                       <div className="d-inline-block font-weight-medium text-uppercase">

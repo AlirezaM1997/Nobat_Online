@@ -330,6 +330,7 @@ export default function DoctorRegister() {
                             errors.username ? "is-invalid" : ""
                           }`}
                         />
+                        {/* check the username be uniq */}
                         <span className="invalid-feedback">
                           {errors.username?.message}
                         </span>

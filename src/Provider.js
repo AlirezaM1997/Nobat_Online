@@ -12,7 +12,11 @@ export default function Provider({ children }) {
   const [adSearchName, setAdSearchName] = useState("");
   const [adSearchExp, setAdSearchExp] = useState("");
   const [workingDay, setWorkingDay] = useState("");
- 
+  const [auth, setAuth] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    userNameOfUser: "",
+    passwordOfUser: "",
+  });
 
   return (
     <Context.Provider
@@ -34,7 +38,11 @@ export default function Provider({ children }) {
         adSearchExp,
         setAdSearchExp,
         workingDay,
-        setWorkingDay
+        setWorkingDay,
+        auth,
+        setAuth,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

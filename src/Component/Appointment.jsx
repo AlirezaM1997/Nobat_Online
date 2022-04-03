@@ -118,9 +118,9 @@ export default function Appointment() {
                     </div>
                   </div>
                   <div className="row p-2">
-                    <div className="col">
-                      <div className="text-md-end text-center mb-2 d-flex align-items-center justify-content-center justify-content-md-end">
-                        {`تومان`}{" "}
+                    <div className="col px-4">
+                      <div className="text-md-end text-center mb-3 d-flex align-items-center justify-content-center justify-content-md-end">
+                      {`تومان`}{" "}
                         <b className="mx-1">
                           <span className="h5"> {item.visit} </span>
                           {" : "}
@@ -128,7 +128,7 @@ export default function Appointment() {
                         </b>{" "}
                         <FontAwesomeIcon className="ms-1" icon={faMoneyCheck} />
                       </div>
-                      <div className="text-md-end text-center mb-2">
+                      <div className="text-md-end text-center mb-3">
                         <b>
                           {` تلفن مطب`}
                           {" : "}
@@ -136,7 +136,7 @@ export default function Appointment() {
                         {item.phone}
                         <FontAwesomeIcon className="ms-1" icon={faPhone} />
                       </div>
-                      <div className="text-md-end text-center mb-2">
+                      <div className="text-md-end text-center mb-3">
                         <b>
                           {` نشانی`}
                           {" : "}

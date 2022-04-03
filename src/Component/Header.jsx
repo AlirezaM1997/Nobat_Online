@@ -3,8 +3,11 @@ import MobileMenu from "./MobileMenu";
 import Image from "react-bootstrap/Image";
 import "../Style/Header.css";
 import { useEffect } from "react";
+import { useAllState } from "../Provider";
 
 export default function Header() {
+  const { auth } = useAllState(false);
+
   let timeout;
   let scroll = 0;
   useEffect(() => {
@@ -15,29 +18,35 @@ export default function Header() {
       timeout = setTimeout(() => {
         if (scroll >= window.scrollY && window.scrollY > 10) {
           document.getElementById("header").classList.add("sticky");
+          document.getElementById("header").classList.remove("notSticky");
         } else {
           document.getElementById("header").classList.remove("sticky");
+          document.getElementById("header").classList.add("notSticky");
         }
         scroll = window.scrollY;
       }, 10);
     };
   }, []);
+  // console.log(auth);
 
   return (
-    <div>
+    <div id="uy">
       <header id="header" className="mt-3 bg-white">
         <div
           className="container d-flex align-items-center justify-content-around"
           id="containerHeader"
         >
           <div id="header3">
-            <Link
-              className="btn btn-primary me-2 btnHeader d-inline-block text-white"
-              to={"/login"}
-            >
-              ورود کاربران
-            </Link>
-
+            {!auth ? (
+              <Link
+                className="btn btn-primary me-2 btnHeader d-inline-block text-white"
+                to={"/login"}
+              >
+                ورود کاربران
+              </Link>
+            ) : (
+              <Link to={"/userprofile"}><div className="d-inline-block">حساب کاربری</div></Link>
+            )}
             <Link
               className="btn btn-primary btnHeader d-inline-block text-white"
               to={"/doctor-register"}
@@ -106,9 +115,7 @@ export default function Header() {
       <Outlet />
     </div>
   );
-};
-
-
+}
 
 // export default function Header() {
 // useEffect(()=>{
