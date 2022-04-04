@@ -8,7 +8,7 @@ import Select from "react-select";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-import DoctorList from "../DoctorList";
+import DoctorList from "../All-Data/DoctorList";
 import Modal from "./Modal";
 
 export default function DoctorRegister() {

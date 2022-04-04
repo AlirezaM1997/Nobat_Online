@@ -4,9 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAllState } from "../Provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import DoctorList from "../DoctorList";
+import DoctorList from "../All-Data/DoctorList";
 import Select from "react-select";
-
 
 export default function Hero() {
   const [hintExp, setHintExp] = useState(false);
@@ -21,6 +20,28 @@ export default function Hero() {
   const { searchDoc } = useAllState("");
   const { setSearchDoc } = useAllState();
   // console.log(flag);
+
+  const handleEnterKeyName = (event) => {
+    if (event.key === "Enter") {
+      if (searchDoc === "") {
+        setHintDoc(true);
+      } else {
+        setFlag(2);
+        navigateToExp("/result");
+      }
+    }
+  };
+
+  const handleEnterKeyExpert = (event) => {
+    if (event.key === "Enter") {
+      if (searchExp === "") {
+        setHintExp(true);
+      } else {
+        setFlag(1);
+        navigateToExp("/result");
+      }
+    }
+  };
 
   const inputRef = useRef(null);
 
@@ -115,6 +136,7 @@ export default function Hero() {
                             setHintDoc(false);
                           }}
                           ref={inputRef}
+                          onKeyDown={handleEnterKeyName}
                         />
                         <span
                           className={`${hintDoc ? "showHint" : "hideHint"}`}
@@ -147,6 +169,7 @@ export default function Hero() {
                           )}
                           options={DoctorList}
                           onChange={handlerSearchExp}
+                          onKeyDown={handleEnterKeyExpert}
                           isSearchable={false}
                         />
                         <span

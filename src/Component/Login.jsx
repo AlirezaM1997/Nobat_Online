@@ -2,16 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Style/Login.css";
 import { useAllState } from "../Provider";
 import { useState } from "react";
-import users from "../users";
+import users from "../All-Data/users";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Login() {
   const navigateToUser = useNavigate();
   const { setAuth } = useAllState(false);
   const [hintUserInput, setHintUserInput] = useState(false);
   const [hintUserWrong, setHintUserWrong] = useState(false);
-  const {currentUser, setCurrentUser} = useAllState({
+  const { currentUser, setCurrentUser } = useAllState({
     userNameOfUser: "",
-    passwordOfUser: ""
+    passwordOfUser: "",
   });
 
   const changeHandler = (e) => {
@@ -52,10 +54,7 @@ export default function Login() {
                   <div className="form-container">
                     <div className="bg-white form-horizontal">
                       <h3 className="Title">ورود بیماران</h3>
-                      <div className="form-group">
-                        <span className="input-icon">
-                          <i className="fa fa-user"></i>
-                        </span>
+                      <div className="form-group d-flex align-items-center justify-content-end">
                         <input
                           className="form-control d-inline-block"
                           type="email"
@@ -65,11 +64,9 @@ export default function Login() {
                           value={currentUser.userNameOfUser}
                           onChange={changeHandler}
                         />
+                        <FontAwesomeIcon icon={faUser} className="loginIcon" />
                       </div>
-                      <div className="form-group">
-                        <span className="input-icon">
-                          <i className="fa fa-lock"></i>
-                        </span>
+                      <div className="form-group  d-flex align-items-center justify-content-end">
                         <input
                           className="form-control d-inline-block"
                           type="password"
@@ -79,6 +76,7 @@ export default function Login() {
                           value={currentUser.passwordOfUser}
                           onChange={changeHandler}
                         />
+                        <FontAwesomeIcon icon={faLock} className="loginIcon" />
                       </div>
                       <div
                         className={`${
@@ -128,27 +126,23 @@ export default function Login() {
                       <h3 className="Title" id="docTitle">
                         ورود پزشکان
                       </h3>
-                      <div className="form-group">
-                        <span className="input-icon">
-                          <i className="fa fa-user"></i>
-                        </span>
+                      <div className="form-group  d-flex align-items-center justify-content-end">
                         <input
                           className="form-control d-inline-block"
                           type="email"
                           placeholder="نام کاربری"
                           dir="rtl"
                         />
+                        <FontAwesomeIcon icon={faUser} className="loginIcon" />
                       </div>
-                      <div className="form-group">
-                        <span className="input-icon">
-                          <i className="fa fa-lock"></i>
-                        </span>
+                      <div className="form-group  d-flex align-items-center justify-content-end">
                         <input
                           className="form-control d-inline-block"
                           type="password"
                           placeholder="رمز عبور"
                           dir="rtl"
                         />
+                        <FontAwesomeIcon icon={faLock} className="loginIcon" />
                       </div>
 
                       <div className="d-flex align-items-center ">

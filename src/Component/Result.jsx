@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../Style/Result.css";
 import { useAllState } from "../Provider";
 import Image from "react-bootstrap/Image";
-import data from "../data";
+import data from "../All-Data/data";
 import ResultItem from "./ResultItem";
-import DoctorList from "../DoctorList";
+import DoctorList from "../All-Data/DoctorList";
 // import StickyBox from "react-sticky-box";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {

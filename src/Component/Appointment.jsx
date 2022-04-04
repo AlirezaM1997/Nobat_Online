@@ -3,7 +3,7 @@ import { useAllState } from "../Provider";
 import { useState, useEffect } from "react";
 import CommentsBlock from "simple-react-comments";
 import commentsData from "../commentsData";
-import data from "../data";
+import data from "../All-Data/data";
 import { DynamicStar } from "react-dynamic-star";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

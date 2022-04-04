@@ -2,11 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import Image from "react-bootstrap/Image";
 import "../Style/Header.css";
+import users from "../All-Data/users";
 import { useEffect } from "react";
 import { useAllState } from "../Provider";
 
 export default function Header() {
   const { auth } = useAllState(false);
+  const { currentUser } = useAllState({ userNameOfUser: "" });
 
   let timeout;
   let scroll = 0;
@@ -27,7 +29,12 @@ export default function Header() {
       }, 10);
     };
   }, []);
-  // console.log(auth);
+
+  const getIndexByUserName = (currentUsername) => {
+    return users.findIndex(
+      (item) => item.username === currentUsername.userNameOfUser
+    );
+  };
 
   return (
     <div id="uy">
@@ -45,7 +52,18 @@ export default function Header() {
                 ورود کاربران
               </Link>
             ) : (
-              <Link to={"/userprofile"}><div className="d-inline-block">حساب کاربری</div></Link>
+              <Link to={"/userprofile"} title="حساب کاربری">
+                <div className="d-inline-block goToAccount">
+                  <img
+                    className="headerImgProf"
+                    src={users[getIndexByUserName(currentUser)].img}
+                  ></img>
+                  <span className="headerNameProf">
+                    {users[getIndexByUserName(currentUser)].fname}{" "}
+                    {users[getIndexByUserName(currentUser)].lname}
+                  </span>
+                </div>
+              </Link>
             )}
             <Link
               className="btn btn-primary btnHeader d-inline-block text-white"

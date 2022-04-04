@@ -9,9 +9,9 @@ import {
   faUserDoctor,
 } from "@fortawesome/free-solid-svg-icons";
 import Select from "react-select";
-import DoctorList from "../DoctorList";
+import DoctorList from "../All-Data/DoctorList";
 import { useAllState } from "../Provider";
-import data from "../data";
+import data from "../All-Data/data";
 
 export default function AdvancedSearchBox(props) {
   const { flag } = useAllState();

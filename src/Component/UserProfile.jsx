@@ -2,19 +2,11 @@ import { Link } from "react-router-dom";
 import "../Style/UserProfile.css";
 import Header2 from "./Header2";
 import { useEffect, useState } from "react";
-import users from "../users";
+import users from "../All-Data/users";
 import { useAllState } from "../Provider";
 
 export default function UserProfile() {
   const { currentUser } = useAllState({ userNameOfUser: "" });
-
-  const getIndexByUserName = (currentUsername) => {
-    return users.findIndex(
-      (item) => item.username === currentUsername.userNameOfUser
-    );
-  }
-
-  console.log(users[getIndexByUserName(currentUser)].id);
 
   const [state, setState] = useState({
     history: false,
@@ -31,7 +23,10 @@ export default function UserProfile() {
       setting: false,
       credit: false,
     });
-    setState({ [value]: !state[value] });
+
+    setState({
+      [value]: state[value] !== false ? !state[value] : state[value],
+    });
   };
 
   // const reserved = [
@@ -112,9 +107,12 @@ export default function UserProfile() {
 
   return (
     <div className="mw-100">
-      <div className="container back-prof mt-5">
+      <div className="container back-prof mt-5 ">
         <div className="row d-flex justify-content-center ">
-          <div className="col-lg-8 pb-5 order-lg-0 order-1">
+          <div className="col-lg-3">
+            <div className="summery"></div>
+          </div>
+          <div className="col-lg-6 pb-5 order-lg-0 order-1">
             {state.history ? (
               <h5 className="text-end mb-3 bg-warning p-2 border border-primary">
                 تاریخچه نوبت ها
@@ -138,7 +136,7 @@ export default function UserProfile() {
             ) : (
               ""
             )}
-            {state.history
+            {/* {state.history
               ? History.map((item) => (
                   <div className="cart-item m-auto mb-2 ">
                     <span className="top-right-dot"></span>
@@ -225,27 +223,30 @@ export default function UserProfile() {
                     </div>
                   </div>
                 ))
-              : ""}
+              : ""} */}
           </div>
-          <div className="col-lg-4 col-12 pb-5 order-lg-1 order-0 ">
-            <div className="author-card pb-3">
+          <div className="col-lg-3 col-12 pb-5 order-lg-1 order-0 dashboard">
+            <div className="author-card pb-2">
               <div className="author-card-cover"></div>
-              <div className="author-card-profile d-flex  justify-content-end ">
-                <div className="author-card-details d-flex flex-column justify-content-end justify-content-lg-center pe-2">
-                  <h5 className="author-card-name text-end text-lg">
-                    {`علی اصغر آقچه لو`}
-                  </h5>
-                  <span className="author-card-joined text-center">
-                    Joined <br></br>
-                    {`February 06, 2017`}
-                  </span>
+              {users.filter((item)=>item.username === currentUser.userNameOfUser).map((item)=>
+                <div className="author-card-profile d-flex  justify-content-end ">
+                  <div className="author-card-details d-flex flex-column justify-content-end justify-content-lg-center pe-2">
+                    <h5 className="author-card-name text-center text-lg">
+                      {item.fname}{' '}{item.lname}
+                    </h5>
+                    <span className="author-card-joined text-center">
+                      Joined <br></br>
+                      {item.joined}
+                    </span>
+                  </div>
+                  <div className="author-card-avatar">
+                    <img
+                      src={item.img}
+                    ></img>
+                  </div>
                 </div>
-                <div className="author-card-avatar">
-                  <img
-                    src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/avatar.jpg")}
-                  ></img>
-                </div>
-              </div>
+              )
+              }
             </div>
             <div className="panel">
               <nav className="">
