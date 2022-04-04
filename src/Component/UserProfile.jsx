@@ -12,8 +12,10 @@ export default function UserProfile() {
     return users.findIndex(
       (item) => item.username === currentUsername.userNameOfUser
     );
-  };
+  }
+
   console.log(users[getIndexByUserName(currentUser)].id);
+
   const [state, setState] = useState({
     history: false,
     canceled: false,
@@ -32,7 +34,6 @@ export default function UserProfile() {
     setState({ [value]: !state[value] });
   };
 
-  useEffect(() => {});
   // const reserved = [
   //   {
   //     id: "1",

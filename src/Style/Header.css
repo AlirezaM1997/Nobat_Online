@@ -13,7 +13,7 @@
     display: none;
   }
 }
-#uy{
+#uy {
   transition: all 0.5s !important;
 }
 #header {
@@ -37,10 +37,10 @@
 }
 @keyframes top {
   0% {
-       top: 0;
+    top: 0;
   }
   100% {
-       top: -80px;
+    top: -80px;
   }
 }
 .logo {
@@ -67,6 +67,11 @@
 .btnHeader:hover {
   background: #166ab5;
   color: #fff;
+}
+.btnHeader:focus,
+.btnHeader:active {
+  outline: none;
+  box-shadow: none;
 }
 @media (max-width: 768px) {
   .btnHeader {

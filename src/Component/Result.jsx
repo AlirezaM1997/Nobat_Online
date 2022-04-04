@@ -6,65 +6,37 @@ import Image from "react-bootstrap/Image";
 import data from "../data";
 import ResultItem from "./ResultItem";
 import DoctorList from "../DoctorList";
-import StickyBox from "react-sticky-box";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarDays,
-  faNotesMedical,
-  faSearchPlus,
-  faUserDoctor,
-} from "@fortawesome/free-solid-svg-icons";
+// import StickyBox from "react-sticky-box";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faCalendarDays,
+//   faNotesMedical,
+//   faSearchPlus,
+//   faUserDoctor,
+// } from "@fortawesome/free-solid-svg-icons";
 import Select from "react-select";
+import AdvancedSearchBox from "./AdvancedSearchBox";
 
 export default function Result() {
   const { flag } = useAllState();
-  const { setFlag } = useAllState();
   const { searchExp } = useAllState();
   const { searchDoc } = useAllState();
   const { allDoctors } = useAllState(data);
   const { noResult } = useAllState(false);
   const { setNoResult } = useAllState();
-  const { adSearchName } = useAllState();
-  const { adSearchExp } = useAllState();
-  const { workingDay } = useAllState("");
-  const { setAdSearchName } = useAllState();
-  const { setAdSearchExp } = useAllState();
-  const { setWorkingDay } = useAllState();
+  // const { setFlag } = useAllState();
+  // const { adSearchName } = useAllState();
+  // const { adSearchExp } = useAllState();
+  // const { workingDay } = useAllState("");
+  // const { setAdSearchName } = useAllState();
+  // const { setAdSearchExp } = useAllState();
+  // const { setWorkingDay } = useAllState();
 
   const [isLoaded, setIsLoaded] = useState(true);
-  const [render, setRender] = useState(false);
+  const [filteredDoctor, setFilteredDoctor] = useState([]);
 
-  const weekDays = [
-    {
-      value: "شنبه",
-      label: "شنبه",
-    },
-    {
-      value: "یکشنبه",
-      label: "یکشنبه",
-    },
-    {
-      value: "دوشنبه",
-      label: "دوشنبه",
-    },
-    {
-      value: "سه شنبه",
-      label: "سه شنبه",
-    },
-    {
-      value: "چهارشنبه",
-      label: "چهارشنبه",
-    },
-    {
-      value: "پنجشنبه",
-      label: "پنجشنبه",
-    },
-  ];
-
-  // console.log(workingDay);
-  // console.log(adSearchExp);
-  // console.log(flag);
-
+  // console.log(filteredDoctor);
+  
   // useEffect(() => {
   //   const url = ``;
   //   fetch(url)
@@ -81,15 +53,57 @@ export default function Result() {
   //     });
   // }, []);
 
+  // const weekDays = [
+  //   {
+  //     value: "شنبه",
+  //     label: "شنبه",
+  //   },
+  //   {
+  //     value: "یکشنبه",
+  //     label: "یکشنبه",
+  //   },
+  //   {
+  //     value: "دوشنبه",
+  //     label: "دوشنبه",
+  //   },
+  //   {
+  //     value: "سه شنبه",
+  //     label: "سه شنبه",
+  //   },
+  //   {
+  //     value: "چهارشنبه",
+  //     label: "چهارشنبه",
+  //   },
+  //   {
+  //     value: "پنجشنبه",
+  //     label: "پنجشنبه",
+  //   },
+  // ];
 
-  const setAdvancedRusult = () => {
-    setFlag(3);
-    setRender(true);
-  }
+  // const setAdvancedRusult = () => {
+  //   setFlag(3);
+  //   // setRender(true);
+  //   setFilteredDoctor(
+  //     allDoctors.filter(
+  //       (item) =>
+  //         (item.fname.toLowerCase().includes(adSearchName.toLowerCase()) ||
+  //           item.lname.toLowerCase().includes(adSearchName.toLowerCase())) &&
+  //         item.expert.includes(adSearchExp) &&
+  //         (workingDay === ""
+  //           ? true
+  //           : workingDay === []
+  //           ? true
+  //           : workingDay.length !== 0
+  //           ? item.workDay.some((i) => workingDay.some((j) => j === i))
+  //           : true)
+  //     )
+  //   );
+  // };
+ // const handleChangeDay = (e) => {
+  //   setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : "");
+  // };
 
   useEffect(() => {
-    setRender(false);
-
     if (flag === 1) {
       const array = allDoctors.filter((item) =>
         item.expert.toLowerCase().includes(searchExp.toLowerCase())
@@ -111,19 +125,7 @@ export default function Result() {
         setNoResult(false);
       }
     } else {
-      const array = allDoctors.filter(
-        (item) =>
-          (item.fname.toLowerCase().includes(adSearchName.toLowerCase()) ||
-            item.lname.toLowerCase().includes(adSearchName.toLowerCase())) &&
-          item.expert.includes(adSearchExp) &&
-          (workingDay === ""
-            ? true
-            : workingDay === []
-            ? true
-            : workingDay.length !== 0
-            ? item.workDay.some((i) => workingDay.some((j) => j === i))
-            : true)
-      );
+      const array = filteredDoctor;
       if (array.length === 0) {
         setNoResult(true);
       } else {
@@ -132,9 +134,7 @@ export default function Result() {
     }
   });
 
-  const handleChangeDay = (e) => {
-    setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : "");
-  };
+  console.log('rendered');
 
   return !isLoaded ? (
     <div className="text-center mt-5">
@@ -177,27 +177,7 @@ export default function Result() {
                   .map((item) => <ResultItem item={item} />)
               : ""}
             {flag === 3
-              ? allDoctors
-                  .filter(
-                    (item) =>
-                      (item.fname
-                        .toLowerCase()
-                        .includes(adSearchName.toLowerCase()) ||
-                        item.lname
-                          .toLowerCase()
-                          .includes(adSearchName.toLowerCase())) &&
-                      item.expert.includes(adSearchExp) &&
-                      (workingDay === ""
-                        ? true
-                        : workingDay === []
-                        ? true
-                        : workingDay.length !== 0
-                        ? item.workDay.some((i) =>
-                            workingDay.some((j) => j === i)
-                          )
-                        : true)
-                  )
-                  .map((item) => <ResultItem item={item} />)
+              ? filteredDoctor.map((item) => <ResultItem item={item} />)
               : ""}
             {noResult ? (
               <Image
@@ -209,81 +189,7 @@ export default function Result() {
             )}
           </div>
           <div className="col-md-4 col-12 pb-5 order-md-1 order-0">
-            <StickyBox id="StickyBox" offsetTop={100} offsetBottom={-100}>
-              <div className="container p-1" id="search">
-                <div className="row w-100 m-0 p-3 d-flex justify-content-center">
-                  <div className="col text-center mb-2">
-                    <h5 className="adSearchTitle">
-                      جستجوی پیشرفته
-                      <FontAwesomeIcon
-                        className="mx-2 text-warning"
-                        icon={faSearchPlus}
-                      />
-                    </h5>
-                  </div>
-                </div>
-                <div className="row w-100 m-0 p-3 pt-0 d-flex align-items-center flex-column justify-content-center">
-                  <p className="text-end text-warning h6 mb-1">
-                    نام پزشک{" "}
-                    <FontAwesomeIcon
-                      className="mx-2 text-white"
-                      icon={faUserDoctor}
-                    />
-                  </p>
-                  <input
-                    dir="rtl"
-                    className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
-                    value={adSearchName}
-                    onChange={(e) => setAdSearchName(e.target.value)}
-                  ></input>
-                  <p className="text-end text-warning h6 mb-1">
-                    تخصص{" "}
-                    <FontAwesomeIcon
-                      className="mx-2 text-white"
-                      icon={faNotesMedical}
-                    />
-                  </p>
-                  <Select
-                    menuPlacement="bottom"
-                    className="px-1 my-2 w-100 rounded border-0 expertInput text-end"
-                    placeholder="انتخاب کنید"
-                    value={DoctorList.filter((obj) =>
-                      adSearchExp.includes(obj.value)
-                    )}
-                    onChange={(e) => {
-                      setAdSearchExp(e.value);
-                    }}
-                    options={DoctorList}
-                    isSearchable={false}
-                  />
-                  <p className="text-end text-warning h6 mb-1">
-                    روزهای کاری{" "}
-                    <FontAwesomeIcon
-                      className="mx-2 text-white"
-                      icon={faCalendarDays}
-                    />
-                  </p>
-                  <Select
-                    menuPlacement="top"
-                    className="px-1 my-2 w-100 rounded border-0 expertInput text-end"
-                    placeholder="انتخاب کنید"
-                    value={weekDays.filter((obj) =>
-                      workingDay.includes(obj.value)
-                    )}
-                    options={weekDays}
-                    onChange={handleChangeDay}
-                    isSearchable={false}
-                    isMulti
-                    isClearable
-                  />
-                </div>
-                <div className="row w-75 m-auto p-3">
-                  <button className="adSearchBtn" onClick={() => setAdvancedRusult()}>
-                    جستجو
-                  </button>
-                </div>
-              </div>
-            </StickyBox>
+            <AdvancedSearchBox setFilteredDoctor={setFilteredDoctor} />
           </div>
         </div>
       </div>

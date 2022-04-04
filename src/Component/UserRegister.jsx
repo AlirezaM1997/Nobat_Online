@@ -28,10 +28,10 @@ export default function DoctorRegister() {
       .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
     gender: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
     expert: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
-    code: Yup.string("لطفا کد صحیح وارد نمایید")
-      .required("لطفا کد صحیح وارد نمایید")
-      .min(4, "لطفا کد صحیح وارد نمایید")
-      .max(4, "لطفا کد صحیح وارد نمایید"),
+    phoneNumber: Yup.string("لطفا شماره وارد نمایید")
+      .required("لطفا شماره وارد نمایید")
+      .min(11, "لطفا شماره وارد نمایید")
+      .max(11, "لطفا شماره وارد نمایید"),
   });
 
   const { register, handleSubmit, control, reset, formState, setValue } =
@@ -43,11 +43,9 @@ export default function DoctorRegister() {
   const onSubmit = (data) => console.log(data);
 
   const [selectedDay, setSelectedDay] = useState(null);
-  const renderBirthdateInput = ({ ref }) => (
+  const renderBirthdateInput = () => (
     <input
       readOnly
-      ref={ref} // necessary
-      placeholder="انتخاب کنید"
       value={
         selectedDay
           ? `${selectedDay.year}/${selectedDay.month}/${selectedDay.day}`
@@ -93,18 +91,6 @@ export default function DoctorRegister() {
   };
   const[isUser , setIsUser]=useState('user')
 
-  //   const [check, setCheck] = useState(true);
-  //   const OnCheckboxClick= (e) => {
-  //     if(e.target.checked) {
-  //       setCheck(false)
-  //         console.log(check);
-  //     }
-  //     else {
-  //       setCheck(true)
-  //         console.log(check);
-  //     }
-  // }
-
   return (
     <div>
       <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
@@ -139,8 +125,8 @@ export default function DoctorRegister() {
                               })
                             }
                             {...register("gender")}
-                            className={`form-control select px-2 py-1${
-                              errors.gender ? "is-invalid" : ""
+                            className={`form-control select px-2 py-1 ${
+                              errors.gender ? "invalidSelectInput" : ""
                             }`}
                           >
                             <option value={""} disabled>
@@ -237,11 +223,14 @@ export default function DoctorRegister() {
                         </label>
                         <select
                           id="form4Example1q"
-                          className="form-control select py-1 px-2"
+                          className={`form-control select px-2 py-1 ${
+                            errors.gender ? "invalidSelectInput" : ""
+                          }`}
                           dir="rtl"
+                          defaultValue={''}
                           placeholder="انتخاب کنید"
                         >
-                          <option value="2" readOnly disabled>
+                          <option value="" readOnly disabled>
                             انتخاب کنید
                           </option>
                           <option value="2"> بی سواد</option>
@@ -264,20 +253,21 @@ export default function DoctorRegister() {
                       </div>
 
                       <div className="col-6 text-end">
-                        <label className="form-label" htmlFor="code">
-                          کد نظام پزشکی
+                        <label className="form-label" htmlFor="phoneNumber">
+                          تلفن همراه
                         </label>
                         <input
                           dir="rtl"
+                          placeholder="09120000000"
                           type="number"
-                          id="code"
-                          {...register("code")}
+                          id="phoneNumber"
+                          {...register("phoneNumber")}
                           className={`form-control ${
-                            errors.code ? "is-invalid" : ""
+                            errors.phoneNumber ? "is-invalid" : ""
                           }`}
                         />
                         <span className="invalid-feedback">
-                          {errors.code?.message}
+                          {errors.phoneNumber?.message}
                         </span>
                       </div>
                     </div>

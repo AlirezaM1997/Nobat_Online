@@ -69,7 +69,7 @@
   outline: none;
   box-shadow: none;
 }
-._active {
+._unActive {
   background: #c7c7c7;
 }
 #expSearch:focus,
@@ -99,4 +99,7 @@
 }
 .css-6j8wv5-Input {
   margin: 3px !important;
+}
+#virtualDiv{
+  z-index: 1100;
 }

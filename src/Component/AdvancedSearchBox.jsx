@@ -11,8 +11,9 @@ import {
 import Select from "react-select";
 import DoctorList from "../DoctorList";
 import { useAllState } from "../Provider";
+import data from "../data";
 
-export default function AdvancedSearchBox() {
+export default function AdvancedSearchBox(props) {
   const { flag } = useAllState();
   const { setFlag } = useAllState();
   const { adSearchName } = useAllState();
@@ -21,7 +22,26 @@ export default function AdvancedSearchBox() {
   const { setAdSearchExp } = useAllState();
   const { workingDay } = useAllState('');
   const { setWorkingDay } = useAllState();
+  const { allDoctors } = useAllState(data);
 
+  const setAdvancedRusultBtn = () => {
+    setFlag(3);
+    props.setFilteredDoctor(
+      allDoctors.filter(
+        (item) =>
+          (item.fname.toLowerCase().includes(adSearchName.toLowerCase()) ||
+            item.lname.toLowerCase().includes(adSearchName.toLowerCase())) &&
+          item.expert.includes(adSearchExp) &&
+          (workingDay === ""
+            ? true
+            : workingDay === []
+            ? true
+            : workingDay.length !== 0
+            ? item.workDay.some((i) => workingDay.some((j) => j === i))
+            : true)
+      )
+    );
+  };
   const weekDays = [
     {
       value: "شنبه",
@@ -121,7 +141,7 @@ export default function AdvancedSearchBox() {
             />
           </div>
           <div className="row w-75 m-auto p-3">
-            <button className="adSearchBtn" onClick={() => setFlag(3)}>
+            <button className="adSearchBtn" onClick={() => setAdvancedRusultBtn()}>
               جستجو
             </button>
           </div>
