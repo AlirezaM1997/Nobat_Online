@@ -14,11 +14,18 @@ export default function Hero() {
   //search based expert => flag : 1
   //search based name => flag : 2
   //advansed based => flag : 3
+  // const [nameInput , setNameInput]=useState('')
+  // const [expertInput , setExpertInput]=useState('')
+
   const { setFlag } = useAllState();
-  const { searchExp } = useAllState("");
-  const { setSearchExp } = useAllState();
-  const { searchDoc } = useAllState("");
-  const { setSearchDoc } = useAllState();
+  let { searchExp } = useAllState("");
+  let { setSearchExp } = useAllState();
+  let { searchDoc } = useAllState("");
+  let { setSearchDoc } = useAllState();
+
+  const { setAdSearchName } = useAllState();
+  const { setAdSearchExp } = useAllState();
+  const { setWorkingDay } = useAllState();
   // console.log(flag);
 
   const handleEnterKeyName = (event) => {
@@ -46,6 +53,9 @@ export default function Hero() {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    setAdSearchName('')
+    setAdSearchExp('')
+    setWorkingDay('')
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -79,7 +89,7 @@ export default function Hero() {
     <section id="hero" className="d-flex  p-4">
       <div className="container">
         <div className="row">
-          <div className="col-sm-8 col-md-6 searchBoxCol">
+          <div className="col-12 col-md-6 searchBoxCol">
             <div className="row">
               <h3 className="hero-title text-center p-3">
                 به سایت نوبت دهی آنلاین پزشکان ایران خوش آمدید

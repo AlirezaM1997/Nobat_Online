@@ -28,9 +28,7 @@ export default function Result() {
   // const { adSearchName } = useAllState();
   // const { adSearchExp } = useAllState();
   // const { workingDay } = useAllState("");
-  // const { setAdSearchName } = useAllState();
-  // const { setAdSearchExp } = useAllState();
-  // const { setWorkingDay } = useAllState();
+
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [filteredDoctor, setFilteredDoctor] = useState([]);
@@ -163,7 +161,7 @@ export default function Result() {
             {flag === 1
               ? allDoctors
                   .filter((item) => item.expert.includes(searchExp))
-                  .map((item) => <ResultItem item={item} />)
+                  .map((item , index) => <div key={index}><ResultItem item={item} /></div>)
               : ""}
             {flag === 2
               ? allDoctors
@@ -174,10 +172,10 @@ export default function Result() {
                         .includes(searchDoc.toLowerCase()) ||
                       item.lname.toLowerCase().includes(searchDoc.toLowerCase())
                   )
-                  .map((item) => <ResultItem item={item} />)
+                  .map((item , index) => <div key={index}><ResultItem item={item} /></div>)
               : ""}
             {flag === 3
-              ? filteredDoctor.map((item) => <ResultItem item={item} />)
+              ? filteredDoctor.map((item , index) => <div key={index}><ResultItem item={item} /></div>)
               : ""}
             {noResult ? (
               <Image

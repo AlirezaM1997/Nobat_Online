@@ -6,28 +6,37 @@
   margin-bottom: -200px;
   font-family: "Shabnam";
 }
-@media (max-width: 991px) {
+
+@media (max-width: 768px) {
   #hero {
-    margin-bottom: 0;
-    height: 100vh;
+    height: 120vh;
   }
 }
-@media (min-width: 1024px) {
+@media (max-width: 576px) {
   #hero {
-    background-attachment: fixed;
+    height: 104vh;
+    padding-top: 1em !important;
   }
 }
+
 .hero-title {
   font-family: "Samim";
   line-height: 1.5em;
   letter-spacing: 00.08rem;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .hero-title {
-    background: #0d6efdc7;
-    color: white;
+    background: #ffffffc7;
+    color: black;
     border-radius: 0.7rem;
     margin: 2em 0 1.5em 0;
+    width: 39vw;
+    letter-spacing: 0;
+  }
+}
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.2em;
   }
 }
 .searchBox {

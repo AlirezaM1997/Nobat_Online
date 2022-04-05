@@ -6,8 +6,12 @@
   min-height: fit-content;
   border-top: solid 1px #1076d6;
 }
+@media (max-width: 991px) {
+  .bg-user-log {
+    background: linear-gradient(to bottom, #1076d6 50%, white 50%) !important;
+  }
+}
 .form-container {
-  font-family: "Poppins", sans-serif;
   position: relative;
   z-index: 1;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
@@ -185,3 +189,24 @@
   font-size: 20px;
   margin-right: 0.5em;
 }
+@keyframes change_scale {
+  0% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.loginCol {
+  animation: change_scale 1s;
+}
+@media (min-width: 768px) {
+  .loginCol {
+    padding: 10rem 2rem ;
+  }
+}
+/* @media (min-width: 768px) {
+  .loginCol {
+    padding: 10rem 2rem !important;
+  }
+} */

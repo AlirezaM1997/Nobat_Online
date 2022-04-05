@@ -3,7 +3,7 @@ export default function WhyUs() {
     <section id="why-us" className="why-us">
       <div className="container">
         <div className="row d-flex">
-          <div className="col-lg-8 d-flex align-items-stretch order-lg-0 order-1">
+          <div className="col-md-8 d-flex align-items-stretch order-md-0 order-1">
             <div className="icon-boxes d-flex flex-column justify-content-center">
               <div className="row ">
                 <div className="col-xl-4 d-flex align-items-stretch  ">
@@ -77,9 +77,9 @@ export default function WhyUs() {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 d-flex align-items-stretch order-lg-1 order-0">
+          <div className="col-md-4 d-flex align-items-stretch order-md-1 order-0">
             <div className="content text-center text-white">
-              <h3>چرا نوبت آنلاین؟</h3>
+              <h2>چرا نوبت آنلاین؟</h2>
               <p>
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
                 استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله

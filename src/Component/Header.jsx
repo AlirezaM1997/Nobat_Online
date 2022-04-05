@@ -9,6 +9,8 @@ import { useAllState } from "../Provider";
 export default function Header() {
   const { auth } = useAllState(false);
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  let { setSearchExp } = useAllState();
+  let { setSearchDoc } = useAllState();
 
   let timeout;
   let scroll = 0;
@@ -38,7 +40,7 @@ export default function Header() {
 
   return (
     <div id="uy">
-      <header id="header" className="mt-3 bg-white">
+      <header id="header" className="mt-sm-3 bg-white">
         <div
           className="container d-flex align-items-center justify-content-around"
           id="containerHeader"
@@ -110,7 +112,14 @@ export default function Header() {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/" className="nav-link ">
+                  <Link
+                    to="/"
+                    className="nav-link "
+                    onClick={() => {
+                      setSearchExp("");
+                      setSearchDoc("");
+                    }}
+                  >
                     صفحه اصلی
                   </Link>
                 </li>

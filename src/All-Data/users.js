@@ -14,20 +14,16 @@ const users = [
         date: "1400/10/25",
       },
       {
-        id: "1",
-        cancel: false,
+        id: "2",
+        cancel: true,
         date: "1400/10/25",
       },
       {
-        id: "1",
+        id: "3",
         cancel: false,
         date: "1400/10/25",
       },
     ],
-  },
-  {
-    username: "admin2",
-    password: "012345678",
-  },
-];
+  }
+]
 export default users;

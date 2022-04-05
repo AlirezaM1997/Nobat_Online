@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <div className="container py-3 px-5  mw-100 bg-user-log">
       <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
-        <div className="col-lg-5 col-md-8 col-12 p-md-5 p-1 mb-md-0 mb-4">
+        <div className="col-lg-5 col-md-8 col-12 p-sm-5 p-2 my-md-0 my-4 loginCol">
           <div className="form-bg">
             <div className="container">
               <div className="row d-flex flex-md-column">
@@ -116,7 +116,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="col-lg-5 col-md-8 col-12 p-md-5 p-1 mb-md-0 mb-4">
+        <div className="col-lg-5 col-md-8 col-12 p-sm-5 p-2 my-md-0 my-4 loginCol">
           <div className="form-bg">
             <div className="container">
               <div className="row">
