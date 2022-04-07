@@ -51,56 +51,6 @@ export default function Result() {
   //     });
   // }, []);
 
-  // const weekDays = [
-  //   {
-  //     value: "شنبه",
-  //     label: "شنبه",
-  //   },
-  //   {
-  //     value: "یکشنبه",
-  //     label: "یکشنبه",
-  //   },
-  //   {
-  //     value: "دوشنبه",
-  //     label: "دوشنبه",
-  //   },
-  //   {
-  //     value: "سه شنبه",
-  //     label: "سه شنبه",
-  //   },
-  //   {
-  //     value: "چهارشنبه",
-  //     label: "چهارشنبه",
-  //   },
-  //   {
-  //     value: "پنجشنبه",
-  //     label: "پنجشنبه",
-  //   },
-  // ];
-
-  // const setAdvancedRusult = () => {
-  //   setFlag(3);
-  //   // setRender(true);
-  //   setFilteredDoctor(
-  //     allDoctors.filter(
-  //       (item) =>
-  //         (item.fname.toLowerCase().includes(adSearchName.toLowerCase()) ||
-  //           item.lname.toLowerCase().includes(adSearchName.toLowerCase())) &&
-  //         item.expert.includes(adSearchExp) &&
-  //         (workingDay === ""
-  //           ? true
-  //           : workingDay === []
-  //           ? true
-  //           : workingDay.length !== 0
-  //           ? item.workDay.some((i) => workingDay.some((j) => j === i))
-  //           : true)
-  //     )
-  //   );
-  // };
- // const handleChangeDay = (e) => {
-  //   setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : "");
-  // };
-
   useEffect(() => {
     if (flag === 1) {
       const array = allDoctors.filter((item) =>

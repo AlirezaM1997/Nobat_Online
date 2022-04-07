@@ -12,7 +12,7 @@
 .back-prof {
   background: rgb(255, 255, 255);
   font-family: "Sahel";
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
   background-position: center;
   background-size: cover;
@@ -28,20 +28,20 @@
 .panel {
   border-radius: 1rem;
 }
-@keyframes change_scale_show{
-  0%{
+@keyframes change_scale_show {
+  0% {
     transform: scale(0.9);
   }
   100% {
     transform: scale(1);
   }
 }
-.dashboard{
+.dashboard {
   animation: change_scale_show 0.7s;
 }
-.Title{
+.titleProf {
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
-border-radius: 1rem;
+  border-radius: 1rem;
 }
 .author-card {
   border-radius: 1rem;
@@ -94,12 +94,10 @@ border-radius: 1rem;
 }
 .author-card-details {
   padding-top: 20px;
-  padding-left: 15px;
 }
 @media (min-width: 991px) {
   .author-card .author-card-profile .author-card-details {
     padding-top: 26px;
-    padding-left: 15px;
   }
 }
 .author-card-name {
@@ -115,7 +113,7 @@ border-radius: 1rem;
 }
 .panel-item {
   transition: all 0.3s;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   border-radius: 0.5rem;
@@ -168,7 +166,7 @@ border-radius: 1rem;
   padding: 5px 10px 5px 10px;
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.25);
   animation: fade_in_show 01.2s;
 }
 .cart-item-doctor {
@@ -188,6 +186,7 @@ border-radius: 1rem;
   display: block;
   width: 100%;
   border-radius: 50%;
+  border: solid 1px #a3a3a3;
 }
 .cart-item-doctor-info {
   padding-top: 5px;
@@ -247,24 +246,45 @@ border-radius: 1rem;
   text-align: center;
   box-shadow: 0 3px 12px 0 rgba(255, 82, 82, 0.5);
 }
-.summary{
+.summary {
   border-radius: 1rem;
   position: relative;
   padding-bottom: 48px;
   background-color: #fff;
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
   z-index: 20;
+  border: solid 1px #0d6efd;
 }
-.cancel{
+.cancel {
   background-color: red;
   border-radius: 0.5rem;
   font-size: 0.8em;
 }
-.done{
+.done {
   background-color: green;
   border-radius: 0.5rem;
   font-size: 0.8em;
 }
-.summaryItem{
-width: fit-content;
+.summaryItem {
+  width: fit-content;
+}
+.cancelAppoinBtn {
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8em;
+  background: #dc3545;
+  color: white;
+  transition: 0.2s;
+}
+.cancelAppoinBtn:hover {
+  background: #8d1622;
+}
+.cancelAppoinBtn:active {
+  transform: scale(0.9);
+}
+.squareIco {
+  font-size: 0.5em;
+}
+.squareIcoCredit {
+  font-size: 0.8em;
 }

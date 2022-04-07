@@ -61,8 +61,7 @@ export default function Header() {
                     src={users[getIndexByUserName(currentUser)].img}
                   ></img>
                   <span className="headerNameProf">
-                    {users[getIndexByUserName(currentUser)].fname}{" "}
-                    {users[getIndexByUserName(currentUser)].lname}
+                    {users[getIndexByUserName(currentUser)].fullName}
                   </span>
                 </div>
               </Link>

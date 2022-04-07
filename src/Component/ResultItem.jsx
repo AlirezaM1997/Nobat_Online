@@ -9,10 +9,22 @@ import { useAllState } from "../Provider";
 const ResultItem = (props) => {
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
+  const { auth } = useAllState();
 
  const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
   };
+
+  const navToLogin = useNavigate();
+  const navToGetAppointment = useNavigate();
+  const handleAppointment=()=>{
+    if (!auth) {
+      navToLogin('/login')
+    } else {
+      setCurrentAppoin(props.item.id)
+      navToGetAppointment('/appointment')
+    }
+  }
   return (
     <div key={UID()} >
       <div  className="cart m-auto mb-2 ">
@@ -67,9 +79,9 @@ const ResultItem = (props) => {
             </div>
             <div className="row d-flex align-items-center flex-column flex-sm-row ">
               <div className="col order-sm-0 order-1 d-flex justify-content-sm-start justify-content-center">
-                <Link to={"/appointment"}>
-                  <button id="appointment" onClick={()=>setCurrentAppoin(props.item.id)}>دریافت نوبت</button>
-                </Link>
+                {/* <Link to={"/appointment"}> */}
+                  <button id="appointment" onClick={()=> handleAppointment()}>دریافت نوبت</button>
+                {/* </Link> */}
               </div>
               <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
                 <span className="text-muted font-weight-medium text-sm-end text-center">

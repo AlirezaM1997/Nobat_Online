@@ -183,3 +183,20 @@
 table {
   border-collapse: separate;
 }
+#hintForLogin{
+  width: fit-content;
+  border-radius: 1rem;
+  margin: auto;
+  font-family: "Sahel";
+}
+.go2441762052{
+  padding: 3rem 1rem !important;
+  text-align: center;
+}
+
+
+
+
+
+
+

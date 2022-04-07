@@ -1,7 +1,6 @@
 import data from "../All-Data/data";
 
 export default function UserProfileItem(props) {
-
   return (
     <div className="cart-item m-auto mb-2 ">
       <span className="top-right-dot"></span>
@@ -13,13 +12,21 @@ export default function UserProfileItem(props) {
               <div className="d-flex flex-column cart-item-doctor-info">
                 <div className="row">
                   <div className="d-flex justify-content-between">
-                    {props.item.cancel ? (
-                      <div className="text-white px-2 py-1 text-end d-inline cancel">
-                        کنسل شد
-                      </div>
+                    {!props.state.reserved ? (
+                      props.item.cancel ? (
+                        <div className="text-white px-2 py-1 text-end d-inline cancel">
+                          کنسل شد
+                        </div>
+                      ) : (
+                        <div className="text-white px-2 py-1 text-end d-inline done">
+                          انجام شد
+                        </div>
+                      )
                     ) : (
-                      <div className="text-white px-2 py-1 text-end d-inline done">
-                        انجام شد
+                      <div>
+                        <button className="px-3 py-1 cancelAppoinBtn">
+                          کنسل
+                        </button>
                       </div>
                     )}
                     <h4 className="cart-item-doctor-title text-end d-inline">
@@ -34,7 +41,7 @@ export default function UserProfileItem(props) {
                 </div>
                 <div className="row">
                   <span className="text-dark font-weight-medium text-end">
-                  در تاریخ : {props.item.date}
+                    در تاریخ : {props.item.date}
                   </span>
                 </div>
               </div>

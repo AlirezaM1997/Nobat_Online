@@ -92,22 +92,6 @@ export default function DoctorRegister() {
       .getElementsByClassName("DatePicker")[0]
       .classList.remove("changePos");
   };
-  const [isDoctor, setIsDoctor] = useState("doctor");
-  //   const [check, setCheck] = useState(true);
-  //   const OnCheckboxClick= (e) => {
-  //     if(e.target.checked) {
-  //       setCheck(false)
-  //         console.log(check);
-  //     }
-  //     else {
-  //       setCheck(true)
-  //         console.log(check);
-  //     }
-  // }
-  // const handlerSearchExp = (event) => {
-  //   const value = event.value;
-  //   setSearchExp(value);
-  // };
 
   return (
     <div>
@@ -155,9 +139,6 @@ export default function DoctorRegister() {
                               {errors.gender.message}
                             </p>
                           )}
-                          {/* <span className="invalid-feedback">
-                            {errors.gender?.message}
-                          </span> */}
                         </div>
                         <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
                           <label className="form-label" htmlFor="fullname">
@@ -171,6 +152,7 @@ export default function DoctorRegister() {
                             className={`form-control ${
                               errors.fullname ? "is-invalid" : ""
                             }`}
+                            autocomplete="off"
                           />
                           <span className="invalid-feedback">
                             {errors.fullname?.message}
@@ -223,6 +205,7 @@ export default function DoctorRegister() {
                           id="city"
                           className="form-control"
                           {...register("city", { required: true })}
+                          autocomplete="off"
                         />
                         {errors.city && (
                           <span className=" text-danger">
@@ -278,6 +261,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.code ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.code?.message}
@@ -296,6 +280,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.email ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.email?.message}
@@ -315,6 +300,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.password ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.password?.message}
@@ -332,6 +318,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.username ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.username?.message}
@@ -348,7 +335,7 @@ export default function DoctorRegister() {
                           type="file"
                           id="picture"
                           className="form-control"
-                          {...register("picture", { required: true })}
+                          // {...register("picture", { required: true })}
                         />
                         {errors.picture && (
                           <span className=" text-danger">
@@ -365,8 +352,6 @@ export default function DoctorRegister() {
 
                         <input
                           type="checkbox"
-                          // value={check}
-                          // onClick={(e) => OnCheckboxClick(e)}
                           {...register("checkbox")}
                           id="checkbox"
                           className={`align-middle m-0 ms-1 form-check-input ${

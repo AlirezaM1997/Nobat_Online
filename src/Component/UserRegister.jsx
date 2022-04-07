@@ -1,16 +1,16 @@
 import "../Style/Register.css";
 
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+import DoctorList from "../All-Data/DoctorList";
 import Modal from "./Modal";
 
-export default function DoctorRegister() {
+export default function UserRegister() {
   const validationSchema = Yup.object().shape({
     checkbox: Yup.bool().oneOf([true], "پر کردن این فیلد الزامی است"),
     email: Yup.string()
@@ -27,11 +27,11 @@ export default function DoctorRegister() {
       .min(8, "رمز عبور باید بین 8 تا 12 کاراکتر باشد")
       .max(12, "رمز عبور باید بین 8 تا 12 کاراکتر باشد"),
     gender: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
-    expert: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
-    phoneNumber: Yup.string("لطفا شماره وارد نمایید")
-      .required("لطفا شماره وارد نمایید")
-      .min(11, "لطفا شماره وارد نمایید")
-      .max(11, "لطفا شماره وارد نمایید"),
+    educationRate: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
+    phoneNumber: Yup.string("لطفا شماره صحیح وارد نمایید")
+      .required("لطفا شماره صحیح وارد نمایید")
+      .min(11, "لطفا شماره صحیح وارد نمایید")
+      .max(11, "لطفا شماره صحیح وارد نمایید"),
   });
 
   const { register, handleSubmit, control, reset, formState, setValue } =
@@ -43,9 +43,11 @@ export default function DoctorRegister() {
   const onSubmit = (data) => console.log(data);
 
   const [selectedDay, setSelectedDay] = useState(null);
-  const renderBirthdateInput = () => (
+  const renderBirthdateInput = ({ ref }) => (
     <input
       readOnly
+      ref={ref} // necessary
+      placeholder="انتخاب کنید"
       value={
         selectedDay
           ? `${selectedDay.year}/${selectedDay.month}/${selectedDay.day}`
@@ -89,7 +91,6 @@ export default function DoctorRegister() {
       .getElementsByClassName("DatePicker")[0]
       .classList.remove("changePos");
   };
-  const[isUser , setIsUser]=useState('user')
 
   return (
     <div>
@@ -119,12 +120,12 @@ export default function DoctorRegister() {
                             id="gender"
                             dir="rtl"
                             defaultValue={""}
+                            {...register("gender")}
                             onChange={(e) =>
-                              setValue("select", e.target.value, {
+                              setValue("gender", e.target.value, {
                                 shouldValidate: true,
                               })
                             }
-                            {...register("gender")}
                             className={`form-control select px-2 py-1 ${
                               errors.gender ? "invalidSelectInput" : ""
                             }`}
@@ -136,13 +137,10 @@ export default function DoctorRegister() {
                             <option value="man">مرد</option>
                           </select>
                           {errors.gender && (
-                            <p className="text-danger text-center genderError">
+                            <p className="text-danger text-center genderError mb-0">
                               {errors.gender.message}
                             </p>
                           )}
-                          {/* <span className="invalid-feedback">
-                            {errors.gender?.message}
-                          </span> */}
                         </div>
                         <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
                           <label className="form-label" htmlFor="fullname">
@@ -156,6 +154,7 @@ export default function DoctorRegister() {
                             className={`form-control ${
                               errors.fullname ? "is-invalid" : ""
                             }`}
+                            autocomplete="off"
                           />
                           <span className="invalid-feedback">
                             {errors.fullname?.message}
@@ -208,6 +207,7 @@ export default function DoctorRegister() {
                           id="city"
                           className="form-control"
                           {...register("city", { required: true })}
+                          autocomplete="off"
                         />
                         {errors.city && (
                           <span className=" text-danger">
@@ -217,39 +217,44 @@ export default function DoctorRegister() {
                       </div>
                     </div>
                     <div className="row mb-3 align-items-center">
-                      <div className="col-6 text-end">
-                        <label className="form-label" htmlFor="form4Example1q">
-                          میزان تحصیلات
-                        </label>
-                        <select
-                          id="form4Example1q"
-                          className={`form-control select px-2 py-1 ${
-                            errors.gender ? "invalidSelectInput" : ""
-                          }`}
+                     <div className="col-6 text-end">
+                       <label className="form-label" htmlFor="educationRate">
+                         میزان تحصیلات
+                       </label>
+                         <select
+                          id="educationRate"
+                          // className={`form-control select px-2 py-1`}
                           dir="rtl"
+                          name="educationRate"
                           defaultValue={''}
                           placeholder="انتخاب کنید"
+                          {...register("educationRate")}
+                          onChange={(e) =>
+                            setValue("educationRate", e.target.value, {
+                              shouldValidate: true,
+                            })
+                          }
+                          className={`form-control select px-2 py-1 ${
+                            errors.educationRate ? "invalidSelectInput" : ""
+                          }`}
                         >
                           <option value="" readOnly disabled>
                             انتخاب کنید
                           </option>
-                          <option value="2"> بی سواد</option>
-                          <option value="3"> ابتدایی</option>
-                          <option value="3"> سیکل</option>
-                          <option value="3">دیپلم</option>
-                          <option value="3">فوق دبپلم</option>
-                          <option value="3"> لیسانس</option>
-                          <option value="3"> فوق لیسانس</option>
-                          <option value="3"> دکتری</option>
+                          <option value={'بی سواد'}> بی سواد</option>
+                          <option value={'ابتدایی'}> ابتدایی</option>
+                          <option value={'سیکل'}> سیکل</option>
+                          <option value={'دیپلم'}>دیپلم</option>
+                          <option value={'فوق دیپلم'}>فوق دبپلم</option>
+                          <option value={'لیسانس'}> لیسانس</option>
+                          <option value={'فوق لیسانس'}> فوق لیسانس</option>
+                          <option value={'دکتری'}> دکتری</option>
                         </select>
-                        {errors.expert && (
-                          <p className="text-danger expertError">
-                            {errors.expert.message}
+                        {errors.educationRate && (
+                          <p className="text-danger expertError mb-0">
+                            {errors.educationRate.message}
                           </p>
                         )}
-                        <span className="invalid-feedback">
-                          {errors.expert?.message}
-                        </span>
                       </div>
 
                       <div className="col-6 text-end">
@@ -258,13 +263,17 @@ export default function DoctorRegister() {
                         </label>
                         <input
                           dir="rtl"
+                          name="phoneNumber"
                           placeholder="09120000000"
                           type="number"
                           id="phoneNumber"
                           {...register("phoneNumber")}
+
                           className={`form-control ${
                             errors.phoneNumber ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
+
                         />
                         <span className="invalid-feedback">
                           {errors.phoneNumber?.message}
@@ -283,6 +292,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.email ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.email?.message}
@@ -302,6 +312,7 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.password ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
                         <span className="invalid-feedback">
                           {errors.password?.message}
@@ -319,8 +330,8 @@ export default function DoctorRegister() {
                           className={`form-control ${
                             errors.username ? "is-invalid" : ""
                           }`}
+                          autocomplete="off"
                         />
-                        {/* check the username be uniq */}
                         <span className="invalid-feedback">
                           {errors.username?.message}
                         </span>
@@ -336,7 +347,7 @@ export default function DoctorRegister() {
                           type="file"
                           id="picture"
                           className="form-control"
-                          {...register("picture", { required: true })}
+                          // {...register("picture", { required: true })}
                         />
                         {errors.picture && (
                           <span className=" text-danger">
@@ -353,8 +364,6 @@ export default function DoctorRegister() {
 
                         <input
                           type="checkbox"
-                          // value={check}
-                          // onClick={(e) => OnCheckboxClick(e)}
                           {...register("checkbox")}
                           id="checkbox"
                           className={`align-middle m-0 ms-1 form-check-input ${

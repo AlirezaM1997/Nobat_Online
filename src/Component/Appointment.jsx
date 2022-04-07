@@ -3,6 +3,7 @@ import { useAllState } from "../Provider";
 import { useState, useEffect } from "react";
 import CommentsBlock from "simple-react-comments";
 import commentsData from "../commentsData";
+import MultiStep from 'react-multistep'
 import data from "../All-Data/data";
 import { DynamicStar } from "react-dynamic-star";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,13 +14,17 @@ import {
   faMoneyCheck,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Appointment() {
   const { allDoctors } = useAllState(data);
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
   const [selectedTime, setSelectedTime] = useState("");
+
   // console.log(selectedTime);
+  const { auth } = useAllState();
+
+
 
   useEffect(() => {
     if (selectedTime !== "") {
@@ -41,31 +46,40 @@ export default function Appointment() {
     let keys = Object.keys(currentDocTimes[0]);
     return keys.map((key, index) => {
       return (
-        <tr>
-          <th className="text-center bg-info p-2" key={index}>
-            {makeDate(key)}
-          </th>
-          {values[index].map((value) => {
-            return (
-              <td>
-                <button
-                  disabled={false}
-                  className={`table-btn ${
-                    selectedTime === key + value ? "bg-warning" : ""
-                  }`}
-                  value={key + value}
-                  id={key + value}
-                  onClick={(e) => setSelectedTime(e.target.value)}
-                >
-                  {value}
-                </button>
-              </td>
-            );
-          })}
-        </tr>
+        <table dir="rtl">
+          <tr>
+            <th className="text-center bg-info p-2" key={index}>
+              {makeDate(key)}
+            </th>
+            {values[index].map((value) => {
+              return (
+                <td>
+                  <button
+                    disabled={false}
+                    className={`table-btn ${
+                      selectedTime === key + value ? "bg-warning" : ""
+                    }`}
+                    value={key + value}
+                    id={key + value}
+                    onClick={(e) => setSelectedTime(e.target.value)}
+                  >
+                    {value}
+                  </button>
+                </td>
+              );
+            })}
+          </tr>
+        </table>
       );
     });
   };
+  const steps = [
+    {name: 'StepOne', component: <UpdateTable/>},
+    {name: 'StepTwo', component: <UpdateTable/>},
+    // {name: 'StepThree', component: <StepThree/>},
+    // {name: 'StepFour', component: <StepFour/>}
+  ];
+
   return (
     <>
       <div>
@@ -120,7 +134,7 @@ export default function Appointment() {
                   <div className="row p-2">
                     <div className="col px-4">
                       <div className="text-md-end text-center mb-3 d-flex align-items-center justify-content-center justify-content-md-end">
-                      {`تومان`}{" "}
+                        {`تومان`}{" "}
                         <b className="mx-1">
                           <span className="h5"> {item.visit} </span>
                           {" : "}
@@ -149,37 +163,48 @@ export default function Appointment() {
                       </div>
                     </div>
                   </div>
-                  <div className="getAppoin-section pt-4 px-3 px-lg-4 mt-2">
-                    <div className="row my-3 justify-content-center">
-                      <h5 className="text-center py-2 px-3 text-white bg-primary chooseAppoin">
+
+                  
+                  <div className="getAppoin-section d-flex justify-content-center px-3 px-lg-4">
+                    <div className="row">
+
+                  <MultiStep activeStep={1} showNavigation={true} steps={steps}/>
+
+                      {/* <h5 className="text-center py-2 px-3 text-white bg-primary chooseAppoin">
                         لطفا از بین ساعت های فعال یکی را انتخاب نمایید
                       </h5>
                       <FontAwesomeIcon
                         className="arrowDown my-3 text-success"
                         icon={faArrowCircleDown}
-                      />
+                      /> */}
                     </div>
-                    <div className="row mb-4">
+                    {/* <div className="row mb-4">
                       <div className="col d-flex justify-content-center">
                         <table dir="rtl">
                           <UpdateTable />
                         </table>
                       </div>
-                    </div>
-                    <div
-                      className={`row mb-5 mt-2 align-items-center ${
+                    </div> */}
+                    {/* <div
+                      className={`row mb-2 align-items-center ${
                         selectedTime === "" ? "d-none" : ""
                       }`}
                       id="getAppoinRow"
                     >
                       <div className="col d-flex flex-column justify-content-center align-items-center">
                         <FontAwesomeIcon
-                          className="arrowDown my-3 text-warning"
+                          className="arrowDown mb-3 text-warning"
                           icon={faArrowCircleDown}
                         />
-                        <button className="getAppoinBtn">دریافت نوبت</button>
+                        <button
+                          className="getAppoinBtn"
+                          // onClick={() => checkLogin()}
+                        >
+                          دریافت نوبت
+                        </button>
                       </div>
-                    </div>
+                    </div> */}
+                   
                   </div>
 
                   <hr className="mt-5" />
@@ -212,9 +237,7 @@ export default function Appointment() {
                       {item.comments.map((i) => (
                         <div className="comments-card comments-card-primary card shadow-sm">
                           <div className="comments-body">
-                            <div className="h5 mb-1">
-                              {i.name}
-                            </div>
+                            <div className="h5 mb-1">{i.name}</div>
                             <div className="text-muted text-small mb-2">
                               {i.date}
                             </div>
@@ -292,3 +315,4 @@ export default function Appointment() {
     </>
   );
 }
+
