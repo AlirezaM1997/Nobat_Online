@@ -46,6 +46,10 @@
 .searchBoxCol {
   animation: fade_in_show 1s;
 }
+.searchBoxBottom{
+  border-bottom-right-radius: 0.9em;
+    border-bottom-left-radius: 0.9em;
+}
 .expertSearch,
 .doctorSearch {
   font-family: "Shabnam";

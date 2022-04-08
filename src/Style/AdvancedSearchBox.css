@@ -73,3 +73,6 @@
     outline: none;
     box-shadow: none;
   }
+  .chechoutIcon{
+    width: fit-content;
+  }

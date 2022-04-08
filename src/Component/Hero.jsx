@@ -172,7 +172,7 @@ export default function Hero() {
                         </h5>
                         <Select
                           menuPlacement="bottom"
-                          className="w-75 bg-light my-2 w-100 hero-input text-end border-0 rounded"
+                          className="w-75 bg-light my-3 w-100 hero-input text-end border-0 rounded"
                           placeholder="انتخاب کنید"
                           value={DoctorList.filter((obj) =>
                             searchExp.includes(obj.value)

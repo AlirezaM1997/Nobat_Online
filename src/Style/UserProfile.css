@@ -254,6 +254,7 @@
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
   z-index: 20;
   border: solid 1px #0d6efd;
+  animation: change_scale_show 1s;
 }
 .cancel {
   background-color: red;

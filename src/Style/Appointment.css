@@ -179,24 +179,31 @@
 }
 .backToResult {
   font: 0.8em "Sahel";
+  animation: changeScale 1s;
+  width: fit-content;
 }
 table {
   border-collapse: separate;
 }
-#hintForLogin{
+#hintForLogin {
   width: fit-content;
   border-radius: 1rem;
   margin: auto;
   font-family: "Sahel";
 }
-.go2441762052{
-  padding: 3rem 1rem !important;
-  text-align: center;
+.moreInfoDoc{
+  font-family: "Sahel";
 }
-
-
-
-
-
-
-
+.detailOfAppointment , .checkout{
+  border:solid 2px #4a89dc;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
+  font-family: "Sahel";
+}
+.checkoutTitle{
+  border-bottom: solid 3px #8fbc54;
+  width: fit-content;
+}
+.checkoutItem{
+  width: fit-content;
+}

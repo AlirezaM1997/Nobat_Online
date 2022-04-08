@@ -76,7 +76,7 @@
   background-color: transparent;
   letter-spacing: 1px;
   height: 40px;
-  padding: 2px 10px 2px 0;
+  padding: 2px 2px 2px 0;
   box-shadow: none;
   border: none;
   border-radius: 0;
@@ -188,6 +188,7 @@
   color: grey;
   font-size: 20px;
   margin-right: 0.5em;
+  margin-left: 0.5em;
 }
 @keyframes change_scale {
   0% {

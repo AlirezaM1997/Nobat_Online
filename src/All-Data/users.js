@@ -12,6 +12,7 @@ const users = [
     gender: "men",
     phoneNumber: "09124540120",
     img: "https://randomuser.me/api/portraits/men/32.jpg",
+    credit : 100000,
     allApointments: {
       history: [
         {

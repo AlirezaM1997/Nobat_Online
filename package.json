@@ -23,6 +23,7 @@
     "bootstrap-offcanvas": "^1.0.0",
     "dayjs-jalali": "^0.0.2",
     "formik": "^2.2.9",
+    "goober": "^2.1.8",
     "heroicons-react": "^1.4.1",
     "persian-date-picker-mj": "^1.8.0",
     "persianyup": "^1.7.17",

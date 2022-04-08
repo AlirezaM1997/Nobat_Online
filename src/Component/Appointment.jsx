@@ -3,100 +3,215 @@ import { useAllState } from "../Provider";
 import { useState, useEffect } from "react";
 import CommentsBlock from "simple-react-comments";
 import commentsData from "../commentsData";
-import MultiStep from 'react-multistep'
+// import MultiStep from 'react-multistep'
+import MultiStep from "./MultiStep";
 import data from "../All-Data/data";
 import { DynamicStar } from "react-dynamic-star";
+import users from "../All-Data/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowCircleDown,
   faArrowLeft,
   faLocationDot,
   faMoneyCheck,
+  faMoneyCheckAlt,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+
 export default function Appointment() {
   const { allDoctors } = useAllState(data);
   const { currentAppoin } = useAllState();
   const { setCurrentAppoin } = useAllState();
-  const [selectedTime, setSelectedTime] = useState("");
+  const { selectedTime } = useAllState("");
+  const { setSelectedTime } = useAllState();
+  const { currentUser } = useAllState();
 
-  // console.log(selectedTime);
-  const { auth } = useAllState();
-
-
+  const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
-    if (selectedTime !== "") {
-      let scrollDiv = document.getElementById("getAppoinRow").offsetTop;
-      window.scrollTo({ top: scrollDiv - 400, behavior: "smooth" });
+    if (scroll) {
+      let scrollDiv = document.getElementById("detailOfAppoint").offsetTop;
+      window.scrollTo({ top: scrollDiv - 300, behavior: "smooth" });
     }
+
+    // document.getElementById("detailOfAppoint").scrollIntoView();
   });
   const makeDate = (s) => {
     let n = String(s);
     let arr = [n.slice(0, 4), n.slice(4, 6), n.slice(6, 8)];
     return `${arr[0]}/${arr[1]}/${arr[2]}`;
   };
-
+  console.log(currentAppoin);
   const currentDocTimes = allDoctors
     .filter((item) => item.id === currentAppoin)
     .map((item) => item.date);
+
   const UpdateTable = () => {
+    setScroll(false);
     let values = Object.values(currentDocTimes[0]);
     let keys = Object.keys(currentDocTimes[0]);
-    return keys.map((key, index) => {
-      return (
-        <table dir="rtl">
-          <tr>
-            <th className="text-center bg-info p-2" key={index}>
-              {makeDate(key)}
-            </th>
-            {values[index].map((value) => {
-              return (
-                <td>
-                  <button
-                    disabled={false}
-                    className={`table-btn ${
-                      selectedTime === key + value ? "bg-warning" : ""
-                    }`}
-                    value={key + value}
-                    id={key + value}
-                    onClick={(e) => setSelectedTime(e.target.value)}
-                  >
-                    {value}
-                  </button>
-                </td>
-              );
-            })}
-          </tr>
-        </table>
-      );
-    });
+
+    return (
+      <>
+        <div className="d-flex justify-content-center flex-column align-items-center mb-3">
+          <h5 className="text-center py-2 px-3 text-white bg-primary chooseAppoin">
+            لطفا از بین ساعت های فعال یکی را انتخاب نمایید
+          </h5>
+          <FontAwesomeIcon
+            className="arrowDown my-3 text-success"
+            icon={faArrowCircleDown}
+          />
+        </div>
+        {keys.map((key, index) => {
+          return (
+            <table dir="rtl">
+              <tr>
+                <th className="text-center bg-info p-2" key={index}>
+                  {makeDate(key)}
+                </th>
+                {values[index].map((value) => {
+                  return (
+                    <td>
+                      <button
+                        disabled={false}
+                        className={`table-btn ${
+                          selectedTime === key + value ? "bg-warning" : ""
+                        }`}
+                        value={key + value}
+                        id={key + value}
+                        onClick={(e) => setSelectedTime(e.target.value)}
+                      >
+                        {String(value)
+                          .match(/[a-zA-Z]+|[0-9]+/g)
+                          .join(" ")
+                          .replace("AM", "صبح")
+                          .replace("PM", "بعدازظهر")}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            </table>
+          );
+        })}
+      </>
+    );
   };
+  const DetailOfAppointment = () => {
+    setScroll(true);
+    const doctorName = allDoctors
+      .filter((item) => item.id === currentAppoin)
+      .map((item) => item.fname + " " + item.lname);
+    const a = String(selectedTime).slice(0, 8);
+    console.log(a);
+    const b = [a.slice(0, 4), a.slice(4, 6), a.slice(6, 8)];
+    const date = b[0] + "/" + b[1] + "/" + b[2];
+    const time = String(selectedTime)
+      .slice(8)
+      .match(/[a-zA-Z]+|[0-9]+/g)
+      .join(" ")
+      .replace("AM", "صبح")
+      .replace("PM", "بعدازظهر");
+    return (
+      <>
+        <div className="container p-5 detailOfAppointment" id="detailOfAppoint">
+          <div className="row text-center">
+            <div>
+              نوبت شما برای دکتر{" "}
+              <span>
+                <b>{doctorName}</b>
+              </span>{" "}
+              در تاریخ{" "}
+              <span>
+                <b>{date}</b>
+              </span>{" "}
+              و ساعت{" "}
+              <span>
+                <b>{time}</b>
+              </span>{" "}
+              ثبت خواهد شد
+            </div>
+          </div>
+          <div className="row text-center mt-4">
+            <div>
+              حداقل{" "}
+              <span>
+                <b> 15 دقیقه </b>
+              </span>{" "}
+              قبل از ساعت فوق در مطب حضور داشته باشید{" "}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const Checkout = () => {
+    setScroll(false);
+    const visit = allDoctors
+      .filter((item) => item.id === currentAppoin)
+      .map((item) => item.visit);
+    const credit = users
+      .filter((item) => item.username === currentUser.userNameOfUser)
+      .map((i) => i.credit);
+    return (
+      <>
+        <div className="container checkout">
+          <div
+            className="row d-flex align-items-center justify-content-center text-center my-3"
+          >
+            <h4 className="p-0 pb-2 checkoutTitle">پرداخت ویزیت</h4>
+
+            <FontAwesomeIcon
+              className="chechoutIcon"
+              icon={faMoneyCheckAlt}
+            ></FontAwesomeIcon>
+          </div>
+          <div className="row d-flex justify-content-between">
+            <div className="checkoutItem">
+              مبلغ ویزیت :{" "}
+              <span>
+                <b>{visit}</b>
+              </span>{" "}
+              تومان
+            </div>
+            <div className="checkoutItem ps-4">
+              موجودی حساب شما :{" "}
+              <span>
+                <b>{credit}</b>
+              </span>{" "}
+              تومان
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   const steps = [
-    {name: 'StepOne', component: <UpdateTable/>},
-    {name: 'StepTwo', component: <UpdateTable/>},
-    // {name: 'StepThree', component: <StepThree/>},
-    // {name: 'StepFour', component: <StepFour/>}
+    { name: "StepOne", component: <UpdateTable /> },
+    { name: "StepTwo", component: <DetailOfAppointment /> },
+    { name: "StepThree", component: <Checkout /> },
+    { name: "StepFour", component: <UpdateTable /> },
   ];
 
   return (
     <>
       <div>
-        <Link to={"/result"} className="">
-          <div className="m-3 text-center text-md-start backToResult">
-            {" "}
-            <FontAwesomeIcon className="ms-1" icon={faArrowLeft} /> بازگشت به
-            نتایج جستجو
-          </div>
-        </Link>
+        <div className="m-3 text-center text-md-start backToResult">
+          <Link to={"/result"} className="">
+            <FontAwesomeIcon className="me-1" icon={faArrowLeft} />
+            بازگشت به نتایج جستجو
+          </Link>
+        </div>
         <div className="appoinContent">
           <div className="container">
             {allDoctors
               .filter((item) => item.id === currentAppoin)
               .map((item) => (
                 <div className="shadow-lg bg-white appoinBox">
-                  <div className="cover-bg p-3 p-lg-4 ">
+                  <div className="cover-bg p-3 p-lg-4 pb-lg-0">
                     <div className="row">
                       <div className="col-lg-4 col-md-5 d-flex flex-column align-items-center">
                         <div>
@@ -131,8 +246,8 @@ export default function Appointment() {
                       </div>
                     </div>
                   </div>
-                  <div className="row p-2">
-                    <div className="col px-4">
+                  <div className="row p-4">
+                    <div className="col px-4 moreInfoDoc">
                       <div className="text-md-end text-center mb-3 d-flex align-items-center justify-content-center justify-content-md-end">
                         {`تومان`}{" "}
                         <b className="mx-1">
@@ -164,47 +279,14 @@ export default function Appointment() {
                     </div>
                   </div>
 
-                  
                   <div className="getAppoin-section d-flex justify-content-center px-3 px-lg-4">
                     <div className="row">
-
-                  <MultiStep activeStep={1} showNavigation={true} steps={steps}/>
-
-                      {/* <h5 className="text-center py-2 px-3 text-white bg-primary chooseAppoin">
-                        لطفا از بین ساعت های فعال یکی را انتخاب نمایید
-                      </h5>
-                      <FontAwesomeIcon
-                        className="arrowDown my-3 text-success"
-                        icon={faArrowCircleDown}
-                      /> */}
+                      <MultiStep
+                        activeStep={0}
+                        showNavigation={true}
+                        steps={steps}
+                      />
                     </div>
-                    {/* <div className="row mb-4">
-                      <div className="col d-flex justify-content-center">
-                        <table dir="rtl">
-                          <UpdateTable />
-                        </table>
-                      </div>
-                    </div> */}
-                    {/* <div
-                      className={`row mb-2 align-items-center ${
-                        selectedTime === "" ? "d-none" : ""
-                      }`}
-                      id="getAppoinRow"
-                    >
-                      <div className="col d-flex flex-column justify-content-center align-items-center">
-                        <FontAwesomeIcon
-                          className="arrowDown mb-3 text-warning"
-                          icon={faArrowCircleDown}
-                        />
-                        <button
-                          className="getAppoinBtn"
-                          // onClick={() => checkLogin()}
-                        >
-                          دریافت نوبت
-                        </button>
-                      </div>
-                    </div> */}
-                   
                   </div>
 
                   <hr className="mt-5" />
@@ -315,4 +397,3 @@ export default function Appointment() {
     </>
   );
 }
-

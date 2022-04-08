@@ -17,9 +17,9 @@ export default function Provider({ children }) {
     userNameOfUser: "",
     passwordOfUser: "",
   });
+  const [selectedTime, setSelectedTime] = useState("");
 
   return (
-
     <Context.Provider
       value={{
         flag,
@@ -44,6 +44,8 @@ export default function Provider({ children }) {
         setAuth,
         currentUser,
         setCurrentUser,
+        selectedTime,
+        setSelectedTime,
       }}
     >
       {children}
