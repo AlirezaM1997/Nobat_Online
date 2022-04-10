@@ -33,6 +33,7 @@
 .caption{
     padding: 1em 3em;
     text-align: center;
+	font-family: "Sahel";
 }
 .carousel-control-next , .carousel-control-prev {
     max-height: fit-content;

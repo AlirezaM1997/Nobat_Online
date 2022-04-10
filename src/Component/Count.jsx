@@ -41,8 +41,6 @@ export default function Count() {
           <div className=" col-md-4 ">
             <div className="count-box mb-5">
               <FontAwesomeIcon icon={faListCheck} className="icon"/>
-
-              <i className="fas fa-flask"></i>
               <span
                 data-purecounter-start="0"
                 data-purecounter-end="2543"

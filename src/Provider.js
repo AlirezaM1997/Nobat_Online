@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "./All-Data/data";
+import users from "./All-Data/users";
 const Context = React.createContext();
 
 export default function Provider({ children }) {
@@ -18,6 +19,11 @@ export default function Provider({ children }) {
     passwordOfUser: "",
   });
   const [selectedTime, setSelectedTime] = useState("");
+  // const reservedList = users.filter(
+  //   (item) => item.username === currentUser.userNameOfUser
+  // )[0];
+
+  const [updateAppoinList, setUpdateAppoinList] = useState(users);
 
   return (
     <Context.Provider
@@ -46,6 +52,8 @@ export default function Provider({ children }) {
         setCurrentUser,
         selectedTime,
         setSelectedTime,
+        updateAppoinList,
+        setUpdateAppoinList,
       }}
     >
       {children}

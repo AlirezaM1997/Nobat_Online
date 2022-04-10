@@ -1,6 +1,29 @@
+import {
+  faCircle,
+  faSquareCaretLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import data from "../All-Data/data";
 
 export default function UserProfileItem(props) {
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
+
+  useEffect(() => {
+      const a = String(props.item.date).slice(0, 8);
+      const b = [a.slice(0, 4), a.slice(4, 6), a.slice(6, 8)];
+      setDate(b[0] + "/" + b[1] + "/" + b[2]);
+      setTime(
+        String(props.item.date)
+          .slice(8)
+          .match(/[a-zA-Z]+|[0-9]+/g)
+          .join(" ")
+          .replace("AM", "صبح")
+          .replace("PM", "بعدازظهر")
+      );
+  });
+
   return (
     <div className="cart-item m-auto mb-2 ">
       <span className="top-right-dot"></span>
@@ -40,8 +63,19 @@ export default function UserProfileItem(props) {
                   </div>
                 </div>
                 <div className="row">
-                  <span className="text-dark font-weight-medium text-end">
-                    در تاریخ : {props.item.date}
+                  <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end my-2">
+                    در تاریخ : {date}
+                    <FontAwesomeIcon
+                      className="ms-2 text-danger"
+                      icon={faSquareCaretLeft}
+                    ></FontAwesomeIcon>
+                  </span>
+                  <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end">
+                    ساعت {time}
+                    <FontAwesomeIcon
+                      className="ms-2 text-info"
+                      icon={faCircle}
+                    ></FontAwesomeIcon>
                   </span>
                 </div>
               </div>

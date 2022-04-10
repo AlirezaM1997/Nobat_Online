@@ -59,6 +59,12 @@
   transition: 0.3s;
   font: 14px "Sahel";
 }
+@media (max-width: 768px) {
+  .btnHeader {
+    margin-left: 5px;
+    padding: 7px 10px;
+  }
+}
 .btnHeader:hover {
   background: #166ab5;
   color: #fff;
@@ -68,12 +74,12 @@
   outline: none;
   box-shadow: none;
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .btnHeader {
     margin: 0 15px 0 0;
     padding: 6px 18px;
   }
-}
+} */
 #logo {
   width: 75px;
 }

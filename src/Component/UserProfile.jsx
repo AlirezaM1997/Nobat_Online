@@ -6,10 +6,14 @@ import users from "../All-Data/users";
 import { useAllState } from "../Provider";
 import UserProfileItem from "./UserProfileItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBillWave, faMoneyCheck, faMoneyCheckDollar, faSquare } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faMoneyCheckDollar,
+  faSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import EditProfile from "./EditProfile";
 export default function UserProfile() {
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { updateAppoinList } = useAllState();
 
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
@@ -48,7 +52,8 @@ export default function UserProfile() {
     let doneApoinNum = 0;
     let cancelApoinNum = 0;
     let reservedApoinNum = 0;
-    users
+    let accountCreditAmount = 0;
+    updateAppoinList
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map(
         (i) =>
@@ -56,7 +61,7 @@ export default function UserProfile() {
             i.allApointments.history.length + i.allApointments.reserved.length)
       );
     setAllApointment(allApoinNum);
-    users
+    updateAppoinList
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map(
         (item) =>
@@ -65,7 +70,7 @@ export default function UserProfile() {
           ).length)
       );
     setDoneApointment(doneApoinNum);
-    users
+    updateAppoinList
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map(
         (item) =>
@@ -74,74 +79,89 @@ export default function UserProfile() {
           ).length)
       );
     setCancelApointment(cancelApoinNum);
-    users
+    updateAppoinList
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map((item) => (reservedApoinNum = item.allApointments.reserved.length));
     setReservedApointment(reservedApoinNum);
+    updateAppoinList
+      .filter((item) => item.username === currentUser.userNameOfUser)
+      .map((item) => (accountCreditAmount = item.credit));
+    setAccountCredit(accountCreditAmount);
   }, []);
 
+  const Summary = () => {
+    return (
+      <>
+        <div className="summary p-xl-4 p-3">
+          <div className="row d-flex justify-content-between mb-2">
+            <div className="summaryItem">{allApointment}</div>
+            <div className="text-end summaryItem">
+              کل نوبت ها
+              <FontAwesomeIcon
+                className="text-warning ms-2 squareIco"
+                icon={faSquare}
+              ></FontAwesomeIcon>
+            </div>
+          </div>
+          <div className="row d-flex justify-content-between mb-2">
+            <div className="summaryItem">{doneApointment}</div>
+
+            <div className="text-end summaryItem">
+              نوبت های انجام شده
+              <FontAwesomeIcon
+                className="text-warning ms-2 squareIco"
+                icon={faSquare}
+              ></FontAwesomeIcon>
+            </div>
+          </div>
+          <div className="row d-flex justify-content-between mb-2">
+            <div className="summaryItem">{cancelApointment}</div>
+            <div className="text-end summaryItem">
+              نوبت های کنسل شده
+              <FontAwesomeIcon
+                className="text-warning ms-2 squareIco"
+                icon={faSquare}
+              ></FontAwesomeIcon>
+            </div>
+          </div>
+          <div className="row d-flex justify-content-between mb-2">
+            <div className="summaryItem">{reservedApointment}</div>
+            <div className="text-end summaryItem">
+              نوبت های رزرو شده
+              <FontAwesomeIcon
+                className="text-warning ms-2 squareIco"
+                icon={faSquare}
+              ></FontAwesomeIcon>
+            </div>
+          </div>
+          <hr></hr>
+          <div className="row d-flex justify-content-between">
+            <div className="d-flex summaryItem">
+              {" "}
+              <span className="me-2"> تومان </span>{" "}
+              <span> {accountCredit}</span>
+            </div>
+            <div className="text-end summaryItem d-flex align-items-center">
+              <span>اعتبار حساب</span>
+              <FontAwesomeIcon
+                className="text-danger ms-2 squareIcoCredit"
+                icon={faMoneyCheckDollar}
+              ></FontAwesomeIcon>
+            </div>
+          </div>
+        </div>
+        <div className="summary p-5 mt-4"></div>
+      </>
+    );
+  };
   return (
     <div className="mw-100">
-      <div className="container back-prof mt-5 ">
+      <div className="container back-prof mt-5 py-xl-3 py-md-2 px-xl-4 px-lg-3 p-4">
         <div className="row d-flex justify-content-center ">
-          <div className="col-lg-4">
-            <div className="summary p-3">
-              <div className="row d-flex justify-content-between mb-2">
-                <div className="summaryItem">{allApointment}</div>
-                <div className="text-end summaryItem">
-                  کل نوبت ها
-                  <FontAwesomeIcon
-                    className="text-warning ms-2 squareIco"
-                    icon={faSquare}
-                  ></FontAwesomeIcon>
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between mb-2">
-                <div className="summaryItem">{doneApointment}</div>
-
-                <div className="text-end summaryItem">
-                  نوبت های انجام شده
-                  <FontAwesomeIcon
-                    className="text-warning ms-2 squareIco"
-                    icon={faSquare}
-                  ></FontAwesomeIcon>
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between mb-2">
-                <div className="summaryItem">{cancelApointment}</div>
-                <div className="text-end summaryItem">
-                  نوبت های کنسل شده
-                  <FontAwesomeIcon
-                    className="text-warning ms-2 squareIco"
-                    icon={faSquare}
-                  ></FontAwesomeIcon>
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between mb-2">
-                <div className="summaryItem">{reservedApointment}</div>
-                <div className="text-end summaryItem">
-                  نوبت های رزرو شده
-                  <FontAwesomeIcon
-                    className="text-warning ms-2 squareIco"
-                    icon={faSquare}
-                  ></FontAwesomeIcon>
-                </div>
-              </div>
-              <hr></hr>
-              <div className="row d-flex justify-content-between">
-                <div className="summaryItem">{accountCredit}</div>
-                <div className="text-end summaryItem">
-                  اعتبار حساب
-                  <FontAwesomeIcon
-                    className="text-danger ms-2 squareIcoCredit"
-                    icon={faMoneyCheckDollar}
-                  ></FontAwesomeIcon>
-                </div>
-              </div>
-            </div>
-            <div className="summary p-5 mt-4"></div>
+          <div className="col-lg-4 col-md-5 d-lg-block d-md-none d-block order-lg-0 order-2 ">
+            <Summary/>
           </div>
-          <div className="col-lg-5 pb-5 order-lg-0 order-1">
+          <div className="col-lg-5 col-md-7 pb-5 order-lg-1 order-md-0 order-1 ">
             {state.history ? (
               <h5 className="text-end mb-3 p-3 bg-warning titleProf">
                 تاریخچه نوبت ها
@@ -165,21 +185,8 @@ export default function UserProfile() {
             ) : (
               ""
             )}
-            {state.setting
-              ? users
-                  .filter(
-                    (item) => item.username === currentUser.userNameOfUser
-                  )
-                  .map((item) =>
-                    item.allApointments.map((item, index) => (
-                      <div key={index}>
-                        
-                      </div>
-                    ))
-                  )
-              : ""}
             {state.history
-              ? users
+              ? updateAppoinList
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
@@ -192,7 +199,7 @@ export default function UserProfile() {
                   )
               : ""}
             {state.canceled
-              ? users
+              ? updateAppoinList
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
@@ -207,7 +214,7 @@ export default function UserProfile() {
                   )
               : ""}
             {state.reserved
-              ? users
+              ? updateAppoinList
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
@@ -219,11 +226,38 @@ export default function UserProfile() {
                     ))
                   )
               : ""}
+            {state.setting
+              ? updateAppoinList
+                  .filter(
+                    (item) => item.username === currentUser.userNameOfUser
+                  )
+                  .map((item, index) => <EditProfile item={item} />)
+              : ""}
+            {state.credit
+              ? updateAppoinList
+                  .filter(
+                    (item) => item.username === currentUser.userNameOfUser
+                  )
+                  .map((item, index) => (
+                    <div className="container p-2">
+                      <div className="row" dir="rtl">
+                        <div>
+                          اعتبار حساب شما : <span>{item.credit}</span>
+                        </div>
+                      </div>
+                      <div className="row d-flex justify-content-center">
+                        <div className="col-md-5 my-4">
+                          <button className="">افزایش اعتبار</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+              : ""}
           </div>
-          <div className="col-lg-3 col-12 pb-5 order-lg-1 order-0 dashboard">
+          <div className="col-lg-3 col-md-5 pb-5 order-lg-2 order-md-1 order-0 dashboard">
             <div className="author-card pb-2">
               <div className="author-card-cover"></div>
-              {users
+              {updateAppoinList
                 .filter((item) => item.username === currentUser.userNameOfUser)
                 .map((item) => (
                   <div className="author-card-profile d-flex  justify-content-end ">
@@ -306,6 +340,11 @@ export default function UserProfile() {
                 </button>
               </nav>
             </div>
+            <div className="d-lg-none d-md-block d-none mt-5">
+          <Summary/>
+
+            </div>
+
           </div>
         </div>
       </div>

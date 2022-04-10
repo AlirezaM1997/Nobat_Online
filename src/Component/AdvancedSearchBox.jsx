@@ -20,7 +20,7 @@ export default function AdvancedSearchBox(props) {
   const { setAdSearchName } = useAllState();
   const { adSearchExp } = useAllState();
   const { setAdSearchExp } = useAllState();
-  const { workingDay } = useAllState('');
+  const { workingDay } = useAllState("");
   const { setWorkingDay } = useAllState();
   const { allDoctors } = useAllState(data);
 
@@ -69,7 +69,7 @@ export default function AdvancedSearchBox(props) {
     },
   ];
   const handleChangeDay = (e) => {
-    setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : '');
+    setWorkingDay(Array.isArray(e) ? e.map((x) => x.value) : "");
   };
   return (
     <>
@@ -141,7 +141,10 @@ export default function AdvancedSearchBox(props) {
             />
           </div>
           <div className="row w-75 m-auto p-3">
-            <button className="adSearchBtn" onClick={() => setAdvancedRusultBtn()}>
+            <button
+              className="adSearchBtn"
+              onClick={() => setAdvancedRusultBtn()}
+            >
               جستجو
             </button>
           </div>

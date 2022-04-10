@@ -92,7 +92,7 @@ const getButtonsState = (indx, length) => {
     };
   } else {
     return {
-      showPreviousBtn: true,
+      showPreviousBtn: false,
       showNextBtn: false,
     };
   }
@@ -132,34 +132,23 @@ export default function MultiStep(props) {
   const previous = () =>
     setStepState(compState > 0 ? compState - 1 : compState);
 
-  const handleOnClick = (evt) => {
-    if (
-      evt.currentTarget.value === props.steps.length - 1 &&
-      compState === props.steps.length - 1
-    ) {
-      setStepState(props.steps.length);
-    } else {
-      setStepState(evt.currentTarget.value);
-    }
-  };
-
   const renderSteps = () =>
     props.steps.map((s, i) => {
       if (stylesState[i] === "todo") {
         return (
-          <Li className={Todo} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Todo} key={i} value={i}>
             <span>{i + 1}</span>
           </Li>
         );
       } else if (stylesState[i] === "doing") {
         return (
-          <Li className={Doing} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Doing} key={i} value={i}>
             <span>{i + 1}</span>
           </Li>
         );
       } else {
         return (
-          <Li className={Done} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Done} key={i} value={i}>
             <span>{i + 1}</span>
           </Li>
         );
@@ -174,7 +163,7 @@ export default function MultiStep(props) {
             buttonsState.showPreviousBtn ? props.prevStyle : { display: "none" }
           }
           onClick={previous}
-          className="bg-warning text-dark m-2 rounded border-0 px-4 py-2"
+          className="btn btn-warning text-dark m-2 rounded border-0 px-4 py-2"
         >
           مرحله قبل
         </button>
@@ -187,7 +176,7 @@ export default function MultiStep(props) {
           className={`${
             selectedTime === ""
               ? "bg-secondary bg-gradient text-white-50"
-              : "bg-success"
+              : "btn btn-success"
           } text-white m-2 rounded border-0 px-4 py-2`}
           disabled={selectedTime === "" ? true : false}
         >

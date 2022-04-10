@@ -131,8 +131,8 @@ export default function DoctorRegister() {
                             <option value={""} disabled>
                               انتخاب کنید
                             </option>
-                            <option value="woman">زن</option>
-                            <option value="man">مرد</option>
+                            <option value="female">زن</option>
+                            <option value="male">مرد</option>
                           </select>
                           {errors.gender && (
                             <p className="text-danger text-center genderError mb-0">
@@ -207,11 +207,6 @@ export default function DoctorRegister() {
                           {...register("city", { required: true })}
                           autocomplete="off"
                         />
-                        {errors.city && (
-                          <span className=" text-danger">
-                            پر کردن این فیلد الزامی است
-                          </span>
-                        )}
                       </div>
                     </div>
                     <div className="row mb-3 align-items-center">

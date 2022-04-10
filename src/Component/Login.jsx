@@ -2,13 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Style/Login.css";
 import { useAllState } from "../Provider";
 import { useState } from "react";
-import users from "../All-Data/users";
+// import users from "../All-Data/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Login() {
   const navigateToUser = useNavigate();
   const { setAuth } = useAllState(false);
+  const { updateAppoinList } = useAllState();
   const [hintUserInput, setHintUserInput] = useState(false);
   const [hintUserWrong, setHintUserWrong] = useState(false);
   const { currentUser, setCurrentUser } = useAllState({
@@ -27,7 +28,7 @@ export default function Login() {
     ) {
       setHintUserInput(true);
     } else {
-      const usercheck = users.find(
+      const usercheck = updateAppoinList.find(
         (user) =>
           user.username === currentUser.userNameOfUser &&
           user.password === currentUser.passwordOfUser
