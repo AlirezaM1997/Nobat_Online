@@ -1,27 +1,50 @@
-import {
-  faCircle,
-  faSquareCaretLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faSquareCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import data from "../All-Data/data";
+import { useAllState } from "../Provider";
 
 export default function UserProfileItem(props) {
   const [date, setDate] = useState();
   const [time, setTime] = useState();
 
+  const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { updateAppoinList } = useAllState();
+  const { setUpdateAppoinList } = useAllState();
+  // const { setRender } = useAllState();
+
+  const getIndexById = (id) => {
+    const arr = updateAppoinList
+      .filter((item) => item.username === currentUser.userNameOfUser)[0].allApointments.reserved
+    return arr.findIndex((item) => item.uniqId === id);
+  };
+  const cancelAppoin = (id) => {
+    const array = [...updateAppoinList]
+    console.log(array);
+    const arr = updateAppoinList
+      .filter((item) => item.username === currentUser.userNameOfUser)[0].allApointments.reserved
+      console.log(arr);
+    const p = getIndexById(id);
+    arr.splice(p, 1);
+    // setRender(true)
+    updateAppoinList
+      .filter((item) => item.username === currentUser.userNameOfUser)[0].allApointments.reserved = arr
+    // setUpdateAppoinList(arr)
+  };
+// console.log('rendered');
   useEffect(() => {
-      const a = String(props.item.date).slice(0, 8);
-      const b = [a.slice(0, 4), a.slice(4, 6), a.slice(6, 8)];
-      setDate(b[0] + "/" + b[1] + "/" + b[2]);
-      setTime(
-        String(props.item.date)
-          .slice(8)
-          .match(/[a-zA-Z]+|[0-9]+/g)
-          .join(" ")
-          .replace("AM", "صبح")
-          .replace("PM", "بعدازظهر")
-      );
+
+    const a = String(props.item.date).slice(0, 8);
+    const b = [a.slice(0, 4), a.slice(4, 6), a.slice(6, 8)];
+    setDate(b[0] + "/" + b[1] + "/" + b[2]);
+    setTime(
+      String(props.item.date)
+        .slice(8)
+        .match(/[a-zA-Z]+|[0-9]+/g)
+        .join(" ")
+        .replace("AM", "صبح")
+        .replace("PM", "بعدازظهر")
+    );
   });
 
   return (
@@ -47,7 +70,10 @@ export default function UserProfileItem(props) {
                       )
                     ) : (
                       <div>
-                        <button className="px-3 py-1 cancelAppoinBtn">
+                        <button
+                          className="px-3 py-1 cancelAppoinBtn"
+                          onClick={() => cancelAppoin(props.item.uniqId)}
+                        >
                           کنسل
                         </button>
                       </div>

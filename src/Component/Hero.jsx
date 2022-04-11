@@ -138,7 +138,7 @@ export default function Hero() {
                           نام پزشک مورد نظر خود را وارد کنید{" "}
                         </h5>
                         <input
-                          className="bg-light py-2 my-2 w-100 hero-input rounded border-0"
+                          className="bg-light py-2 my-3 w-100 hero-input rounded border-0"
                           dir="rtl"
                           value={searchDoc}
                           onChange={(e) => {

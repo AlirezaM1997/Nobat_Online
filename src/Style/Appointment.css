@@ -244,3 +244,32 @@ button:active {
 .goToLoginFromPay:active{
   transform: scale(0.9);
 }
+.commentName::after{
+  content: '\f044';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: rgb(0 90 255);
+  text-align: center;
+  font-size: 1.3rem;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+.comments-section h2{
+  border-bottom: solid 3px #8fbc54;
+  padding-bottom: 0.4em;
+  font-weight: bold;
+  width: fit-content;
+}
+.comment-section h6::after{
+  content: '\f086';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: rgb(0 90 255);
+  text-align: center;
+  font-size: 1.3rem;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+#commentText{
+  height: 150px;
+}

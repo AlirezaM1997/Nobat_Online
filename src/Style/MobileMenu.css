@@ -21,6 +21,7 @@
 }
 .offcanvas-title {
   font: 1.5em "Samim";
+  margin: auto;
 }
 .offcanvas-body a {
   font: 1em "Samim";
@@ -54,5 +55,17 @@
 }
 #mobile-btn-nav:hover {
   color: white ;
-
+}
+@media (max-width: 532px) {
+  .offcanvasHeader{
+justify-content: space-between;
+  }
+}
+@media (min-width: 533px) {
+  .offcanvasHeader{
+justify-content: flex-end;
+  }
+  #accountMobLink{
+    display: none;
+  }
 }

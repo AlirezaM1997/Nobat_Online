@@ -24,6 +24,7 @@ export default function Provider({ children }) {
   // )[0];
 
   const [updateAppoinList, setUpdateAppoinList] = useState(users);
+  const [render, setRender] = useState(false);
 
   return (
     <Context.Provider
@@ -54,6 +55,8 @@ export default function Provider({ children }) {
         setSelectedTime,
         updateAppoinList,
         setUpdateAppoinList,
+        render,
+        setRender,
       }}
     >
       {children}

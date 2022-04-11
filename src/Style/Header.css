@@ -8,35 +8,32 @@
     display: none;
   }
 }
-#uy {
-  transition: all 0.5s !important;
-}
 #header {
   z-index: 997;
   padding: 15px 0;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
   top: -80px;
-  animation: top 0.5s;
-  transition: all 0.5s ease-in-out;
 }
-#header.sticky {
-  position: sticky;
+.headroom {
   top: 0;
-  animation: top 0.5s;
-  transition: top 0.5s ease-in-out;
+  left: 0;
+  right: 0;
+  z-index: 150;
 }
-.notSticky {
-  animation: top 1s !important;
-  transition: all 1s ease-in-out !important;
-  -webkit-transition: all 0.5s;
+.headroom--unfixed {
+  position: relative;
+  transform: translateY(0);
 }
-@keyframes top {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: -80px;
-  }
+.headroom--scrolled {
+  transition: transform 400ms ease-in-out;
+}
+.headroom--unpinned {
+  position: fixed;
+  transform: translateY(-100%);
+}
+.headroom--pinned {
+  position: fixed;
+  transform: translateY(0%);
 }
 .logo {
   line-height: 1;

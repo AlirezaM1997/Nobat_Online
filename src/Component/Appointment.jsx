@@ -1,8 +1,9 @@
 import "../Style/Appointment.css";
 import { useAllState } from "../Provider";
 import { useState, useEffect } from "react";
-import CommentsBlock from "simple-react-comments";
-import commentsData from "../commentsData";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import MultiStep from "./MultiStep";
 import data from "../All-Data/data";
 import { DynamicStar } from "react-dynamic-star";
@@ -30,6 +31,36 @@ export default function Appointment() {
   const [scroll, setScroll] = useState(false);
   const [pay, setPay] = useState(false);
 
+  const validationSchema = Yup.object().shape({
+    commentName: Yup.string("لطفا یک نام وارد نمایید").required(
+      "لطفا یک نام وارد نمایید"
+    ),
+    commentText: Yup.string("لطفا نظر خود را بنویسید").required(
+      "لطفا نظر خود را بنویسید"
+    ),
+  });
+
+  const { register, handleSubmit, reset, formState, setValue } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  const { errors } = formState;
+  const [currentNameComment, setCurrentNameComment] = useState();
+  const [currentTextComment, setCurrentTextComment] = useState();
+  const onSubmit = (data) => {
+    const C = allDoctors.filter((item) => item.id === currentAppoin)[0]
+      .comments;
+    C.push({
+      name: data.commentName,
+      date: "1401/01/20",
+      text: data.commentText,
+    });
+    console.log(data);
+  };
+
+  const UID = () => {
+    return new Date().getTime() + String(Math.random()).slice(3, 9);
+  };
+
   useEffect(() => {
     if (scroll) {
       let scrollDiv = document.getElementById("detailOfAppoint").offsetTop;
@@ -42,9 +73,8 @@ export default function Appointment() {
       )[0].allApointments.reserved;
       const docId = allDoctors.filter((item) => item.id === currentAppoin)[0]
         .id;
-        console.log(docId);
-      H.push({ cancel: false, date: selectedTime, id: docId });
-      console.log(docId);
+
+      H.push({ uniqId: UID(), cancel: false, date: selectedTime, id: docId });
     }
   });
   const makeDate = (s) => {
@@ -375,100 +405,100 @@ export default function Appointment() {
                   </div>
 
                   <hr className="mt-5" />
-                  <div className="work-experience-section px-3 px-lg-4">
-                    <h2 className="h3 mb-4 text-end">نظرات کاربران</h2>
-                    {/* <CommentsBlock
-                  // comments={commentsData}
-                  // signinUrl={"/signin"}
-                  isLoggedIn
-                  reactRouter // set to true if you are using react-router
-                  // onSubmit={(text) => {
-                  //   if (text.length > 0) {
-                  //     this.setState({
-                  //       comments: [
-                  //         ...commentsData,
-                  //         {
-                  //           authorUrl: "#",
-                  //           avatarUrl: "#avatarUrl",
-                  //           createdAt: new Date(),
-                  //           fullName: "Name",
-                  //           text,
-                  //         },
-                  //       ],
-                  //     });
-                  //     console.log("submit:", text);
-                  //   }
-                  // }}
-                /> */}
+                  <div className="comments-section px-3 px-lg-4">
+                    <div dir="rtl">
+                      <h2 className="mb-4">نظرات کاربران</h2>
+                    </div>
+
                     <div className="comments">
                       {item.comments.map((i) => (
                         <div className="comments-card comments-card-primary card shadow-sm">
                           <div className="comments-body">
-                            <div className="h5 mb-2">{i.name}</div>
+                            <div className="h5 mb-2">
+                              <span className="commentName">{i.name}</span>
+                              <span></span>
+                            </div>
                             <div className="text-muted text-small mb-2">
                               {i.date}
                             </div>
-                            <div>{i.text}</div>
+                            <blockquote>{i.text}</blockquote>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <hr className="" />
-                  <div
-                    className="contant-section px-3 px-lg-4 pb-4"
-                    id="contact"
-                  >
-                    <h2 className="h3 text-end mb-3">نظرات</h2>
-                    <h6 className="text-end mb-3">
+                  <hr />
+                  <div className="comment-section pb-4 px-4">
+                    <h6 className="text-end my-3">
                       لطفا نظر خود را ثبت نمایید
                     </h6>
-                    <div className="row">
-                      <div className="col-md-7 ">
+                    <div
+                      className="row d-flex justify-content-center"
+                      dir="rtl"
+                    >
+                      <div className="col-md-8 ">
                         <div className="my-2">
-                          <form
-                            action="https://formspree.io/your@email.com"
-                            method="POST"
-                          >
+                          <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="row">
                               <div className="col-6">
+                                <label
+                                  className="form-label"
+                                  htmlFor="commentName"
+                                >
+                                  نام شما
+                                </label>
                                 <input
-                                  className="form-control"
                                   type="text"
-                                  id="name"
-                                  name="name"
-                                  placeholder="Your Name"
-                                  required
+                                  id="commentName"
+                                  name="commentName"
+                                  dir="rtl"
+                                  // value={currentNameComment}
+                                  // onChange={e=>setCurrentNameComment(e.target.value)}
+                                  {...register("commentName")}
+                                  className={`form-control ${
+                                    errors.commentName ? "is-invalid" : ""
+                                  }`}
+                                  autocomplete="off"
                                 />
-                              </div>
-                              <div className="col-6">
-                                <input
-                                  className="form-control"
-                                  type="email"
-                                  id="email"
-                                  name="_replyto"
-                                  placeholder="Your E-mail"
-                                  required
-                                />
+                                <span className="invalid-feedback">
+                                  {errors.commentName?.message}
+                                </span>
                               </div>
                             </div>
                             <div className="form-group my-2">
+                              <label
+                                className="form-label"
+                                htmlFor="commentText"
+                              >
+                                نظر شما
+                              </label>
                               <textarea
-                                className="form-control"
-                                style={{ resize: "none" }}
-                                id="message"
-                                name="message"
-                                rows="4"
-                                placeholder="Your Message"
-                                required
+                                type="text"
+                                id="commentText"
+                                name="commentText"
+                                dir="rtl"
+                                // value={currentTextComment}
+                                // onChange={e=>setCurrentTextComment(e.target.value)}
+                                {...register("commentText")}
+                                className={`form-control ${
+                                  errors.commentText ? "is-invalid" : ""
+                                }`}
+                                autocomplete="off"
                               ></textarea>
+                              <span className="invalid-feedback">
+                                {errors.commentText?.message}
+                              </span>
                             </div>
-                            <button
-                              className="btn btn-primary mt-2"
-                              type="submit"
-                            >
-                              Send
-                            </button>
+                            <div className="row d-flex justify-content-end">
+                              <div className="col-3">
+                                <button
+                                  className="btn btn-primary mt-2 w-100"
+                                  type="submit"
+                                >
+                                  ارسال
+                                </button>
+                              </div>
+                            </div>
                           </form>
                         </div>
                       </div>

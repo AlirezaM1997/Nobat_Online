@@ -12,7 +12,7 @@ const users = [
     gender: "male",
     phoneNumber: "09124540120",
     img: "https://randomuser.me/api/portraits/men/32.jpg",
-    credit : 100000,
+    credit: 100000,
     allApointments: {
       history: [
         {
@@ -33,11 +33,13 @@ const users = [
       ],
       reserved: [
         {
+          uniqId: 4521852882,
           id: "7",
           cancel: false,
           date: "1401032510AM",
         },
         {
+          uniqId: 7841852482,
           id: "10",
           cancel: false,
           date: "1401052512AM",

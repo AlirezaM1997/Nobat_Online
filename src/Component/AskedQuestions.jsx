@@ -158,7 +158,8 @@ export default function AskedQuestions() {
                   ></FontAwesomeIcon>
                   <div className="d-flex align-items-center">
                     <p className="d-inline-block text-end">
-                      چگونه نوبت خود را کنسل کنیم؟
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم است؟
+
                     </p>
                     <FontAwesomeIcon
                       icon={faQuestion}
@@ -196,7 +197,7 @@ export default function AskedQuestions() {
                   ></FontAwesomeIcon>
                   <div className="d-flex align-items-center">
                     <p className="d-inline-block text-end">
-                      چگونه نوبت خود را کنسل کنیم؟
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم است؟
                     </p>
                     <FontAwesomeIcon
                       icon={faQuestion}

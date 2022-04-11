@@ -14,6 +14,7 @@ import EditProfile from "./EditProfile";
 export default function UserProfile() {
   const { currentUser } = useAllState({ userNameOfUser: "" });
   const { updateAppoinList } = useAllState();
+  const { setRender } = useAllState();
 
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
@@ -48,6 +49,8 @@ export default function UserProfile() {
   };
 
   useEffect(() => {
+    // setRender(false);
+
     let allApoinNum = 0;
     let doneApoinNum = 0;
     let cancelApoinNum = 0;
@@ -156,10 +159,10 @@ export default function UserProfile() {
   };
   return (
     <div className="mw-100">
-      <div className="container back-prof mt-5 py-xl-3 py-md-2 px-xl-4 px-lg-3 p-4">
+      <div className="container back-prof mt-5 py-md-3 px-xl-4 px-lg-3 p-4">
         <div className="row d-flex justify-content-center ">
           <div className="col-lg-4 col-md-5 d-lg-block d-md-none d-block order-lg-0 order-2 ">
-            <Summary/>
+            <Summary />
           </div>
           <div className="col-lg-5 col-md-7 pb-5 order-lg-1 order-md-0 order-1 ">
             {state.history ? (
@@ -221,7 +224,10 @@ export default function UserProfile() {
                   .map((item) =>
                     item.allApointments.reserved.map((item, index) => (
                       <div key={index}>
-                        <UserProfileItem item={item} state={state} />
+                        <UserProfileItem
+                          item={item}
+                          state={state}
+                        />
                       </div>
                     ))
                   )
@@ -341,10 +347,8 @@ export default function UserProfile() {
               </nav>
             </div>
             <div className="d-lg-none d-md-block d-none mt-5">
-          <Summary/>
-
+              <Summary />
             </div>
-
           </div>
         </div>
       </div>

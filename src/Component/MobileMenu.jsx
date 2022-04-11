@@ -3,13 +3,25 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useAllState } from "../Provider";
+
 import "../Style/MobileMenu.css";
 
 export default function MobileMenu() {
   const [show, setShow] = useState(false);
 
+  const { auth } = useAllState(false);
+  const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { updateAppoinList } = useAllState();
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const getIndexByUserName = (currentUsername) => {
+    return updateAppoinList.findIndex(
+      (item) => item.username === currentUsername.userNameOfUser
+    );
+  };
 
   return (
     <>
@@ -21,9 +33,27 @@ export default function MobileMenu() {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header
-          className="bg-primary d-flex justify-content-end"
+          className="bg-primary d-flex offcanvasHeader"
           closeButton
         >
+          {auth ? (
+            <Link
+              to={"/userprofile"}
+              title="حساب کاربری" id="accountMobLink"
+            >
+              <div className="d-inline-block goToAccount">
+                <img
+                  className="headerImgProf"
+                  src={updateAppoinList[getIndexByUserName(currentUser)].img}
+                ></img>
+                <span className="headerNameProf text-white">
+                  {updateAppoinList[getIndexByUserName(currentUser)].username}
+                </span>
+              </div>
+            </Link>
+          ) : (
+            ""
+          )}
           <Offcanvas.Title className="me-2 text-white h2">
             نوبت آنلاین
           </Offcanvas.Title>
@@ -106,14 +136,24 @@ export default function MobileMenu() {
               </li>
             </ul>
           </div>
-          <div className="row">
-            <div className="col-4 d-flex justify-content-center">
+          <div className={`row d-flex ${auth ? "justify-content-center" : ""}`}>
+            <div
+              className={`col-4 d-flex justify-content-center ${
+                auth ? "d-none" : ""
+              }`}
+            >
               <Link to={"/login"}>ورود کاربران</Link>
             </div>
-            <div className="col-4 d-flex justify-content-center">
-              <Link to={"/doctor-register"}>ثبت نام پزشکان</Link>
+            <div className={`col-4 d-flex justify-content-center ${
+                auth ? "col-5 bg-primary rounded" : ""
+              }`}>
+              <Link to={"/doctor-register"} className={`${
+                auth ? "text-white rounded py-2" : ""
+              }`}>ثبت نام پزشکان</Link>
             </div>
-            <div className="col-4 d-flex justify-content-center">
+            <div className={`col-4 d-flex justify-content-center ${
+                auth ? "d-none" : ""
+              }`}>
               <Link to={"/user-register"}>ثبت نام کاربران</Link>
             </div>
           </div>
