@@ -184,6 +184,32 @@
   display: none;
   opacity: 0;
 }
+.showDoctorHint {
+  display: block;
+  text-align: end;
+  animation: fade_in_show 1s;
+  color: rgb(238, 255, 0);
+  font: 0.75em "Parastoo";
+  opacity: 1;
+  margin-bottom: 0.65rem;
+}
+.hideDoctorHint {
+  display: none;
+  opacity: 0;
+}
+.showDoctorWrong {
+  display: block;
+  text-align: end;
+  animation: fade_in_show 1s;
+  color: rgb(238, 255, 0);
+  font: 0.75em "Parastoo";
+  opacity: 1;
+  margin-bottom: 0.65rem;
+}
+.hideDoctorWrong {
+  display: none;
+  opacity: 0;
+}
 .loginIcon {
   color: grey;
   font-size: 20px;

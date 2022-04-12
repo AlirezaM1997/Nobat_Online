@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import data from "./All-Data/data";
+import doctors from "./All-Data/doctors";
 import users from "./All-Data/users";
+
 const Context = React.createContext();
 
 export default function Provider({ children }) {
   const [flag, setFlag] = useState(1);
   const [searchDoc, setSearchDoc] = useState("");
   const [searchExp, setSearchExp] = useState("");
-  const [allDoctors, setAllDoctors] = useState(data);
+
+  const [allDoctors, setAllDoctors] = useState(doctors);
+  const [allUsers, setAllUsers] = useState(users);
+
   const [currentAppoin, setCurrentAppoin] = useState();
   const [noResult, setNoResult] = useState(false);
   const [adSearchName, setAdSearchName] = useState("");
   const [adSearchExp, setAdSearchExp] = useState("");
   const [workingDay, setWorkingDay] = useState("");
   const [auth, setAuth] = useState(false);
+  const [docAuth, setDocAuth] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     userNameOfUser: "",
     passwordOfUser: "",
   });
+  const [currentDoctor, setCurrentDoctor] = useState({
+    userNameOfDoctor: "",
+    passwordOfDoctor: "",
+  });
   const [selectedTime, setSelectedTime] = useState("");
-  // const reservedList = users.filter(
-  //   (item) => item.username === currentUser.userNameOfUser
-  // )[0];
 
-  const [updateAppoinList, setUpdateAppoinList] = useState(users);
-  const [render, setRender] = useState(false);
 
   return (
     <Context.Provider
@@ -53,10 +57,12 @@ export default function Provider({ children }) {
         setCurrentUser,
         selectedTime,
         setSelectedTime,
-        updateAppoinList,
-        setUpdateAppoinList,
-        render,
-        setRender,
+        allUsers,
+        setAllUsers,
+        currentDoctor,
+        setCurrentDoctor,
+        docAuth,
+        setDocAuth,
       }}
     >
       {children}

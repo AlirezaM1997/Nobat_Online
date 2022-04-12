@@ -11,7 +11,6 @@ import {
 import Select from "react-select";
 import DoctorList from "../All-Data/DoctorList";
 import { useAllState } from "../Provider";
-import data from "../All-Data/data";
 
 export default function AdvancedSearchBox(props) {
   const { flag } = useAllState();
@@ -22,7 +21,7 @@ export default function AdvancedSearchBox(props) {
   const { setAdSearchExp } = useAllState();
   const { workingDay } = useAllState("");
   const { setWorkingDay } = useAllState();
-  const { allDoctors } = useAllState(data);
+  const { allDoctors } = useAllState();
 
   const setAdvancedRusultBtn = () => {
     setFlag(3);

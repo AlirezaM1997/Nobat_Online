@@ -13,39 +13,43 @@ const users = [
     phoneNumber: "09124540120",
     img: "https://randomuser.me/api/portraits/men/32.jpg",
     credit: 100000,
-    allApointments: {
-      history: [
+    allApointments: [
         {
+          uniqId: 4521872882,
           id: "1",
           cancel: false,
           date: "1401032510AM",
+          reserved : false ,
         },
         {
+          uniqId: 4521854182,
           id: "2",
           cancel: true,
           date: "1401032510AM",
+          reserved : false ,
         },
         {
+          uniqId: 1011852882,
           id: "3",
           cancel: false,
           date: "1401032510AM",
+          reserved : false ,
         },
-      ],
-      reserved: [
         {
           uniqId: 4521852882,
           id: "7",
           cancel: false,
           date: "1401032510AM",
+          reserved : true ,
         },
         {
           uniqId: 7841852482,
           id: "10",
           cancel: false,
           date: "1401052512AM",
+          reserved : true ,
         },
       ],
-    },
   },
 ];
 export default users;

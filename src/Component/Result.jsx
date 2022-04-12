@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../Style/Result.css";
 import { useAllState } from "../Provider";
 import Image from "react-bootstrap/Image";
-import data from "../All-Data/data";
 import ResultItem from "./ResultItem";
 import DoctorList from "../All-Data/DoctorList";
 // import StickyBox from "react-sticky-box";
@@ -21,7 +20,7 @@ export default function Result() {
   const { flag } = useAllState();
   const { searchExp } = useAllState();
   const { searchDoc } = useAllState();
-  const { allDoctors } = useAllState(data);
+  const { allDoctors } = useAllState();
   const { noResult } = useAllState(false);
   const { setNoResult } = useAllState();
   // const { setFlag } = useAllState();
@@ -81,8 +80,6 @@ export default function Result() {
       }
     }
   });
-
-  console.log('rendered');
 
   return !isLoaded ? (
     <div className="text-center mt-5">

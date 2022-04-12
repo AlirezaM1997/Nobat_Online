@@ -8,17 +8,33 @@ import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Login() {
   const navigateToUser = useNavigate();
-  const { setAuth } = useAllState(false);
-  const { updateAppoinList } = useAllState();
+  const navigateToDoctor = useNavigate();
+
+  const { setAuth } = useAllState();
+  const { setDocAuth } = useAllState();
+
+  const { allUsers } = useAllState();
+  const { allDoctors } = useAllState();
+  
   const [hintUserInput, setHintUserInput] = useState(false);
   const [hintUserWrong, setHintUserWrong] = useState(false);
+  const [hintDoctorInput, setHintDoctorInput] = useState(false);
+  const [hintDoctorWrong, setHintDoctorWrong] = useState(false);
+
   const { currentUser, setCurrentUser } = useAllState({
     userNameOfUser: "",
     passwordOfUser: "",
   });
+  const { currentDoctor, setCurrentDoctor } = useAllState({
+    userNameOfDoctor: "",
+    passwordOfDoctor: "",
+  });
 
-  const changeHandler = (e) => {
+  const userHandler = (e) => {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
+  };
+  const doctorHandler = (e) => {
+    setCurrentDoctor({ ...currentDoctor, [e.target.name]: e.target.value });
   };
 
   const setRedirectToUser = () => {
@@ -28,7 +44,7 @@ export default function Login() {
     ) {
       setHintUserInput(true);
     } else {
-      const usercheck = updateAppoinList.find(
+      const usercheck = allUsers.find(
         (user) =>
           user.username === currentUser.userNameOfUser &&
           user.password === currentUser.passwordOfUser
@@ -36,11 +52,36 @@ export default function Login() {
       if (usercheck) {
         setHintUserWrong(false);
         setHintUserInput(false);
+        setDocAuth(false);
         setAuth(true);
         navigateToUser("/userprofile");
       } else {
         setHintUserInput(false);
         setHintUserWrong(true);
+      }
+    }
+  };
+  const setRedirectToDoctor = () => {
+    if (
+      currentDoctor.userNameOfDoctor === "" ||
+      currentDoctor.passwordOfDoctor === ""
+    ) {
+      setHintDoctorInput(true);
+    } else {
+      const doctorcheck = allDoctors.find(
+        (user) =>
+          user.username === currentDoctor.userNameOfDoctor &&
+          user.password === currentDoctor.passwordOfDoctor
+      );
+      if (doctorcheck) {
+        setHintDoctorWrong(false);
+        setHintDoctorInput(false);
+        setAuth(false);
+        setDocAuth(true);
+        navigateToDoctor("/doctorprofile");
+      } else {
+        setHintDoctorInput(false);
+        setHintDoctorWrong(true);
       }
     }
   };
@@ -63,7 +104,7 @@ export default function Login() {
                           placeholder="نام کاربری"
                           dir="rtl"
                           value={currentUser.userNameOfUser}
-                          onChange={changeHandler}
+                          onChange={userHandler}
                         />
                         <FontAwesomeIcon icon={faUser} className="loginIcon" />
                       </div>
@@ -75,7 +116,7 @@ export default function Login() {
                           placeholder="رمز عبور"
                           dir="rtl"
                           value={currentUser.passwordOfUser}
-                          onChange={changeHandler}
+                          onChange={userHandler}
                         />
                         <FontAwesomeIcon icon={faLock} className="loginIcon" />
                       </div>
@@ -131,8 +172,11 @@ export default function Login() {
                         <input
                           className="form-control d-inline-block"
                           type="email"
+                          name="userNameOfDoctor"
                           placeholder="نام کاربری"
                           dir="rtl"
+                          value={currentDoctor.userNameOfDoctor}
+                          onChange={doctorHandler}
                         />
                         <FontAwesomeIcon icon={faUser} className="loginIcon" />
                       </div>
@@ -140,15 +184,35 @@ export default function Login() {
                         <input
                           className="form-control d-inline-block"
                           type="password"
+                          name="passwordOfDoctor"
                           placeholder="رمز عبور"
                           dir="rtl"
+                          value={currentDoctor.passwordOfDoctor}
+                          onChange={doctorHandler}
                         />
                         <FontAwesomeIcon icon={faLock} className="loginIcon" />
                       </div>
-
+                      <div
+                        className={`${
+                          hintDoctorInput ? "showDoctorHint" : "hideDoctorHint"
+                        }`}
+                      >
+                        لطفا نام کاربری یا رمز عبور را وارد کنید
+                      </div>
+                      <div
+                        className={`${
+                          hintDoctorWrong ? "showDoctorWrong" : "hideDoctorWrong"
+                        }`}
+                      >
+                        نام کاربری یا رمز عبور اشتباه است
+                      </div>
                       <div className="d-flex align-items-center ">
                         {/* <Link to={"#"} className="text-white"> */}
-                        <button className="btn signin" id="signin-doctor">
+                        <button
+                          className="btn signin"
+                          id="signin-doctor"
+                          onClick={setRedirectToDoctor}
+                        >
                           ورود
                         </button>
                         {/* </Link> */}

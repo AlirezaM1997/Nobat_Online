@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
-import "../Style/UserProfile.css";
-import Header2 from "./Header2";
+import "../Style/Profile.css";
 import { useEffect, useState } from "react";
-import users from "../All-Data/users";
 import { useAllState } from "../Provider";
-import UserProfileItem from "./UserProfileItem";
+import ProfileItem from "./ProfileItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMoneyCheckDollar,
@@ -13,8 +10,7 @@ import {
 import EditProfile from "./EditProfile";
 export default function UserProfile() {
   const { currentUser } = useAllState({ userNameOfUser: "" });
-  const { updateAppoinList } = useAllState();
-  const { setRender } = useAllState();
+  const { allUsers } = useAllState();
 
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
@@ -48,51 +44,47 @@ export default function UserProfile() {
     }
   };
 
-  useEffect(() => {
-    // setRender(false);
-
+  const Summary = () => {
     let allApoinNum = 0;
     let doneApoinNum = 0;
     let cancelApoinNum = 0;
     let reservedApoinNum = 0;
     let accountCreditAmount = 0;
-    updateAppoinList
+    allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
-      .map(
-        (i) =>
-          (allApoinNum =
-            i.allApointments.history.length + i.allApointments.reserved.length)
-      );
+      .map((i) => (allApoinNum = i.allApointments.length));
     setAllApointment(allApoinNum);
-    updateAppoinList
+    allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map(
         (item) =>
-          (doneApoinNum = item.allApointments.history.filter(
-            (item) => item.cancel === false
+          (doneApoinNum = item.allApointments.filter(
+            (item) => (item.cancel === false && item.reserved === false)
           ).length)
       );
     setDoneApointment(doneApoinNum);
-    updateAppoinList
+    allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map(
         (item) =>
-          (cancelApoinNum = item.allApointments.history.filter(
+          (cancelApoinNum = item.allApointments.filter(
             (item) => item.cancel === true
           ).length)
       );
     setCancelApointment(cancelApoinNum);
-    updateAppoinList
+    allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
-      .map((item) => (reservedApoinNum = item.allApointments.reserved.length));
+      .map(
+        (item) =>
+          (reservedApoinNum = item.allApointments.filter(
+            (item) => item.reserved === true
+          ).length)
+      );
     setReservedApointment(reservedApoinNum);
-    updateAppoinList
+    allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map((item) => (accountCreditAmount = item.credit));
     setAccountCredit(accountCreditAmount);
-  }, []);
-
-  const Summary = () => {
     return (
       <>
         <div className="summary p-xl-4 p-3">
@@ -120,7 +112,7 @@ export default function UserProfile() {
           <div className="row d-flex justify-content-between mb-2">
             <div className="summaryItem">{cancelApointment}</div>
             <div className="text-end summaryItem">
-              نوبت های کنسل شده
+              نوبت های لغو شده
               <FontAwesomeIcon
                 className="text-warning ms-2 squareIco"
                 icon={faSquare}
@@ -189,62 +181,63 @@ export default function UserProfile() {
               ""
             )}
             {state.history
-              ? updateAppoinList
+              ? allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
                   .map((item) =>
-                    item.allApointments.history.map((item, index) => (
-                      <div key={index}>
-                        <UserProfileItem item={item} state={state} />
-                      </div>
-                    ))
+                    item.allApointments
+                      .filter((item) => !item.reserved)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <ProfileItem item={item} state={state} />
+                        </div>
+                      ))
                   )
               : ""}
             {state.canceled
-              ? updateAppoinList
+              ? allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
                   .map((item) =>
-                    item.allApointments.history
+                    item.allApointments
                       .filter((item) => item.cancel)
                       .map((item, index) => (
                         <div key={index}>
-                          <UserProfileItem item={item} state={state} />
+                          <ProfileItem item={item} state={state} />
                         </div>
                       ))
                   )
               : ""}
             {state.reserved
-              ? updateAppoinList
+              ? allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
                   .map((item) =>
-                    item.allApointments.reserved.map((item, index) => (
-                      <div key={index}>
-                        <UserProfileItem
-                          item={item}
-                          state={state}
-                        />
-                      </div>
-                    ))
+                    item.allApointments
+                      .filter((item) => item.reserved)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <ProfileItem item={item} state={state} />
+                        </div>
+                      ))
                   )
               : ""}
             {state.setting
-              ? updateAppoinList
+              ? allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
                   .map((item, index) => <EditProfile item={item} />)
               : ""}
             {state.credit
-              ? updateAppoinList
+              ? allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
-                  .map((item, index) => (
+                  .map((item) => (
                     <div className="container p-2">
                       <div className="row" dir="rtl">
                         <div>
@@ -263,7 +256,7 @@ export default function UserProfile() {
           <div className="col-lg-3 col-md-5 pb-5 order-lg-2 order-md-1 order-0 dashboard">
             <div className="author-card pb-2">
               <div className="author-card-cover"></div>
-              {updateAppoinList
+              {allUsers
                 .filter((item) => item.username === currentUser.userNameOfUser)
                 .map((item) => (
                   <div className="author-card-profile d-flex  justify-content-end ">
@@ -302,7 +295,7 @@ export default function UserProfile() {
                 >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
-                      <div className="d-inline-block font-weight-medium text-uppercase">
+                      <div className="d-inline-block font-weight-medium">
                         نوبت های رزرو شده .
                       </div>
                     </div>
@@ -314,7 +307,7 @@ export default function UserProfile() {
                 >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
-                      <div className="d-inline-block font-weight-medium text-uppercase">
+                      <div className="d-inline-block font-weight-medium">
                         نوبت های لغو شده .
                       </div>
                     </div>
@@ -326,7 +319,7 @@ export default function UserProfile() {
                 >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
-                      <div className="d-inline-block font-weight-medium text-uppercase">
+                      <div className="d-inline-block font-weight-medium">
                         تاریخچه نوبت ها .
                       </div>
                     </div>
@@ -338,7 +331,7 @@ export default function UserProfile() {
                 >
                   <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
                     <div>
-                      <div className="d-inline-block font-weight-medium text-uppercase">
+                      <div className="d-inline-block font-weight-medium">
                         اعتبار حساب .
                       </div>
                     </div>

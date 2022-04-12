@@ -273,3 +273,7 @@ button:active {
 #commentText{
   height: 150px;
 }
+#uuu{
+  position: absolute;
+  opacity: 0;
+}

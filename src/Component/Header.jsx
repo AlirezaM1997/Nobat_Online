@@ -8,15 +8,30 @@ import Headroom from "react-headroom";
 
 export default function Header() {
   const { auth } = useAllState(false);
+  const { docAuth } = useAllState(false);
+
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
+
   let { setSearchExp } = useAllState();
   let { setSearchDoc } = useAllState();
-  const { updateAppoinList } = useAllState();
+  const { allUsers } = useAllState();
+  const { allDoctors } = useAllState();
+  console.log(currentDoctor)
 
   const getIndexByUserName = (currentUsername) => {
-    return updateAppoinList.findIndex(
-      (item) => item.username === currentUsername.userNameOfUser
-    );
+
+    if (auth) {
+      return allUsers.findIndex(
+        (item) => item.username === currentUsername.userNameOfUser
+      );
+    } else {
+      return allDoctors.findIndex(
+        (item) => item.username === currentUsername.userNameOfDoctor
+      );
+
+    }
+
   };
 
   return (
@@ -28,43 +43,64 @@ export default function Header() {
       >
         <header id="header" className="bg-white">
           <div
-            className="container d-flex align-items-center justify-content-around"
+            className="container d-flex align-items-center justify-content-between"
             id="containerHeader"
           >
             <div id="header3">
-              {!auth ? (
+              {auth ? (
+                <Link to={"/userprofile"} title="حساب کاربری">
+                  <div className="d-inline-block goToAccount x-5">
+                    <img
+                      className="headerImgProf"
+                      src={
+                        allUsers[getIndexByUserName(currentUser)].img
+                      }
+                    ></img>
+                    <span className="headerNameProf">
+                      {
+                        allUsers[getIndexByUserName(currentUser)]
+                          .username
+                      }
+                    </span>
+                  </div>
+                </Link>
+              ) : docAuth ? (
+                <Link to={"/userprofile"} title="حساب کاربری">
+                  <div className="d-inline-block goToAccount x-5">
+                    <img
+                      className="headerImgProf"
+                     
+                  src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${allDoctors[getIndexByUserName(currentDoctor)].imgUrl}`}
+
+                    ></img>
+                    <span className="headerNameProf">
+                      {
+                        allDoctors[getIndexByUserName(currentDoctor)]
+                          .username
+                      }
+                    </span>
+                  </div>
+                </Link>
+              ) : (
                 <Link
                   className="btn btn-primary me-2 btnHeader d-inline-block text-white"
                   to={"/login"}
                 >
                   ورود کاربران
                 </Link>
-              ) : (
-                <Link to={"/userprofile"} title="حساب کاربری">
-                  <div className="d-inline-block goToAccount">
-                    <img
-                      className="headerImgProf"
-                      src={
-                        updateAppoinList[getIndexByUserName(currentUser)].img
-                      }
-                    ></img>
-                    <span className="headerNameProf">
-                      {
-                        updateAppoinList[getIndexByUserName(currentUser)]
-                          .username
-                      }
-                    </span>
-                  </div>
-                </Link>
               )}
-              <Link
-                className="btn btn-primary btnHeader d-inline-block text-white"
-                to={"/doctor-register"}
-              >
-                ثبت نام پزشکان
-              </Link>
+              {!auth && !docAuth ? (
+                <Link
+                  className="btn btn-primary btnHeader d-inline-block text-white"
+                  to={"/doctor-register"}
+                >
+                  ثبت نام پزشکان
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
-            <div id="header2">
+            <div className="" id="header2">
               <nav id="navbar" className="navbar order-last order-lg-0 p-0">
                 <ul className="m-0 p-0 align-items-center">
                   <li>

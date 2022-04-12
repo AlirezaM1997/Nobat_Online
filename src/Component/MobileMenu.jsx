@@ -12,13 +12,13 @@ export default function MobileMenu() {
 
   const { auth } = useAllState(false);
   const { currentUser } = useAllState({ userNameOfUser: "" });
-  const { updateAppoinList } = useAllState();
+  const { allUsers } = useAllState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const getIndexByUserName = (currentUsername) => {
-    return updateAppoinList.findIndex(
+    return allUsers.findIndex(
       (item) => item.username === currentUsername.userNameOfUser
     );
   };
@@ -44,10 +44,10 @@ export default function MobileMenu() {
               <div className="d-inline-block goToAccount">
                 <img
                   className="headerImgProf"
-                  src={updateAppoinList[getIndexByUserName(currentUser)].img}
+                  src={allUsers[getIndexByUserName(currentUser)].img}
                 ></img>
                 <span className="headerNameProf text-white">
-                  {updateAppoinList[getIndexByUserName(currentUser)].username}
+                  {allUsers[getIndexByUserName(currentUser)].username}
                 </span>
               </div>
             </Link>

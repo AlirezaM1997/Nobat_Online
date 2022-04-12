@@ -10,6 +10,7 @@ import UserRegister from "./Component/UserRegister";
 import Login from "./Component/Login";
 import Result from "./Component/Result";
 import UserProfile from "./Component/UserProfile";
+import DoctorProfile from "./Component/DoctorProfile";
 import Header from "./Component/Header";
 import reportWebVitals from "./reportWebVitals";
 import About from "./Component/About";
@@ -38,8 +39,16 @@ ReactDOM.render(
           <Route
             path="/userprofile"
             element={
-              <RequireAuth redirectTo={'/login'}>
+              <RequireAuth redirectTo={"/login"}>
                 <UserProfile />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="/doctorprofile"
+            element={
+              <RequireAuth redirectTo={"/login"}>
+                <DoctorProfile />
               </RequireAuth>
             }
           ></Route>

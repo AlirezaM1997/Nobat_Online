@@ -5,7 +5,6 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import MultiStep from "./MultiStep";
-import data from "../All-Data/data";
 import { DynamicStar } from "react-dynamic-star";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -21,12 +20,12 @@ import {
 import { Link } from "react-router-dom";
 
 export default function Appointment() {
-  const { allDoctors } = useAllState(data);
+  const { allDoctors } = useAllState();
   const { currentAppoin } = useAllState();
   const { selectedTime } = useAllState("");
   const { setSelectedTime } = useAllState();
   const { currentUser } = useAllState();
-  const { updateAppoinList } = useAllState();
+  const { allUsers } = useAllState();
   console.log(selectedTime);
   const [scroll, setScroll] = useState(false);
   const [pay, setPay] = useState(false);
@@ -44,8 +43,7 @@ export default function Appointment() {
     resolver: yupResolver(validationSchema),
   });
   const { errors } = formState;
-  const [currentNameComment, setCurrentNameComment] = useState();
-  const [currentTextComment, setCurrentTextComment] = useState();
+
   const onSubmit = (data) => {
     const C = allDoctors.filter((item) => item.id === currentAppoin)[0]
       .comments;
@@ -61,6 +59,8 @@ export default function Appointment() {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
   };
 
+  // const [currentAppoinBtn, setCurrentAppoinBtn] = useState(false);
+
   useEffect(() => {
     if (scroll) {
       let scrollDiv = document.getElementById("detailOfAppoint").offsetTop;
@@ -68,13 +68,24 @@ export default function Appointment() {
     }
 
     if (pay) {
-      const H = updateAppoinList.filter(
+      const H = allUsers.filter(
         (item) => item.username === currentUser.userNameOfUser
-      )[0].allApointments.reserved;
-      const docId = allDoctors.filter((item) => item.id === currentAppoin)[0]
-        .id;
+      )[0].allApointments;
 
-      H.push({ uniqId: UID(), cancel: false, date: selectedTime, id: docId });
+      H.push({
+        uniqId: UID(),
+        cancel: false,
+        date: selectedTime,
+        id: currentAppoin,
+        reserved: true,
+      });
+      const decreaseCredit = allDoctors.filter((i) => i.id === currentAppoin)[0]
+        .visit;
+      allUsers.filter(
+        (item) => item.username === currentUser.userNameOfUser
+      )[0].credit -= decreaseCredit;
+      // const id = selectedTime
+      // document.getElementById('id').setAttribute("disabled", "");
     }
   });
   const makeDate = (s) => {
@@ -114,7 +125,7 @@ export default function Appointment() {
                   return (
                     <td>
                       <button
-                        disabled={false}
+                        // disabled={false}
                         className={`table-btn ${
                           selectedTime === key + value ? "bg-warning" : ""
                         }`}
@@ -191,7 +202,7 @@ export default function Appointment() {
     const visit = allDoctors
       .filter((item) => item.id === currentAppoin)
       .map((item) => item.visit);
-    const credit = updateAppoinList
+    const credit = allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)
       .map((i) => i.credit);
     const payment = () => {
