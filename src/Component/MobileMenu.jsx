@@ -2,7 +2,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAllState } from "../Provider";
 
 import "../Style/MobileMenu.css";
@@ -11,6 +11,8 @@ export default function MobileMenu() {
   const [show, setShow] = useState(false);
 
   const { auth } = useAllState(false);
+  const { setAuth } = useAllState();
+  const { docAuth } = useAllState(false);
   const { currentUser } = useAllState({ userNameOfUser: "" });
   const { allUsers } = useAllState();
 
@@ -23,6 +25,11 @@ export default function MobileMenu() {
     );
   };
 
+  const logOutNav = useNavigate();
+  const logout = () => {
+    setAuth(false);
+    logOutNav("/");
+  };
   return (
     <>
       <FontAwesomeIcon
@@ -36,11 +43,13 @@ export default function MobileMenu() {
           className="bg-primary d-flex offcanvasHeader"
           closeButton
         >
+          {auth || docAuth ? (
+            <span className="logout mx-2" title="خروج" onClick={logout}></span>
+          ) : (
+            ""
+          )}
           {auth ? (
-            <Link
-              to={"/userprofile"}
-              title="حساب کاربری" id="accountMobLink"
-            >
+            <Link to={"/userprofile"} title="حساب کاربری" id="accountMobLink">
               <div className="d-inline-block goToAccount">
                 <img
                   className="headerImgProf"
@@ -144,16 +153,23 @@ export default function MobileMenu() {
             >
               <Link to={"/login"}>ورود کاربران</Link>
             </div>
-            <div className={`col-4 d-flex justify-content-center ${
+            <div
+              className={`col-4 d-flex justify-content-center ${
                 auth ? "col-5 bg-primary rounded" : ""
-              }`}>
-              <Link to={"/doctor-register"} className={`${
-                auth ? "text-white rounded py-2" : ""
-              }`}>ثبت نام پزشکان</Link>
+              }`}
+            >
+              <Link
+                to={"/doctor-register"}
+                className={`${auth ? "text-white rounded py-2" : ""}`}
+              >
+                ثبت نام پزشکان
+              </Link>
             </div>
-            <div className={`col-4 d-flex justify-content-center ${
+            <div
+              className={`col-4 d-flex justify-content-center ${
                 auth ? "d-none" : ""
-              }`}>
+              }`}
+            >
               <Link to={"/user-register"}>ثبت نام کاربران</Link>
             </div>
           </div>

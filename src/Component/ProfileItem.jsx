@@ -9,33 +9,83 @@ export default function ProfileItem(props) {
 
   const { allDoctors } = useAllState();
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
   const { allUsers } = useAllState();
   const { setAllUsers } = useAllState();
+  const { setAllDoctors } = useAllState();
   const { auth } = useAllState(false);
   const { docAuth } = useAllState(false);
 
-  const getIndexById = (id) => {
+  const getUserIndexByUserName = (id) => {
     const arr = allUsers.filter(
       (item) => item.username === currentUser.userNameOfUser
     )[0].allApointments;
     return arr.findIndex((item) => item.uniqId === id);
   };
+  const getUserIndexById = (id , u) => {
+    const arr = allUsers.filter((item) => item.username === u)[0]
+      .allApointments;
+    return arr.findIndex((item) => item.uniqId === id);
+  };
+  const getDoctorIndexByUserName = (id) => {
+    const arr = allDoctors.filter(
+      (item) => item.username === currentDoctor.userNameOfDoctor
+    )[0].allApointments;
+    console.log(id);
+    return arr.findIndex((item) => item.uniqId === id);
+  };
   const cancelAppoin = (id) => {
-    const array = [...allUsers];
-    array.filter(
-      (item) => item.username === currentUser.userNameOfUser
-    )[0].allApointments[getIndexById(id)].reserved = false;
-    array.filter(
-      (item) => item.username === currentUser.userNameOfUser
-    )[0].allApointments[getIndexById(id)].cancel = true;
-    const doctorId = array.filter(
-      (item) => item.username === currentUser.userNameOfUser
-    )[0].allApointments[getIndexById(id)].id;
-    const addCredit = allDoctors.filter((i) => i.id === doctorId)[0].visit;
-    array.filter(
-      (item) => item.username === currentUser.userNameOfUser
-    )[0].credit += addCredit;
-    setAllUsers(array);
+    if (auth) {
+      //cancel from user
+      const array = [...allUsers];
+      const filteredArr = array.filter(
+        (item) => item.username === currentUser.userNameOfUser
+      )[0].allApointments[getUserIndexByUserName(id)];
+      filteredArr.reserved = false;
+      filteredArr.cancel = true;
+      const doctorId = filteredArr.id;
+      const addCredit = allDoctors.filter((i) => i.id === doctorId)[0].visit;
+      array.filter(
+        (item) => item.username === currentUser.userNameOfUser
+      )[0].credit += addCredit;
+      setAllUsers(array);
+    } else {
+      //cancel from doctor
+      const array = [...allDoctors];
+      const filteredArr = array.filter(
+        (item) => item.username === currentDoctor.userNameOfDoctor
+      )[0].allApointments[getDoctorIndexByUserName(id)];
+      filteredArr.reserved = false;
+      filteredArr.cancel = true;
+      const userId = filteredArr.id;
+      const visit = array.filter(
+        (item) => item.username === currentDoctor.userNameOfDoctor
+      )[0].visit;
+      array.filter(
+        (item) => item.username === currentDoctor.userNameOfDoctor
+      )[0].credit -= visit;
+      setAllDoctors(array);
+      //
+      //delete appointment from user account
+      const arr = [...allUsers];
+      const selectedTime = filteredArr.date;
+      const _id = filteredArr.id
+      const _userName = arr.filter((i)=> i.id === _id)[0].username
+      const docId = array.filter(
+        (item) => item.username === currentDoctor.userNameOfDoctor
+      )[0].id;
+      const username = array.filter(
+        (item) => item.username === currentDoctor.userNameOfDoctor
+      )[0].id;
+      arr.filter((item) => item.id === userId)[0].allApointments[
+        getUserIndexById(docId + selectedTime , _userName)
+      ].reserved = false;
+      arr.filter((item) => item.id === userId)[0].allApointments[
+        getUserIndexById(docId + selectedTime , _userName)
+      ].cancel = true;
+      arr.filter((item) => item.id === userId)[0].credit += visit;
+      setAllUsers(arr);
+    }
   };
 
   useEffect(() => {
@@ -147,7 +197,7 @@ export default function ProfileItem(props) {
                           </div>
                         )}
                         <h4 className="cart-item-doctor-title text-end d-inline">
-                         {j.fullName}
+                          {j.fullName}
                         </h4>
                       </div>
                     </div>
@@ -174,10 +224,7 @@ export default function ProfileItem(props) {
                     </div>
                   </div>
                   <div className="cart-item-doctor-thumb">
-                    <img
-                      src={j.img}
-                      alt=""
-                    />
+                    <img src={j.img} alt="" />
                   </div>
                 </div>
               ))}

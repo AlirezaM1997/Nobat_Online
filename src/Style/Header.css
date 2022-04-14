@@ -5,7 +5,7 @@
 }
 @media screen and (max-width: 532px) {
   #header3 {
-    display: none;
+    display: none !important;
   }
 }
 #header {
@@ -92,6 +92,17 @@
   font: 0.9em "Sahel";
   color: #3f3f3f;
   margin-left: 0.4em;
+}
+.logout::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f2f5";
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 1rem;
+  display: inline-block;
+  transform: scaleX(-1);
+  cursor: pointer;
 }
 /*--------------------------------------------------------------
   # Navigation Menu

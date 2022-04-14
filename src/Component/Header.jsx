@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import Image from "react-bootstrap/Image";
 import "../Style/Header.css";
@@ -8,19 +8,23 @@ import Headroom from "react-headroom";
 
 export default function Header() {
   const { auth } = useAllState(false);
+  const { setAuth } = useAllState();
   const { docAuth } = useAllState(false);
-
-  const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { setDocAuth } = useAllState();
+const logOutNav = useNavigate()
+  // const { currentUser } = useAllState({ userNameOfUser: "" });
   const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
-
+  const { currentUser, setCurrentUser } = useAllState({
+    userNameOfUser: "",
+    passwordOfUser: "",
+  });
   let { setSearchExp } = useAllState();
   let { setSearchDoc } = useAllState();
   const { allUsers } = useAllState();
   const { allDoctors } = useAllState();
-  console.log(currentDoctor)
+
 
   const getIndexByUserName = (currentUsername) => {
-
     if (auth) {
       return allUsers.findIndex(
         (item) => item.username === currentUsername.userNameOfUser
@@ -29,9 +33,13 @@ export default function Header() {
       return allDoctors.findIndex(
         (item) => item.username === currentUsername.userNameOfDoctor
       );
-
     }
+  };
 
+  const logout = () => {
+    setAuth(false)
+    setDocAuth(false)
+    logOutNav('/')
   };
 
   return (
@@ -46,38 +54,39 @@ export default function Header() {
             className="container d-flex align-items-center justify-content-between"
             id="containerHeader"
           >
-            <div id="header3">
+            <div id="header3" className="d-flex align-items-center">
+              {auth || docAuth ? (
+                <span
+                  className="logout mx-2"
+                  title="خروج"
+                  onClick={logout}
+                ></span>
+              ) : (
+                ""
+              )}
               {auth ? (
                 <Link to={"/userprofile"} title="حساب کاربری">
                   <div className="d-inline-block goToAccount x-5">
                     <img
                       className="headerImgProf"
-                      src={
-                        allUsers[getIndexByUserName(currentUser)].img
-                      }
+                      src={allUsers[getIndexByUserName(currentUser)].img}
                     ></img>
                     <span className="headerNameProf">
-                      {
-                        allUsers[getIndexByUserName(currentUser)]
-                          .username
-                      }
+                      {allUsers[getIndexByUserName(currentUser)].username}
                     </span>
                   </div>
                 </Link>
               ) : docAuth ? (
-                <Link to={"/userprofile"} title="حساب کاربری">
+                <Link to={"/doctorprofile"} title="حساب کاربری">
                   <div className="d-inline-block goToAccount x-5">
                     <img
                       className="headerImgProf"
-                     
-                  src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${allDoctors[getIndexByUserName(currentDoctor)].imgUrl}`}
-
+                      src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${
+                        allDoctors[getIndexByUserName(currentDoctor)].imgUrl
+                      }`}
                     ></img>
                     <span className="headerNameProf">
-                      {
-                        allDoctors[getIndexByUserName(currentDoctor)]
-                          .username
-                      }
+                      {allDoctors[getIndexByUserName(currentDoctor)].username}
                     </span>
                   </div>
                 </Link>
@@ -89,7 +98,8 @@ export default function Header() {
                   ورود کاربران
                 </Link>
               )}
-              {!auth && !docAuth ? (
+
+              {!docAuth ? (
                 <Link
                   className="btn btn-primary btnHeader d-inline-block text-white"
                   to={"/doctor-register"}

@@ -26,7 +26,7 @@ export default function Appointment() {
   const { setSelectedTime } = useAllState();
   const { currentUser } = useAllState();
   const { allUsers } = useAllState();
-  console.log(selectedTime);
+  // console.log(selectedTime);
   const [scroll, setScroll] = useState(false);
   const [pay, setPay] = useState(false);
 
@@ -73,12 +73,13 @@ export default function Appointment() {
       )[0].allApointments;
 
       H.push({
-        uniqId: UID(),
+        uniqId: currentAppoin+selectedTime,
         cancel: false,
         date: selectedTime,
         id: currentAppoin,
         reserved: true,
       });
+      console.log(H);
       const decreaseCredit = allDoctors.filter((i) => i.id === currentAppoin)[0]
         .visit;
       allUsers.filter(
@@ -86,6 +87,18 @@ export default function Appointment() {
       )[0].credit -= decreaseCredit;
       // const id = selectedTime
       // document.getElementById('id').setAttribute("disabled", "");
+      const userId = allUsers.filter(
+        (item) => item.username === currentUser.userNameOfUser
+      )[0].id;
+      allDoctors
+        .filter((i) => i.id === currentAppoin)[0]
+        .allApointments.push({
+          uniqId: userId+selectedTime,
+          cancel: false,
+          date: selectedTime,
+          id: userId,
+          reserved: true,
+        });
     }
   });
   const makeDate = (s) => {

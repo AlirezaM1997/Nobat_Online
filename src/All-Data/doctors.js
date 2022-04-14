@@ -14,6 +14,7 @@ const doctors = [
     address2: "شهرک شریعتی ، خیابان سوم ، کوچه دوم ، پلاک 11 ، واحد 8",
     phone: `02155778899`,
     visit: 120000,
+    credit : 800000,
     date: {
       14010108: ["10AM", "11AM", "12AM", "18PM"],
       14010109: ["10AM", "11AM", "12AM", "18PM"],
@@ -41,13 +42,13 @@ const doctors = [
       },
     ],
     allApointments: [
-      {
-        uniqId: 4521872882,
-        id: "01",
-        cancel: false,
-        date: "1401032510AM",
-        reserved: false,
-      },
+      // {
+      //   uniqId: 4521872882,
+      //   id: "01",
+      //   cancel: false,
+      //   date: "1401032510AM",
+      //   reserved: true,
+      // },
     ],
   },
   {

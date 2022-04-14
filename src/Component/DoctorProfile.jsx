@@ -12,7 +12,7 @@ import EditProfile from "./EditProfile";
 export default function DoctorProfile() {
   const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
   const { allDoctors } = useAllState();
-
+console.log(currentDoctor);
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
   const [cancelApointment, setCancelApointment] = useState(0);

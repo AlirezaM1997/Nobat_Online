@@ -11,11 +11,12 @@ export default function Login() {
   const navigateToDoctor = useNavigate();
 
   const { setAuth } = useAllState();
+  const { auth } = useAllState();
   const { setDocAuth } = useAllState();
 
   const { allUsers } = useAllState();
   const { allDoctors } = useAllState();
-  
+
   const [hintUserInput, setHintUserInput] = useState(false);
   const [hintUserWrong, setHintUserWrong] = useState(false);
   const [hintDoctorInput, setHintDoctorInput] = useState(false);
@@ -85,6 +86,7 @@ export default function Login() {
       }
     }
   };
+
   return (
     <div className="container py-3 px-5  mw-100 bg-user-log">
       <div className="row d-flex flex-lg-row flex-column align-content-center justify-content-center pt-1">
@@ -201,7 +203,9 @@ export default function Login() {
                       </div>
                       <div
                         className={`${
-                          hintDoctorWrong ? "showDoctorWrong" : "hideDoctorWrong"
+                          hintDoctorWrong
+                            ? "showDoctorWrong"
+                            : "hideDoctorWrong"
                         }`}
                       >
                         نام کاربری یا رمز عبور اشتباه است
