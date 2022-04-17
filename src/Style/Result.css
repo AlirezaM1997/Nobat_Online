@@ -155,7 +155,7 @@ transform: scale(1.1);
   font-size: 12px;
   width: fit-content;
 }
-#search {
+/* #search {
   box-shadow: 0px 5px 22px rgba(25, 119, 204, 0.5);
   border-radius: 1rem;
   height: 430px;
@@ -163,7 +163,7 @@ transform: scale(1.1);
   right: 6%;
   animation: move_show 1.3s;
   background: #1076d6;
-}
+} */
 .adSearchTitle {
   color: white;
 }

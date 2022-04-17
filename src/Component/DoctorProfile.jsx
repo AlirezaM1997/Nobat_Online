@@ -146,7 +146,11 @@ console.log(currentDoctor);
             </div>
           </div>
         </div>
-        <div className="summary p-5 mt-4"></div>
+        <div className="summary p-2 mt-4">
+          <div className="advertise bg-secondary bg-gradient text-center text-warning py-5">
+            تبلیغات
+          </div>
+        </div>
       </>
     );
   };

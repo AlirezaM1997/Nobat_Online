@@ -17,7 +17,19 @@ export default function UserProfile() {
   const [cancelApointment, setCancelApointment] = useState(0);
   const [reservedApointment, setReservedApointment] = useState(0);
   const [accountCredit, setAccountCredit] = useState(0);
+  const [noResult, setNoResult] = useState(false);
 
+  useEffect(() => {
+    console.log("u");
+    const array = allUsers
+      .filter((item) => item.username === currentUser.userNameOfUser)[0]
+      .allApointments.filter((i) => i.reserved);
+    if (array.length === 0) {
+      setNoResult(true);
+    } else {
+      setNoResult(false);
+    }
+  });
   const [state, setState] = useState({
     history: false,
     canceled: false,
@@ -59,7 +71,7 @@ export default function UserProfile() {
       .map(
         (item) =>
           (doneApoinNum = item.allApointments.filter(
-            (item) => (item.cancel === false && item.reserved === false)
+            (item) => item.cancel === false && item.reserved === false
           ).length)
       );
     setDoneApointment(doneApoinNum);
@@ -145,7 +157,11 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-        <div className="summary p-5 mt-4"></div>
+        <div className="summary p-2 mt-4">
+          <div className="advertise bg-secondary bg-gradient text-center text-warning py-5">
+            تبلیغات
+          </div>
+        </div>
       </>
     );
   };
@@ -210,8 +226,9 @@ export default function UserProfile() {
                       ))
                   )
               : ""}
-            {state.reserved
-              ? allUsers
+            {state.reserved ? (
+              !noResult ? (
+                allUsers
                   .filter(
                     (item) => item.username === currentUser.userNameOfUser
                   )
@@ -224,7 +241,14 @@ export default function UserProfile() {
                         </div>
                       ))
                   )
-              : ""}
+              ) : (
+                <div className="row bg-dark text-white py-5 px-4 text-center m-auto justify-content-center no-res">
+                  هیچ نوبت رزرو شده ای وجود ندارد
+                </div>
+              )
+            ) : (
+              ""
+            )}
             {state.setting
               ? allUsers
                   .filter(

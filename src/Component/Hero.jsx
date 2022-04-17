@@ -23,7 +23,7 @@ export default function Hero() {
   let { searchDoc } = useAllState("");
   let { setSearchDoc } = useAllState();
 
-  const { setAdSearchName } = useAllState();
+  // const { setAdSearchName } = useAllState();
   const { setAdSearchExp } = useAllState();
   const { setWorkingDay } = useAllState();
   // console.log(flag);
@@ -53,7 +53,7 @@ export default function Hero() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setAdSearchName('')
+    // setAdSearchName('')
     setAdSearchExp('')
     setWorkingDay('')
     if (inputRef.current) {

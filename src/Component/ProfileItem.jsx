@@ -22,8 +22,13 @@ export default function ProfileItem(props) {
     )[0].allApointments;
     return arr.findIndex((item) => item.uniqId === id);
   };
-  const getUserIndexById = (id , u) => {
+  const getUserIndexById = (id, u) => {
     const arr = allUsers.filter((item) => item.username === u)[0]
+      .allApointments;
+    return arr.findIndex((item) => item.uniqId === id);
+  };
+  const getDoctorIndexById = (id, u) => {
+    const arr = allDoctors.filter((item) => item.username === u)[0]
       .allApointments;
     return arr.findIndex((item) => item.uniqId === id);
   };
@@ -49,6 +54,25 @@ export default function ProfileItem(props) {
         (item) => item.username === currentUser.userNameOfUser
       )[0].credit += addCredit;
       setAllUsers(array);
+      //
+      //delete appointment from doctor account
+      const arr = [...allDoctors];
+      const selectedTime = filteredArr.date;
+      const _id = filteredArr.id;
+      const _userName = arr.filter((i) => i.id === _id)[0].username;
+      const _doctorId = array.filter(
+        (item) => item.username === currentUser.userNameOfUser
+      )[0].id;
+      console.log(arr.filter((item) => item.id === doctorId)[0]);
+      arr.filter((item) => item.id === doctorId)[0].allApointments[
+        getDoctorIndexById(_doctorId + selectedTime, _userName)
+      ].reserved = false;
+      arr.filter((item) => item.id === doctorId)[0].allApointments[
+        getDoctorIndexById(_doctorId + selectedTime, _userName)
+      ].cancel = true;
+      arr.filter((item) => item.id === doctorId)[0].credit -= addCredit;
+
+      setAllDoctors(arr);
     } else {
       //cancel from doctor
       const array = [...allDoctors];
@@ -69,19 +93,16 @@ export default function ProfileItem(props) {
       //delete appointment from user account
       const arr = [...allUsers];
       const selectedTime = filteredArr.date;
-      const _id = filteredArr.id
-      const _userName = arr.filter((i)=> i.id === _id)[0].username
+      const _id = filteredArr.id;
+      const _userName = arr.filter((i) => i.id === _id)[0].username;
       const docId = array.filter(
         (item) => item.username === currentDoctor.userNameOfDoctor
       )[0].id;
-      const username = array.filter(
-        (item) => item.username === currentDoctor.userNameOfDoctor
-      )[0].id;
       arr.filter((item) => item.id === userId)[0].allApointments[
-        getUserIndexById(docId + selectedTime , _userName)
+        getUserIndexById(docId + selectedTime, _userName)
       ].reserved = false;
       arr.filter((item) => item.id === userId)[0].allApointments[
-        getUserIndexById(docId + selectedTime , _userName)
+        getUserIndexById(docId + selectedTime, _userName)
       ].cancel = true;
       arr.filter((item) => item.id === userId)[0].credit += visit;
       setAllUsers(arr);
@@ -103,6 +124,8 @@ export default function ProfileItem(props) {
   });
 
   return (
+    <>
+
     <div className="cart-item m-auto mb-2 ">
       <span className="top-right-dot"></span>
       <div className="px-3 my-3">
@@ -230,5 +253,6 @@ export default function ProfileItem(props) {
               ))}
       </div>
     </div>
+    </>
   );
 }

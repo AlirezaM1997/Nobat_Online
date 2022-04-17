@@ -82,7 +82,7 @@ export default function EditProfile(props) {
       id="exampleDatepicker1"
     />
   );
-  const { updateAppoinList } = useAllState();
+  const { allUsers } = useAllState();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -340,7 +340,7 @@ export default function EditProfile(props) {
 
                   <div className="row mb-3 mt-4">
                     <div className="col text-end">
-                      {updateAppoinList
+                      {allUsers
                         .filter(
                           (item) => item.username === currentUser.userNameOfUser
                         )

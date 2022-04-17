@@ -11,9 +11,10 @@ import {
 import Select from "react-select";
 import DoctorList from "../All-Data/DoctorList";
 import { useAllState } from "../Provider";
+import { useRef } from "react";
 
 export default function AdvancedSearchBox(props) {
-  const { flag } = useAllState();
+  // const { flag } = useAllState();
   const { setFlag } = useAllState();
   const { adSearchName } = useAllState();
   const { setAdSearchName } = useAllState();
@@ -23,14 +24,29 @@ export default function AdvancedSearchBox(props) {
   const { setWorkingDay } = useAllState();
   const { allDoctors } = useAllState();
 
+  const adSearchNameRef = useRef();
+  const adSearchExpRef = useRef();
+  const workingDayRef = useRef();
+
   const setAdvancedRusultBtn = () => {
     setFlag(3);
+    const workingDayRefArr = [];
+    const y=workingDayRef.current.controlRef.innerText.replace('\n','k')
+    workingDayRefArr.unshift(y);
+    console.log(workingDayRefArr);
+    console.log(workingDayRef.current.controlRef.innerText);
     props.setFilteredDoctor(
       allDoctors.filter(
         (item) =>
-          (item.fname.toLowerCase().includes(adSearchName.toLowerCase()) ||
-            item.lname.toLowerCase().includes(adSearchName.toLowerCase())) &&
-          item.expert.includes(adSearchExp) &&
+          (item.fname
+            .toLowerCase()
+            .includes(adSearchNameRef.current.value.toLowerCase()) ||
+            item.lname
+              .toLowerCase()
+              .includes(adSearchNameRef.current.value.toLowerCase())) &&
+          (adSearchExpRef.current.controlRef.innerText !== "انتخاب کنید"
+            ? item.expert.includes(adSearchExpRef.current.controlRef.innerText)
+            : true) &&
           (workingDay === ""
             ? true
             : workingDay === []
@@ -97,8 +113,9 @@ export default function AdvancedSearchBox(props) {
             <input
               dir="rtl"
               className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
-              value={adSearchName}
-              onChange={(e) => setAdSearchName(e.target.value)}
+              // value={adSearchName}
+              // onChange={(e) => setAdSearchName(e.target.value)}
+              ref={adSearchNameRef}
             ></input>
             <p className="text-end text-warning h6 mb-1">
               تخصص{" "}
@@ -111,12 +128,14 @@ export default function AdvancedSearchBox(props) {
               menuPlacement="bottom"
               className="px-1 my-2 w-100 rounded border-0 expertInput text-end"
               placeholder="انتخاب کنید"
-              value={DoctorList.filter((obj) =>
-                adSearchExp.includes(obj.value)
-              )}
-              onChange={(e) => {
-                setAdSearchExp(e.value);
-              }}
+              // value={DoctorList.filter((obj) =>
+              //   adSearchExp.includes(obj.value)
+              // )}
+              // onChange={(e) => {
+              //   setAdSearchExp(e.value);
+              // }}
+
+              ref={adSearchExpRef}
               options={DoctorList}
               isSearchable={false}
             />
@@ -134,6 +153,7 @@ export default function AdvancedSearchBox(props) {
               value={weekDays.filter((obj) => workingDay.includes(obj.value))}
               options={weekDays}
               onChange={handleChangeDay}
+              ref={workingDayRef}
               isMulti
               isClearable
               isSearchable={false}

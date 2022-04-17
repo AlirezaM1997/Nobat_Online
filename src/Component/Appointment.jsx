@@ -72,8 +72,8 @@ export default function Appointment() {
         (item) => item.username === currentUser.userNameOfUser
       )[0].allApointments;
 
-      H.push({
-        uniqId: currentAppoin+selectedTime,
+      H.unshift({
+        uniqId: currentAppoin + selectedTime,
         cancel: false,
         date: selectedTime,
         id: currentAppoin,
@@ -90,15 +90,18 @@ export default function Appointment() {
       const userId = allUsers.filter(
         (item) => item.username === currentUser.userNameOfUser
       )[0].id;
+      // console.log(currentAppoin);
       allDoctors
         .filter((i) => i.id === currentAppoin)[0]
-        .allApointments.push({
-          uniqId: userId+selectedTime,
+        .allApointments.unshift({
+          uniqId: userId + selectedTime,
           cancel: false,
           date: selectedTime,
           id: userId,
           reserved: true,
         });
+      const visit = allDoctors.filter((i) => i.id === currentAppoin)[0].visit;
+      allDoctors.filter((i) => i.id === currentAppoin)[0].credit += visit;
     }
   });
   const makeDate = (s) => {

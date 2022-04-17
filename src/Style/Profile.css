@@ -36,7 +36,7 @@
   }
 }
 .dashboard {
-  animation: change_scale_show 0.7s;
+  /* animation: change_scale_show 0.7s; */
 }
 .titleProf {
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
@@ -260,7 +260,7 @@
   box-shadow: 0 6px 13px 1px rgba(64, 64, 64, 0.3);
   z-index: 8;
   border: solid 1px #0d6efd;
-  animation: change_scale_show 1s;
+  /* animation: change_scale_show 1s; */
 }
 .cancel {
   background-color: red;
@@ -295,8 +295,16 @@
 .squareIcoCredit {
   font-size: 0.8em;
 }
-
-
+.no-res{
+  width: 100%;
+  border-radius: 1rem;
+}
+.advertise{
+  width: 100%;
+  border-radius: 1rem;
+  font-style: italic;
+  font-size: xx-large;
+}
 /*.............
  DoctorProfile
  ............. */
