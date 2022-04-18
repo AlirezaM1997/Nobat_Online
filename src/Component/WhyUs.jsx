@@ -89,7 +89,7 @@ export default function WhyUs() {
                 جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را
                 برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
                 زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
-                دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد 
+                دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد
               </p>
               <div className="text-center">
                 <a href="#" className="more-btn">
@@ -103,3 +103,73 @@ export default function WhyUs() {
     </section>
   );
 }
+
+// const handlePictureUpload = (e) => {
+//   if (images.length >= maxFileNumber)
+//     return handleSnackErrOpen(`تعداد فایل مجاز ${maxFileNumber} عدد میباشد.`);
+
+//   const {
+//     target: { files },
+//   } = e;
+
+//   const filesSelected = files;
+
+//   if (filesSelected.length < 1) return;
+
+//   const fileToLoad = filesSelected[0];
+
+//   if (fileToLoad.size > maxFileSize * 1024 * 1024)
+//     return handleSnackErrOpen(
+//       `فایل قابل استفاده نیست: حداکثر حجم مجاز فایل ${maxFileSize} مگابایت میباشد`
+//     );
+
+//   const isFormatInValid = validFormats.every(
+//     (item) => !fileToLoad.type.match(item)
+//   );
+
+//   if (isFormatInValid)
+//     return handleSnackErrOpen(
+//       `فایل قابل استفاده نیست: فرمت های مجاز: ${validFormatsNote}`
+//     );
+
+//   const fileReader = new FileReader();
+
+//   fileReader.onload = async function (fileLoadedEvent) {
+//     const theHiddenImage = document.createElement("img");
+//     theHiddenImage.src = fileLoadedEvent.target.result;
+
+//     await sleep(100);
+
+//     const width = theHiddenImage.naturalWidth;
+//     const height = theHiddenImage.naturalHeight;
+
+//     if (ratio && Array.isArray(ratio) && ratio[0] && ratio[1]) {
+//       const xRatio = ratio[0] / ratio[1];
+
+//       if (width / height > xRatio + 0.05 || width / height < xRatio - 0.05)
+//         return handleSnackErrOpen(
+//           `نسبت صحیح عکس باید ${ratio[0]}:${ratio[1]} باشد`
+//         );
+//     }
+
+//     const myArray = [...images];
+
+//     const imageID = `${new Date().getTime()}${Math.floor(
+//       Math.random() * 1000
+//     )}`;
+
+//     myArray.push({
+//       imageID,
+//       src: fileLoadedEvent.target.result,
+//       isUploaded: false,
+//       uploadStarted: false,
+//       barColor: "blue",
+//       barWidth: 0,
+//       fileToLoad,
+//     });
+
+//     setImages(myArray);
+//   };
+
+//   fileReader.readAsDataURL(fileToLoad);
+// };

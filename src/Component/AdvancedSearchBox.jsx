@@ -31,10 +31,30 @@ export default function AdvancedSearchBox(props) {
   const setAdvancedRusultBtn = () => {
     setFlag(3);
     const workingDayRefArr = [];
-    const y=workingDayRef.current.controlRef.innerText.replace('\n','k')
-    workingDayRefArr.unshift(y);
-    console.log(workingDayRefArr);
-    console.log(workingDayRef.current.controlRef.innerText);
+    if (workingDayRef.current.controlRef.innerText.includes("پنجشنبه")) {
+      workingDayRefArr.push("پنجشنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("چهارشنبه")) {
+      workingDayRefArr.push("چهارشنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("سه شنبه")) {
+      workingDayRefArr.push("سه شنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("دوشنبه")) {
+      workingDayRefArr.push("دوشنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("یکشنبه")) {
+      workingDayRefArr.push("یکشنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("شنبه\n")) {
+      workingDayRefArr.push("شنبه");
+    }
+    if (workingDayRef.current.controlRef.innerText.includes("شنبه") && workingDayRefArr.length === 0) {
+      workingDayRefArr.push("شنبه");
+    }
+console.log(workingDayRef.current.controlRef.innerText);
+    console.log(workingDayRefArr)
+
     props.setFilteredDoctor(
       allDoctors.filter(
         (item) =>
@@ -47,12 +67,10 @@ export default function AdvancedSearchBox(props) {
           (adSearchExpRef.current.controlRef.innerText !== "انتخاب کنید"
             ? item.expert.includes(adSearchExpRef.current.controlRef.innerText)
             : true) &&
-          (workingDay === ""
+          (workingDayRefArr === []
             ? true
-            : workingDay === []
-            ? true
-            : workingDay.length !== 0
-            ? item.workDay.some((i) => workingDay.some((j) => j === i))
+            : workingDayRefArr.length !== 0
+            ? item.workDay.some((i) => workingDayRefArr.some((j) => j === i))
             : true)
       )
     );
@@ -150,9 +168,9 @@ export default function AdvancedSearchBox(props) {
               menuPlacement="top"
               className="px-1 my-2 w-100 rounded border-0 expertInput text-end"
               placeholder="انتخاب کنید"
-              value={weekDays.filter((obj) => workingDay.includes(obj.value))}
+              // value={weekDays.filter((obj) => workingDay.includes(obj.value))}
               options={weekDays}
-              onChange={handleChangeDay}
+              // onChange={handleChangeDay}
               ref={workingDayRef}
               isMulti
               isClearable

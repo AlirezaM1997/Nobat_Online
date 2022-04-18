@@ -15,10 +15,9 @@ export default function Footer() {
               <p className="text-center">
                 برای دریافت جدیدترین اخبار و مقالات ، ایمیل خود را وارد کنید
               </p>
-              <form
-                className="position-relative bg-white text -start w-100"
-                action=""
-                method="post"
+              <div
+                className="position-relative bg-white text -start w-100 follow"
+                
               >
                 <input
                   className="border-0 w-100"
@@ -31,7 +30,7 @@ export default function Footer() {
                   type="submit"
                   value="دنبال کردن"
                 />
-              </form>
+              </div>
             </div>
             <div className="col-lg-2 col-md-6 order-lg-1 order-md-2 order-2 d-flex flex-column align-items-center footer-links">
               <h6 className="text-center mb-3 footerTitle">لینک های مفید</h6>

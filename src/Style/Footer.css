@@ -69,23 +69,23 @@
   position: relative;
   padding-bottom: 12px;
 }
-#footer .footer-newsletter form {
+#footer .footer-newsletter .follow {
   margin-top: 30px;
   padding: 6px 10px;
   border-radius: 50px;
   border: 1px solid #bfdcf7;
 }
-#footer .footer-newsletter form input[type="email"] {
+#footer .footer-newsletter .follow input[type="email"] {
   padding: 4px 8px;
 }
-#footer .footer-newsletter form input[type="submit"] {
+#footer .footer-newsletter .follow input[type="submit"] {
   font-size: 16px;
   padding: 0 20px;
   background: #1977cc;
   transition: 0.3s;
   border-radius: 50px;
 }
-#footer .footer-newsletter form input[type="submit"]:hover {
+#footer .footer-newsletter .follow input[type="submit"]:hover {
   background: #1c84e3;
 }
 #footer .credits {
@@ -112,8 +112,8 @@
   color: #fff;
   text-decoration: none;
 }
-#footer .footer-newsletter form input[type="email"]:focus,
-#footer .footer-newsletter form input[type="email"] {
+#footer .footer-newsletter .follow input[type="email"]:focus,
+#footer .footer-newsletter .follow input[type="email"] {
   outline: none;
   box-shadow: none;
 }

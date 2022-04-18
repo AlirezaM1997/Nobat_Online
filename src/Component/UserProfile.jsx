@@ -8,7 +8,24 @@ import {
   faSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import EditProfile from "./EditProfile";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
 export default function UserProfile() {
+  const validationSchema = Yup.object().shape({
+    increaseCredit: Yup.string("لطفا مبلغ صحیح وارد نمایید")
+      .required("لطفا مبلغ صحیح وارد نمایید")
+      .min(6, "مبلغ ورودی نباید کمتر از 100000 ریال باشد")
+  });
+  const { register, handleSubmit, control, formState } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  const { errors } = formState;
+
+  const onSubmit = (data) => console.log(data);
+
   const { currentUser } = useAllState({ userNameOfUser: "" });
   const { allUsers } = useAllState();
 
@@ -262,18 +279,62 @@ export default function UserProfile() {
                     (item) => item.username === currentUser.userNameOfUser
                   )
                   .map((item) => (
-                    <div className="container p-2">
-                      <div className="row" dir="rtl">
-                        <div>
-                          اعتبار حساب شما : <span>{item.credit}</span>
+                    <form
+                      className="increaseCreditForm"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
+                      <div className="container p-2">
+                        <div className="row d-flex" dir="rtl">
+                          <div className="w-fit">
+                            <FontAwesomeIcon
+                              className="text-warning p-0"
+                              icon={faSquare}
+                            ></FontAwesomeIcon>
+                          </div>
+                          <div className="w-fit p-0">
+                            اعتبار حساب شما : <span>{item.credit}</span> تومان
+                          </div>
+                        </div>
+                        <div className="row d-flex justify-content-center flex-column mt-4">
+                          <div className="text-center mt-4 text-primary">
+                            مبلغ موردنظر خود را وارد نمایید
+                          </div>
+                          <div className="text-center my-2 text-warning hintIncreaseCredit">
+                            مبلغ ورودی نباید کمتر از <b>100000 ریال</b> باشد
+                          </div>
+                          {/* <span className="text-danger text-center mb-3 mt-1 rial">
+                            (به ریال)
+                          </span> */}
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                          <div className="col-md-8 my-1">
+                          <input
+                          name="increaseCredit"
+                          placeholder="100000"
+                          type="number"
+                          id="increaseCredit"
+                          {...register("increaseCredit")}
+
+                          className={`form-control p-1 creditInput ${
+                            errors.increaseCredit ? "is-invalid" : ""
+                          }`}
+                          autocomplete="off"
+                        />
+                        <span className="invalid-feedback text-center">
+                          {errors.increaseCredit?.message}
+                        </span>
+                            
+                          </div>
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                          <div className="col-md-6 my-4 text-center">
+                            <button type="submit" className="text-center btn btn-success">
+                              افزایش اعتبار
+                            </button>
+                          </div>
                         </div>
                       </div>
-                      <div className="row d-flex justify-content-center">
-                        <div className="col-md-5 my-4">
-                          <button className="">افزایش اعتبار</button>
-                        </div>
-                      </div>
-                    </div>
+                    </form>
                   ))
               : ""}
           </div>

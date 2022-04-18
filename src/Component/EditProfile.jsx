@@ -90,6 +90,17 @@ export default function EditProfile(props) {
 
   const { currentUser } = useAllState({ userNameOfUser: "" });
 
+  const onInputClick = (event) => {
+     document.getElementById('wrapperPictureId').style.background = `url(${event.target.value})`
+    console.log(event);
+  };
+  // document.getElementById('picture').onchange = evt => {
+  //   const [file] = document.getElementById('picture').files
+  //   if (file) {
+  //     document.getElementById('wrapperPictureId').src = URL.createObjectURL(file)
+  //   }
+  // }
+
   useEffect(() => {});
   return (
     <div>
@@ -348,14 +359,16 @@ export default function EditProfile(props) {
                           <div>
                             <div
                               className="wrapperPicture"
+                              id="wrapperPictureId"
                               style={{ background: `url(${item.img})` }}
                             >
                               <input
                                 placeholder="هیچ فایلی انتخاب نشده است"
+                                accept="image/*"
                                 type="file"
                                 id="picture"
                                 className="form-control pictureFile"
-                                onChange={(e) => console.log(e)}
+                                onInput={(e) => onInputClick(e)}
                                 {...register("picture", { required: true })}
                               />
                             </div>

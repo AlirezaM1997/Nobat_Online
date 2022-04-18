@@ -295,19 +295,34 @@
 .squareIcoCredit {
   font-size: 0.8em;
 }
-.no-res{
+.no-res {
   width: 100%;
   border-radius: 1rem;
 }
-.advertise{
+.advertise {
   width: 100%;
   border-radius: 1rem;
   font-style: italic;
   font-size: xx-large;
 }
+.w-fit {
+  width: fit-content;
+}
+.creditInput {
+  width: -webkit-fill-available;
+}
+.rial {
+  font-size: 0.9rem;
+}
+.increaseCreditForm{
+  animation: change_opa 0.7s;
+}
+.hintIncreaseCredit{
+  font-size: 0.8rem;
+}
 /*.............
  DoctorProfile
  ............. */
- .author-card-cover-doc {
+.author-card-cover-doc {
   background-image: url(https://www.bootdey.com/app/webroot/img/bg2.png);
 }
