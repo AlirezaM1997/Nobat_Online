@@ -44,7 +44,7 @@ const ResultItem = (props) => {
                 <div className="row">
                   <div className="d-flex justify-content-end flex-column flex-sm-row">
                     <h4 className="cart-doctor-title text-end d-inline">
-                      دکتر {props.item.fname} {props.item.lname}
+                      دکتر {props.item.fullName}
                     </h4>
                   </div>
                 </div>

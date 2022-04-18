@@ -3,16 +3,20 @@ const doctors = [
     id: "1",
     username: "A.Saberi",
     password: '12341234',
-    fname: "علیرضا",
-    lname: "صابری",
+    fullName:  'علیرضا صابری',
     joined: "June 21, 2016",
     expert: "اورولوژی",
     university: "استنفورد",
+    gender: "male",
+    city : 'کرج',
     imgUrl: "544345.jpeg",
     rate: "4.6",
     address1: "شهرک شریعتی",
     address2: "شهرک شریعتی ، خیابان سوم ، کوچه دوم ، پلاک 11 ، واحد 8",
     phone: `02155778899`,
+    email : 'saberi43@gmail.com',
+    code : '4574',
+    birthDate: { day: 1, month: 10, year: 1360 },
     visit: 120000,
     credit : 800000,
     date: {
@@ -47,8 +51,8 @@ const doctors = [
   },
   {
     id: "2",
-    fname: "محمد",
-    lname: "رضایی",
+    fullName:  'محمد رضایی',
+
     expert: "گوش و حلق و بینی",
     university: "تبریز",
     imgUrl: "156921.jpeg",
@@ -87,8 +91,7 @@ const doctors = [
   },
   {
     id: "3",
-    fname: "علی",
-    lname: "نوروزی",
+    fullName:  'علی نوروزی',
     expert: "داخلی",
     university: "هاروارد",
     imgUrl: "643966.jpeg",
@@ -129,8 +132,7 @@ const doctors = [
   },
   {
     id: "4",
-    fname: "احمد",
-    lname: "قادری",
+    fullName:  'احمد قادری',
     expert: "بیماری های عفونی",
     university: "علوم پزشکی ایران",
     imgUrl: "574387.jpeg",
@@ -169,8 +171,7 @@ const doctors = [
   },
   {
     id: "5",
-    fname: "شهرام",
-    lname: "کاظمی",
+    fullName:  'شهرام کاظمی',
     expert: "اعصاب و روان",
     university: "شهید بهشتی",
     imgUrl: "455837.jpeg",
@@ -211,8 +212,7 @@ const doctors = [
   },
   {
     id: "6",
-    fname: "محمود",
-    lname: "علوی",
+    fullName:  'محمود علوی',
     expert: "قلب و عروق",
     university: "تهران",
     imgUrl: "169469.jpeg",
@@ -251,8 +251,7 @@ const doctors = [
   },
   {
     id: "7",
-    fname: "سمیه",
-    lname: "شیری",
+    fullName:  'سمیه شیری',
     expert: "اعصاب و روان",
     university: "شهید بهشتی",
     imgUrl: "644187.jpeg",
@@ -293,8 +292,8 @@ const doctors = [
   },
   {
     id: "8",
-    fname: "مهدی",
-    lname: "سجادی",
+    fullName:  'مهدی سجادی',
+
     expert: "قلب و عروق",
     university: "تهران",
     imgUrl: "533913.jpeg",
@@ -333,8 +332,8 @@ const doctors = [
   },
   {
     id: "9",
-    fname: "جلال",
-    lname: "تاجیک",
+    fullName:  'جلال تاجیک',
+
     expert: "روانپزشکی",
     university: "شیراز",
     imgUrl: "297421.jpeg",
@@ -375,8 +374,8 @@ const doctors = [
   },
   {
     id: "10",
-    fname: "علی اکبر",
-    lname: "مهدیانی",
+    fullName:  'علی اکبر مهدیانی',
+
     expert: "بیهوشی",
     university: "تهران",
     imgUrl: "462173.jpeg",
@@ -415,8 +414,8 @@ const doctors = [
   },
   {
     id: "11",
-    fname: "زهرا",
-    lname: "ایوانی",
+    fullName:  'زهرا ایوانی',
+
     expert: "مامایی",
     university: "تربیت مدرس",
     imgUrl: "688564.jpeg",
@@ -457,8 +456,8 @@ const doctors = [
   },
   {
     id: "12",
-    fname: "نگار",
-    lname: "کوشکی",
+    fullName:  'نگار کوشکی',
+
     expert: "روانپزشکی",
     university: "تهران",
     imgUrl: "717832.jpeg",
@@ -497,8 +496,8 @@ const doctors = [
   },
   {
     id: "13",
-    fname: "سامان",
-    lname: "فاطمی",
+    fullName:  'سامان فاطمی',
+
     expert: "زیبایی",
     university: "آزاد علوم پزشکی",
     imgUrl: "99206.jpeg",
@@ -537,8 +536,8 @@ const doctors = [
   },
   {
     id: "14",
-    fname: "مریم",
-    lname: "نقلی",
+    fullName:  'مریم نقلی',
+
     expert: "زیبایی",
     university: "تهران",
     imgUrl: "342112.jpeg",
@@ -579,8 +578,8 @@ const doctors = [
   },
   {
     id: "15",
-    fname: "مسعود",
-    lname: "غزنوی",
+    fullName:  'مسعود غزنوی',
+
     expert: "روانپزشکی",
     university: "اصفهان",
     imgUrl: "421521.jpeg",
@@ -619,8 +618,8 @@ const doctors = [
   },
   {
     id: "16",
-    fname: "محمد مهدی",
-    lname: "ارجمند",
+    fullName:  'محمد مهدی ارجمند',
+
     expert: "روانپزشکی",
     university: "فردوسی مشهد",
     imgUrl: "622715.jpeg",
@@ -659,8 +658,8 @@ const doctors = [
   },
   {
     id: "17",
-    fname: "محدثه",
-    lname: "رضایی نژاد",
+    fullName:  'محدثه رضایی نژاد',
+
     expert: "قلب و عروق",
     university: "تهران",
     imgUrl: "734866.jpeg",
@@ -699,8 +698,8 @@ const doctors = [
   },
   {
     id: "18",
-    fname: "محمد صادق",
-    lname: "بابایی",
+    fullName:  'محمد صادق بابایی',
+
     expert: "قلب و عروق",
     university: "علوم پزشکی ایران",
     imgUrl: "698773.jpeg",
@@ -739,8 +738,8 @@ const doctors = [
   },
   {
     id: "19",
-    fname: "مژگان",
-    lname: "گلی نژاد",
+    fullName:  'مژگان گلی نژاد',
+
     expert: "قلب و عروق",
     university: "زنجان",
     imgUrl: "651555.jpeg",
@@ -779,8 +778,8 @@ const doctors = [
   },
   {
     id: "20",
-    fname: "ملیحه",
-    lname: "رضوی",
+    fullName:  'ملیحه رضوی',
+
     expert: "روانپزشکی",
     university: "تهران",
     imgUrl: "397366.jpeg",

@@ -17,7 +17,7 @@ export default function UserProfile() {
   const validationSchema = Yup.object().shape({
     increaseCredit: Yup.string("لطفا مبلغ صحیح وارد نمایید")
       .required("لطفا مبلغ صحیح وارد نمایید")
-      .min(6, "مبلغ ورودی نباید کمتر از 100000 ریال باشد")
+      .min(6, "مبلغ ورودی نباید کمتر از 100000 ریال باشد"),
   });
   const { register, handleSubmit, control, formState } = useForm({
     resolver: yupResolver(validationSchema),
@@ -37,7 +37,6 @@ export default function UserProfile() {
   const [noResult, setNoResult] = useState(false);
 
   useEffect(() => {
-    console.log("u");
     const array = allUsers
       .filter((item) => item.username === currentUser.userNameOfUser)[0]
       .allApointments.filter((i) => i.reserved);
@@ -302,33 +301,31 @@ export default function UserProfile() {
                           <div className="text-center my-2 text-warning hintIncreaseCredit">
                             مبلغ ورودی نباید کمتر از <b>100000 ریال</b> باشد
                           </div>
-                          {/* <span className="text-danger text-center mb-3 mt-1 rial">
-                            (به ریال)
-                          </span> */}
                         </div>
                         <div className="row d-flex justify-content-center">
                           <div className="col-md-8 my-1">
-                          <input
-                          name="increaseCredit"
-                          placeholder="100000"
-                          type="number"
-                          id="increaseCredit"
-                          {...register("increaseCredit")}
-
-                          className={`form-control p-1 creditInput ${
-                            errors.increaseCredit ? "is-invalid" : ""
-                          }`}
-                          autocomplete="off"
-                        />
-                        <span className="invalid-feedback text-center">
-                          {errors.increaseCredit?.message}
-                        </span>
-                            
+                            <input
+                              name="increaseCredit"
+                              placeholder="100000"
+                              type="number"
+                              id="increaseCredit"
+                              {...register("increaseCredit")}
+                              className={`form-control p-1 creditInput ${
+                                errors.increaseCredit ? "is-invalid" : ""
+                              }`}
+                              autocomplete="off"
+                            />
+                            <span className="invalid-feedback text-center">
+                              {errors.increaseCredit?.message}
+                            </span>
                           </div>
                         </div>
                         <div className="row d-flex justify-content-center">
                           <div className="col-md-6 my-4 text-center">
-                            <button type="submit" className="text-center btn btn-success">
+                            <button
+                              type="submit"
+                              className="text-center btn btn-success"
+                            >
                               افزایش اعتبار
                             </button>
                           </div>

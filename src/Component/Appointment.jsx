@@ -169,7 +169,7 @@ export default function Appointment() {
     setScroll(true);
     const doctorName = allDoctors
       .filter((item) => item.id === currentAppoin)
-      .map((item) => item.fname + " " + item.lname);
+      .map((item) => item.fullName);
     const a = String(selectedTime).slice(0, 8);
     const b = [a.slice(0, 4), a.slice(4, 6), a.slice(6, 8)];
     const date = b[0] + "/" + b[1] + "/" + b[2];
@@ -377,7 +377,7 @@ export default function Appointment() {
                         id="docInfo"
                       >
                         <h2 className="h1 mt-2 text-white">
-                          دکتر {item.fname} {item.lname}
+                          دکتر {item.fullName}
                         </h2>
                         <p className="h4 my-3 text-warning">
                           متخصص {item.expert}

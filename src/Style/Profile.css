@@ -326,3 +326,10 @@
 .author-card-cover-doc {
   background-image: url(https://www.bootdey.com/app/webroot/img/bg2.png);
 }
+.moreInfoDocAppoin{
+  width: fit-content;
+  font-size: 1rem;
+}
+.depositCredit{
+  animation: change_opa 0.7s;
+}

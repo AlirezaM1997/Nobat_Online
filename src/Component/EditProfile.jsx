@@ -14,6 +14,9 @@ import { useAllState } from "../Provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+import Select from "react-select";
+import DoctorList from "../All-Data/DoctorList";
+
 export default function EditProfile(props) {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -34,6 +37,15 @@ export default function EditProfile(props) {
       .required("لطفا شماره صحیح وارد نمایید")
       .min(11, "لطفا شماره صحیح وارد نمایید")
       .max(11, "لطفا شماره صحیح وارد نمایید"),
+    phone: Yup.string("لطفا شماره صحیح وارد نمایید")
+      .required("لطفا شماره صحیح وارد نمایید")
+      .min(11, "لطفا شماره صحیح وارد نمایید")
+      .max(11, "لطفا شماره صحیح وارد نمایید"),
+    code: Yup.string("لطفا کد صحیح وارد نمایید")
+      .required("لطفا کد صحیح وارد نمایید")
+      .min(4, "لطفا کد صحیح وارد نمایید")
+      .max(4, "لطفا کد صحیح وارد نمایید"),
+    expert: Yup.string().required("لطفا یک مورد را انتخاب کنید"),
   });
 
   const { register, handleSubmit, control, reset, formState, setValue } =
@@ -50,6 +62,8 @@ export default function EditProfile(props) {
     day: props.item.birthDate.day,
   };
 
+  const { docAuth } = useAllState();
+  console.log(props.item.expert);
   const [selectedDay, setSelectedDay] = useState(defaultBirthDateValue);
   const renderBirthdateInput = ({ ref }) => (
     <input
@@ -82,6 +96,7 @@ export default function EditProfile(props) {
       id="exampleDatepicker1"
     />
   );
+  const { allDoctors } = useAllState();
   const { allUsers } = useAllState();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
@@ -89,9 +104,12 @@ export default function EditProfile(props) {
   };
 
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
 
   const onInputClick = (event) => {
-     document.getElementById('wrapperPictureId').style.background = `url(${event.target.value})`
+    document.getElementById(
+      "wrapperPictureId"
+    ).style.background = `url(${event.target.value})`;
     console.log(event);
   };
   // document.getElementById('picture').onchange = evt => {
@@ -101,7 +119,11 @@ export default function EditProfile(props) {
   //   }
   // }
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (docAuth) {
+      document.getElementById("eyeIconId").style.top = "9.35%";
+    }
+  });
   return (
     <div>
       <section className="container p-1 min-vh-100 mw-100 w-100">
@@ -115,19 +137,13 @@ export default function EditProfile(props) {
                       <div className="col-md-8 ">
                         <input
                           disabled
-                          dir="rtl"
                           type="text"
                           id="username"
                           value={props.item.username}
                           {...register("username")}
-                          className={`form-control ${
-                            errors.username ? "is-invalid" : ""
-                          }`}
+                          className={`form-control`}
                           autocomplete="off"
                         />
-                        <span className="invalid-feedback">
-                          {errors.username?.message}
-                        </span>
                       </div>
                       <div className="col-md-4">
                         {" "}
@@ -151,6 +167,7 @@ export default function EditProfile(props) {
                         <FontAwesomeIcon
                           icon={faEye}
                           className="eyeIcon"
+                          id="eyeIconId"
                           onClick={togglePasswordVisiblity}
                         />
                         <span className="invalid-feedback">
@@ -262,68 +279,153 @@ export default function EditProfile(props) {
                       )}
                     </div>
                   </div>
+                  {docAuth ? (
+                    <div className="row mb-3 align-items-center">
+                      <div className="col-sm-6"></div>
+                      <div className="col-sm-6 w-sm text-end ">
+                        <label className="form-label" htmlFor="code">
+                          کد نظام پزشکی
+                        </label>
+                        <input
+                          type="number"
+                          id="code"
+                          defaultValue={props.item.code}
+                          className="form-control"
+                          {...register("code", { required: true })}
+                          autocomplete="off"
+                        />
+                        {errors.code && (
+                          <span className=" text-danger">
+                            پر کردن این فیلد الزامی است
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="row mb-3 align-items-center">
-                    <div className="col-6 text-end">
-                      <label className="form-label" htmlFor="educationRate">
-                        میزان تحصیلات
-                      </label>
-                      <select
-                        id="educationRate"
-                        // className={`form-control select px-2 py-1`}
-                        dir="rtl"
-                        name="educationRate"
-                        defaultValue={props.item.educationRate}
-                        placeholder="انتخاب کنید"
-                        {...register("educationRate")}
-                        onChange={(e) =>
-                          setValue("educationRate", e.target.value, {
-                            shouldValidate: true,
-                          })
-                        }
-                        className={`form-control select px-2 py-1 ${
-                          errors.educationRate ? "invalidSelectInput" : ""
-                        }`}
-                      >
-                        <option value="" readOnly disabled>
-                          انتخاب کنید
-                        </option>
-                        <option value={"بی سواد"}> بی سواد</option>
-                        <option value={"ابتدایی"}> ابتدایی</option>
-                        <option value={"سیکل"}> سیکل</option>
-                        <option value={"دیپلم"}>دیپلم</option>
-                        <option value={"فوق دیپلم"}>فوق دبپلم</option>
-                        <option value={"لیسانس"}> لیسانس</option>
-                        <option value={"فوق لیسانس"}> فوق لیسانس</option>
-                        <option value={"دکتری"}> دکتری</option>
-                      </select>
-                      {errors.educationRate && (
-                        <p className="text-danger expertError mb-0">
-                          {errors.educationRate.message}
-                        </p>
-                      )}
-                    </div>
+                    {docAuth ? (
+                      <div className="col-6 text-end">
+                        <label className="form-label" htmlFor="expert">
+                          تخصص
+                        </label>
+                        <Controller
+                          control={control}
+                          name="expert"
+                          render={({ field: { onChange, value, ref } }) => (
+                            <Select
+                              menuPlacement="bottom"
+                              name="expert"
+                              id="expert"
+                              {...register("expert")}
+                              // value={'اورولوژی'}
+                              // defaultValue={'اورولوژی'}
+                              options={DoctorList}
+                              onChange={(e) => {
+                                onChange(e);
+                                setValue("expert", e.value, {
+                                  shouldValidate: true,
+                                });
+                              }}
+                              className={`form-control select p-0 ${
+                                errors.expert ? "invalidSelectInput" : ""
+                              }`}
+                              isSearchable={false}
+                            />
+                          )}
+                        />
+                        {errors.expert && (
+                          <p className="text-danger expertError mb-0">
+                            {errors.expert.message}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="col-6 text-end">
+                        <label className="form-label" htmlFor="educationRate">
+                          میزان تحصیلات
+                        </label>
+                        <select
+                          id="educationRate"
+                          // className={`form-control select px-2 py-1`}
+                          dir="rtl"
+                          name="educationRate"
+                          defaultValue={props.item.educationRate}
+                          placeholder="انتخاب کنید"
+                          {...register("educationRate")}
+                          onChange={(e) =>
+                            setValue("educationRate", e.target.value, {
+                              shouldValidate: true,
+                            })
+                          }
+                          className={`form-control select px-2 py-1 ${
+                            errors.educationRate ? "invalidSelectInput" : ""
+                          }`}
+                        >
+                          <option value="" readOnly disabled>
+                            انتخاب کنید
+                          </option>
+                          <option value={"بی سواد"}> بی سواد</option>
+                          <option value={"ابتدایی"}> ابتدایی</option>
+                          <option value={"سیکل"}> سیکل</option>
+                          <option value={"دیپلم"}>دیپلم</option>
+                          <option value={"فوق دیپلم"}>فوق دبپلم</option>
+                          <option value={"لیسانس"}> لیسانس</option>
+                          <option value={"فوق لیسانس"}> فوق لیسانس</option>
+                          <option value={"دکتری"}> دکتری</option>
+                        </select>
+                        {errors.educationRate && (
+                          <p className="text-danger expertError mb-0">
+                            {errors.educationRate.message}
+                          </p>
+                        )}
+                      </div>
+                    )}
 
-                    <div className="col-6 text-end">
-                      <label className="form-label" htmlFor="phoneNumber">
-                        تلفن همراه
-                      </label>
-                      <input
-                        dir="rtl"
-                        name="phoneNumber"
-                        placeholder="09120000000"
-                        type="number"
-                        id="phoneNumber"
-                        defaultValue={props.item.phoneNumber}
-                        {...register("phoneNumber")}
-                        className={`form-control ${
-                          errors.phoneNumber ? "is-invalid" : ""
-                        }`}
-                        autocomplete="off"
-                      />
-                      <span className="invalid-feedback">
-                        {errors.phoneNumber?.message}
-                      </span>
-                    </div>
+                    {docAuth ? (
+                      <div className="col-6 text-end">
+                        <label className="form-label" htmlFor="phone">
+                          تلفن
+                        </label>
+                        <input
+                          name="phone"
+                          placeholder="09120000000"
+                          type="number"
+                          id="phone"
+                          defaultValue={props.item.phone}
+                          {...register("phone")}
+                          className={`form-control ${
+                            errors.phone ? "is-invalid" : ""
+                          }`}
+                          autocomplete="off"
+                        />
+                        <span className="invalid-feedback">
+                          {errors.phone?.message}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="col-6 text-end">
+                        <label className="form-label" htmlFor="phoneNumber">
+                          تلفن همراه
+                        </label>
+                        <input
+                          name="phoneNumber"
+                          placeholder="09120000000"
+                          type="number"
+                          id="phoneNumber"
+                          defaultValue={props.item.phoneNumber}
+                          {...register("phoneNumber")}
+                          className={`form-control ${
+                            errors.phoneNumber ? "is-invalid" : ""
+                          }`}
+                          autocomplete="off"
+                        />
+                        <span className="invalid-feedback">
+                          {errors.phoneNumber?.message}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="row mb-3 mt-4">
                     <div className="col text-end">
@@ -351,29 +453,57 @@ export default function EditProfile(props) {
 
                   <div className="row mb-3 mt-4">
                     <div className="col text-end">
-                      {allUsers
-                        .filter(
-                          (item) => item.username === currentUser.userNameOfUser
-                        )
-                        .map((item) => (
-                          <div>
-                            <div
-                              className="wrapperPicture"
-                              id="wrapperPictureId"
-                              style={{ background: `url(${item.img})` }}
-                            >
-                              <input
-                                placeholder="هیچ فایلی انتخاب نشده است"
-                                accept="image/*"
-                                type="file"
-                                id="picture"
-                                className="form-control pictureFile"
-                                onInput={(e) => onInputClick(e)}
-                                {...register("picture", { required: true })}
-                              />
-                            </div>
-                          </div>
-                        ))}
+                      {docAuth
+                        ? allDoctors
+                            .filter(
+                              (item) =>
+                                item.username === currentDoctor.userNameOfDoctor
+                            )
+                            .map((item) => (
+                              <div>
+                                <div
+                                  className="wrapperPicture"
+                                  id="wrapperPictureId"
+                                  style={{
+                                    background: `url(https://www.tebinja.com/img/uploads/doctors/thumbnails/${item.imgUrl})`,
+                                  }}
+                                >
+                                  <input
+                                    placeholder="هیچ فایلی انتخاب نشده است"
+                                    accept="image/*"
+                                    type="file"
+                                    id="picture"
+                                    className="form-control pictureFile"
+                                    onInput={(e) => onInputClick(e)}
+                                    {...register("picture", { required: true })}
+                                  />
+                                </div>
+                              </div>
+                            ))
+                        : allUsers
+                            .filter(
+                              (item) =>
+                                item.username === currentUser.userNameOfUser
+                            )
+                            .map((item) => (
+                              <div>
+                                <div
+                                  className="wrapperPicture"
+                                  id="wrapperPictureId"
+                                  style={{ background: `url(${item.img})` }}
+                                >
+                                  <input
+                                    placeholder="هیچ فایلی انتخاب نشده است"
+                                    accept="image/*"
+                                    type="file"
+                                    id="picture"
+                                    className="form-control pictureFile"
+                                    onInput={(e) => onInputClick(e)}
+                                    {...register("picture", { required: true })}
+                                  />
+                                </div>
+                              </div>
+                            ))}
                     </div>
                   </div>
                   <div className="text-center  my-4">

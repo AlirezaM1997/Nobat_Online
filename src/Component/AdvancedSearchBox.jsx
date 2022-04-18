@@ -3,7 +3,10 @@ import "../Style/AdvancedSearchBox.css";
 import StickyBox from "react-sticky-box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAddressCard,
   faCalendarDays,
+  faLocationPin,
+  faMapLocationDot,
   faNotesMedical,
   faSearchPlus,
   faUserDoctor,
@@ -27,6 +30,7 @@ export default function AdvancedSearchBox(props) {
   const adSearchNameRef = useRef();
   const adSearchExpRef = useRef();
   const workingDayRef = useRef();
+  const adSearchAddressRef = useRef();
 
   const setAdvancedRusultBtn = () => {
     setFlag(3);
@@ -49,21 +53,21 @@ export default function AdvancedSearchBox(props) {
     if (workingDayRef.current.controlRef.innerText.includes("شنبه\n")) {
       workingDayRefArr.push("شنبه");
     }
-    if (workingDayRef.current.controlRef.innerText.includes("شنبه") && workingDayRefArr.length === 0) {
+    if (
+      workingDayRef.current.controlRef.innerText.includes("شنبه") &&
+      workingDayRefArr.length === 0
+    ) {
       workingDayRefArr.push("شنبه");
     }
-console.log(workingDayRef.current.controlRef.innerText);
-    console.log(workingDayRefArr)
+    console.log(workingDayRef.current.controlRef.innerText);
+    console.log(workingDayRefArr);
 
     props.setFilteredDoctor(
       allDoctors.filter(
         (item) =>
-          (item.fname
+          item.fullName
             .toLowerCase()
-            .includes(adSearchNameRef.current.value.toLowerCase()) ||
-            item.lname
-              .toLowerCase()
-              .includes(adSearchNameRef.current.value.toLowerCase())) &&
+            .includes(adSearchNameRef.current.value.toLowerCase()) &&
           (adSearchExpRef.current.controlRef.innerText !== "انتخاب کنید"
             ? item.expert.includes(adSearchExpRef.current.controlRef.innerText)
             : true) &&
@@ -71,7 +75,10 @@ console.log(workingDayRef.current.controlRef.innerText);
             ? true
             : workingDayRefArr.length !== 0
             ? item.workDay.some((i) => workingDayRefArr.some((j) => j === i))
-            : true)
+            : true) &&
+          item.address1
+            .toLowerCase()
+            .includes(adSearchAddressRef.current.value.toLowerCase())
       )
     );
   };
@@ -176,10 +183,22 @@ console.log(workingDayRef.current.controlRef.innerText);
               isClearable
               isSearchable={false}
             />
+            <p className="text-end text-warning h6 mb-1">
+              آدرس مطب{" "}
+              <FontAwesomeIcon
+                className="mx-2 text-white"
+                icon={faMapLocationDot}
+              />
+            </p>
+            <input
+              dir="rtl"
+              className="bg-light py-2 px-1 my-2 w-100 rounded border-0 expertInput"
+              ref={adSearchAddressRef}
+            ></input>
           </div>
           <div className="row w-75 m-auto p-3">
             <button
-              className="adSearchBtn"
+              className="adSearchBtn mt-0"
               onClick={() => setAdvancedRusultBtn()}
             >
               جستجو

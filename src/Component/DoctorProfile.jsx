@@ -9,15 +9,43 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import EditProfile from "./EditProfile";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
 export default function DoctorProfile() {
+  const validationSchema = Yup.object().shape({
+    depositCredit: Yup.string("لطفا شماره شبا صحیح وارد نمایید")
+      .required("لطفا شماره شبا صحیح وارد نمایید")
+      .min(26, "لطفا شماره شبا صحیح وارد نمایید")
+      .max(26, "لطفا شماره شبا صحیح وارد نمایید"),
+  });
+  const { register, handleSubmit, control, formState } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  const { errors } = formState;
+
+  const onSubmit = (data) => console.log(data);
+
   const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
   const { allDoctors } = useAllState();
-console.log(currentDoctor);
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
   const [cancelApointment, setCancelApointment] = useState(0);
   const [reservedApointment, setReservedApointment] = useState(0);
   const [accountCredit, setAccountCredit] = useState(0);
+  const [noResult, setNoResult] = useState(false);
+
+  useEffect(() => {
+    const array = allDoctors
+      .filter((item) => item.username === currentDoctor.userNameOfUser)[0]
+      .allApointments.filter((i) => i.reserved);
+    if (array.length === 0) {
+      setNoResult(true);
+    } else {
+      setNoResult(false);
+    }
+  });
 
   const [state, setState] = useState({
     history: false,
@@ -215,8 +243,9 @@ console.log(currentDoctor);
                       ))
                   )
               : ""}
-            {state.reserved
-              ? allDoctors
+            {state.reserved ? (
+              !noResult ? (
+                allDoctors
                   .filter(
                     (item) => item.username === currentDoctor.userNameOfDoctor
                   )
@@ -229,7 +258,14 @@ console.log(currentDoctor);
                         </div>
                       ))
                   )
-              : ""}
+              ) : (
+                <div className="row bg-dark text-white py-5 px-4 text-center m-auto justify-content-center no-res">
+                  هیچ نوبت رزرو شده ای وجود ندارد
+                </div>
+              )
+            ) : (
+              ""
+            )}
             {state.setting
               ? allDoctors
                   .filter(
@@ -243,18 +279,54 @@ console.log(currentDoctor);
                     (item) => item.username === currentDoctor.userNameOfDoctor
                   )
                   .map((item, index) => (
-                    <div className="container p-2">
-                      <div className="row" dir="rtl">
-                        <div>
-                          اعتبار حساب شما : <span>{item.credit}</span>
+                    <form  onSubmit={handleSubmit(onSubmit)} className='depositCredit'>
+                      <div className="container p-2">
+                        <div className="row d-flex" dir="rtl">
+                          <div className="w-fit">
+                            <FontAwesomeIcon
+                              className="text-warning p-0"
+                              icon={faSquare}
+                            ></FontAwesomeIcon>
+                          </div>
+                          <div className="w-fit p-0">
+                            اعتبار کیف پول شما : <span>{item.credit}</span> تومان
+                          </div>
                         </div>
+                        <div className="row d-flex justify-content-center flex-column mt-4">
+                            <div className="text-center mt-4 mb-3 text-primary">
+                              شماره شبای خود را وارد نمایید
+                            </div>
+                          </div>
+                          <div className="row d-flex justify-content-center">
+                            <div className="col-md-10 my-1">
+                              <input
+                                name="depositCredit"
+                                placeholder="IR + شماره 24 رقمی"
+                                type="text"
+                                id="depositCredit"
+                                {...register("depositCredit")}
+                                className={`form-control p-1 creditInput ${
+                                  errors.depositCredit ? "is-invalid" : ""
+                                }`}
+                                autocomplete="off"
+                              />
+                              <span className="invalid-feedback text-center">
+                                {errors.depositCredit?.message}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="row d-flex justify-content-center">
+                            <div className="col-md-6 my-4 text-center">
+                              <button
+                                type="submit"
+                                className="text-center btn btn-success"
+                              >
+                                واریز اعتبار به حساب
+                              </button>
+                            </div>
+                          </div>
                       </div>
-                      <div className="row d-flex justify-content-center">
-                        <div className="col-md-5 my-4">
-                          <button className="">افزایش اعتبار</button>
-                        </div>
-                      </div>
-                    </div>
+                    </form>
                   ))
               : ""}
           </div>
@@ -269,7 +341,7 @@ console.log(currentDoctor);
                   <div className="author-card-profile d-flex  justify-content-end ">
                     <div className="author-card-details d-flex flex-column justify-content-end justify-content-lg-center pe-2">
                       <h5 className="author-card-name text-center text-lg">
-                        دکتر {item.fname} {item.lname}
+                        دکتر {item.fullName}
                       </h5>
                       <span className="author-card-joined text-center">
                         Joined <br></br>

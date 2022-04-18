@@ -28,12 +28,11 @@ export default function Result() {
   // const { adSearchExp } = useAllState();
   // const { workingDay } = useAllState("");
 
-
   const [isLoaded, setIsLoaded] = useState(true);
   const [filteredDoctor, setFilteredDoctor] = useState([]);
 
   // console.log(filteredDoctor);
-  
+
   // useEffect(() => {
   //   const url = ``;
   //   fetch(url)
@@ -61,10 +60,8 @@ export default function Result() {
         setNoResult(false);
       }
     } else if (flag === 2) {
-      const array = allDoctors.filter(
-        (item) =>
-          item.fname.toLowerCase().includes(searchDoc.toLowerCase()) ||
-          item.lname.toLowerCase().includes(searchDoc.toLowerCase())
+      const array = allDoctors.filter((item) =>
+        item.fullName.toLowerCase().includes(searchDoc.toLowerCase())
       );
       if (array.length === 0) {
         setNoResult(true);
@@ -108,21 +105,31 @@ export default function Result() {
             {flag === 1
               ? allDoctors
                   .filter((item) => item.expert.includes(searchExp))
-                  .map((item , index) => <div key={index}><ResultItem item={item} /></div>)
+                  .map((item, index) => (
+                    <div key={index}>
+                      <ResultItem item={item} />
+                    </div>
+                  ))
               : ""}
             {flag === 2
               ? allDoctors
-                  .filter(
-                    (item) =>
-                      item.fname
-                        .toLowerCase()
-                        .includes(searchDoc.toLowerCase()) ||
-                      item.lname.toLowerCase().includes(searchDoc.toLowerCase())
+                  .filter((item) =>
+                    item.fullName
+                      .toLowerCase()
+                      .includes(searchDoc.toLowerCase())
                   )
-                  .map((item , index) => <div key={index}><ResultItem item={item} /></div>)
+                  .map((item, index) => (
+                    <div key={index}>
+                      <ResultItem item={item} />
+                    </div>
+                  ))
               : ""}
             {flag === 3
-              ? filteredDoctor.map((item , index) => <div key={index}><ResultItem item={item} /></div>)
+              ? filteredDoctor.map((item, index) => (
+                  <div key={index}>
+                    <ResultItem item={item} />
+                  </div>
+                ))
               : ""}
             {noResult ? (
               <Image
