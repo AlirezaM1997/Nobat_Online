@@ -7,7 +7,7 @@ const users = [
     city: "تهران",
     birthDate: { day: 1, month: 1, year: 1370 },
     joined: "February 06, 2017",
-    educationRate: "سیکل",
+    educationRate: "دیپلم",
     email: "example1@gmail.com",
     gender: "male",
     phoneNumber: "09124540120",

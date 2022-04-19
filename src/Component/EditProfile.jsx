@@ -54,7 +54,7 @@ export default function EditProfile(props) {
     });
   const { errors } = formState;
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => console.log('data');
 
   const defaultBirthDateValue = {
     year: props.item.birthDate.year,
@@ -63,7 +63,7 @@ export default function EditProfile(props) {
   };
 
   const { docAuth } = useAllState();
-  console.log(props.item.expert);
+
   const [selectedDay, setSelectedDay] = useState(defaultBirthDateValue);
   const renderBirthdateInput = ({ ref }) => (
     <input
@@ -290,12 +290,14 @@ export default function EditProfile(props) {
                           type="number"
                           id="code"
                           defaultValue={props.item.code}
-                          className="form-control"
+                          className={`form-control ${
+                            errors.fullname ? "is-invalid" : ""
+                          }`}
                           {...register("code", { required: true })}
                           autocomplete="off"
                         />
                         {errors.code && (
-                          <span className=" text-danger">
+                          <span className="invalid-feedback">
                             پر کردن این فیلد الزامی است
                           </span>
                         )}
@@ -319,8 +321,7 @@ export default function EditProfile(props) {
                               name="expert"
                               id="expert"
                               {...register("expert")}
-                              // value={'اورولوژی'}
-                              // defaultValue={'اورولوژی'}
+                              defaultValue={{ label: `${props.item.expert}`, value: props.item.expert}}
                               options={DoctorList}
                               onChange={(e) => {
                                 onChange(e);
@@ -328,18 +329,11 @@ export default function EditProfile(props) {
                                   shouldValidate: true,
                                 });
                               }}
-                              className={`form-control select p-0 ${
-                                errors.expert ? "invalidSelectInput" : ""
-                              }`}
+                              className={`form-control select p-0`}
                               isSearchable={false}
                             />
                           )}
                         />
-                        {errors.expert && (
-                          <p className="text-danger expertError mb-0">
-                            {errors.expert.message}
-                          </p>
-                        )}
                       </div>
                     ) : (
                       <div className="col-6 text-end">

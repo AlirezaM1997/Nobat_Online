@@ -9,9 +9,9 @@ import {
 
 export default function AskedQuestions() {
   return (
-    <section id="aq" class="aq aq-bg mb-5 py-4">
-      <div class="container my-5">
-        <div class="section-title" dir="rtl">
+    <section id="aq" className="aq aq-bg mb-5 py-4">
+      <div className="container my-5">
+        <div className="section-title" dir="rtl">
           {/* <FontAwesomeIcon
             className="mx-3 queIconTitle"
             icon={faQuestionCircle}
@@ -19,12 +19,12 @@ export default function AskedQuestions() {
           <h2 className="mb-4 d-inline-block">سوال و پاسخ</h2>
         </div>
 
-        <div class="aq-list">
+        <div className="aq-list">
           <ul>
             <li data-aos="fade-up">
               <a
                 data-bs-toggle="collapse"
-                class="collapse"
+                className="collapse"
                 data-bs-target="#aq-list-1"
               >
                 <div className="d-flex align-items-end justify-content-between">
@@ -50,7 +50,7 @@ export default function AskedQuestions() {
               </a>
               <div
                 id="aq-list-1"
-                class="collapse show"
+                className="collapse show"
                 data-bs-parent=".aq-list"
               >
                 <p className="text-end" dir="rtl">
@@ -68,7 +68,7 @@ export default function AskedQuestions() {
               <a
                 data-bs-toggle="collapse"
                 data-bs-target="#aq-list-2"
-                class="collapsed"
+                className="collapsed"
               >
                 <div className="d-flex align-items-end justify-content-between">
                   <FontAwesomeIcon
@@ -90,7 +90,7 @@ export default function AskedQuestions() {
                   </div>
                 </div>
               </a>
-              <div id="aq-list-2" class="collapse" data-bs-parent=".aq-list">
+              <div id="aq-list-2" className="collapse" data-bs-parent=".aq-list">
                 <p className="text-end" dir="rtl">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                   استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
@@ -106,7 +106,7 @@ export default function AskedQuestions() {
               <a
                 data-bs-toggle="collapse"
                 data-bs-target="#aq-list-3"
-                class="collapsed"
+                className="collapsed"
               >
                 <div className="d-flex align-items-end justify-content-between">
                   <FontAwesomeIcon
@@ -129,7 +129,7 @@ export default function AskedQuestions() {
                   </div>
                 </div>
               </a>
-              <div id="aq-list-3" class="collapse" data-bs-parent=".aq-list">
+              <div id="aq-list-3" className="collapse" data-bs-parent=".aq-list">
                 <p className="text-end" dir="rtl">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                   استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
@@ -145,7 +145,7 @@ export default function AskedQuestions() {
               <a
                 data-bs-toggle="collapse"
                 data-bs-target="#aq-list-4"
-                class="collapsed"
+                className="collapsed"
               >
                 <div className="d-flex align-items-end justify-content-between">
                   <FontAwesomeIcon
@@ -168,7 +168,7 @@ export default function AskedQuestions() {
                   </div>
                 </div>
               </a>
-              <div id="aq-list-4" class="collapse" data-bs-parent=".aq-list">
+              <div id="aq-list-4" className="collapse" data-bs-parent=".aq-list">
                 <p className="text-end" dir="rtl">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                   استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
@@ -184,7 +184,7 @@ export default function AskedQuestions() {
               <a
                 data-bs-toggle="collapse"
                 data-bs-target="#aq-list-5"
-                class="collapsed"
+                className="collapsed"
               >
                 <div className="d-flex align-items-end justify-content-between">
                   <FontAwesomeIcon
@@ -206,7 +206,7 @@ export default function AskedQuestions() {
                   </div>
                 </div>
               </a>
-              <div id="aq-list-5" class="collapse" data-bs-parent=".aq-list">
+              <div id="aq-list-5" className="collapse" data-bs-parent=".aq-list">
                 <p className="text-end" dir="rtl">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                   استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و

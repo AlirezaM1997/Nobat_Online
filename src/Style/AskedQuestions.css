@@ -1,77 +1,78 @@
-.section-title h2{
-    border-bottom: solid 3px #8fbc54;
-    padding-bottom: 0.4em;
-    font-weight: bold;
+.section-title h2 {
+  border-bottom: solid 3px #8fbc54;
+  padding-bottom: 0.4em;
+  font-weight: bold;
 }
 .aq-bg {
-    background-color: #f1f7fd;
-  }
-.aq{
-    font-family: "Sahel";
+  background-color: #f1f7fd;
+}
+.aq {
+  font-family: "Sahel";
 }
 .aq .aq-list {
-    padding: 0 100px;
-  }
-  .aq .aq-list ul {
+  padding: 0 100px;
+}
+.aq .aq-list ul {
+  padding: 0;
+  list-style: none;
+}
+.aq .aq-list li + li {
+  margin-top: 15px;
+}
+.aq .aq-list li {
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+}
+.aq .aq-list a {
+  display: block;
+  position: relative;
+  line-height: 24px;
+  font: 500 16px;
+  padding: 0 30px;
+  outline: none;
+  cursor: pointer;
+}
+.aq .aq-list .icon-help {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  left: 20px;
+  color: #76b5ee;
+}
+.aq .aq-list .icon-show,
+.aq .aq-list .icon-close {
+  font-size: 24px;
+  vertical-align: middle;
+}
+.aq .aq-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+.aq .aq-list .icon-show {
+  display: none;
+}
+.aq .aq-list a.collapsed {
+  color: #343a40;
+}
+.aq .aq-list a.collapsed:hover {
+  color: #1977cc;
+}
+.aq .aq-list a.collapsed .icon-show {
+  display: inline-block;
+}
+.aq .aq-list a.collapsed .icon-close {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .aq .aq-list {
     padding: 0;
-    list-style: none;
   }
-  .aq .aq-list li + li {
-    margin-top: 15px;
-  }
-  .aq .aq-list li {
-    padding: 20px;
-    background: #fff;
-    border-radius: 20px;
-    position: relative;
-  }
-  .aq .aq-list a {
-    display: block;
-    position: relative;
-    line-height: 24px;
-    font: 500 16px;
-    padding: 0 30px;
-    outline: none;
-    cursor: pointer;
-  }
-  .aq .aq-list .icon-help {
-    font-size: 24px;
-    position: absolute;
-    right: 0;
-    left: 20px;
-    color: #76b5ee;
-  }
-  .aq .aq-list .icon-show, .aq .aq-list .icon-close {
-    font-size: 24px;
- vertical-align: middle;
-  }
-  .aq .aq-list p {
-    margin-bottom: 0;
-    padding: 10px 0 0 0;
-  }
-  .aq .aq-list .icon-show {
-    display: none;
-  }
-  .aq .aq-list a.collapsed {
-    color: #343a40;
-  }
-  .aq .aq-list a.collapsed:hover {
-    color: #1977cc;
-  }
-  .aq .aq-list a.collapsed .icon-show {
-    display: inline-block;
-  }
-  .aq .aq-list a.collapsed .icon-close {
-    display: none;
-  }
-  @media (max-width: 1200px) {
-    .aq .aq-list {
-      padding: 0;
-    }
-  }
-  .queIcon {
-      color: #1076d6;
-  }
-.queIconTitle{
-    font-size: 1.5em;
+}
+.queIcon {
+  color: #1076d6;
+}
+.queIconTitle {
+  font-size: 1.5em;
 }

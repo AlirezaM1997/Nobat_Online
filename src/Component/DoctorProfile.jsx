@@ -38,8 +38,9 @@ export default function DoctorProfile() {
 
   useEffect(() => {
     const array = allDoctors
-      .filter((item) => item.username === currentDoctor.userNameOfUser)[0]
+      .filter((item) => item.username === currentDoctor.userNameOfDoctor)[0]
       .allApointments.filter((i) => i.reserved);
+      console.log(array);
     if (array.length === 0) {
       setNoResult(true);
     } else {

@@ -1,4 +1,11 @@
-import { faCircle, faSquareCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircle,
+  faSquareCaretLeft,
+  faChevronDown,
+  faChevronUp,
+  faInfo,
+  faSquareCaretUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useAllState } from "../Provider";
@@ -195,61 +202,101 @@ export default function ProfileItem(props) {
                 .filter((i) => i.id === props.item.id)
                 .map((j) => (
                   <div className="cart-item-doctor">
-                    <div className="d-flex flex-column cart-item-doctor-info">
-                      <div className="row">
-                        <div className="d-flex justify-content-between">
-                          {!props.state.reserved ? (
-                            props.item.cancel ? (
-                              <div className="text-white px-2 py-1 text-end d-inline cancel">
-                                لغو شد
-                              </div>
+                    <div className="d-flex">
+                      <div className="d-flex flex-column cart-item-doctor-info">
+                        <div className="row">
+                          <div className="d-flex justify-content-between">
+                            {!props.state.reserved ? (
+                              props.item.cancel ? (
+                                <div className="text-white px-2 py-1 text-end d-inline cancel">
+                                  لغو شد
+                                </div>
+                              ) : (
+                                <div className="text-white px-2 py-1 text-end d-inline done">
+                                  انجام شد
+                                </div>
+                              )
                             ) : (
-                              <div className="text-white px-2 py-1 text-end d-inline done">
-                                انجام شد
+                              <div>
+                                <button
+                                  className="px-3 py-1 cancelAppoinBtn"
+                                  onClick={() =>
+                                    cancelAppoin(props.item.uniqId)
+                                  }
+                                >
+                                  لغو
+                                </button>
                               </div>
-                            )
-                          ) : (
-                            <div>
-                              <button
-                                className="px-3 py-1 cancelAppoinBtn"
-                                onClick={() => cancelAppoin(props.item.uniqId)}
-                              >
-                                لغو
-                              </button>
-                            </div>
-                          )}
-                          <h4 className="cart-item-doctor-title text-end d-inline">
-                            {j.fullName}
-                          </h4>
+                            )}
+                            <h4 className="cart-item-doctor-title text-end d-inline">
+                              {j.fullName}
+                            </h4>
+                          </div>
                         </div>
+                        <div className="row">
+                          <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end my-2">
+                            در تاریخ : {date}
+                            <FontAwesomeIcon
+                              className="ms-2 text-danger"
+                              icon={faSquareCaretLeft}
+                            ></FontAwesomeIcon>
+                          </span>
+                          <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end">
+                            ساعت {time}
+                            <FontAwesomeIcon
+                              className="ms-2 text-info"
+                              icon={faCircle}
+                            ></FontAwesomeIcon>
+                          </span>
+                        </div>
+                        <div className="row d-flex justify-content-between mt-3"></div>
                       </div>
-                      <div className="row">
-                        <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end my-2">
-                          در تاریخ : {date}
-                          <FontAwesomeIcon
-                            className="ms-2 text-danger"
-                            icon={faSquareCaretLeft}
-                          ></FontAwesomeIcon>
-                        </span>
-                        <span className="d-flex justify-content-end align-items-center text-dark font-weight-medium text-end">
-                          ساعت {time}
-                          <FontAwesomeIcon
-                            className="ms-2 text-info"
-                            icon={faCircle}
-                          ></FontAwesomeIcon>
-                        </span>
-                      </div>
-                      <div className="row d-flex justify-content-between mt-3">
-                        <div className="text-secondary font-weight-medium text-end mb-2 moreInfoDocAppoin">
-                          متولد {j.birthDate.year}
-                        </div>
-                        <div className="text-secondary font-weight-medium text-end mb-2 moreInfoDocAppoin">
-                          شهر : {j.city}
-                        </div>
+                      <div className="cart-item-doctor-thumb">
+                        <img src={j.img} alt="" />
                       </div>
                     </div>
-                    <div className="cart-item-doctor-thumb">
-                      <img src={j.img} alt="" />
+                    <div>
+                      <p className="text-center">
+                        <button
+                          class="btn btn-primary px-4"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseExample"
+                          aria-expanded="false"
+                          aria-controls="collapseExample"
+                        >
+                          اطلاعات بیشتر
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body  justify-content-between align-items-end">
+                          <div className="row w-100 justify-content-between">
+                            <div className="font-weight-medium text-end mb-2 moreInfoDocAppoin">
+                              متولد : {j.birthDate.year}
+                              <FontAwesomeIcon
+                                className="ms-2 text-warning"
+                                icon={faSquareCaretLeft}
+                              ></FontAwesomeIcon>
+                            </div>
+                            <div className="font-weight-medium text-end mb-2 moreInfoDocAppoin">
+                              شهر : {j.city}
+                              <FontAwesomeIcon
+                                className="ms-2 text-warning"
+                                icon={faSquareCaretLeft}
+                              ></FontAwesomeIcon>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="font-weight-medium text-end mb-2 moreInfoDocAppoin">
+                              تلفن همراه : {j.phoneNumber}
+                              <FontAwesomeIcon
+                                className="ms-2 text-warning"
+                                icon={faSquareCaretLeft}
+                              ></FontAwesomeIcon>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

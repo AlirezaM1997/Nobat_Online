@@ -26,7 +26,7 @@ export default function Appointment() {
   const { setSelectedTime } = useAllState();
   const { currentUser } = useAllState();
   const { allUsers } = useAllState();
-  // console.log(selectedTime);
+  
   const [scroll, setScroll] = useState(false);
   const [pay, setPay] = useState(false);
 
@@ -54,12 +54,6 @@ export default function Appointment() {
     });
     console.log(data);
   };
-
-  const UID = () => {
-    return new Date().getTime() + String(Math.random()).slice(3, 9);
-  };
-
-  // const [currentAppoinBtn, setCurrentAppoinBtn] = useState(false);
 
   useEffect(() => {
     if (scroll) {

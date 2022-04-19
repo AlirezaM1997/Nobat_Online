@@ -298,6 +298,7 @@
 .no-res {
   width: 100%;
   border-radius: 1rem;
+  animation: change_scale_show 1s;
 }
 .advertise {
   width: 100%;
