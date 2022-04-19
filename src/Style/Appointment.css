@@ -123,6 +123,11 @@
   border-radius: 1rem;
   width: fit-content;
 }
+@media (max-width: 576px) {
+  .chooseAppoin {
+    font-size: smaller;
+  }
+}
 .appoinBox {
   animation: changeScale 1s;
 }
@@ -196,7 +201,8 @@ table {
   font-family: "Sahel";
 }
 .detailOfAppointment,
-.checkout , .resultOfCheckout {
+.checkout,
+.resultOfCheckout {
   border: solid 2px #4a89dc;
   border-radius: 1rem;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
@@ -227,25 +233,24 @@ button:active {
   outline: none !important;
   box-shadow: none !important;
 }
-.successPay{
+.successPay {
   border-radius: 1rem;
   width: fit-content;
-
 }
-.goToLoginFromPay{
+.goToLoginFromPay {
   width: fit-content;
   border-radius: 0.5rem;
 }
-.goToLoginFromPay:hover{
+.goToLoginFromPay:hover {
   background: #02a2c3 !important;
   color: white !important;
   transition: all 0.3s;
 }
-.goToLoginFromPay:active{
+.goToLoginFromPay:active {
   transform: scale(0.9);
 }
-.commentName::after{
-  content: '\f044';
+.commentName::after {
+  content: "\f044";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: rgb(0 90 255);
@@ -254,14 +259,28 @@ button:active {
   display: inline-block;
   margin-left: 0.5rem;
 }
-.comments-section h2{
+.comments-section h2 {
   border-bottom: solid 3px #8fbc54;
   padding-bottom: 0.4em;
   font-weight: bold;
   width: fit-content;
 }
-.comment-section h6::after{
-  content: '\f086';
+@media (max-width: 576px) {
+  .comments-section {
+    font-size: smaller;
+  }
+  .commentName {
+    font-size: smaller;
+  }
+  .go3028716271 {
+    padding: 0 0 0 1rem !important;
+  }
+  .appoinContainer {
+    /* padding: 0 ; */
+  }
+}
+.comment-section h6::after {
+  content: "\f086";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: rgb(0 90 255);
@@ -270,10 +289,10 @@ button:active {
   display: inline-block;
   margin-left: 0.5rem;
 }
-#commentText{
+#commentText {
   height: 150px;
 }
-#uuu{
-  position: absolute;
-  opacity: 0;
+.table-btn:disabled {
+  background: #3e3e3e42;
+  color: aliceblue;
 }

@@ -40,7 +40,7 @@ const ResultItem = (props) => {
                   rating={props.item.rate}
                 />
               </div>
-              <div className="col-sm-6 col-6 d-flex flex-column cart-doctor-info ">
+              <div className="col-sm-6 col-10 d-flex flex-column cart-doctor-info ">
                 <div className="row">
                   <div className="d-flex justify-content-end flex-column flex-sm-row">
                     <h4 className="cart-doctor-title text-end d-inline">
@@ -77,13 +77,13 @@ const ResultItem = (props) => {
                 />
               </div>
             </div>
-            <div className="row d-flex align-items-center flex-column flex-sm-row ">
+            <div className="row d-flex align-items-center flex-column flex-sm-row">
               <div className="col order-sm-0 order-1 d-flex justify-content-sm-start justify-content-center">
                 {/* <Link to={"/appointment"}> */}
                   <button id="appointment" onClick={()=> handleAppointment()}>دریافت نوبت</button>
                 {/* </Link> */}
               </div>
-              <div className="col order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
+              <div className="col mb-4 mb-sm-0 order-sm-1 order-0 d-flex align-items-center justify-content-sm-end justify-content-center">
                 <span className="text-muted font-weight-medium text-sm-end text-center">
                   آدرس مطب : {props.item.address1}
                 </span>

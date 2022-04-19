@@ -2,30 +2,60 @@ const doctors = [
   {
     id: "1",
     username: "A.Saberi",
-    password: '12341234',
-    fullName:  'علیرضا صابری',
+    password: "12341234",
+    fullName: "علیرضا صابری",
     joined: "June 21, 2016",
     expert: "اورولوژی",
     university: "استنفورد",
     gender: "male",
-    city : 'کرج',
+    city: "کرج",
     imgUrl: "544345.jpeg",
     rate: "4.6",
     address1: "شهرک شریعتی",
     address2: "شهرک شریعتی ، خیابان سوم ، کوچه دوم ، پلاک 11 ، واحد 8",
     phone: `02155778899`,
-    email : 'saberi43@gmail.com',
-    code : '4574',
+    email: "saberi43@gmail.com",
+    code: "4574",
     birthDate: { day: 1, month: 10, year: 1360 },
     visit: 120000,
-    credit : 800000,
+    credit: 800000,
     date: {
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010111: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
-      14010118: ["10AM", "11AM", "12AM", "18PM"],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010111: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: false },
+        { time: "11AM", active: true },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010118: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["دوشنبه", "سه شنبه", "پنجشنبه"],
     comments: [
@@ -45,13 +75,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "2",
-    fullName:  'محمد رضایی',
+    fullName: "محمد رضایی",
 
     expert: "گوش و حلق و بینی",
     university: "تبریز",
@@ -62,10 +90,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 85000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+
     },
     workDay: ["شنبه", "سه شنبه"],
     comments: [
@@ -85,13 +134,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "3",
-    fullName:  'علی نوروزی',
+    fullName: "علی نوروزی",
     expert: "داخلی",
     university: "هاروارد",
     imgUrl: "643966.jpeg",
@@ -101,12 +148,42 @@ const doctors = [
     phone: `02155778899`,
     visit: 55000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010110: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
-      14010117: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010110: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010117: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "سه شنبه", "چهارشنبه"],
     comments: [
@@ -126,13 +203,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "4",
-    fullName:  'احمد قادری',
+    fullName: "احمد قادری",
     expert: "بیماری های عفونی",
     university: "علوم پزشکی ایران",
     imgUrl: "574387.jpeg",
@@ -142,10 +217,30 @@ const doctors = [
     phone: `02155778899`,
     visit: 75000,
     date: {
-      14010107: ["10AM", "11AM", "12AM", "18PM"],
-      14010111: ["10AM", "11AM", "12AM", "18PM"],
-      14010114: ["10AM", "11AM", "12AM", "18PM"],
-      14010118: ["10AM", "11AM", "12AM", "18PM"],
+      14010107: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010111: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010114: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010118: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["یکشنبه", "پنجشنبه"],
     comments: [
@@ -165,13 +260,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "5",
-    fullName:  'شهرام کاظمی',
+    fullName: "شهرام کاظمی",
     expert: "اعصاب و روان",
     university: "شهید بهشتی",
     imgUrl: "455837.jpeg",
@@ -181,12 +274,48 @@ const doctors = [
     phone: `02155778899`,
     visit: 140000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "دوشنبه", "سه شنبه"],
     comments: [
@@ -206,13 +335,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "6",
-    fullName:  'محمود علوی',
+    fullName: "محمود علوی",
     expert: "قلب و عروق",
     university: "تهران",
     imgUrl: "169469.jpeg",
@@ -222,10 +349,30 @@ const doctors = [
     phone: `02155778899`,
     visit: 90000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "سه شنبه"],
     comments: [
@@ -245,13 +392,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "7",
-    fullName:  'سمیه شیری',
+    fullName: "سمیه شیری",
     expert: "اعصاب و روان",
     university: "شهید بهشتی",
     imgUrl: "644187.jpeg",
@@ -261,12 +406,43 @@ const doctors = [
     phone: `02155778899`,
     visit: 50000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010110: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
-      14010117: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010110: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010117: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+
     },
     workDay: ["شنبه", "دوشنبه", "چهارشنبه"],
     comments: [
@@ -286,13 +462,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "8",
-    fullName:  'مهدی سجادی',
+    fullName: "مهدی سجادی",
 
     expert: "قلب و عروق",
     university: "تهران",
@@ -303,10 +477,30 @@ const doctors = [
     phone: `02155778899`,
     visit: 100000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "دوشنبه"],
     comments: [
@@ -326,13 +520,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "9",
-    fullName:  'جلال تاجیک',
+    fullName: "جلال تاجیک",
 
     expert: "روانپزشکی",
     university: "شیراز",
@@ -343,12 +535,43 @@ const doctors = [
     phone: `02155778899`,
     visit: 110000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010111: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
-      14010118: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010111: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010118: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "دوشنبه", "پنجشنبه"],
     comments: [
@@ -368,13 +591,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "10",
-    fullName:  'علی اکبر مهدیانی',
+    fullName: "علی اکبر مهدیانی",
 
     expert: "بیهوشی",
     university: "تهران",
@@ -385,10 +606,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 80000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "سه شنبه"],
     comments: [
@@ -408,13 +650,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "11",
-    fullName:  'زهرا ایوانی',
+    fullName: "زهرا ایوانی",
 
     expert: "مامایی",
     university: "تربیت مدرس",
@@ -425,12 +665,42 @@ const doctors = [
     phone: `02155778899`,
     visit: 50000,
     date: {
-      14010107: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010109: ["10AM", "11AM", "12AM", "18PM"],
-      14010114: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
-      14010116: ["10AM", "11AM", "12AM", "18PM"],
+      14010107: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010109: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010114: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010116: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "دوشنبه", "چهارشنبه"],
     comments: [
@@ -450,13 +720,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "12",
-    fullName:  'نگار کوشکی',
+    fullName: "نگار کوشکی",
 
     expert: "روانپزشکی",
     university: "تهران",
@@ -467,10 +735,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 50000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["یکشنبه", "دوشنبه"],
     comments: [
@@ -490,13 +779,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "13",
-    fullName:  'سامان فاطمی',
+    fullName: "سامان فاطمی",
 
     expert: "زیبایی",
     university: "آزاد علوم پزشکی",
@@ -507,10 +794,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 50000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010110: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010117: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010110: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010117: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "چهارشنبه"],
     comments: [
@@ -530,13 +838,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "14",
-    fullName:  'مریم نقلی',
+    fullName: "مریم نقلی",
 
     expert: "زیبایی",
     university: "تهران",
@@ -547,12 +853,43 @@ const doctors = [
     phone: `02155778899`,
     visit: 150000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010107: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010114: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010107: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010114: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "یکشنبه", "دوشنبه"],
     comments: [
@@ -572,13 +909,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "15",
-    fullName:  'مسعود غزنوی',
+    fullName: "مسعود غزنوی",
 
     expert: "روانپزشکی",
     university: "اصفهان",
@@ -589,10 +924,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 70000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "دوشنبه"],
     comments: [
@@ -612,13 +968,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "16",
-    fullName:  'محمد مهدی ارجمند',
+    fullName: "محمد مهدی ارجمند",
 
     expert: "روانپزشکی",
     university: "فردوسی مشهد",
@@ -629,10 +983,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 100000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "یکشنبه", "دوشنبه"],
     comments: [
@@ -652,13 +1027,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "17",
-    fullName:  'محدثه رضایی نژاد',
+    fullName: "محدثه رضایی نژاد",
 
     expert: "قلب و عروق",
     university: "تهران",
@@ -669,10 +1042,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 120000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["یکشنبه", "چهارشنبه", "پنجشنبه"],
     comments: [
@@ -692,13 +1086,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "18",
-    fullName:  'محمد صادق بابایی',
+    fullName: "محمد صادق بابایی",
 
     expert: "قلب و عروق",
     university: "علوم پزشکی ایران",
@@ -709,10 +1101,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 80000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["شنبه", "پنجشنبه"],
     comments: [
@@ -732,13 +1145,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "19",
-    fullName:  'مژگان گلی نژاد',
+    fullName: "مژگان گلی نژاد",
 
     expert: "قلب و عروق",
     university: "زنجان",
@@ -749,10 +1160,31 @@ const doctors = [
     phone: `02155778899`,
     visit: 115000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["یکشنبه", "دوشنبه", "چهارشنبه", "پنجشنبه"],
     comments: [
@@ -772,13 +1204,11 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
   {
     id: "20",
-    fullName:  'ملیحه رضوی',
+    fullName: "ملیحه رضوی",
 
     expert: "روانپزشکی",
     university: "تهران",
@@ -789,10 +1219,30 @@ const doctors = [
     phone: `02155778899`,
     visit: 160000,
     date: {
-      14010106: ["10AM", "11AM", "12AM", "18PM"],
-      14010108: ["10AM", "11AM", "12AM", "18PM"],
-      14010113: ["10AM", "11AM", "12AM", "18PM"],
-      14010115: ["10AM", "11AM", "12AM", "18PM"],
+      14010106: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: false },
+        { time: "18PM", active: true },
+      ],
+      14010108: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010113: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: true },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
+      14010115: [
+        { time: "10AM", active: true },
+        { time: "11AM", active: false },
+        { time: "12AM", active: true },
+        { time: "18PM", active: true },
+      ],
     },
     workDay: ["چهارشنبه", "پنجشنبه"],
     comments: [
@@ -812,9 +1262,7 @@ const doctors = [
         text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،",
       },
     ],
-    allApointments: [
-
-    ],
+    allApointments: [],
   },
 ];
 

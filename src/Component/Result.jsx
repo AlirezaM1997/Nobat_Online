@@ -31,6 +31,8 @@ export default function Result() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [filteredDoctor, setFilteredDoctor] = useState([]);
 
+  const { setSelectedTime } = useAllState();
+
   // console.log(filteredDoctor);
 
   // useEffect(() => {
@@ -50,6 +52,7 @@ export default function Result() {
   // }, []);
 
   useEffect(() => {
+    setSelectedTime('')
     if (flag === 1) {
       const array = allDoctors.filter((item) =>
         item.expert.toLowerCase().includes(searchExp.toLowerCase())
@@ -98,7 +101,7 @@ export default function Result() {
       </svg>
     </div>
   ) : (
-    <div className="py-3 mw-100 px-5" id="bg-result">
+    <div className="py-3 mw-100 px-sm-5 px-2" id="bg-result">
       <div className="container">
         <div className="row mt-4 d-flex justify-content-center px-1">
           <div className="col-md-8 col-12 pb-5 order-md-0 order-1">

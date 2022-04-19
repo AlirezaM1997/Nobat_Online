@@ -14,14 +14,21 @@ export default function MobileMenu() {
   const { setAuth } = useAllState();
   const { docAuth } = useAllState(false);
   const { currentUser } = useAllState({ userNameOfUser: "" });
+  const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
   const { allUsers } = useAllState();
+  const { allDoctors } = useAllState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const getIndexByUserName = (currentUsername) => {
+  const getIndexByUserNameForUser = (currentUsername) => {
     return allUsers.findIndex(
       (item) => item.username === currentUsername.userNameOfUser
+    );
+  };
+  const getIndexByUserNameForDoctor = (currentUsername) => {
+    return allDoctors.findIndex(
+      (item) => item.username === currentUsername.userNameOfDoctor
     );
   };
 
@@ -44,19 +51,58 @@ export default function MobileMenu() {
           closeButton
         >
           {auth || docAuth ? (
-            <span className="logout mx-2" title="خروج" onClick={logout}></span>
+            <span
+            id="logout-mob-menue"
+              className="logout mx-2"
+              title="خروج"
+              onClick={(e) => {
+                logout(e);
+                handleClose(e);
+              }}
+            ></span>
           ) : (
             ""
           )}
           {auth ? (
-            <Link to={"/userprofile"} title="حساب کاربری" id="accountMobLink">
+            <Link
+              to={"/userprofile"}
+              onClick={(e) => handleClose(e)}
+              title="حساب کاربری"
+              id="accountMobLink"
+            >
               <div className="d-inline-block goToAccount">
                 <img
                   className="headerImgProf"
-                  src={allUsers[getIndexByUserName(currentUser)].img}
+                  src={allUsers[getIndexByUserNameForUser(currentUser)].img}
                 ></img>
                 <span className="headerNameProf text-white">
-                  {allUsers[getIndexByUserName(currentUser)].username}
+                  {allUsers[getIndexByUserNameForUser(currentUser)].username}
+                </span>
+              </div>
+            </Link>
+          ) : (
+            ""
+          )}
+          {docAuth ? (
+            <Link
+              to={"/doctorprofile"}
+              onClick={(e) => handleClose(e)}
+              title="حساب کاربری"
+              id="accountMobLink"
+            >
+              <div className="d-inline-block goToAccount">
+                <img
+                  className="headerImgProf"
+                  src={`https://www.tebinja.com/img/uploads/doctors/thumbnails/${
+                    allDoctors[getIndexByUserNameForDoctor(currentDoctor)]
+                      .imgUrl
+                  }`}
+                ></img>
+                <span className="headerNameProf text-white">
+                  {
+                    allUsers[getIndexByUserNameForDoctor(currentDoctor)]
+                      .username
+                  }
                 </span>
               </div>
             </Link>
@@ -71,7 +117,11 @@ export default function MobileMenu() {
           <div className="row list-group">
             <ul>
               <li>
-                <Link to={"/"} className="mob-item p-3">
+                <Link
+                  to={"/"}
+                  className="mob-item p-3"
+                  onClick={(e) => handleClose(e)}
+                >
                   صفحه اصلی
                 </Link>
               </li>
@@ -104,22 +154,38 @@ export default function MobileMenu() {
                     <div className="card card-body my-3 p-0">
                       <ul>
                         <li>
-                          <Link to="" className="mob-item p-3">
+                          <Link
+                            to=""
+                            className="mob-item p-3"
+                            onClick={(e) => handleClose(e)}
+                          >
                             سلامت زنان
                           </Link>
                         </li>
                         <li>
-                          <Link to="" className="mob-item p-3">
+                          <Link
+                            to=""
+                            className="mob-item p-3"
+                            onClick={(e) => handleClose(e)}
+                          >
                             سلامت خانواده
                           </Link>
                         </li>
                         <li>
-                          <Link to="" className="mob-item p-3">
+                          <Link
+                            to=""
+                            className="mob-item p-3"
+                            onClick={(e) => handleClose(e)}
+                          >
                             بیماری کرونا
                           </Link>
                         </li>
                         <li>
-                          <Link to="" className="mob-item p-3">
+                          <Link
+                            to=""
+                            className="mob-item p-3"
+                            onClick={(e) => handleClose(e)}
+                          >
                             بهداشت روان
                           </Link>
                         </li>
@@ -129,29 +195,37 @@ export default function MobileMenu() {
                 </Link>
               </li>
               <li>
-                <Link to={"#"} className="mob-item p-3">
+                <Link
+                  to={"#"}
+                  className="mob-item p-3"
+                  onClick={(e) => handleClose(e)}
+                >
                   منو
                 </Link>
               </li>
               <li>
-                <Link to={"#"} className="mob-item p-3">
-                  منو
-                </Link>
-              </li>
-              <li>
-                <Link to={"/about"} className="mob-item p-3">
+                <Link
+                  to={"/about"}
+                  className="mob-item p-3"
+                  onClick={(e) => handleClose(e)}
+                >
                   درباره ما
                 </Link>
               </li>
             </ul>
           </div>
-          <div className={`row d-flex ${auth ? "justify-content-center" : ""}`}>
+          <div
+            id="buttonsOfMenue"
+            className={`row d-flex ${auth ? "justify-content-center" : ""}`}
+          >
             <div
               className={`col-4 d-flex justify-content-center ${
                 auth ? "d-none" : ""
               }`}
             >
-              <Link to={"/login"}>ورود کاربران</Link>
+              <Link to={"/login"} onClick={(e) => handleClose(e)}>
+                ورود کاربران
+              </Link>
             </div>
             <div
               className={`col-4 d-flex justify-content-center ${
@@ -160,7 +234,8 @@ export default function MobileMenu() {
             >
               <Link
                 to={"/doctor-register"}
-                className={`${auth ? "text-white rounded py-2" : ""}`}
+                className={`text-center ${auth ? "text-white  rounded py-2" : ""}`}
+                onClick={(e) => handleClose(e)}
               >
                 ثبت نام پزشکان
               </Link>
@@ -170,7 +245,9 @@ export default function MobileMenu() {
                 auth ? "d-none" : ""
               }`}
             >
-              <Link to={"/user-register"}>ثبت نام کاربران</Link>
+              <Link to={"/user-register"} onClick={(e) => handleClose(e)}>
+                ثبت نام کاربران
+              </Link>
             </div>
           </div>
         </Offcanvas.Body>

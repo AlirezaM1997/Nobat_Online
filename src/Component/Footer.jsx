@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="footer-top">
         <div className="container">
           <div className="row d-flex ">
-            <div className="col-lg-4 col-md-6 order-lg-0 order-md-3 order-3 footer-newsletter d-flex flex-column align-items-center">
+            <div className="col-md-4 order-md-0 order-3 footer-newsletter d-flex flex-column align-items-center">
               <h6 className="text-center mb-3 footerTitle"> اخبار و مقالات</h6>
               <p className="text-center">
                 برای دریافت جدیدترین اخبار و مقالات ، ایمیل خود را وارد کنید
@@ -32,7 +32,7 @@ export default function Footer() {
                 />
               </div>
             </div>
-            <div className="col-lg-2 col-md-6 order-lg-1 order-md-2 order-2 d-flex flex-column align-items-center footer-links">
+            <div className="col-md-4 order-md-1 order-2 d-flex flex-column align-items-center footer-links">
               <h6 className="text-center mb-3 footerTitle">لینک های مفید</h6>
               <ul className="d-flex flex-column align-items-center">
                 <li>
@@ -52,29 +52,9 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-3 col-md-6 order-lg-2 order-md-0 order-1 d-flex flex-column align-items-center footer-links">
-              <h6 className="text-center mb-3 footerTitle">خدمات ما</h6>
-              <ul className="d-flex flex-column align-items-center">
-                <li>
-                  <Link to={"#"}>1</Link>
-                </li>
-                <li>
-                  <Link to={"#"}>2</Link>
-                </li>
-                <li>
-                  <Link to={"#"}>3</Link>
-                </li>
-                <li>
-                  <Link to={"#"}>4</Link>
-                </li>
-                <li>
-                  <Link to={"#"}>5</Link>
-                </li>
-              </ul>
-            </div>
-            <div className="col-lg-3 col-md-6 order-lg-3 order-md-1 order-0 d-flex flex-column align-items-center footer-contact">
+            <div className=" col-md-4 order-md-2 order-0 d-flex flex-column align-items-center footer-contact">
               <h3>نوبت آنلاین</h3>
-              <p className="text-lg-end text-center">
+              <p className="text-center">
                 <p className="mb-2 text-black">
                   {" "}
                   : تلفن تماس<br></br>

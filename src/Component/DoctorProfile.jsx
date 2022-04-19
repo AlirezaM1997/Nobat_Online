@@ -12,6 +12,7 @@ import EditProfile from "./EditProfile";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 export default function DoctorProfile() {
   const validationSchema = Yup.object().shape({
@@ -28,7 +29,9 @@ export default function DoctorProfile() {
   const onSubmit = (data) => console.log(data);
 
   const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
+  const { setDocAuth } = useAllState();
   const { allDoctors } = useAllState();
+
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
   const [cancelApointment, setCancelApointment] = useState(0);
@@ -47,6 +50,12 @@ export default function DoctorProfile() {
       setNoResult(false);
     }
   });
+
+  const logOutNav = useNavigate()
+  const logout = () => {
+    setDocAuth(false)
+    logOutNav('/')
+  };
 
   const [state, setState] = useState({
     history: false,
@@ -184,7 +193,7 @@ export default function DoctorProfile() {
     );
   };
   return (
-    <div className="mw-100">
+    <div className="mw-100 pb-5">
       <div className="container back-prof mt-5 py-md-3 px-xl-4 px-lg-3 p-4">
         <div className="row d-flex justify-content-center ">
           <div className="col-lg-4 col-md-5 d-lg-block d-md-none d-block order-lg-0 order-2 ">
@@ -299,7 +308,7 @@ export default function DoctorProfile() {
                             </div>
                           </div>
                           <div className="row d-flex justify-content-center">
-                            <div className="col-md-10 my-1">
+                            <div className="col-10 my-1">
                               <input
                                 name="depositCredit"
                                 placeholder="IR + شماره 24 رقمی"
@@ -415,6 +424,18 @@ export default function DoctorProfile() {
                     <div>
                       <div className="d-inline-block font-weight-medium">
                         کیف پول دیجیتال .
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                <button
+                  className="panel-item d-block bg-info text-dark mb-1 position-relative"
+                  onClick={logout}
+                >
+                  <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
+                    <div>
+                      <div className="d-inline-block font-weight-medium">
+                        خروج از حساب کاربری .
                       </div>
                     </div>
                   </div>

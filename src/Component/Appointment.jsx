@@ -26,7 +26,7 @@ export default function Appointment() {
   const { setSelectedTime } = useAllState();
   const { currentUser } = useAllState();
   const { allUsers } = useAllState();
-  
+
   const [scroll, setScroll] = useState(false);
   const [pay, setPay] = useState(false);
 
@@ -52,7 +52,6 @@ export default function Appointment() {
       date: "1401/01/20",
       text: data.commentText,
     });
-    console.log(data);
   };
 
   useEffect(() => {
@@ -73,18 +72,23 @@ export default function Appointment() {
         id: currentAppoin,
         reserved: true,
       });
-      console.log(H);
+
       const decreaseCredit = allDoctors.filter((i) => i.id === currentAppoin)[0]
         .visit;
       allUsers.filter(
         (item) => item.username === currentUser.userNameOfUser
       )[0].credit -= decreaseCredit;
-      // const id = selectedTime
-      // document.getElementById('id').setAttribute("disabled", "");
+
+      allDoctors
+        .filter((i) => i.id === currentAppoin)[0]
+        .date[`${selectedTime.slice(0, 8)}`].filter(
+          (j) => j.time === selectedTime.slice(8)
+        )[0].active = false;
+
       const userId = allUsers.filter(
         (item) => item.username === currentUser.userNameOfUser
       )[0].id;
-      // console.log(currentAppoin);
+
       allDoctors
         .filter((i) => i.id === currentAppoin)[0]
         .allApointments.unshift({
@@ -96,14 +100,17 @@ export default function Appointment() {
         });
       const visit = allDoctors.filter((i) => i.id === currentAppoin)[0].visit;
       allDoctors.filter((i) => i.id === currentAppoin)[0].credit += visit;
+      // setSelectedTime("");
     }
   });
+  console.log(pay);
+
   const makeDate = (s) => {
     let n = String(s);
     let arr = [n.slice(0, 4), n.slice(4, 6), n.slice(6, 8)];
     return `${arr[0]}/${arr[1]}/${arr[2]}`;
   };
-  console.log(currentAppoin);
+
   const currentDocTimes = allDoctors
     .filter((item) => item.id === currentAppoin)
     .map((item) => item.date);
@@ -126,7 +133,7 @@ export default function Appointment() {
         </div>
         {keys.map((key, index) => {
           return (
-            <table dir="rtl">
+            <table dir="rtl" className="d-flex justify-content-center">
               <tr>
                 <th className="text-center bg-info p-2" key={index}>
                   {makeDate(key)}
@@ -135,15 +142,15 @@ export default function Appointment() {
                   return (
                     <td>
                       <button
-                        // disabled={false}
+                        disabled={!value.active}
                         className={`table-btn ${
-                          selectedTime === key + value ? "bg-warning" : ""
+                          selectedTime === key + value.time ? "bg-warning" : ""
                         }`}
-                        value={key + value}
-                        id={key + value}
+                        value={key + value.time}
+                        id={key + value.time}
                         onClick={(e) => setSelectedTime(e.target.value)}
                       >
-                        {String(value)
+                        {String(value.time)
                           .match(/[a-zA-Z]+|[0-9]+/g)
                           .join(" ")
                           .replace("AM", "صبح")
@@ -342,7 +349,7 @@ export default function Appointment() {
           </Link>
         </div>
         <div className="appoinContent">
-          <div className="container">
+          <div className="container appoinContainer">
             {allDoctors
               .filter((item) => item.id === currentAppoin)
               .map((item) => (
@@ -401,16 +408,15 @@ export default function Appointment() {
                         {item.phone}
                         <FontAwesomeIcon className="ms-1" icon={faPhone} />
                       </div>
-                      <div className="text-md-end text-center mb-3">
-                        <b>
-                          {` نشانی`}
-                          {" : "}
-                        </b>{" "}
-                        {item.address2}
-                        <FontAwesomeIcon
-                          className="ms-1"
-                          icon={faLocationDot}
-                        />
+                      <div className="mb-3 d-flex justify-content-center justify-content-md-end text-center">
+                        <div>{item.address2}</div>
+                        <b>{`:نشانی`}</b>
+                        <div>
+                          <FontAwesomeIcon
+                            className="ms-1"
+                            icon={faLocationDot}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -427,7 +433,10 @@ export default function Appointment() {
 
                   <hr className="mt-5" />
                   <div className="comments-section px-3 px-lg-4">
-                    <div dir="rtl">
+                    <div
+                      dir="rtl"
+                      className="d-flex justify-content-center justify-content-sm-start"
+                    >
                       <h2 className="mb-4">نظرات کاربران</h2>
                     </div>
 
@@ -449,7 +458,7 @@ export default function Appointment() {
                     </div>
                   </div>
                   <hr />
-                  <div className="comment-section pb-4 px-4">
+                  <div className="comment-section pb-5 px-4">
                     <h6 className="text-end my-3">
                       لطفا نظر خود را ثبت نمایید
                     </h6>

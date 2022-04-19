@@ -49,23 +49,31 @@
   text-align: inherit;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
-.mob-item:hover{
+.mob-item:hover {
   background: #1076d6;
   color: white !important;
 }
 #mobile-btn-nav:hover {
-  color: white ;
+  color: white;
 }
 @media (max-width: 532px) {
-  .offcanvasHeader{
-justify-content: space-between;
+  .offcanvasHeader {
+    justify-content: space-between;
   }
 }
 @media (min-width: 533px) {
-  .offcanvasHeader{
-justify-content: flex-end;
+  .offcanvasHeader {
+    justify-content: flex-end;
   }
-  #accountMobLink{
+  #accountMobLink {
     display: none;
+  }
+  #logout-mob-menue {
+    display: none;
+  }
+}
+@media (min-width: 533px) {
+  #buttonsOfMenue {
+    display: none !important;
   }
 }

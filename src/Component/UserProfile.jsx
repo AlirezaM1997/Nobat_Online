@@ -12,6 +12,7 @@ import EditProfile from "./EditProfile";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProfile() {
   const validationSchema = Yup.object().shape({
@@ -28,6 +29,7 @@ export default function UserProfile() {
 
   const { currentUser } = useAllState({ userNameOfUser: "" });
   const { allUsers } = useAllState();
+  const { setAuth } = useAllState();
 
   const [allApointment, setAllApointment] = useState(0);
   const [doneApointment, setDoneApointment] = useState(0);
@@ -70,6 +72,12 @@ export default function UserProfile() {
         [value]: !state[value],
       });
     }
+  };
+
+  const logOutNav = useNavigate()
+  const logout = () => {
+    setAuth(false)
+    logOutNav('/')
   };
 
   const Summary = () => {
@@ -182,7 +190,7 @@ export default function UserProfile() {
     );
   };
   return (
-    <div className="mw-100">
+    <div className="mw-100 pb-5">
       <div className="container back-prof mt-5 py-md-3 px-xl-4 px-lg-3 p-4">
         <div className="row d-flex justify-content-center ">
           <div className="col-lg-4 col-md-5 d-lg-block d-md-none d-block order-lg-0 order-2 ">
@@ -303,7 +311,7 @@ export default function UserProfile() {
                           </div>
                         </div>
                         <div className="row d-flex justify-content-center">
-                          <div className="col-md-8 my-1">
+                          <div className="col-8 my-1">
                             <input
                               name="increaseCredit"
                               placeholder="100000"
@@ -415,6 +423,18 @@ export default function UserProfile() {
                     <div>
                       <div className="d-inline-block font-weight-medium">
                         اعتبار حساب .
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                <button
+                  className="panel-item d-block bg-primary mb-1 position-relative"
+                  onClick={logout}
+                >
+                  <div className="d-flex justify-content-lg-end justify-content-center align-items-center">
+                    <div>
+                      <div className="d-inline-block font-weight-medium">
+                        خروج از حساب کاربری .
                       </div>
                     </div>
                   </div>

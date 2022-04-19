@@ -11,8 +11,8 @@ export default function Header() {
   const { setAuth } = useAllState();
   const { docAuth } = useAllState(false);
   const { setDocAuth } = useAllState();
-const logOutNav = useNavigate()
-  // const { currentUser } = useAllState({ userNameOfUser: "" });
+  const logOutNav = useNavigate();
+
   const { currentDoctor } = useAllState({ userNameOfDoctor: "" });
   const { currentUser, setCurrentUser } = useAllState({
     userNameOfUser: "",
@@ -22,7 +22,6 @@ const logOutNav = useNavigate()
   let { setSearchDoc } = useAllState();
   const { allUsers } = useAllState();
   const { allDoctors } = useAllState();
-
 
   const getIndexByUserName = (currentUsername) => {
     if (auth) {
@@ -37,9 +36,9 @@ const logOutNav = useNavigate()
   };
 
   const logout = () => {
-    setAuth(false)
-    setDocAuth(false)
-    logOutNav('/')
+    setAuth(false);
+    setDocAuth(false);
+    logOutNav("/");
   };
 
   return (
@@ -116,11 +115,6 @@ const logOutNav = useNavigate()
                   <li>
                     <Link to="/about" className="nav-link">
                       درباره ما
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="" className="nav-link">
-                      منو
                     </Link>
                   </li>
                   <li>

@@ -9,13 +9,9 @@ import {
 
 export default function AskedQuestions() {
   return (
-    <section id="aq" className="aq aq-bg mb-5 py-4">
+    <section id="aq" className="aq aq-bg py-4">
       <div className="container my-5">
-        <div className="section-title" dir="rtl">
-          {/* <FontAwesomeIcon
-            className="mx-3 queIconTitle"
-            icon={faQuestionCircle}
-          ></FontAwesomeIcon> */}
+        <div className="section-title text-md-end text-center" dir="rtl">
           <h2 className="mb-4 d-inline-block">سوال و پاسخ</h2>
         </div>
 

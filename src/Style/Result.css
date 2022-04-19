@@ -102,6 +102,7 @@
 @media (max-width: 576px) {
   .rowOfCart {
     align-content: center;
+    align-items: center;
   }
 }
 @media (max-width: 576px) {

@@ -1,10 +1,6 @@
 import {
   faCircle,
   faSquareCaretLeft,
-  faChevronDown,
-  faChevronUp,
-  faInfo,
-  faSquareCaretUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -43,7 +39,7 @@ export default function ProfileItem(props) {
     const arr = allDoctors.filter(
       (item) => item.username === currentDoctor.userNameOfDoctor
     )[0].allApointments;
-    console.log(id);
+    // console.log(id);
     return arr.findIndex((item) => item.uniqId === id);
   };
   const cancelAppoin = (id) => {
@@ -70,7 +66,15 @@ export default function ProfileItem(props) {
       const _doctorId = array.filter(
         (item) => item.username === currentUser.userNameOfUser
       )[0].id;
-      console.log(arr.filter((item) => item.id === doctorId)[0]);
+
+      //active button of cancel appointment
+      const docDate = filteredArr.date;
+      arr
+        .filter((item) => item.id === doctorId)[0]
+        .date[`${docDate.slice(0, 8)}`].filter(
+          (j) => j.time === docDate.slice(8)
+        )[0].active = true;
+
       arr.filter((item) => item.id === doctorId)[0].allApointments[
         getDoctorIndexById(_doctorId + selectedTime, _userName)
       ].reserved = false;
@@ -95,6 +99,15 @@ export default function ProfileItem(props) {
       array.filter(
         (item) => item.username === currentDoctor.userNameOfDoctor
       )[0].credit -= visit;
+
+      //active button of cancel appointment
+      const docDate = filteredArr.date;
+      array
+        .filter((item) => item.username === currentDoctor.userNameOfDoctor)[0]
+        .date[`${docDate.slice(0, 8)}`].filter(
+          (j) => j.time === docDate.slice(8)
+        )[0].active = true;
+
       setAllDoctors(array);
       //
       //delete appointment from user account

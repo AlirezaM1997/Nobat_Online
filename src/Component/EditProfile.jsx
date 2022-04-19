@@ -134,7 +134,7 @@ export default function EditProfile(props) {
                 <form className="p-2" onSubmit={handleSubmit(onSubmit)}>
                   <div className="form-outline text-end ">
                     <div className="row d-flex mb-3 justify-content-end">
-                      <div className="col-md-8 ">
+                      <div className="col-8 ">
                         <input
                           disabled
                           type="text"
@@ -145,7 +145,7 @@ export default function EditProfile(props) {
                           autocomplete="off"
                         />
                       </div>
-                      <div className="col-md-4">
+                      <div className="col-4">
                         {" "}
                         <label className="form-label" htmlFor="username">
                           نام کاربری
@@ -153,7 +153,7 @@ export default function EditProfile(props) {
                       </div>
                     </div>
                     <div className="row d-flex mb-3 justify-content-end">
-                      <div className="col-md-8">
+                      <div className="col-8">
                         <input
                           type={passwordShown ? "text" : "password"}
                           id="password"
@@ -174,14 +174,14 @@ export default function EditProfile(props) {
                           {errors.password?.message}
                         </span>
                       </div>
-                      <div className="col-md-4">
+                      <div className="col-4">
                         <label className="form-label" htmlFor="pass">
                           رمز عبور
                         </label>
                       </div>
                     </div>
                     <div className="row mb-3 mt-4 align-items-center justify-content-end">
-                      <div className="col-md-3 col-6 text-md-end order-1 order-md-0 ">
+                      <div className="col-3 text-end ">
                         <label className="form-label" htmlFor="gender">
                           جنسیت
                         </label>
@@ -203,7 +203,7 @@ export default function EditProfile(props) {
                           <option value="male">مرد</option>
                         </select>
                       </div>
-                      <div className="col-md-9 order-0 order-md-1 mb-3 mb-md-0">
+                      <div className="col-9">
                         <label className="form-label" htmlFor="fullname">
                           نام و نام خانوادگی
                         </label>
@@ -225,7 +225,7 @@ export default function EditProfile(props) {
                     </div>
                   </div>
                   <div className="row mb-3">
-                    <div className="col-sm-6 text-end">
+                    <div className="col-6 text-end">
                       <label htmlFor="datepicker1" className="form-label">
                         تاریخ تولد
                       </label>
@@ -259,7 +259,7 @@ export default function EditProfile(props) {
                         )}
                       />
                     </div>
-                    <div className="col-sm-6 w-sm text-end ">
+                    <div className="col-6 w-sm text-end ">
                       <label className="form-label" htmlFor="city">
                         شهر محل سکونت
                       </label>

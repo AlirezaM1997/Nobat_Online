@@ -12,8 +12,8 @@ export default function MyCarousel() {
   return (
     <div className="container">
       <div className="row ">
-        <div className="col-2"></div>
-        <div className="col-8">
+        <div className="col-sm-2 col-1"></div>
+        <div className="col-sm-8 col-10">
           <h2 className="text-center mb-5 title">پزشکان ما</h2>
           <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item className="">
@@ -84,7 +84,7 @@ export default function MyCarousel() {
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="col-2"></div>
+        <div className="col-sm-2 col-1"></div>
 
       </div>
     </div>

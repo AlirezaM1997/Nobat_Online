@@ -11,8 +11,8 @@ export default function Count() {
   return (
     <section id="counts" className="counts">
       <div className="container">
-        <div className="row">
-          <div className=" col-md-4">
+        <div className="row d-flex justify-content-center">
+          <div className="col-10 col-md-4">
             <div className="count-box mb-5">
               <FontAwesomeIcon icon={faUserDoctor} className="icon"/>
               <span
@@ -25,7 +25,7 @@ export default function Count() {
             </div>
           </div>
 
-          <div className=" col-md-4">
+          <div className="col-10 col-md-4">
             <div className="count-box mb-5">
               <FontAwesomeIcon icon={faUser} className="icon"/>
               <span
@@ -38,7 +38,7 @@ export default function Count() {
             </div>
           </div>
 
-          <div className=" col-md-4 ">
+          <div className="col-10 col-md-4 ">
             <div className="count-box mb-5">
               <FontAwesomeIcon icon={faListCheck} className="icon"/>
               <span
