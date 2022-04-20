@@ -45,7 +45,7 @@ export default function Header() {
     <>
       <Headroom
         style={{
-          zIndex: "10",
+          zIndex: "101" , transform: 'none !important'
         }}
       >
         <header id="header" className="bg-white">

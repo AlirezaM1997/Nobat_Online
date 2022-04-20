@@ -35,6 +35,18 @@
   position: fixed;
   transform: translateY(0%);
 }
+@media (max-width: 576px) {
+  .headroom--pinned {
+    transform: none !important;
+  }
+  .headroom--unpinned {
+    transform: none !important;
+  }
+  .headroom--unfixed {
+    transform: none !important;
+    position: fixed !important;
+  }
+}
 .logo {
   line-height: 1;
   font: 700 24px "Parastoo";
@@ -84,11 +96,11 @@
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.25);
   font-family: "Sahel";
 }
-.headerImgProf{
+.headerImgProf {
   width: 2.2rem;
   border-radius: 50%;
 }
-.headerNameProf{
+.headerNameProf {
   font: 0.9em "Sahel";
   color: #3f3f3f;
   margin-left: 0.4em;
@@ -195,6 +207,6 @@
     left: -100%;
   }
 }
-.goToAccount{
+.goToAccount {
   animation: fade_show 1.6s;
 }

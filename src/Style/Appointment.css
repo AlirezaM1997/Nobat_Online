@@ -275,9 +275,9 @@ button:active {
   .go3028716271 {
     padding: 0 0 0 1rem !important;
   }
-  .appoinContainer {
-    /* padding: 0 ; */
-  }
+  /* .appoinContainer {
+    padding: 0 ;
+  } */
 }
 .comment-section h6::after {
   content: "\f086";

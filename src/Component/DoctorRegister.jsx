@@ -95,7 +95,7 @@ export default function DoctorRegister() {
 
   return (
     <div>
-      <section className="container py-3 px-5 min-vh-100 mw-100 w-100 doc-reg-main ">
+      <section className="container py-3 px-sm-5 pb-5 p-0 min-vh-100 mw-100 w-100 doc-reg-main ">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-8 ">
@@ -161,7 +161,7 @@ export default function DoctorRegister() {
                       </div>
                     </div>
                     <div className="row mb-3">
-                      <div className="col-sm-6 text-end">
+                      <div className="col-sm-6 text-end mb-3 mb-sm-0">
                         <label htmlFor="datepicker1" className="form-label">
                           تاریخ تولد
                         </label>
