@@ -56,6 +56,7 @@ export default function UserProfile() {
     credit: false,
   });
   const clickHandler = (value) => {
+
     setState({
       history: false,
       canceled: false,
@@ -72,6 +73,12 @@ export default function UserProfile() {
         [value]: !state[value],
       });
     }
+  
+    if (window.innerWidth < 768) {
+      let scrollDiv = document.getElementById("items").offsetTop;
+      window.scrollTo({ top: scrollDiv-100, behavior: "smooth" });
+    }
+   
   };
 
   const logOutNav = useNavigate()
@@ -196,7 +203,7 @@ export default function UserProfile() {
           <div className="col-lg-4 col-md-5 d-lg-block d-md-none d-block order-lg-0 order-2 ">
             <Summary />
           </div>
-          <div className="col-lg-5 col-md-7 pb-5 order-lg-1 order-md-0 order-1 ">
+          <div className="col-lg-5 col-md-7 pb-5 order-lg-1 order-md-0 order-1 " id="items">
             {state.history ? (
               <h5 className="text-end mb-3 p-3 bg-warning titleProf">
                 تاریخچه نوبت ها

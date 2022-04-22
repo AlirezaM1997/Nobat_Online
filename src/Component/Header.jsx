@@ -101,7 +101,7 @@ export default function Header() {
               {!docAuth ? (
                 <Link
                   className="btn btn-primary btnHeader d-inline-block text-white"
-                  to={"/doctor-register"}
+                  to={"/doctor-register"} id='doctorRegisterHeaderBtn'
                 >
                   ثبت نام پزشکان
                 </Link>

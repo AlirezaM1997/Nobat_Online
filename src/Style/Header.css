@@ -3,8 +3,13 @@
     order: 3;
   }
 }
-@media screen and (max-width: 532px) {
+@media screen and (max-width: 600px) {
   #header3 {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  #doctorRegisterHeaderBtn {
     display: none !important;
   }
 }
@@ -35,7 +40,7 @@
   position: fixed;
   transform: translateY(0%);
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .headroom--pinned {
     transform: none !important;
   }
@@ -71,7 +76,8 @@
 @media (max-width: 768px) {
   .btnHeader {
     margin-left: 5px;
-    padding: 7px 16px;
+    padding: 7px 12px;
+    font-size: 12px;
   }
 }
 .btnHeader:hover {

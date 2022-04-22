@@ -52,7 +52,7 @@ export default function MobileMenu() {
         >
           {auth || docAuth ? (
             <span
-            id="logout-mob-menue"
+              id="logout-mob-menue"
               className="logout mx-2"
               title="خروج"
               onClick={(e) => {
@@ -220,7 +220,7 @@ export default function MobileMenu() {
           >
             <div
               className={`col-4 d-flex justify-content-center ${
-                auth ? "d-none" : ""
+                auth || docAuth ? "d-none" : ""
               }`}
             >
               <Link to={"/login"} onClick={(e) => handleClose(e)}>
@@ -229,12 +229,14 @@ export default function MobileMenu() {
             </div>
             <div
               className={`col-4 d-flex justify-content-center ${
-                auth ? "col-5 bg-primary rounded" : ""
-              }`}
+                docAuth ? "d-none" : ""
+              } ${auth ? "col-5 bg-primary rounded" : ""}`}
             >
               <Link
                 to={"/doctor-register"}
-                className={`text-center ${auth ? "text-white  rounded py-2" : ""}`}
+                className={`text-center ${
+                  auth ? "text-white  rounded py-2" : ""
+                }`}
                 onClick={(e) => handleClose(e)}
               >
                 ثبت نام پزشکان
@@ -242,7 +244,7 @@ export default function MobileMenu() {
             </div>
             <div
               className={`col-4 d-flex justify-content-center ${
-                auth ? "d-none" : ""
+                auth || docAuth ? "d-none" : ""
               }`}
             >
               <Link to={"/user-register"} onClick={(e) => handleClose(e)}>

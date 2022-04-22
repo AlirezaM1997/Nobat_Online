@@ -81,8 +81,17 @@ input:-webkit-autofill:active {
 # About
 --------------------------------------------------------------*/
 .mainAbout {
-  margin-top: 50px;
-  margin-bottom: 100px;
+  background-image: url("./images/about.jpg");
+  background-size: cover;
+  background-position: center;
+  padding:100px 0 155px 0;
+  margin: auto;
+  max-width: 90vw;
+}
+.aboutText{
+  background: rgba(255, 255, 255, 0.658);
+  padding: 1rem;
+  border-radius: 1em;
 }
 .mainAbout h3 {
   font-family: "Sahel";
