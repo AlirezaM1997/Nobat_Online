@@ -6,11 +6,11 @@ Doctors can also register and manage their patients too.
 
 ***You can see a view of some of the pages below***
 
-![ScreenShot from this project](/src/images/1.png){: style=margin-bottom:30px" }
+![ScreenShot from this project](/src/images/1.png) &nbsp; 
 
-![ScreenShot from this project](/src/images/2.png){: style=margin-bottom:30px" }
+![ScreenShot from this project](/src/images/2.png) &nbsp; 
 
-![ScreenShot from this project](/src/images/3.png){: style=margin-bottom:30px" }
+![ScreenShot from this project](/src/images/3.png) &nbsp; 
 
-![ScreenShot from this project](/src/images/4.png){: style=margin-bottom:30px" }
+![ScreenShot from this project](/src/images/4.png) &nbsp; 
 
