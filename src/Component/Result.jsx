@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../Style/Result.css";
 import { useAllState } from "../Provider";
 import Image from "react-bootstrap/Image";
 import ResultItem from "./ResultItem";
-import DoctorList from "../All-Data/DoctorList";
-// import StickyBox from "react-sticky-box";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faCalendarDays,
-//   faNotesMedical,
-//   faSearchPlus,
-//   faUserDoctor,
-// } from "@fortawesome/free-solid-svg-icons";
-import Select from "react-select";
 import AdvancedSearchBox from "./AdvancedSearchBox";
 
 export default function Result() {
@@ -23,33 +12,11 @@ export default function Result() {
   const { allDoctors } = useAllState();
   const { noResult } = useAllState(false);
   const { setNoResult } = useAllState();
-  // const { setFlag } = useAllState();
-  // const { adSearchName } = useAllState();
-  // const { adSearchExp } = useAllState();
-  // const { workingDay } = useAllState("");
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [filteredDoctor, setFilteredDoctor] = useState([]);
 
   const { setSelectedTime } = useAllState();
-
-  // console.log(filteredDoctor);
-
-  // useEffect(() => {
-  //   const url = ``;
-  //   fetch(url)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw Error(response.status);
-  //       }
-  //     })
-  //     .then((result) => {
-  //       setItems();
-  //       setIsLoaded(true);
-  //     });
-  // }, []);
 
   useEffect(() => {
     setSelectedTime('')
@@ -137,7 +104,7 @@ export default function Result() {
             {noResult ? (
               <Image
                 className="img-fluid noResult"
-                src={require("/Users/alireza/Desktop/Makeen/Project/Nobat Online/src/images/no-result.png")}
+                src={require("/Users/alireza/Desktop/Makeen/Project/Nobat_Online/src/images/no-result.png")}
               ></Image>
             ) : (
               ""
