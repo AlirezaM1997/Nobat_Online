@@ -14,7 +14,7 @@ Doctors can also register and manage their patients too.
 
 ![ScreenShot from this project](/src/images/4.png) &nbsp; 
 
-![ScreenShot from this project](/src/images/5.png) &nbsp; 
+![ScreenShot from this project](/src/images/5.1.png) &nbsp; 
 
-![ScreenShot from this project](/src/images/6.png) &nbsp; 
+![ScreenShot from this project](/src/images/6.1.png) &nbsp; 
 
