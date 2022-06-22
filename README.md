@@ -4,6 +4,15 @@ Nobat Online is an **online appointment website** where users can easily registe
 
 Doctors can also register and manage their patients too.
 
+### The following tools have been used in this project
+
+- **react-js**
+- **bootstrap**
+- **react hook form**
+- **yup**
+- **context api**
+
+
 ***You can see a view of some of the pages below***
 
 ![ScreenShot from this project](/src/images/1.png) &nbsp; 
