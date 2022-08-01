@@ -1,6 +1,4 @@
-import React from "react";
 import ReactDOM from "react-dom";
-// import 'bootstrap-icons/font/bootstrap-icons.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./index.css";
@@ -14,14 +12,11 @@ import DoctorProfile from "./Component/DoctorProfile";
 import Header from "./Component/Header";
 import reportWebVitals from "./reportWebVitals";
 import About from "./Component/About";
-import Header2 from "./Component/Header2";
 import Footer from "./Component/Footer";
 import Appointment from "./Component/Appointment";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Provider from "./Provider";
 import ScrollToTop from "./ScrollToTop";
-
-// import BackToTopBtn from "./Component/BackTopBtn"
 
 ReactDOM.render(
   <Provider>
@@ -53,7 +48,6 @@ ReactDOM.render(
             }
           ></Route>
         </Route>
-        {/* <Route element={<Header2 />}></Route> */}
       </Routes>
       <Footer />
     </BrowserRouter>

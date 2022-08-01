@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect } from "react";
 import WhyUs from "./Component/WhyUs"
 import Count from "./Component/Count";

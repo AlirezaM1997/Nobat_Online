@@ -4,7 +4,6 @@ import {
   faChevronDown,
   faChevronUp,
   faQuestion,
-  faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function AskedQuestions() {

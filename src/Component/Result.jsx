@@ -104,7 +104,7 @@ export default function Result() {
             {noResult ? (
               <Image
                 className="img-fluid noResult"
-                src={require("/Users/alireza/Desktop/Makeen/Project/Nobat_Online/src/images/no-result.png")}
+                src={require("../images/no-result.png")}
               ></Image>
             ) : (
               ""

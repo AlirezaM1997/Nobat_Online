@@ -1,11 +1,9 @@
 import "../Style/Register.css";
-
 import React, { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Select from "react-select";
-
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
 import DoctorList from "../All-Data/DoctorList";
@@ -47,7 +45,7 @@ export default function DoctorRegister() {
   const renderBirthdateInput = ({ ref }) => (
     <input
       readOnly
-      ref={ref} // necessary
+      ref={ref}
       placeholder="انتخاب کنید"
       value={
         selectedDay

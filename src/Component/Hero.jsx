@@ -14,19 +14,14 @@ export default function Hero() {
   //search based expert => flag : 1
   //search based name => flag : 2
   //advansed based => flag : 3
-  // const [nameInput , setNameInput]=useState('')
-  // const [expertInput , setExpertInput]=useState('')
 
   const { setFlag } = useAllState();
   let { searchExp } = useAllState("");
   let { setSearchExp } = useAllState();
   let { searchDoc } = useAllState("");
   let { setSearchDoc } = useAllState();
-
-  // const { setAdSearchName } = useAllState();
   const { setAdSearchExp } = useAllState();
   const { setWorkingDay } = useAllState();
-  // console.log(flag);
 
   const handleEnterKeyName = (event) => {
     if (event.key === "Enter") {

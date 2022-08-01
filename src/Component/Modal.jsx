@@ -9,7 +9,7 @@ import {
 export default function Modal(props) {
   return (
     <>
-      <div className="container ">
+      <div className="container">
         <div
           className={`${props.showHideClassName}`}
           onClick={() => props.hideModal()}

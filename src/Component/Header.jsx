@@ -164,13 +164,12 @@ export default function Header() {
               <Image
                 className="m-0 p-0"
                 id="logo"
-                src={require("/Users/alireza/Desktop/Makeen/Project/Nobat_Online/src/images/logo.png")}
+                src={require("../images/logo.png")}
               ></Image>
             </div>
           </div>
         </header>
       </Headroom>
-
       <Outlet />
     </>
   );

@@ -92,7 +92,5 @@ const DoctorList = [
     label: "روانشناسی",
   },
 ];
-{
-}
 
 export default DoctorList;
