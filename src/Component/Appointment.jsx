@@ -1,7 +1,7 @@
 import "../Style/Appointment.css";
 import { useAllState } from "../Provider";
 import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import MultiStep from "./MultiStep";
